@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Все проекты — 40/60 Design</title>
+<style>
+html { scroll-behavior: smooth; }
+body { margin: 0; background: #141210; padding-top: 72px; font-family: "Inter","Helvetica Neue",Arial,sans-serif; }
+@media (max-width: 720px) { body { padding-top: 64px; } }
+*, *::before, *::after { box-sizing: border-box; }
+img { max-width: 100%; height: auto; display: block; }
+
+/* Шапка — краткая копия с главной */
+.hd-block { position: fixed; top: 0; left: 0; right: 0; z-index: 50; width: 100%; background: #0c160e; color: #c8a572; }
+.hd-block__inner { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 24px; max-width: 1280px; margin: 0 auto; padding: 14px 32px; }
+.hd-block__logo { font-size: 28px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #c8a572; text-decoration: none; }
+.hd-block__nav-list { list-style: none; margin: 0; padding: 0; display: flex; gap: 26px; }
+.hd-block__nav-link { font-size: 14px; font-weight: 500; color: #c8a572; text-decoration: none; opacity: 0.85; }
+.hd-block__nav-link--active { opacity: 1; }
+.hd-block__contacts { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+.hd-block__phone { font-size: 18px; font-weight: 600; color: #c8a572; }
+@media (max-width: 720px) {
+  .hd-block__inner { padding: 12px 16px; }
+  .hd-block__nav-list { gap: 14px; }
+  .hd-block__nav-link { font-size: 12px; }
+  .hd-block__phone { font-size: 14px; }
+}
+
+.pg-hero { background: #141210; color: #f4ede2; padding: 56px 20px 32px; border-bottom: 1px solid #2a2622; }
+.pg-hero__inner { max-width: 1320px; margin: 0 auto; }
+.pg-hero__eyebrow { font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: #c8a572; margin: 0 0 14px; }
+.pg-hero__title { font-size: clamp(34px, 5vw, 60px); line-height: 1.05; letter-spacing: -0.025em; font-weight: 500; margin: 0; color: #f4ede2; }
+
+.kb-grid-wrap { background: #141210; padding: 40px 0 96px; }
+.kb-grid-inner { max-width: 1320px; margin: 0 auto; padding: 0 20px; }
+.kb-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; list-style: none; padding: 0; margin: 0; }
+.kb-card { position: relative; aspect-ratio: 3/4; overflow: hidden; border-radius: 4px; background: #1d1a17; cursor: pointer; }
+.kb-card__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .9s; }
+.kb-card:hover .kb-card__img { opacity: 0.35; transform: scale(1.04); }
+.kb-card__body { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px; background: linear-gradient(180deg, transparent, rgba(20,18,16,0.85)); transform: translateY(14px); opacity: 0; transition: .5s; }
+.kb-card:hover .kb-card__body { opacity: 1; transform: translateY(0); }
+.kb-card__name { font-size: 18px; color: #f4ede2; margin: 0; }
+.kb-card__price { position: absolute; bottom: 14px; right: 14px; font-size: 10px; color: #c8a572; background: rgba(20,18,16,0.8); border: 1px solid rgba(200,165,114,0.4); padding: 6px 10px; border-radius: 2px; }
+.kb-loader { text-align: center; padding: 40px; color: #c8bfb1; grid-column: 1 / -1; }
+
+@media (max-width: 960px) { .kb-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; } }
+@media (max-width: 480px) { .kb-card { aspect-ratio: 4/5; } .kb-card__name { font-size: 14px; } }
+</style>
+</head>
+<body>
+
+<section class="hd-block">
+  <div class="hd-block__inner">
+    <a class="hd-block__logo" href="/">40/60</a>
+    <nav>
+      <ul class="hd-block__nav-list">
+        <li><a class="hd-block__nav-link" href="/about.html">О нас</a></li>
+        <li><a class="hd-block__nav-link hd-block__nav-link--active" href="/portfolio.html">Портфолио</a></li>
+        <li><a class="hd-block__nav-link" href="/warranty.html">Гарантия</a></li>
+        <li><a class="hd-block__nav-link" href="/partners.html">Партнёрам</a></li>
+      </ul>
+    </nav>
+    <div class="hd-block__contacts">
+      <a class="hd-block__phone" href="tel:+79771004415">+7 977 100-44-15</a>
+    </div>
+  </div>
+</section>
+
+<section class="pg-hero">
+  <div class="pg-hero__inner">
+    <p class="pg-hero__eyebrow">Портфолио</p>
+    <h1 class="pg-hero__title">Все реализованные проекты</h1>
+  </div>
+</section>
+
+<section class="kb-grid-wrap">
+  <div class="kb-grid-inner">
+    <ul class="kb-grid" id="kb-grid">
+      <li class="kb-loader">Загружаем проекты…</li>
+    </ul>
+  </div>
+</section>
+
+<script>
+(function () {
+  'use strict';
+  var REPO = 'stastitov002-arch/4060-site';
+  var grid = document.getElementById('kb-grid');
+  var allProjects = [];
+  var pageSize = 12;
+  var rendered = 0;
+  var loading = false;
+  var allRendered = false;
+
+  function parseYaml(text) {
+    var match = text.match(/^---\s*\n([\s\S]*?)\n---\s*\n?([\s\S]*)$/);
+    if (!match) return { data: {} };
+    var yaml = match[1];
+    var data = {}, gallery = [];
+    yaml.split('\n').forEach(function (line) {
+      var mg = line.match(/^\s*-\s+image:\s*(.+)$/);
+      if (mg) { gallery.push(mg[1].trim().replace(/^["']|["']$/g, '')); return; }
+      var m = line.match(/^([a-z_]+)\s*:\s*(.*)$/i);
+      if (!m) return;
+      var key = m[1].trim();
+      var val = m[2].trim().replace(/^["']|["']$/g, '');
+      data[key] = val;
+    });
+    if (gallery.length) data.gallery = gallery;
+    return { data: data };
+  }
+
+  function budgetByPrice(price) {
+    if (!price || isNaN(price)) return null;
+    if (price < 300000) return 'До 300 000 ₽';
+    if (price < 500000) return '300 000–500 000 ₽';
+    return 'От 500 000 ₽';
+  }
+
+  function escapeHtml(s) {
+    if (!s) return '';
+    return String(s).replace(/[&<>"']/g, function (c) { return { '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]; });
+  }
+
+  function renderChunk() {
+    if (loading || allRendered) return;
+    loading = true;
+    var next = allProjects.slice(rendered, rendered + pageSize);
+    if (!next.length) { allRendered = true; loading = false; return; }
+    next.forEach(function (p, i) {
+      var d = p.data;
+      var price = d.price ? parseInt(d.price, 10) : null;
+      var budget = budgetByPrice(price);
+      var li = document.createElement('li');
+      li.className = 'kb-card';
+      li.innerHTML =
+        (d.cover ? '<img class="kb-card__img" src="' + escapeHtml(d.cover) + '" alt="' + escapeHtml(d.title) + '" loading="lazy">' : '') +
+        (budget ? '<span class="kb-card__price">' + escapeHtml(budget) + '</span>' : '') +
+        '<div class="kb-card__body"><h3 class="kb-card__name">' + escapeHtml(d.title || '') + '</h3></div>';
+      grid.appendChild(li);
+    });
+    rendered += next.length;
+    if (rendered >= allProjects.length) allRendered = true;
+    loading = false;
+  }
+
+  function loadAll() {
+    fetch('https://api.github.com/repos/' + REPO + '/contents/_projects?ref=main')
+      .then(function (r) { return r.json(); })
+      .then(function (files) {
+        if (!Array.isArray(files)) { grid.innerHTML = '<li class="kb-loader">Проектов пока нет.</li>'; return; }
+        var md = files.filter(function (f) { return f.name.endsWith('.md'); });
+        return Promise.all(md.map(function (f) { return fetch(f.download_url).then(function (r) { return r.text(); }); }))
+          .then(function (contents) {
+            allProjects = contents.map(parseYaml);
+            grid.innerHTML = '';
+            renderChunk();
+          });
+      })
+      .catch(function () { grid.innerHTML = '<li class="kb-loader">Ошибка загрузки.</li>'; });
+  }
+
+  var sentinel = document.createElement('div');
+  sentinel.style.height = '1px';
+  document.body.appendChild(sentinel);
+  var io = new IntersectionObserver(function (entries) {
+    if (entries[0].isIntersecting) renderChunk();
+  }, { rootMargin: '400px' });
+  io.observe(sentinel);
+
+  loadAll();
+})();
+</script>
+</body>
+</html>
