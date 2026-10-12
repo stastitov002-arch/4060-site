@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: stasitov002-arch/4060-site
+  repo: stastitov002-arch/4060-site
   branch: main
   base_url: https://white-sound-877adecap-proxy.stas-titov-002.workers.dev
   auth_endpoint: /auth
