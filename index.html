@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Производство мебели — 40/60 Design</title>
+<meta name="description" content="Кухни и корпусная мебель на заказ в Москве и области. От производителя, срок 21 день, гарантия 3 года.">
+<style>
+html { scroll-behavior: smooth; }
+body { margin: 0; background: #0c160e; padding-top: 72px; font-family: "Inter","Helvetica Neue",Arial,sans-serif; overflow-x: hidden; }
+@media (max-width: 720px) { body { padding-top: 64px; } }
+
+/* Глобальный фикс ширины */
+*, *::before, *::after { box-sizing: border-box; }
+input, textarea, select, button { max-width: 100%; font-size: 16px; }
+img, svg, video { max-width: 100%; height: auto; }
+
+/* ========== ШАПКА ========== */
+.hd-block, .hd-block * { box-sizing: border-box; }
+.hd-block { position: fixed; top: 0; left: 0; right: 0; z-index: 50; width: 100%; background: #0c160e; color: #c8a572; }
+.hd-block__inner {
+  display: grid; grid-template-columns: auto 1fr auto;
+  align-items: center; gap: 24px;
+  max-width: 1280px; margin: 0 auto; padding: 14px 32px;
+}
+.hd-block__logo {
+  font-size: 28px; font-weight: 700; letter-spacing: 0.04em;
+  text-transform: uppercase; color: #c8a572; text-decoration: none;
+  transition: opacity 0.2s;
+}
+.hd-block__logo:hover { opacity: 0.7; }
+.hd-block__burger { display: none; width: 40px; height: 40px; border: 0; background: transparent; cursor: pointer; color: #c8a572; }
+.hd-block__burger-lines,
+.hd-block__burger-lines::before,
+.hd-block__burger-lines::after { display: block; width: 22px; height: 1.8px; background: currentColor; border-radius: 2px; transition: transform .25s, top .25s; }
+.hd-block__burger-lines { position: relative; }
+.hd-block__burger-lines::before,
+.hd-block__burger-lines::after { content: ""; position: absolute; left: 0; }
+.hd-block__burger-lines::before { top: -7px; }
+.hd-block__burger-lines::after  { top:  7px; }
+.hd-block--menu-open .hd-block__burger-lines { background: transparent; }
+.hd-block--menu-open .hd-block__burger-lines::before { top: 0; transform: rotate(45deg); }
+.hd-block--menu-open .hd-block__burger-lines::after  { top: 0; transform: rotate(-45deg); }
+
+.hd-block__nav { justify-self: center; }
+.hd-block__nav-list { list-style: none; margin: 0; padding: 0; display: flex; gap: 26px; }
+.hd-block__nav-link {
+  font-size: 14px; font-weight: 500; color: #c8a572; text-decoration: none;
+  opacity: 0.85; position: relative; padding: 4px 0; white-space: nowrap;
+  transition: opacity 0.2s;
+}
+.hd-block__nav-link::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0;
+  height: 1px; background: currentColor;
+  transform: scaleX(0); transform-origin: left; transition: transform .25s;
+}
+.hd-block__nav-link:hover { opacity: 1; }
+.hd-block__nav-link:hover::after { transform: scaleX(1); }
+
+.hd-block__contacts { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; line-height: 1.3; }
+.hd-block__phone {
+  display: inline-flex; align-items: center; justify-content: flex-end;
+  font-size: 18px; font-weight: 600; color: #c8a572;
+  background: transparent; border: 0; padding: 0; cursor: pointer; white-space: nowrap;
+  font-family: inherit;
+}
+.hd-block__phone:hover { opacity: 0.75; }
+.hd-block__hours { font-size: 12px; opacity: 0.7; }
+.hd-block__tg { display: inline-flex; align-items: center; gap: 5px; font-size: 13px; color: #c8a572; text-decoration: none; opacity: 0.85; }
+.hd-block__tg:hover { opacity: 1; }
+
+.hd-block__menu-contacts { display: none; }
+
+@media (max-width: 1080px) {
+  .hd-block__nav-list { gap: 18px; }
+  .hd-block__nav-link { font-size: 13px; }
+}
+@media (max-width: 720px) {
+  .hd-block__inner { display: flex; flex-wrap: wrap; align-items: center; column-gap: 12px; padding: 12px 16px; }
+  .hd-block__hours, .hd-block__tg { display: none; }
+  .hd-block__logo { order: 1; font-size: 22px; }
+  .hd-block__contacts { order: 2; margin-left: auto; align-items: flex-end; gap: 0; }
+  .hd-block__burger { order: 3; display: inline-flex; align-items: center; justify-content: center; }
+  .hd-block__nav {
+    order: 4; flex: 1 0 100%; overflow: hidden;
+    max-height: 0; opacity: 0; pointer-events: none;
+    transition: max-height .3s, opacity .2s, margin-top .3s;
+  }
+  .hd-block--menu-open .hd-block__nav { max-height: 520px; opacity: 1; pointer-events: auto; margin-top: 10px; }
+  .hd-block__phone { font-size: 15px; }
+  .hd-block__nav-list { flex-direction: column; gap: 0; padding: 4px 0 0; border-top: 1px solid rgba(200,165,114,0.18); }
+  .hd-block__nav-list li { border-bottom: 1px solid rgba(200,165,114,0.12); }
+  .hd-block__nav-list li:last-child { border-bottom: 0; }
+  .hd-block__nav-link { display: block; padding: 14px 4px; font-size: 16px; opacity: 1; }
+  .hd-block__nav-link::after { display: none; }
+  .hd-block__menu-contacts {
+    display: flex; flex-direction: column; gap: 12px;
+    padding: 14px 4px 6px;
+    border-top: 1px solid rgba(200,165,114,0.18);
+  }
+  .hd-block__menu-tg { display: inline-flex; align-items: center; gap: 6px; color: #c8a572; text-decoration: none; font-size: 14px; }
+}
+
+/* ========== HERO ========== */
+.h40-hero, .h40-hero * { box-sizing: border-box; }
+.h40-hero { position: relative; min-height: 100vh; min-height: 100svh; width: 100%; overflow: hidden; background: #0c0c0e; color: #f4f1ec; isolation: isolate; }
+.h40-hero__media { position: absolute; inset: 0; z-index: 0; }
+.h40-hero__image { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(0.92) contrast(1.02); animation: h40-hero-kenburns 22s ease-out forwards; }
+@keyframes h40-hero-kenburns { to { transform: scale(1.12) translate(-1.5%,-1%); } }
+.h40-hero__veil {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(90deg, rgba(8,8,10,0.86) 0%, rgba(8,8,10,0.62) 38%, rgba(8,8,10,0.18) 70%, rgba(8,8,10,0.42) 100%),
+    linear-gradient(180deg, rgba(8,8,10,0.55) 0%, rgba(8,8,10,0.18) 35%, rgba(8,8,10,0.78) 100%);
+}
+.h40-hero__inner {
+  position: relative; z-index: 2;
+  max-width: 1280px; margin: 0 auto;
+  padding: clamp(120px, 14vh, 180px) clamp(24px, 6vw, 80px) clamp(80px, 10vh, 140px);
+  min-height: 100vh; min-height: 100svh;
+  display: flex; flex-direction: column; justify-content: center;
+  align-items: flex-start; gap: clamp(18px, 2.4vw, 28px);
+}
+.h40-hero__eyebrow {
+  font-size: clamp(11px, 0.85vw, 13px); font-weight: 500;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  color: rgba(244,241,236,0.72); margin: 0; padding-bottom: 14px; position: relative;
+}
+.h40-hero__eyebrow::after { content: ""; position: absolute; left: 0; bottom: 0; width: 36px; height: 1px; background: rgba(244,241,236,0.5); }
+.h40-hero__title {
+  font-weight: 500; font-size: clamp(2.4rem, 6.4vw, 5.4rem);
+  line-height: 1.02; letter-spacing: -0.035em; margin: 0; color: #f7f4ee; max-width: 18ch;
+}
+.h40-hero__title-em { color: #e9c884; }
+.h40-hero__title-dot { color: #e9c884; }
+.h40-hero__subtitle { font-size: clamp(1rem, 1.5vw, 1.25rem); line-height: 1.55; color: rgba(244,241,236,0.82); margin: 0; max-width: 46ch; }
+.h40-hero__badges { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+.h40-hero__badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 16px;
+  border: 1px solid rgba(233,200,132,0.35);
+  border-radius: 999px;
+  color: #e9c884; font-size: 13px; font-weight: 500;
+  background: rgba(233,200,132,0.06);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.h40-hero__actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: clamp(12px, 2vw, 24px); }
+.h40-hero__btn.t-btnflex {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 18px 32px; border-radius: 0;
+  font-size: 15px; font-weight: 500; text-decoration: none;
+  background: #f4f1ec; color: #0c0c0e; border: 1px solid #f4f1ec;
+  transition: background-color .25s, color .25s, transform .25s;
+}
+.h40-hero__btn.t-btnflex:hover { background: #e9c884; border-color: #e9c884; transform: translateY(-1px); }
+.h40-hero__btn--ghost.t-btnflex { background: transparent; color: #f4f1ec; border: 1px solid rgba(244,241,236,0.45); }
+.h40-hero__btn--ghost.t-btnflex:hover { background: rgba(244,241,236,0.08); border-color: #f4f1ec; }
+.h40-hero__scroll {
+  position: absolute; left: clamp(24px,6vw,80px); bottom: clamp(24px,4vh,44px); z-index: 3;
+  display: inline-flex; align-items: center; gap: 14px;
+  color: rgba(244,241,236,0.7); text-decoration: none;
+  font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase;
+}
+.h40-hero__scroll-line { display: inline-block; width: 1px; height: 38px; background: rgba(244,241,236,0.4); position: relative; overflow: hidden; }
+.h40-hero__scroll-line::after { content: ""; position: absolute; top: -38px; left: 0; width: 1px; height: 38px; background: #f4f1ec; animation: h40-hero-scroll 2.4s cubic-bezier(.7,0,.3,1) infinite; }
+@keyframes h40-hero-scroll { 0% { top: -38px; } 60% { top: 38px; } 100% { top: 38px; } }
+.h40-hero__corner { position: absolute; width: clamp(36px,5vw,64px); height: clamp(36px,5vw,64px); border: 1px solid rgba(244,241,236,0.28); z-index: 3; }
+.h40-hero__corner--tl { top: clamp(20px,3vh,36px); left: clamp(20px,3vw,36px); border-right: none; border-bottom: none; }
+.h40-hero__corner--br { bottom: clamp(20px,3vh,36px); right: clamp(20px,3vw,36px); border-left: none; border-top: none; }
+@media (max-width: 960px) { .h40-hero__veil { background: linear-gradient(180deg, rgba(8,8,10,0.55) 0%, rgba(8,8,10,0.35) 45%, rgba(8,8,10,0.82) 100%); } }
+@media (max-width: 640px) {
+  .h40-hero__inner { padding-top: 110px; padding-bottom: 100px; gap: 16px; }
+  .h40-hero__actions { gap: 10px; width: 100%; }
+  .h40-hero__btn.t-btnflex { padding: 16px 22px; flex: 1 1 auto; justify-content: center; }
+  .h40-hero__scroll { left: 50%; transform: translateX(-50%); bottom: 28px; }
+  .h40-hero__badges { gap: 8px; }
+  .h40-hero__badge { font-size: 12px; padding: 7px 12px; }
+}
+
+/* ========== ПОРТФОЛИО ========== */
+.kb-portfolio, .kb-portfolio * { box-sizing: border-box; }
+.kb-portfolio {
+  --kb-bg: #141210; --kb-surface: #1d1a17; --kb-line: #2a2622;
+  --kb-ink: #f4ede2; --kb-ink-soft: #c8bfb1; --kb-accent: #c8a572;
+  background: var(--kb-bg); color: var(--kb-ink);
+  padding: clamp(56px, 8vw, 112px) 0 clamp(56px, 8vw, 96px);
+  position: relative; overflow: hidden;
+}
+.kb-portfolio::before {
+  content: ""; position: absolute; inset: 0;
+  background-image:
+    radial-gradient(circle at 12% 8%, rgba(200,165,114,0.08), transparent 35%),
+    radial-gradient(circle at 88% 92%, rgba(200,165,114,0.06), transparent 40%);
+  pointer-events: none;
+}
+.kb-portfolio__inner { position: relative; max-width: 1320px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); }
+.kb-portfolio__head {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 32px; margin-bottom: clamp(32px, 5vw, 56px);
+  padding-bottom: clamp(20px, 3vw, 28px);
+  border-bottom: 1px solid var(--kb-line);
+}
+.kb-portfolio__head-left { max-width: 720px; }
+.kb-portfolio__eyebrow { font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--kb-accent); margin: 0 0 14px; }
+.kb-portfolio__title { font-size: clamp(28px, 4.2vw, 52px); line-height: 1.05; letter-spacing: -0.025em; font-weight: 500; margin: 0; color: var(--kb-ink); text-wrap: balance; }
+.kb-portfolio__head-right { font-size: 14px; color: var(--kb-ink-soft); line-height: 1.6; max-width: 280px; text-align: right; }
+.kb-portfolio__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(12px, 1.4vw, 20px); }
+
+.kb-card { position: relative; aspect-ratio: 3/4; overflow: hidden; border-radius: 4px; background: var(--kb-surface); cursor: pointer; isolation: isolate; }
+.kb-card__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity 600ms cubic-bezier(.22,1,.36,1), transform 900ms cubic-bezier(.22,1,.36,1); will-change: opacity, transform; }
+.kb-card:hover .kb-card__img { opacity: 0.35; transform: scale(1.04); }
+.kb-card__veil { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,18,16,0.15) 0%, rgba(20,18,16,0.85) 100%); opacity: 0; transition: opacity 500ms cubic-bezier(.22,1,.36,1); pointer-events: none; }
+.kb-card:hover .kb-card__veil { opacity: 1; }
+.kb-card__body { position: absolute; left: 0; right: 0; bottom: 0; padding: clamp(16px,2vw,24px); transform: translateY(14px); opacity: 0; transition: opacity 500ms cubic-bezier(.22,1,.36,1), transform 600ms cubic-bezier(.22,1,.36,1); pointer-events: none; }
+.kb-card:hover .kb-card__body { opacity: 1; transform: translateY(0); }
+.kb-card__num { font-size: 11px; letter-spacing: 0.2em; color: var(--kb-accent); margin: 0 0 8px; font-weight: 600; }
+.kb-card__name { font-size: clamp(15px, 1.4vw, 20px); line-height: 1.2; font-weight: 500; letter-spacing: -0.01em; margin: 0 0 8px; color: var(--kb-ink); }
+.kb-card__desc { font-size: clamp(12px, 0.95vw, 14px); line-height: 1.55; color: var(--kb-ink-soft); margin: 0; max-width: 36ch; }
+.kb-card__corner { position: absolute; top: 14px; left: 14px; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--kb-ink); background: rgba(20,18,16,0.55); backdrop-filter: blur(6px); padding: 6px 10px; border-radius: 2px; transition: opacity 400ms ease; }
+.kb-card:hover .kb-card__corner { opacity: 0; }
+.kb-card__price { position: absolute; bottom: 14px; right: 14px; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--kb-accent); background: rgba(20,18,16,0.8); border: 1px solid rgba(200,165,114,0.4); padding: 6px 10px; border-radius: 2px; white-space: nowrap; transition: opacity 400ms ease; }
+.kb-card:hover .kb-card__price { opacity: 0; }
+
+.kb-portfolio__cta {
+  margin-top: clamp(48px,7vw,80px); padding-top: clamp(32px,5vw,48px);
+  border-top: 1px solid var(--kb-line);
+  display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap;
+}
+.kb-portfolio__cta-text { max-width: 640px; }
+.kb-portfolio__cta-title { font-size: clamp(22px,2.6vw,34px); line-height: 1.15; font-weight: 500; letter-spacing: -0.02em; margin: 0 0 8px; color: var(--kb-ink); }
+.kb-portfolio__cta-title em { font-style: normal; color: var(--kb-accent); }
+.kb-portfolio__cta-sub { font-size: 15px; line-height: 1.6; color: var(--kb-ink-soft); margin: 0; }
+.kb-portfolio__cta-btn {
+  display: inline-flex; align-items: center; gap: 14px;
+  padding: 18px 28px; background: var(--kb-accent); color: #141210;
+  text-decoration: none; font-size: 15px; font-weight: 500;
+  border-radius: 4px;
+  transition: background-color 300ms, transform 300ms, box-shadow 300ms;
+  box-shadow: 0 8px 24px -8px rgba(200,165,114,0.4);
+}
+.kb-portfolio__cta-btn:hover { background: #d9b884; transform: translateY(-2px); box-shadow: 0 14px 32px -8px rgba(200,165,114,0.5); }
+.kb-portfolio__cta-btn svg { width: 22px; height: 22px; }
+
+@media (max-width: 1200px) { .kb-portfolio__grid { gap: 14px; } }
+@media (max-width: 960px) {
+  .kb-portfolio__grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .kb-portfolio__head { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .kb-portfolio__head-right { text-align: left; max-width: none; }
+}
+@media (max-width: 640px) {
+  .kb-portfolio__grid { gap: 10px; }
+  .kb-portfolio__cta { flex-direction: column; align-items: flex-start; gap: 24px; }
+  .kb-portfolio__cta-btn { width: 100%; justify-content: center; }
+}
+@media (max-width: 480px) {
+  .kb-card { aspect-ratio: 4/5; }
+  .kb-card__name { font-size: 14px; }
+  .kb-card__desc { font-size: 12px; }
+  .kb-card__price { font-size: 9px; padding: 4px 8px; }
+}
+
+/* ========== ШОУРУМ ========== */
+.sr-block, .sr-block * { box-sizing: border-box; }
+.sr-block { background: #1c1b19; color: #f7f1e8; position: relative; overflow: hidden; }
+.sr-block__container { display: grid; grid-template-columns: 1.05fr 1fr; min-height: 560px; max-width: 1280px; margin: 0 auto; }
+.sr-block__media { position: relative; overflow: hidden; background: #2b2a28; min-height: 480px; }
+.sr-block__image { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s cubic-bezier(.2,.7,.2,1); }
+.sr-block:hover .sr-block__image { transform: scale(1.04); }
+.sr-block__media-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(28,27,25,0.35) 0%, transparent 35%), linear-gradient(180deg, rgba(28,27,25,0.1) 0%, transparent 30%, rgba(28,27,25,0.4) 100%);
+  pointer-events: none;
+}
+.sr-block__badge {
+  position: absolute; top: 32px; left: 32px;
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 18px 12px 14px;
+  background: rgba(255,255,255,0.92); backdrop-filter: blur(8px);
+  border-radius: 999px; color: #1c1b19;
+  box-shadow: 0 12px 32px -8px rgba(0,0,0,0.35);
+}
+.sr-block__badge-num { font-size: 16px; font-weight: 700; color: #b08a52; }
+.sr-block__badge-text { font-size: 13px; font-weight: 500; color: #1c1b19; }
+.sr-block__content { display: flex; flex-direction: column; justify-content: center; padding: 80px 64px 80px 56px; background: #1c1b19; }
+.sr-block__eyebrow { display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: #d4b279; margin-bottom: 22px; position: relative; padding-left: 36px; }
+.sr-block__eyebrow::before { content: ""; position: absolute; left: 0; top: 50%; width: 24px; height: 1px; background: #d4b279; }
+.sr-block__title { font-size: clamp(32px,4vw,46px); font-weight: 700; line-height: 1.08; letter-spacing: -0.02em; margin: 0 0 22px; }
+.sr-block__text { font-size: clamp(15px,1.4vw,17px); line-height: 1.65; color: rgba(247,241,232,0.75); margin: 0 0 36px; max-width: 480px; }
+.sr-block__btn {
+  align-self: flex-start;
+  background: #b08a52; color: #1c1b19;
+  border: 1px solid #b08a52; border-radius: 4px;
+  padding: 16px 28px; font-size: 15px; font-weight: 600;
+  cursor: pointer; font-family: inherit;
+  transition: background .3s, transform .3s, box-shadow .3s;
+}
+.sr-block__btn:hover { background: #d4b279; border-color: #d4b279; transform: translateY(-2px); box-shadow: 0 14px 32px -10px rgba(176,138,82,0.5); }
+@media (max-width: 960px) {
+  .sr-block__container { grid-template-columns: 1fr; min-height: auto; }
+  .sr-block__media { min-height: 360px; height: 360px; }
+  .sr-block__content { padding: 56px 32px 64px; }
+}
+@media (max-width: 640px) {
+  .sr-block__media { height: 300px; min-height: 300px; }
+  .sr-block__content { padding: 48px 20px 56px; }
+  .sr-block__badge { top: 20px; left: 20px; }
+}
+
+.sr-modal { position: fixed; inset: 0; z-index: 200; display: none; align-items: center; justify-content: center; padding: 24px; }
+.sr-modal.is-open { display: flex; }
+.sr-modal__backdrop { position: absolute; inset: 0; background: rgba(13,12,13,0.85); backdrop-filter: blur(6px); }
+.sr-modal__dialog {
+  position: relative; z-index: 1;
+  width: 100%; max-width: 520px;
+  background: #1f1d1b; border: 1px solid rgba(212,178,121,0.22);
+  border-radius: 24px; padding: 44px 40px 36px;
+  max-height: calc(100vh - 48px); overflow-y: auto;
+  color: #f7f1e8;
+}
+.sr-modal__close { position: absolute; top: 16px; right: 16px; width: 40px; height: 40px; border-radius: 50%; background: rgba(247,241,232,0.06); border: 0; color: #d4b279; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+.sr-modal__close:hover { background: rgba(212,178,121,0.18); }
+.sr-modal__eyebrow { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: #d4b279; margin-bottom: 14px; position: relative; padding-left: 32px; }
+.sr-modal__eyebrow::before { content: ""; position: absolute; left: 0; top: 50%; width: 22px; height: 1px; background: #d4b279; }
+.sr-modal__title { font-size: clamp(22px,3vw,28px); font-weight: 700; line-height: 1.15; margin: 0 0 10px; color: #fff; }
+.sr-modal__subtitle { font-size: 14px; line-height: 1.55; color: rgba(247,241,232,0.65); margin: 0 0 26px; }
+.sr-form { display: flex; flex-direction: column; gap: 18px; }
+.sr-field { display: flex; flex-direction: column; gap: 8px; }
+.sr-field__label { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(212,178,121,0.85); }
+.sr-field__input {
+  width: 100%; padding: 14px 16px;
+  background: rgba(247,241,232,0.04);
+  border: 1px solid rgba(212,178,121,0.22);
+  border-radius: 12px; color: #f7f1e8;
+  font-family: inherit; font-size: 16px;
+  transition: border-color .25s, box-shadow .25s; outline: none;
+}
+.sr-field__input:focus { border-color: #d4b279; background: rgba(247,241,232,0.06); box-shadow: 0 0 0 4px rgba(212,178,121,0.12); }
+.sr-form__submit { background: #b08a52; color: #1c1b19; border: 1px solid #b08a52; border-radius: 12px; padding: 16px 20px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: inherit; transition: background .3s; width: 100%; }
+.sr-form__submit:hover { background: #d4b279; border-color: #d4b279; }
+body.sr-modal-open { overflow: hidden; }
+
+/* АДАПТИВ МОДАЛКИ ШОУРУМА */
+@media (max-width: 640px) {
+  .sr-modal {
+    padding: 12px;
+    align-items: flex-start;
+    padding-top: max(12px, env(safe-area-inset-top));
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
+  }
+  .sr-modal__dialog {
+    width: 100%;
+    max-width: 100%;
+    padding: 24px 18px 20px;
+    border-radius: 16px;
+    max-height: calc(100vh - 24px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .sr-modal__title { font-size: 20px; padding-right: 40px; }
+  .sr-field__input { width: 100%; padding: 12px 14px; font-size: 16px; }
+  .sr-form__submit { width: 100%; padding: 14px 18px; font-size: 15px; }
+}
+
+/* ========== ПРОЕКТ ПОД КЛЮЧ ========== */
+.tpk-block, .tpk-block * { box-sizing: border-box; }
+.tpk-block { font-family: "Inter", Arial, sans-serif; color: #2b2a28; background: #fbf8f3; padding: 96px 24px 110px; position: relative; }
+.tpk-block__container { max-width: 1200px; margin: 0 auto; }
+.tpk-block__header { text-align: center; margin-bottom: 64px; }
+.tpk-block__eyebrow { display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: #b08a52; padding: 8px 16px; border: 1px solid rgba(176,138,82,0.35); border-radius: 999px; margin-bottom: 24px; }
+.tpk-block__title { font-size: clamp(34px,5vw,56px); font-weight: 700; line-height: 1.05; letter-spacing: -0.02em; margin: 0 0 18px; color: #1c1b19; }
+.tpk-block__subtitle { font-size: clamp(15px,1.6vw,18px); line-height: 1.55; color: #6b6760; margin: 0 auto; max-width: 560px; }
+.tpk-block__grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.tpk-card { position: relative; background: #fff; border: 1px solid rgba(43,42,40,0.06); border-radius: 20px; padding: 32px 26px 28px; transition: transform .4s, box-shadow .4s, border-color .4s; overflow: hidden; }
+.tpk-card::after { content: ""; position: absolute; left: 0; top: 0; width: 100%; height: 3px; background: linear-gradient(90deg, #b08a52, #d4b279); transform: scaleX(0); transform-origin: left; transition: transform .5s cubic-bezier(.2,.7,.2,1); }
+.tpk-card:hover { transform: translateY(-6px); box-shadow: 0 24px 48px -20px rgba(43,42,40,0.18); border-color: rgba(176,138,82,0.25); }
+.tpk-card:hover::after { transform: scaleX(1); }
+.tpk-card__num { position: absolute; top: 22px; right: 26px; font-size: 13px; font-weight: 600; color: #b08a52; letter-spacing: 0.05em; }
+.tpk-card__icon { width: 56px; height: 56px; border-radius: 14px; background: linear-gradient(135deg, #f7f1e8, #efe5d3); display: flex; align-items: center; justify-content: center; margin-bottom: 22px; font-size: 24px; }
+.tpk-card__title { font-size: 22px; font-weight: 600; line-height: 1.2; margin: 0 0 10px; letter-spacing: -0.01em; color: #1c1b19; }
+.tpk-card__text { font-size: 15px; line-height: 1.55; color: #6b6760; margin: 0; }
+@media (max-width: 1200px) { .tpk-block__grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 960px) {
+  .tpk-block { padding: 72px 20px 80px; }
+  .tpk-block__header { margin-bottom: 48px; }
+  .tpk-block__grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .tpk-card { padding: 28px 22px 24px; }
+}
+@media (max-width: 640px) {
+  .tpk-block { padding: 56px 16px 64px; }
+  .tpk-block__grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .tpk-card { padding: 24px 18px 22px; border-radius: 16px; }
+  .tpk-card__title { font-size: 19px; }
+  .tpk-card__text { font-size: 14px; }
+}
+@media (max-width: 480px) { .tpk-block__grid { grid-template-columns: 1fr; gap: 12px; } }
+
+/* ========== ЭТАПЫ РАБОТЫ ========== */
+.st-steps, .st-steps * { box-sizing: border-box; }
+.st-steps {
+  --accent: #b04a26; --ink: #161513; --muted: #56524a; --bg: #f6f4ee;
+  --rail: rgba(22,21,19,0.14); --dot: 11px;
+  --row-gap: clamp(28px, 3.6vw, 44px); --col-gap: clamp(48px, 7vw, 96px);
+  background: var(--bg); color: var(--ink);
+  font-family: "Inter", Arial, sans-serif;
+  padding: clamp(56px,7vw,88px) 0 clamp(64px,8vw,96px);
+  position: relative;
+}
+.st-steps__inner { width: min(1180px, calc(100% - 48px)); margin: 0 auto; }
+.st-steps__head { max-width: 720px; margin: 0 0 clamp(36px, 4.5vw, 64px); }
+.st-steps__title { font-size: clamp(32px,4.6vw,54px); font-weight: 600; letter-spacing: -0.025em; line-height: 1.05; margin: 0 0 20px; }
+.st-steps__lead { font-size: clamp(16px,1.55vw,19px); line-height: 1.55; color: var(--muted); margin: 0; }
+.st-steps__list { position: relative; list-style: none; margin: 0; padding: 0; }
+.st-steps__list::before { content: ''; position: absolute; left: 50%; top: 14px; bottom: 14px; width: 1px; background: var(--rail); z-index: 0; }
+.st-steps__item { position: relative; display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--col-gap); align-items: start; padding: var(--row-gap) 0; }
+.st-steps__content { position: relative; max-width: 440px; }
+.st-steps__item:nth-child(odd) .st-steps__content { grid-column: 2; padding-left: clamp(28px, 4vw, 48px); }
+.st-steps__item:nth-child(even) .st-steps__content { grid-column: 1; padding-right: clamp(28px, 4vw, 48px); text-align: right; justify-self: end; }
+.st-steps__num { display: block; font-size: clamp(28px,3.2vw,36px); font-weight: 600; line-height: 1; letter-spacing: -0.04em; color: var(--accent); margin: 0 0 8px; }
+.st-steps__title-step { font-size: clamp(18px,1.7vw,21px); font-weight: 600; line-height: 1.2; margin: 0 0 4px; }
+.st-steps__text { font-size: 15px; line-height: 1.45; color: var(--muted); margin: 0; }
+.st-steps__dot { position: absolute; left: 50%; top: calc(var(--row-gap) + 6px); width: var(--dot); height: var(--dot); margin-left: calc(var(--dot) / -2); border-radius: 50%; background: var(--bg); border: 2px solid var(--accent); z-index: 2; }
+@media (max-width: 960px) {
+  .st-steps__list::before { left: 18px; top: 6px; bottom: 6px; }
+  .st-steps__item { display: block; padding: 18px 0 18px 52px; }
+  .st-steps__item:nth-child(odd) .st-steps__content,
+  .st-steps__item:nth-child(even) .st-steps__content { grid-column: auto; padding: 0; max-width: none; text-align: left; justify-self: stretch; }
+  .st-steps__dot { left: 18px; top: 26px; margin-left: calc(var(--dot) / -2); }
+}
+@media (max-width: 640px) {
+  .st-steps__list::before { left: 14px; }
+  .st-steps__item { padding: 14px 0 14px 42px; }
+  .st-steps__dot { left: 14px; top: 20px; }
+}
+
+/* ========== FAQ ========== */
+.faq-a7b, .faq-a7b * { box-sizing: border-box; }
+.faq-a7b { background: #f5f5f3; padding: clamp(48px,8vw,96px) 0; color: #1a1a1a; }
+.faq-a7b__container { width: 100%; max-width: 880px; margin: 0 auto; padding: 0 clamp(20px,4vw,40px); }
+.faq-a7b__header { margin-bottom: clamp(32px,5vw,56px); }
+.faq-a7b__title { font-size: clamp(36px, 5vw, 56px); margin: 0 0 14px; letter-spacing: -0.02em; }
+.faq-a7b__subtitle { font-size: 18px; color: #5a5a58; margin: 0; max-width: 60ch; }
+.faq-a7b__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+.faq-a7b__item { background: #fff; border: 1px solid #e8e6e1; border-radius: 16px; overflow: hidden; transition: border-color .3s, box-shadow .3s; }
+.faq-a7b__item--open { border-color: #1a1a1a; box-shadow: 0 8px 24px -12px rgba(26,26,26,0.15); }
+.faq-a7b__question { width: 100%; display: grid; grid-template-columns: auto 1fr auto; gap: clamp(16px,3vw,28px); padding: clamp(20px,3vw,28px) clamp(20px,3vw,32px); background: transparent; border: 0; cursor: pointer; text-align: left; color: #1a1a1a; font-family: inherit; }
+.faq-a7b__num { font-size: 18px; font-weight: 600; letter-spacing: 0.06em; color: #8a8a86; min-width: 36px; }
+.faq-a7b__item--open .faq-a7b__num { color: #1a1a1a; }
+.faq-a7b__q-text { font-size: clamp(18px, 1.8vw, 22px); font-weight: 500; letter-spacing: -0.01em; line-height: 1.35; }
+.faq-a7b__icon { width: 44px; height: 44px; border-radius: 50%; background: #f5f5f3; position: relative; flex-shrink: 0; transition: background .3s; }
+.faq-a7b__icon::before, .faq-a7b__icon::after { content: ""; position: absolute; top: 50%; left: 50%; width: 16px; height: 2px; background: #1a1a1a; transition: transform .4s, opacity .3s; }
+.faq-a7b__icon::before { transform: translate(-50%, -50%); }
+.faq-a7b__icon::after { transform: translate(-50%, -50%) rotate(90deg); }
+.faq-a7b__item--open .faq-a7b__icon { background: #1a1a1a; }
+.faq-a7b__item--open .faq-a7b__icon::before,
+.faq-a7b__item--open .faq-a7b__icon::after { background: #fff; }
+.faq-a7b__item--open .faq-a7b__icon::after { transform: translate(-50%, -50%) rotate(0); opacity: 0; }
+.faq-a7b__answer { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .45s cubic-bezier(.16,1,.3,1); }
+.faq-a7b__answer[hidden] { display: grid; }
+.faq-a7b__item--open .faq-a7b__answer { grid-template-rows: 1fr; }
+.faq-a7b__answer-inner { overflow: hidden; min-height: 0; }
+.faq-a7b__answer-inner p { margin: 0; padding: 0 clamp(20px,3vw,32px) clamp(20px,3vw,28px) calc(clamp(20px,3vw,32px) + 36px + clamp(16px,3vw,28px)); color: #4a4a48; line-height: 1.7; font-size: 17px; max-width: 65ch; }
+@media (max-width: 640px) {
+  .faq-a7b__container { padding: 0 16px; }
+  .faq-a7b__title { font-size: clamp(26px, 8vw, 36px); }
+  .faq-a7b__subtitle { font-size: 16px; }
+  .faq-a7b__num { font-size: 16px; min-width: 32px; }
+  .faq-a7b__q-text { font-size: 17px; }
+  .faq-a7b__icon { width: 38px; height: 38px; }
+  .faq-a7b__answer-inner p { font-size: 15.5px; }
+}
+
+/* ========== ФИНАЛЬНАЯ ФОРМА ========== */
+.vk-measure, .vk-measure * { box-sizing: border-box; }
+.vk-measure { background: #1c1b19; color: #f7f1e8; padding: clamp(48px,7vw,88px) clamp(16px,5vw,48px); }
+.vk-measure__inner { width: 100%; max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(32px,5vw,72px); align-items: center; }
+.vk-measure__intro { display: flex; flex-direction: column; gap: 22px; }
+.vk-measure__badge { display: inline-flex; align-items: center; gap: 10px; width: fit-content; padding: 8px 14px; border-radius: 999px; background: #f5b942; color: #1c1b19; font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; }
+.vk-measure__title { font-size: clamp(34px,5.4vw,60px); line-height: 1.04; letter-spacing: -0.035em; margin: 0; font-weight: 600; }
+.vk-measure__lead { font-size: clamp(15px,1.4vw,17px); line-height: 1.6; color: #b3a89a; margin: 0; max-width: 52ch; }
+.vk-measure__perks { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px 16px; margin-top: 6px; }
+.vk-measure__perk { display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; border-radius: 14px; background: rgba(245,185,66,0.04); border: 1px solid rgba(245,185,66,0.12); }
+.vk-measure__perk-icon { flex: 0 0 32px; width: 32px; height: 32px; border-radius: 9px; display: grid; place-items: center; background: rgba(245,185,66,0.12); border: 1px solid rgba(245,185,66,0.22); color: #f5b942; font-size: 16px; }
+.vk-measure__perk-text { font-size: 14px; line-height: 1.45; }
+.vk-measure__perk-text small { display: block; color: #b3a89a; font-size: 12px; margin-top: 2px; }
+.vk-measure__card { background: #2a2620; border: 1px solid rgba(245,185,66,0.22); border-radius: 24px; padding: clamp(24px,3.6vw,40px); box-shadow: 0 30px 60px -30px rgba(0,0,0,0.6); }
+.vk-measure__form-head { margin-bottom: 22px; }
+.vk-measure__form-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: #f5b942; margin-bottom: 6px; display: block; }
+.vk-measure__form-title { font-size: clamp(22px,2.4vw,28px); line-height: 1.15; margin: 0; }
+.vk-measure__fields { display: flex; flex-direction: column; gap: 14px; }
+.vk-measure__field { display: flex; flex-direction: column; gap: 6px; }
+.vk-measure__label { font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(245,185,66,0.85); }
+.vk-measure__input { width: 100%; padding: 14px 16px; border-radius: 12px; border: 1px solid rgba(245,185,66,0.22); background: rgba(28,27,25,0.45); color: #f7f1e8; font-family: inherit; font-size: 16px; outline: none; transition: border-color .2s, box-shadow .2s; }
+.vk-measure__input:focus { border-color: #f5b942; box-shadow: 0 0 0 4px rgba(245,185,66,0.14); }
+.vk-measure__submit { margin-top: 8px; width: 100%; border: none; cursor: pointer; background: linear-gradient(180deg, #f5b942 0%, #e5a82d 100%); color: #1c1b19; font-family: inherit; font-size: 15px; font-weight: 600; padding: 16px 20px; border-radius: 14px; transition: transform .18s, filter .18s; }
+.vk-measure__submit:hover { transform: translateY(-1px); filter: brightness(1.05); }
+.vk-measure__consent { display: flex; align-items: flex-start; gap: 10px; margin-top: 14px; cursor: pointer; }
+.vk-measure__consent-input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.vk-measure__consent-box { flex: 0 0 18px; width: 18px; height: 18px; border: 1.5px solid rgba(245,185,66,0.3); border-radius: 5px; display: inline-grid; place-items: center; background: rgba(28,27,25,0.5); color: #1c1b19; font-size: 12px; }
+.vk-measure__consent-input:checked + .vk-measure__consent-box { background: #f5b942; border-color: #f5b942; }
+.vk-measure__consent-text { font-size: 12px; color: #b3a89a; line-height: 1.5; }
+.vk-measure__success { display: none; flex-direction: column; align-items: center; text-align: center; gap: 14px; padding: 12px 8px 4px; }
+.vk-measure__success.is-active { display: flex; }
+.vk-measure__success-icon { width: 80px; height: 80px; border-radius: 50%; background: rgba(111,207,151,0.14); color: #6fcf97; display: grid; place-items: center; font-size: 40px; }
+.vk-measure__success-title { font-size: 22px; margin: 0; }
+.vk-measure__success-text { color: #b3a89a; font-size: 15px; margin: 0; max-width: 36ch; }
+
+/* АДАПТИВ ФОРМЫ ЗАМЕРА */
+@media (max-width: 960px) { .vk-measure__inner { grid-template-columns: 1fr; } }
+@media (max-width: 640px) {
+  .vk-measure { padding: 40px 16px; }
+  .vk-measure__inner { gap: 28px; }
+  .vk-measure__card { padding: 24px 18px; border-radius: 18px; }
+  .vk-measure__title { font-size: clamp(26px, 8vw, 36px); line-height: 1.1; }
+  .vk-measure__lead { font-size: 15px; }
+  .vk-measure__input { padding: 12px 14px; font-size: 16px; }
+  .vk-measure__submit { padding: 14px 18px; font-size: 15px; }
+  .vk-measure__perks { grid-template-columns: 1fr; gap: 10px; }
+  .vk-measure__consent { align-items: flex-start; }
+  .vk-measure__consent-text { font-size: 12px; line-height: 1.45; }
+}
+
+/* ========== ФУТЕР ========== */
+.ft-block, .ft-block * { box-sizing: border-box; }
+.ft-block { background: #0c160e; color: #c8a572; padding: 48px 20px 24px; border-top: 1px solid rgba(200,165,114,0.15); }
+.ft-block__wrap { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 32px; }
+@media (min-width: 720px) { .ft-block__wrap { grid-template-columns: 1.5fr 1fr 1fr; } }
+.ft-block__logo { font-size: 26px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #c8a572; margin: 0 0 12px; text-decoration: none; display: inline-block; }
+.ft-block__tagline { font-size: 14px; line-height: 1.6; color: #b3ada0; margin: 0 0 16px; max-width: 36ch; }
+.ft-block__contacts { display: flex; flex-direction: column; gap: 8px; font-size: 14px; }
+.ft-block__contacts a { color: #c8a572; text-decoration: none; transition: opacity .2s; }
+.ft-block__contacts a:hover { opacity: 0.75; }
+.ft-block__col-title { font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #c8a572; opacity: 0.6; margin: 0 0 14px; }
+.ft-block__nav { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.ft-block__nav a { color: #c8a572; text-decoration: none; font-size: 14px; opacity: 0.85; transition: opacity .2s; }
+.ft-block__nav a:hover { opacity: 1; }
+.ft-block__bottom { max-width: 1280px; margin: 40px auto 0; padding-top: 20px; border-top: 1px solid rgba(200,165,114,0.15); display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; font-size: 12px; color: #b3ada0; }
+.ft-block__bottom a { color: #b3ada0; text-decoration: none; }
+.ft-block__bottom a:hover { color: #c8a572; }
+
+/* ========== ВИДЖЕТ СООБЩЕНИЙ ========== */
+.msg-widget {
+  position: fixed; right: 24px; bottom: 24px; z-index: 100;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: #0c160e; color: #c8a572;
+  border: 1px solid #c8a572;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 12px 32px rgba(0,0,0,.5);
+  transition: transform .25s, background-color .25s, color .25s;
+}
+.msg-widget:hover { transform: scale(1.06); background: #c8a572; color: #0c160e; }
+.msg-widget svg { width: 24px; height: 24px; }
+
+.msg-modal { position: fixed; inset: 0; z-index: 200; display: none; align-items: center; justify-content: center; padding: 24px; }
+.msg-modal.is-open { display: flex; }
+.msg-modal__backdrop { position: absolute; inset: 0; background: rgba(6,11,7,0.85); backdrop-filter: blur(6px); }
+.msg-modal__dialog {
+  position: relative; z-index: 1;
+  width: 100%; max-width: 520px;
+  background: #0c160e;
+  border: 1px solid rgba(200,165,114,0.3);
+  border-radius: 20px; padding: 40px 36px 32px;
+  color: #f7f4ee;
+  max-height: calc(100vh - 48px); overflow-y: auto;
+}
+.msg-modal__close { position: absolute; top: 14px; right: 14px; width: 40px; height: 40px; border-radius: 50%; background: rgba(247,244,238,0.06); border: 0; color: #c8a572; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; transition: background .2s; }
+.msg-modal__close:hover { background: rgba(200,165,114,0.18); }
+.msg-modal__eyebrow { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: #c8a572; margin-bottom: 14px; position: relative; padding-left: 32px; }
+.msg-modal__eyebrow::before { content: ""; position: absolute; left: 0; top: 50%; width: 22px; height: 1px; background: #c8a572; }
+.msg-modal__title { font-size: clamp(22px,3vw,28px); font-weight: 700; line-height: 1.15; margin: 0 0 10px; color: #fff; }
+.msg-modal__subtitle { font-size: 14px; line-height: 1.55; color: rgba(247,244,238,0.65); margin: 0 0 24px; }
+
+.msg-field { display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px; }
+.msg-field__label { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(200,165,114,0.85); }
+
+.msg-methods { display: flex; flex-wrap: wrap; gap: 8px; }
+.msg-method {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 14px;
+  background: rgba(247,244,238,0.04);
+  border: 1px solid rgba(200,165,114,0.2);
+  border-radius: 10px; color: #f7f4ee;
+  font-size: 13px; font-weight: 500;
+  cursor: pointer;
+  transition: border-color .2s, background .2s;
+}
+.msg-method:hover { border-color: rgba(200,165,114,0.5); }
+.msg-method input { position: absolute; opacity: 0; pointer-events: none; }
+.msg-method.is-active { background: rgba(200,165,114,0.12); border-color: #c8a572; }
+.msg-method svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+.msg-input, .msg-textarea {
+  width: 100%; padding: 14px 16px;
+  background: rgba(247,244,238,0.04);
+  border: 1px solid rgba(200,165,114,0.22);
+  border-radius: 12px; color: #f7f4ee;
+  font-family: inherit; font-size: 16px; outline: none;
+  transition: border-color .25s, box-shadow .25s;
+}
+.msg-textarea { min-height: 80px; resize: vertical; }
+.msg-input::placeholder, .msg-textarea::placeholder { color: rgba(247,244,238,0.35); }
+.msg-input:focus, .msg-textarea:focus { border-color: #c8a572; box-shadow: 0 0 0 4px rgba(200,165,114,0.12); }
+.msg-submit { width: 100%; margin-top: 4px; background: #c8a572; color: #0c160e; border: 1px solid #c8a572; border-radius: 12px; padding: 16px 20px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: inherit; transition: background .25s; }
+.msg-submit:hover { background: #d9b989; border-color: #d9b989; }
+.msg-consent { display: flex; align-items: flex-start; gap: 10px; margin-top: 12px; cursor: pointer; }
+.msg-consent input { position: absolute; opacity: 0; }
+.msg-consent__box { flex: 0 0 18px; width: 18px; height: 18px; border: 1.5px solid rgba(200,165,114,0.4); border-radius: 5px; background: rgba(247,244,238,0.04); display: inline-grid; place-items: center; color: #0c160e; font-size: 12px; }
+.msg-consent input:checked + .msg-consent__box { background: #c8a572; border-color: #c8a572; }
+.msg-consent__text { font-size: 12px; color: rgba(247,244,238,0.6); line-height: 1.5; }
+.msg-success { display: none; flex-direction: column; align-items: center; text-align: center; gap: 12px; padding: 8px; }
+.msg-success.is-active { display: flex; }
+.msg-success__icon { width: 72px; height: 72px; border-radius: 50%; background: rgba(111,207,151,0.14); color: #6fcf97; display: grid; place-items: center; font-size: 36px; }
+.msg-success__title { font-size: 20px; font-weight: 700; color: #fff; margin: 0; }
+.msg-success__text { font-size: 14px; line-height: 1.55; color: rgba(247,244,238,0.7); margin: 0; max-width: 36ch; }
+body.msg-modal-open { overflow: hidden; }
+
+/* АДАПТИВ ВИДЖЕТА */
+@media (max-width: 640px) {
+  .msg-widget { right: 16px; bottom: 16px; width: 52px; height: 52px; }
+  .msg-modal {
+    padding: 12px;
+    align-items: flex-start;
+    padding-top: max(12px, env(safe-area-inset-top));
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
+  }
+  .msg-modal__dialog {
+    width: 100%;
+    max-width: 100%;
+    padding: 24px 18px 20px;
+    border-radius: 16px;
+    max-height: calc(100vh - 24px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .msg-modal__title { font-size: 20px; padding-right: 40px; }
+  .msg-input, .msg-textarea { width: 100%; padding: 12px 14px; font-size: 16px; }
+  .msg-submit { width: 100%; padding: 14px 18px; font-size: 15px; }
+  .msg-methods { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .msg-method { justify-content: center; padding: 10px 8px; font-size: 12px; }
+  .msg-method svg { width: 16px; height: 16px; }
+}
+
+.to-top {
+  position: fixed; right: 24px; bottom: 92px; z-index: 60;
+  width: 46px; height: 46px; border-radius: 50%;
+  background: #c8a572; color: #0c160e; border: none; cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center;
+  box-shadow: 0 10px 24px rgba(0,0,0,.35);
+  opacity: 0; pointer-events: none;
+  transition: opacity .25s, transform .25s;
+}
+.to-top.is-visible { opacity: 1; pointer-events: auto; }
+.to-top:hover { transform: translateY(-3px); background: #d9b989; }
+@media (max-width: 640px) {
+  .to-top { right: 16px; bottom: 80px; width: 44px; height: 44px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ========== ШАПКА ========== -->
+<section class="hd-block">
+  <div class="hd-block__inner">
+    <a class="hd-block__logo" href="/">40/60</a>
+    <button class="hd-block__burger" type="button" aria-expanded="false" aria-label="Меню">
+      <span class="hd-block__burger-lines"></span>
+    </button>
+    <nav class="hd-block__nav" id="hd-nav">
+      <ul class="hd-block__nav-list">
+        <li><a class="hd-block__nav-link" href="/page255308109.html">О нас</a></li>
+        <li><a class="hd-block__nav-link" href="#portfolio">Портфолио</a></li>
+        <li><a class="hd-block__nav-link" href="/page255317009.html">Гарантия</a></li>
+        <li><a class="hd-block__nav-link" href="/page256810809.html">Партнёрам</a></li>
+      </ul>
+      <div class="hd-block__menu-contacts">
+        <span class="hd-block__menu-hours">пн–сб 10:00–21:00</span>
+        <a class="hd-block__menu-tg" href="https://t.me/design4060" target="_blank" rel="noopener">Telegram: @design4060</a>
+      </div>
+    </nav>
+    <div class="hd-block__contacts">
+      <button class="hd-block__phone" type="button" data-copy="+79771004415">+7 977 100-44-15</button>
+      <span class="hd-block__hours">пн–сб 10:00–21:00</span>
+      <a class="hd-block__tg" href="https://t.me/design4060" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+        <span>design4060</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== HERO ========== -->
+<section class="h40-hero">
+  <div class="h40-hero__media">
+    <img class="h40-hero__image" alt="" src="https://static.tildacdn.pub/tild3264-6230-4336-b938-666135316432/Gemini_Generated_Ima.jpg">
+    <div class="h40-hero__veil"></div>
+  </div>
+  <div class="h40-hero__inner">
+    <p class="h40-hero__eyebrow">Студия интерьерной мебели</p>
+    <h1 class="h40-hero__title">
+      Кухни и корпусная мебель <span class="h40-hero__title-em">по вашему размеру</span><span class="h40-hero__title-dot">.</span>
+    </h1>
+    <p class="h40-hero__subtitle">
+      Производим на своей фабрике в Москве и области.<br>
+      Без «подгонки» под типовые габариты — только под ваш проём.
+    </p>
+    <div class="h40-hero__badges">
+      <span class="h40-hero__badge">⚡ Срок 21 день</span>
+      <span class="h40-hero__badge">✓ Гарантия 3 года</span>
+      <span class="h40-hero__badge">₽ От 250 000 ₽</span>
+      <span class="h40-hero__badge">✍ Запись на замер</span>
+    </div>
+    <div class="h40-hero__actions">
+      <a class="h40-hero__btn t-btnflex" href="#portfolio">Смотреть проекты</a>
+      <a class="h40-hero__btn h40-hero__btn--ghost t-btnflex" href="#measure">Получить расчёт</a>
+    </div>
+  </div>
+  <a class="h40-hero__scroll" href="#portfolio">
+    <span class="h40-hero__scroll-line"></span>
+    <span class="h40-hero__scroll-text">Вниз</span>
+  </a>
+  <div class="h40-hero__corner h40-hero__corner--tl"></div>
+  <div class="h40-hero__corner h40-hero__corner--br"></div>
+</section>
+
+<!-- ========== ПОРТФОЛИО ========== -->
+<section id="portfolio" class="kb-portfolio">
+  <div class="kb-portfolio__inner">
+    <header class="kb-portfolio__head">
+      <div class="kb-portfolio__head-left">
+        <p class="kb-portfolio__eyebrow">Портфолио</p>
+        <h2 class="kb-portfolio__title">Реализованные проекты мебели</h2>
+      </div>
+      <div class="kb-portfolio__head-right">Откройте проект, чтобы увидеть описание материалов, фурнитуры и сроков реализации.</div>
+    </header>
+
+    <div class="kb-portfolio__grid">
+      <article class="kb-card" tabindex="0">
+        <img class="kb-card__img" src="https://static.tildacdn.pub/tild3731-3830-4137-a438-656430386431/b17fc8c6-bdc1-4c8f-a.jpg" alt="Кухня Геометрия Шпона" loading="lazy">
+        <span class="kb-card__corner">01</span>
+        <span class="kb-card__price">От 300 000 ₽</span>
+        <div class="kb-card__veil"></div>
+        <div class="kb-card__body">
+          <p class="kb-card__num">Проект №01</p>
+          <h3 class="kb-card__name">Кухня «Геометрия Шпона»</h3>
+          <p class="kb-card__desc">Премиальный гарнитур с фасадами в натуральном шпоне ореха, подсветкой рабочей зоны и высокой стеклянной витриной.</p>
+        </div>
+      </article>
+      <article class="kb-card" tabindex="0">
+        <img class="kb-card__img" src="https://static.tildacdn.pub/tild3938-3237-4963-b730-383166636533/photo_52941627045431.jpg" alt="Гардеробная Силуэт" loading="lazy">
+        <span class="kb-card__corner">02</span>
+        <span class="kb-card__price">От 300 000 ₽</span>
+        <div class="kb-card__veil"></div>
+        <div class="kb-card__body">
+          <p class="kb-card__num">Проект №02</p>
+          <h3 class="kb-card__name">Гардеробная «Силуэт»</h3>
+          <p class="kb-card__desc">Премиальная система хранения в шпоне дерева с тонированными стеклянными фасадами и подсветкой полок.</p>
+        </div>
+      </article>
+      <article class="kb-card" tabindex="0">
+        <img class="kb-card__img" src="https://static.tildacdn.pub/tild6531-3630-4438-b632-343036353439/photo_52941627045431.jpg" alt="Гардеробная Лофт Спейс" loading="lazy">
+        <span class="kb-card__corner">03</span>
+        <span class="kb-card__price">До 300 000 ₽</span>
+        <div class="kb-card__veil"></div>
+        <div class="kb-card__body">
+          <p class="kb-card__num">Проект №03</p>
+          <h3 class="kb-card__name">Гардеробная «Лофт Спейс»</h3>
+          <p class="kb-card__desc">Открытая модульная система на чёрном металлокаркасе с комодами и ростовым зеркалом.</p>
+        </div>
+      </article>
+      <article class="kb-card" tabindex="0">
+        <img class="kb-card__img" src="https://static.tildacdn.pub/tild6164-3332-4538-b137-666437313166/photo_52966852848650.jpg" alt="Кухня Урбан Грей" loading="lazy">
+        <span class="kb-card__corner">04</span>
+        <span class="kb-card__price">До 300 000 ₽</span>
+        <div class="kb-card__veil"></div>
+        <div class="kb-card__body">
+          <p class="kb-card__num">Проект №04</p>
+          <h3 class="kb-card__name">Кухня «Урбан Грей»</h3>
+          <p class="kb-card__desc">Минималистичный гарнитур с бетонной текстурой верхних фасадов и скрытой подсветкой рабочей зоны.</p>
+        </div>
+      </article>
+      <article class="kb-card" tabindex="0">
+        <img class="kb-card__img" src="https://static.tildacdn.pub/tild3366-3038-4531-b137-633831386530/photo_52989370846787.jpg" alt="Кухня Вельвет" loading="lazy">
+        <span class="kb-card__corner">05</span>
+        <span class="kb-card__price">От 500 000 ₽</span>
+        <div class="kb-card__veil"></div>
+        <div class="kb-card__body">
+          <p class="kb-card__num">Проект №05</p>
+          <h3 class="kb-card__name">Кухня «Вельвет»</h3>
+          <p class="kb-card__desc">Светлый гарнитур с рифлёными фасадами, стеклянными витринами и тёплой подсветкой.</p>
+        </div>
+      </article>
+      <article class="kb-card" tabindex="0">
+        <img class="kb-card__img" src="https://static.tildacdn.pub/tild6664-6663-4963-b334-353661356532/photo_52989370846787.jpg" alt="Кухня Нордик Вуд" loading="lazy">
+        <span class="kb-card__corner">06</span>
+        <span class="kb-card__price">От 500 000 ₽</span>
+        <div class="kb-card__veil"></div>
+        <div class="kb-card__body">
+          <p class="kb-card__num">Проект №06</p>
+          <h3 class="kb-card__name">Кухня «Нордик Вуд»</h3>
+          <p class="kb-card__desc">Светлый гарнитур с акцентной барной стойкой под дерево, винным шкафом и витриной с подсветкой.</p>
+        </div>
+      </article>
+      <article class="kb-card" tabindex="0">
+        <img class="kb-card__img" src="https://static.tildacdn.pub/tild3961-3437-4466-a535-356637366134/photo-1602028915047-.jpg" alt="Кухня Мраморный шик" loading="lazy">
+        <span class="kb-card__corner">07</span>
+        <span class="kb-card__price">От 500 000 ₽</span>
+        <div class="kb-card__veil"></div>
+        <div class="kb-card__body">
+          <p class="kb-card__num">Проект №07</p>
+          <h3 class="kb-card__name">Кухня «Мраморный шик»</h3>
+          <p class="kb-card__desc">Остров из кварца Statuario, латунные ручки, витрина с подсветкой для посуды.</p>
+        </div>
+      </article>
+      <article class="kb-card" tabindex="0">
+        <img class="kb-card__img" src="https://static.tildacdn.pub/tild3865-3435-4266-a433-643338303039/photo_52989370846787.jpg" alt="Шкаф Таймлес" loading="lazy">
+        <span class="kb-card__corner">08</span>
+        <span class="kb-card__price">От 300 000 ₽</span>
+        <div class="kb-card__veil"></div>
+        <div class="kb-card__body">
+          <p class="kb-card__num">Проект №08</p>
+          <h3 class="kb-card__name">Шкаф «Таймлес»</h3>
+          <p class="kb-card__desc">Вместительный гардеробный шкаф под тёмное дерево с выдвижными ящиками и встроенной подсветкой.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="kb-portfolio__cta">
+      <div class="kb-portfolio__cta-text">
+        <h3 class="kb-portfolio__cta-title">Смотрите все проекты <em>в нашем портфолио</em></h3>
+        <p class="kb-portfolio__cta-sub">Больше реализованных кухонь и гардеробных с описанием материалов и фурнитуры.</p>
+      </div>
+      <a class="kb-portfolio__cta-btn" href="/portfolio.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M13 5l7 7-7 7"/>
+        </svg>
+        <span>Смотреть все проекты</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== ШОУРУМ ========== -->
+<section class="sr-block">
+  <div class="sr-block__container">
+    <div class="sr-block__media">
+      <img class="sr-block__image" src="https://static.tildacdn.pub/tild3762-3564-4331-b433-323936323462/photo_52941627045431.jpg" alt="Интерьер нашего шоурума">
+      <div class="sr-block__media-overlay"></div>
+      <div class="sr-block__badge">
+        <span class="sr-block__badge-num">360°</span>
+        <span class="sr-block__badge-text">выставка материалов</span>
+      </div>
+    </div>
+    <div class="sr-block__content">
+      <span class="sr-block__eyebrow">Шоурум</span>
+      <h2 class="sr-block__title">Приезжайте в&nbsp;наш шоурум</h2>
+      <p class="sr-block__text">Наш дизайнер с&nbsp;радостью проконсультирует вас по&nbsp;всем материалам и&nbsp;возможностям на&nbsp;нашей выставке. Потрогайте фасады, оцените фактуру камня, сравните оттенки&nbsp;— всё, чтобы выбрать осознанно.</p>
+      <button type="button" class="sr-block__btn" id="sr-open">Записаться на&nbsp;визит</button>
+    </div>
+  </div>
+</section>
+
+<div class="sr-modal" id="sr-modal" aria-hidden="true">
+  <div class="sr-modal__backdrop" data-sr-close></div>
+  <div class="sr-modal__dialog">
+    <button type="button" class="sr-modal__close" data-sr-close aria-label="Закрыть">✕</button>
+    <span class="sr-modal__eyebrow">Запись на&nbsp;визит</span>
+    <h3 class="sr-modal__title">Встреча в&nbsp;нашем шоуруме</h3>
+    <p class="sr-modal__subtitle">Оставьте контакт&nbsp;— наш дизайнер свяжется с&nbsp;вами и согласует дату и&nbsp;время визита.</p>
+    <form class="sr-form" id="sr-form">
+      <div class="sr-field">
+        <label class="sr-field__label" for="sr-name">Ваше имя</label>
+        <input class="sr-field__input" id="sr-name" type="text" placeholder="Например, Андрей" required>
+      </div>
+      <div class="sr-field">
+        <label class="sr-field__label" for="sr-contact">Телефон</label>
+        <input class="sr-field__input" id="sr-contact" type="tel" placeholder="+7 (___) ___-__-__" required>
+      </div>
+      <button type="submit" class="sr-form__submit">Отправить заявку</button>
+    </form>
+  </div>
+</div>
+
+<!-- ========== ПРОЕКТ ПОД КЛЮЧ ========== -->
+<section class="tpk-block">
+  <div class="tpk-block__container">
+    <header class="tpk-block__header">
+      <span class="tpk-block__eyebrow">Комплексный подход</span>
+      <h2 class="tpk-block__title">Проект под ключ</h2>
+      <p class="tpk-block__subtitle">Тут мы расскажем о&nbsp;наших преимуществах</p>
+    </header>
+    <ol class="tpk-block__grid">
+      <li class="tpk-card"><span class="tpk-card__num">01</span><div class="tpk-card__icon">📞</div><h3 class="tpk-card__title">Консультация</h3><p class="tpk-card__text">Наш дизайнер встретит вас на выставке и проконсультирует по материалам.</p></li>
+      <li class="tpk-card"><span class="tpk-card__num">02</span><div class="tpk-card__icon">📐</div><h3 class="tpk-card__title">Замер</h3><p class="tpk-card__text">Делаем точный замер на объекте, чтобы мебель встала идеально.</p></li>
+      <li class="tpk-card"><span class="tpk-card__num">03</span><div class="tpk-card__icon">📋</div><h3 class="tpk-card__title">Проект</h3><p class="tpk-card__text">Полный проект с учётом ваших пожеланий, особенностей помещения и бюджета.</p></li>
+      <li class="tpk-card"><span class="tpk-card__num">04</span><div class="tpk-card__icon">🪑</div><h3 class="tpk-card__title">Мебель</h3><p class="tpk-card__text">Производим мебель по индивидуальным размерам из проверенных материалов.</p></li>
+      <li class="tpk-card"><span class="tpk-card__num">05</span><div class="tpk-card__icon">🔌</div><h3 class="tpk-card__title">Техника</h3><p class="tpk-card__text">Подбираем и комплектуем кухню надёжной встраиваемой техникой.</p></li>
+      <li class="tpk-card"><span class="tpk-card__num">06</span><div class="tpk-card__icon">🧱</div><h3 class="tpk-card__title">Камень</h3><p class="tpk-card__text">Изготавливаем каменные столешницы и фартуки: кварц, акрил, натуральный камень.</p></li>
+      <li class="tpk-card"><span class="tpk-card__num">07</span><div class="tpk-card__icon">🚚</div><h3 class="tpk-card__title">Доставка</h3><p class="tpk-card__text">Доставим всё до квартиры в целости и сохранности — в установленный день.</p></li>
+      <li class="tpk-card"><span class="tpk-card__num">08</span><div class="tpk-card__icon">🔧</div><h3 class="tpk-card__title">Сборка</h3><p class="tpk-card__text">Соберём мебель на месте, подключим технику и проверим результат.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ========== ЭТАПЫ РАБОТЫ ========== -->
+<section class="st-steps">
+  <div class="st-steps__inner">
+    <header class="st-steps__head">
+      <h2 class="st-steps__title">Этапы работы</h2>
+      <p class="st-steps__lead">От&nbsp;первой встречи до&nbsp;подписанных актов&nbsp;— десять&nbsp;понятных шагов.</p>
+    </header>
+    <ol class="st-steps__list">
+      <li class="st-steps__item"><span class="st-steps__dot"></span><div class="st-steps__content"><span class="st-steps__num">01</span><h3 class="st-steps__title-step">Знакомство и сбор ТЗ</h3><p class="st-steps__text">Лично или дистанционно.</p></div></li>
+      <li class="st-steps__item"><span class="st-steps__dot"></span><div class="st-steps__content"><span class="st-steps__num">02</span><h3 class="st-steps__title-step">Предварительный расчёт</h3><p class="st-steps__text">Бюджет, объёмы, сроки.</p></div></li>
+      <li class="st-steps__item"><span class="st-steps__dot"></span><div class="st-steps__content"><span class="st-steps__num">03</span><h3 class="st-steps__title-step">Подбор материалов</h3><p class="st-steps__text">Встреча на нашей выставке.</p></div></li>
+      <li class="st-steps__item"><span class="st-steps__dot"></span><div class="st-steps__content"><span class="st-steps__num">04</span><h3 class="st-steps__title-step">Замер объекта</h3><p class="st-steps__text">Выезд специалиста.</p></div></li>
+      <li class="st-steps__item"><span class="st-steps__dot"></span><div class="st-steps__content"><span class="st-steps__num">05</span><h3 class="st-steps__title-step">Финальное ТЗ</h3><p class="st-steps__text">Детальная спецификация работ.</p></div></li>
+      <li class="st-steps__item"><span class="st-steps__dot"></span><div class="st-steps__content"><span class="st-steps__num">06</span><h3 class="st-steps__title-step">Коммерческое предложение</h3><p class="st-steps__text">Фиксированная стоимость.</p></div></li>
+      <li class="st-steps__item"><span class="st-steps__dot"></span><div class="st-steps__content"><span class="st-steps__num">07</span><h3 class="st-steps__title-step">Договор и запуск</h3><p class="st-steps__text">Предоплата и производство.</p></div></li>
+      <li class="st-steps__item"><span class="st-steps__dot"></span><div class="st-steps__content"><span class="st-steps__num">08</span><h3 class="st-steps__title-step">Доставка и монтаж</h3><p class="st-steps__text">Технадзор и сборщики.</p></div></li>
+      <li class="st-steps__item"><span class="st-steps__dot"></span><div class="st-steps__content"><span class="st-steps__num">09</span><h3 class="st-steps__title-step">Проверка объекта</h3><p class="st-steps__text">Совместный осмотр.</p></div></li>
+      <li class="st-steps__item"><span class="st-steps__dot"></span><div class="st-steps__content"><span class="st-steps__num">10</span><h3 class="st-steps__title-step">Подписание актов</h3><p class="st-steps__text">Готовый проект — ваш.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ========== FAQ ========== -->
+<section class="faq-a7b">
+  <div class="faq-a7b__container">
+    <header class="faq-a7b__header">
+      <h2 class="faq-a7b__title">Частые вопросы</h2>
+      <p class="faq-a7b__subtitle">Ответы на популярные вопросы о нашей мебели и услугах</p>
+    </header>
+    <ul class="faq-a7b__list">
+      <li class="faq-a7b__item">
+        <button class="faq-a7b__question" type="button" aria-expanded="false">
+          <span class="faq-a7b__num">01</span>
+          <span class="faq-a7b__q-text">Сколько стоит выезд дизайнера или замерщика на объект?</span>
+          <span class="faq-a7b__icon"></span>
+        </button>
+        <div class="faq-a7b__answer" hidden><div class="faq-a7b__answer-inner"><p>Наши специалисты и доставка мебели бесплатно приезжают к вам на объект на территории Москвы и ближнего МО.</p></div></div>
+      </li>
+      <li class="faq-a7b__item">
+        <button class="faq-a7b__question" type="button" aria-expanded="false">
+          <span class="faq-a7b__num">02</span>
+          <span class="faq-a7b__q-text">Сколько производится мебель?</span>
+          <span class="faq-a7b__icon"></span>
+        </button>
+        <div class="faq-a7b__answer" hidden><div class="faq-a7b__answer-inner"><p>Мы изготавливаем вашу мебель за 21 день.</p></div></div>
+      </li>
+      <li class="faq-a7b__item">
+        <button class="faq-a7b__question" type="button" aria-expanded="false">
+          <span class="faq-a7b__num">03</span>
+          <span class="faq-a7b__q-text">Возможна ли самостоятельная сборка мебели?</span>
+          <span class="faq-a7b__icon"></span>
+        </button>
+        <div class="faq-a7b__answer" hidden><div class="faq-a7b__answer-inner"><p>Да, возможна, но в этом случае гарантия не предоставляется.</p></div></div>
+      </li>
+      <li class="faq-a7b__item">
+        <button class="faq-a7b__question" type="button" aria-expanded="false">
+          <span class="faq-a7b__num">04</span>
+          <span class="faq-a7b__q-text">Сколько стоит сборка мебели?</span>
+          <span class="faq-a7b__icon"></span>
+        </button>
+        <div class="faq-a7b__answer" hidden><div class="faq-a7b__answer-inner"><p>Стоимость сборки составляет 10% от стоимости мебели.</p></div></div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ========== ФИНАЛЬНАЯ ФОРМА ========== -->
+<section id="measure" class="vk-measure">
+  <div class="vk-measure__inner">
+    <div class="vk-measure__intro">
+      <span class="vk-measure__badge">Запись на замер</span>
+      <h2 class="vk-measure__title">Оставьте заявку — свяжемся<br>в&nbsp;течение 15&nbsp;минут</h2>
+      <p class="vk-measure__lead">Оставьте имя и телефон — наш специалист перезвонит в течение 15 минут, согласует удобное время и приедет с полным комплектом инструмента. Никаких обязательств.</p>
+      <div class="vk-measure__perks">
+        <div class="vk-measure__perk"><span class="vk-measure__perk-icon">⏱</span><span class="vk-measure__perk-text">Быстрый выезд<small>в день обращения или к удобной дате</small></span></div>
+        <div class="vk-measure__perk"><span class="vk-measure__perk-icon">📐</span><span class="vk-measure__perk-text">Точный замер<small>ниш, труб, розеток, окон</small></span></div>
+        <div class="vk-measure__perk"><span class="vk-measure__perk-icon">📞</span><span class="vk-measure__perk-text">Перезвон за 15 мин<small>в рабочее время</small></span></div>
+        <div class="vk-measure__perk"><span class="vk-measure__perk-icon">✉</span><span class="vk-measure__perk-text">Telegram — по желанию<small>для быстрой связи</small></span></div>
+      </div>
+    </div>
+    <div class="vk-measure__card">
+      <div class="vk-measure__form-head">
+        <span class="vk-measure__form-eyebrow">Запись на замер</span>
+        <h3 class="vk-measure__form-title">Заполните форму — мы свяжемся с вами</h3>
+      </div>
+      <form class="vk-measure__form" id="vk-form">
+        <div class="vk-measure__fields">
+          <div class="vk-measure__field">
+            <label class="vk-measure__label" for="vk-name">Имя</label>
+            <input class="vk-measure__input" id="vk-name" type="text" placeholder="Например, Андрей Белов" required>
+          </div>
+          <div class="vk-measure__field">
+            <label class="vk-measure__label" for="vk-phone">Телефон</label>
+            <input class="vk-measure__input" id="vk-phone" type="tel" placeholder="+7 (___) ___-__-__" required>
+          </div>
+          <div class="vk-measure__field">
+            <label class="vk-measure__label" for="vk-tg">Telegram <small style="color: #b3a89a; font-weight: 400; text-transform: none; letter-spacing: 0;">— не обязательно</small></label>
+            <input class="vk-measure__input" id="vk-tg" type="text" placeholder="nickname (если удобнее в Telegram)">
+          </div>
+          <button type="submit" class="vk-measure__submit">Записаться на замер</button>
+          <label class="vk-measure__consent">
+            <input type="checkbox" class="vk-measure__consent-input" required>
+            <span class="vk-measure__consent-box">✓</span>
+            <span class="vk-measure__consent-text">Я согласен с политикой конфиденциальности и даю согласие на обработку персональных данных</span>
+          </label>
+        </div>
+      </form>
+      <div class="vk-measure__success" id="vk-success">
+        <div class="vk-measure__success-icon">✓</div>
+        <h3 class="vk-measure__success-title">Заявка успешно отправлена</h3>
+        <p class="vk-measure__success-text">Наш специалист скоро свяжется с вами, чтобы согласовать удобное время замера.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== ФУТЕР ========== -->
+<footer class="ft-block">
+  <div class="ft-block__wrap">
+    <div>
+      <a class="ft-block__logo" href="/">40/60</a>
+      <p class="ft-block__tagline">Студия интерьерной мебели. Кухни и корпусная мебель на заказ в Москве и области.</p>
+      <div class="ft-block__contacts">
+        <a href="tel:+79771004415">+7 977 100-44-15</a>
+        <a href="tel:+79017448855">+7 901 744-88-55</a>
+        <a href="https://t.me/design4060" target="_blank" rel="noopener">Telegram: @design4060</a>
+        <span style="opacity:0.75;">пн–сб 10:00–21:00</span>
+      </div>
+    </div>
+    <div>
+      <p class="ft-block__col-title">Навигация</p>
+      <ul class="ft-block__nav">
+        <li><a href="#portfolio">Портфолио</a></li>
+        <li><a href="/page255308109.html">О нас</a></li>
+        <li><a href="/page255317009.html">Гарантия</a></li>
+        <li><a href="/page256810809.html">Партнёрам</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ft-block__col-title">Контакты</p>
+      <ul class="ft-block__nav">
+        <li><a href="#measure">Запись на замер</a></li>
+        <li><a href="tel:+79771004415">Позвонить</a></li>
+        <li><a href="https://t.me/design4060" target="_blank" rel="noopener">Написать в Telegram</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-block__bottom">
+    <span>© 2025 40/60 Design. Производство мебели на заказ.</span>
+    <span><a href="/page255317009.html">Гарантия</a> · <a href="/page255308109.html">О нас</a></span>
+  </div>
+</footer>
+
+<!-- ========== ВИДЖЕТ СООБЩЕНИЙ ========== -->
+<button class="msg-widget" id="msg-open" aria-label="Задать вопрос">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+  </svg>
+</button>
+
+<div class="msg-modal" id="msg-modal" aria-hidden="true">
+  <div class="msg-modal__backdrop" data-msg-close></div>
+  <div class="msg-modal__dialog">
+    <button type="button" class="msg-modal__close" data-msg-close aria-label="Закрыть">✕</button>
+    <span class="msg-modal__eyebrow">Есть вопросы?</span>
+    <h3 class="msg-modal__title">Напишите нам — ответим в вашем мессенджере</h3>
+    <p class="msg-modal__subtitle">Укажите, где вам удобнее получить ответ — мы свяжемся и ответим на ваш вопрос.</p>
+
+    <form id="msg-form">
+      <div class="msg-field">
+        <span class="msg-field__label">Куда написать</span>
+        <div class="msg-methods">
+          <label class="msg-method is-active">
+            <input type="radio" name="method" value="telegram" checked>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+            Telegram
+          </label>
+          <label class="msg-method">
+            <input type="radio" name="method" value="whatsapp">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.27-.47-2.42-1.5-.9-.8-1.5-1.78-1.67-2.08-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.6-.5-.5-.67-.5h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.06 2.87 1.2 3.07.15.2 2.1 3.2 5.08 4.48.7.3 1.26.48 1.7.62.72.23 1.37.2 1.88.12.58-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35z"/></svg>
+            WhatsApp
+          </label>
+          <label class="msg-method">
+            <input type="radio" name="method" value="vk">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.8 17.5c-6 0-9.4-4.1-9.6-11h3c.1 5 2.4 7.1 4.1 7.5V6.5h2.9v4.3c1.7-.2 3.5-2.2 4.1-4.3h2.9c-.5 2.6-2.4 4.6-3.7 5.4 1.3.6 3.5 2.4 4.3 5.6h-3.2c-.6-2-2.1-3.5-4.2-3.7v3.7h-.6z"/></svg>
+            VK
+          </label>
+          <label class="msg-method">
+            <input type="radio" name="method" value="max">
+            <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" opacity="0.9"/><text x="12" y="16" font-size="10" font-weight="700" text-anchor="middle" fill="#0c160e">M</text></svg>
+            Max
+          </label>
+        </div>
+      </div>
+
+      <div class="msg-field">
+        <label class="msg-field__label" for="msg-contact">Ваш ник или телефон</label>
+        <input class="msg-input" id="msg-contact" type="text" placeholder="@username или +7 (___) ___-__-__" required>
+      </div>
+
+      <div class="msg-field">
+        <label class="msg-field__label" for="msg-name">Как к вам обращаться</label>
+        <input class="msg-input" id="msg-name" type="text" placeholder="Например, Андрей">
+      </div>
+
+      <div class="msg-field">
+        <label class="msg-field__label" for="msg-text">Ваш вопрос</label>
+        <textarea class="msg-textarea" id="msg-text" placeholder="Напишите ваш вопрос — свяжемся в ближайшее время" required></textarea>
+      </div>
+
+      <button type="submit" class="msg-submit">Отправить</button>
+
+      <label class="msg-consent">
+        <input type="checkbox" required>
+        <span class="msg-consent__box">✓</span>
+        <span class="msg-consent__text">Согласен на обработку персональных данных</span>
+      </label>
+    </form>
+
+    <div class="msg-success" id="msg-success">
+      <div class="msg-success__icon">✓</div>
+      <h3 class="msg-success__title">Сообщение отправлено</h3>
+      <p class="msg-success__text">Мы получили ваш вопрос и ответим в выбранном мессенджере в ближайшее время.</p>
+    </div>
+  </div>
+</div>
+
+<button class="to-top" id="to-top" aria-label="Наверх" type="button">
+  <svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M8 13V3M3 8l5-5 5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+
+<script>
+(function () {
+  'use strict';
+
+  var header = document.querySelector('.hd-block');
+  if (header) {
+    var burger = header.querySelector('.hd-block__burger');
+    var nav = header.querySelector('.hd-block__nav');
+    function setMenu(open) {
+      header.classList.toggle('hd-block--menu-open', open);
+      if (burger) burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    if (burger && nav) {
+      burger.addEventListener('click', function () { setMenu(!header.classList.contains('hd-block--menu-open')); });
+      nav.addEventListener('click', function (e) { if (e.target.tagName === 'A') setMenu(false); });
+      document.addEventListener('click', function (e) {
+        if (!header.classList.contains('hd-block--menu-open')) return;
+        if (header.contains(e.target)) return;
+        setMenu(false);
+      });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
+    }
+    header.querySelectorAll('.hd-block__phone').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var num = btn.getAttribute('data-copy');
+        if (!num) return;
+        if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(num);
+        var orig = btn.textContent;
+        btn.textContent = '✓ Скопировано';
+        setTimeout(function () { btn.textContent = orig; }, 1500);
+      });
+    });
+  }
+
+  document.querySelectorAll('.faq-a7b__question').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var item = btn.closest('.faq-a7b__item');
+      var answer = item.querySelector('.faq-a7b__answer');
+      var open = item.classList.toggle('faq-a7b__item--open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (open) answer.removeAttribute('hidden');
+      else answer.setAttribute('hidden', '');
+    });
+  });
+
+  var srModal = document.getElementById('sr-modal');
+  var srOpen = document.getElementById('sr-open');
+  if (srModal && srOpen) {
+    srOpen.addEventListener('click', function () {
+      srModal.classList.add('is-open');
+      srModal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('sr-modal-open');
+    });
+    srModal.querySelectorAll('[data-sr-close]').forEach(function (el) {
+      el.addEventListener('click', function () {
+        srModal.classList.remove('is-open');
+        srModal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('sr-modal-open');
+      });
+    });
+    document.getElementById('sr-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      alert('Заявка отправлена (заглушка). Подключите обработчик формы.');
+    });
+  }
+
+  var vkForm = document.getElementById('vk-form');
+  var vkSuccess = document.getElementById('vk-success');
+  if (vkForm) {
+    vkForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      vkForm.style.display = 'none';
+      vkSuccess.classList.add('is-active');
+    });
+  }
+
+  var msgModal = document.getElementById('msg-modal');
+  var msgOpen = document.getElementById('msg-open');
+  if (msgModal && msgOpen) {
+    msgOpen.addEventListener('click', function () {
+      msgModal.classList.add('is-open');
+      msgModal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('msg-modal-open');
+    });
+    msgModal.querySelectorAll('[data-msg-close]').forEach(function (el) {
+      el.addEventListener('click', function () {
+        msgModal.classList.remove('is-open');
+        msgModal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('msg-modal-open');
+      });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && msgModal.classList.contains('is-open')) {
+        msgModal.classList.remove('is-open');
+        msgModal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('msg-modal-open');
+      }
+    });
+    msgModal.querySelectorAll('.msg-method input').forEach(function (input) {
+      input.addEventListener('change', function () {
+        msgModal.querySelectorAll('.msg-method').forEach(function (m) { m.classList.remove('is-active'); });
+        input.closest('.msg-method').classList.add('is-active');
+      });
+    });
+    var msgForm = document.getElementById('msg-form');
+    var msgSuccess = document.getElementById('msg-success');
+    msgForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      msgForm.style.display = 'none';
+      msgSuccess.classList.add('is-active');
+    });
+  }
+
+  var toTop = document.getElementById('to-top');
+  window.addEventListener('scroll', function () {
+    toTop.classList.toggle('is-visible', window.scrollY > 500);
+  }, { passive: true });
+  toTop.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();
+</script>
+</body>
+</html>
