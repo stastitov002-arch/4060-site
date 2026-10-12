@@ -16,6 +16,7 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Название проекта", name: "title", widget: "string" }
+      - { label: "Показать на главной", name: "featured", widget: "boolean", default: false, required: false }
       - { label: "Стиль", name: "style", widget: "string", required: false }
       - { label: "Планировка", name: "layout", widget: "string", required: false }
       - { label: "Цена", name: "price", widget: "number", required: false }
