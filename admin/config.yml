@@ -11,9 +11,11 @@ public_folder: "/images/uploads"
 collections:
   - name: "projects"
     label: "Проекты"
+    label_singular: "Проект"
     folder: "_projects"
     create: true
     slug: "{{slug}}"
+    summary: "{{title}} {% if featured %}★{% endif %}"
     fields:
       - { label: "Название проекта", name: "title", widget: "string" }
       - { label: "Показать на главной", name: "featured", widget: "boolean", default: false, required: false }
@@ -22,6 +24,7 @@ collections:
       - { label: "Цена", name: "price", widget: "number", required: false }
       - { label: "Описание", name: "description", widget: "text" }
       - { label: "Главное фото", name: "cover", widget: "image" }
+      - { label: "Галерея (2–5 фото)", name: "gallery", widget: "list", required: false, field: { label: "Фото", name: "image", widget: "image" } }
       - { label: "Фасады и материалы", name: "facades", widget: "text", required: false }
       - { label: "Столешница", name: "countertop", widget: "text", required: false }
       - { label: "Фурнитура", name: "hardware", widget: "text", required: false }
