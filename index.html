@@ -122,15 +122,31 @@ img, svg, video { max-width: 100%; height: auto; }
 .hd-block__nav-link:hover { opacity: 1; }
 .hd-block__nav-link:hover::after { transform: scaleX(1); }
 
-.hd-block__phone {
-  position: relative; display: inline-flex; align-items: center;
-  justify-self: end; padding-right: 24px;
-  font-size: 17px; font-weight: 600; letter-spacing: -0.01em;
-  color: var(--c-accent); text-decoration: none;
-  white-space: nowrap; transition: opacity .2s;
+/* Два номера в шапке */
+.hd-block__phones {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  justify-self: end;
+  padding-right: 24px;
+  line-height: 1.2;
 }
-.hd-block__phone::before { content: "+7 977 100-44-15"; }
-.hd-block__phone:hover { opacity: 0.7; }
+.hd-block__phone-item {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--c-accent);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: opacity .2s;
+  letter-spacing: -0.01em;
+}
+.hd-block__phone-item:hover { opacity: 0.7; }
+.hd-block__phone-item--secondary {
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0.75;
+}
 
 .hd-block__meta {
   display: flex; flex-direction: column;
@@ -152,7 +168,9 @@ img, svg, video { max-width: 100%; height: auto; }
   .hd-block__inner { gap: 16px; padding: 12px 20px; max-width: 100%; }
   .hd-block__nav-list { gap: 18px; }
   .hd-block__nav-link { font-size: 13px; }
-  .hd-block__phone { font-size: 15px; padding-right: 16px; }
+  .hd-block__phone-item { font-size: 14px; }
+  .hd-block__phone-item--secondary { font-size: 12px; }
+  .hd-block__phones { padding-right: 16px; }
 }
 @media (max-width: 720px) {
   .hd-block__inner {
@@ -161,7 +179,15 @@ img, svg, video { max-width: 100%; height: auto; }
   }
   .hd-block__hours, .hd-block__meta { display: none; }
   .hd-block__logo { order: 1; font-size: 22px; }
-  .hd-block__phone { order: 2; margin-left: auto; padding-right: 0; font-size: 15px; }
+  .hd-block__phones {
+    order: 2;
+    margin-left: auto;
+    padding-right: 0;
+    align-items: flex-end;
+    gap: 0;
+  }
+  .hd-block__phone-item { font-size: 14px; }
+  .hd-block__phone-item--secondary { display: none; }
   .hd-block__burger { order: 3; display: inline-flex; }
   .hd-block__nav {
     order: 4; flex: 1 0 100%; overflow: hidden;
@@ -195,7 +221,7 @@ img, svg, video { max-width: 100%; height: auto; }
 @media (max-width: 480px) {
   .hd-block__inner { padding: 10px 14px; column-gap: 10px; }
   .hd-block__logo { font-size: 20px; }
-  .hd-block__phone { font-size: 14px; }
+  .hd-block__phone-item { font-size: 13px; }
   .hd-block__burger { width: 36px; height: 36px; }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -537,9 +563,8 @@ body.sr-modal-open { overflow: hidden; }
 @media (max-width: 960px) { .tpk-block { padding: 72px 20px 80px; } .tpk-block__grid { grid-template-columns: repeat(2, 1fr); gap: 16px; } }
 @media (max-width: 480px) { .tpk-block__grid { grid-template-columns: 1fr; } }
 
-/* ========== ЭТАПЫ РАБОТЫ (st-steps) ========== */
+/* ========== ЭТАПЫ РАБОТЫ ========== */
 .st-steps, .st-steps * { box-sizing: border-box; }
-
 .st-steps {
   --accent: #b04a26;
   --ink: #161513;
@@ -551,179 +576,48 @@ body.sr-modal-open { overflow: hidden; }
   --col-gap: clamp(48px, 7vw, 96px);
   --num-size: clamp(28px, 3.2vw, 36px);
   --title-size: clamp(18px, 1.7vw, 21px);
-
   background: var(--bg);
   color: var(--ink);
   padding: clamp(56px, 7vw, 88px) 0 clamp(64px, 8vw, 96px);
   position: relative;
   overflow: hidden;
 }
-.st-steps__inner {
-  width: min(1180px, calc(100% - 48px));
-  margin: 0 auto;
-}
+.st-steps__inner { width: min(1180px, calc(100% - 48px)); margin: 0 auto; }
 .st-steps__head { max-width: 720px; margin: 0 0 clamp(36px, 4.5vw, 64px); }
-.st-steps__title {
-  font-size: clamp(32px, 4.6vw, 54px);
-  font-weight: 600;
-  letter-spacing: -0.025em;
-  line-height: 1.05;
-  margin: 0 0 20px;
-  color: var(--ink);
-  text-wrap: balance;
-}
-.st-steps__lead {
-  font-size: clamp(16px, 1.55vw, 19px);
-  line-height: 1.55;
-  color: var(--muted);
-  max-width: 62ch;
-  margin: 0;
-}
-
-.st-steps__list {
-  position: relative;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.st-steps__list::before {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 14px;
-  bottom: 14px;
-  width: 1px;
-  background: var(--rail);
-  transform: translateX(-0.5px);
-  z-index: 0;
-}
-
-.st-steps__item {
-  position: relative;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: var(--col-gap);
-  align-items: start;
-  padding: var(--row-gap) 0;
-}
+.st-steps__title { font-size: clamp(32px, 4.6vw, 54px); font-weight: 600; letter-spacing: -0.025em; line-height: 1.05; margin: 0 0 20px; color: var(--ink); text-wrap: balance; }
+.st-steps__lead { font-size: clamp(16px, 1.55vw, 19px); line-height: 1.55; color: var(--muted); max-width: 62ch; margin: 0; }
+.st-steps__list { position: relative; list-style: none; margin: 0; padding: 0; }
+.st-steps__list::before { content: ''; position: absolute; left: 50%; top: 14px; bottom: 14px; width: 1px; background: var(--rail); transform: translateX(-0.5px); z-index: 0; }
+.st-steps__item { position: relative; display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--col-gap); align-items: start; padding: var(--row-gap) 0; }
 .st-steps__content { position: relative; max-width: 440px; }
-
-.st-steps__item:nth-child(odd) .st-steps__content {
-  grid-column: 2;
-  padding-left: clamp(28px, 4vw, 48px);
-  text-align: left;
-}
-.st-steps__item:nth-child(even) .st-steps__content {
-  grid-column: 1;
-  padding-right: clamp(28px, 4vw, 48px);
-  text-align: right;
-  grid-row: 1;
-  justify-self: end;
-}
-
-.st-steps__num {
-  display: block;
-  font-size: var(--num-size);
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: -0.04em;
-  color: var(--accent);
-  margin: 0 0 8px;
-  font-feature-settings: "tnum" 1, "lnum" 1;
-}
-.st-steps__title-step {
-  font-size: var(--title-size);
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -0.012em;
-  margin: 0 0 4px;
-  color: var(--ink);
-  text-wrap: balance;
-}
-.st-steps__text {
-  font-size: 15px;
-  line-height: 1.45;
-  color: var(--muted);
-  margin: 0;
-}
-
-.st-steps__dot {
-  position: absolute;
-  left: 50%;
-  top: calc(var(--row-gap) + 6px);
-  width: var(--dot); height: var(--dot);
-  margin-left: calc(var(--dot) / -2);
-  border-radius: 50%;
-  background: var(--bg);
-  border: 2px solid var(--accent);
-  z-index: 2;
-  box-sizing: border-box;
-}
-.st-steps__dot::after {
-  content: '';
-  position: absolute;
-  inset: 50% auto auto 50%;
-  width: 4px; height: 4px;
-  border-radius: 50%;
-  background: var(--accent);
-  transform: translate(-50%, -50%);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-/* Reveal */
-.st-steps--js .st-steps__dot {
-  transform: scale(0.4);
-  opacity: 0.3;
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-              opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.st-steps--js .st-steps__item--in .st-steps__dot {
-  transform: scale(1);
-  opacity: 1;
-}
+.st-steps__item:nth-child(odd) .st-steps__content { grid-column: 2; padding-left: clamp(28px, 4vw, 48px); text-align: left; }
+.st-steps__item:nth-child(even) .st-steps__content { grid-column: 1; padding-right: clamp(28px, 4vw, 48px); text-align: right; grid-row: 1; justify-self: end; }
+.st-steps__num { display: block; font-size: var(--num-size); font-weight: 600; line-height: 1; letter-spacing: -0.04em; color: var(--accent); margin: 0 0 8px; font-feature-settings: "tnum" 1, "lnum" 1; }
+.st-steps__title-step { font-size: var(--title-size); font-weight: 600; line-height: 1.2; letter-spacing: -0.012em; margin: 0 0 4px; color: var(--ink); text-wrap: balance; }
+.st-steps__text { font-size: 15px; line-height: 1.45; color: var(--muted); margin: 0; }
+.st-steps__dot { position: absolute; left: 50%; top: calc(var(--row-gap) + 6px); width: var(--dot); height: var(--dot); margin-left: calc(var(--dot) / -2); border-radius: 50%; background: var(--bg); border: 2px solid var(--accent); z-index: 2; box-sizing: border-box; }
+.st-steps__dot::after { content: ''; position: absolute; inset: 50% auto auto 50%; width: 4px; height: 4px; border-radius: 50%; background: var(--accent); transform: translate(-50%, -50%); opacity: 0; transition: opacity 0.4s ease; }
+.st-steps--js .st-steps__dot { transform: scale(0.4); opacity: 0.3; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+.st-steps--js .st-steps__item--in .st-steps__dot { transform: scale(1); opacity: 1; }
 .st-steps--js .st-steps__item--in .st-steps__dot::after { opacity: 1; }
-
 .st-steps--js .st-steps__num,
 .st-steps--js .st-steps__title-step,
-.st-steps--js .st-steps__text {
-  opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
+.st-steps--js .st-steps__text { opacity: 0; transform: translateY(14px); transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
 .st-steps--js .st-steps__item--in .st-steps__num        { opacity: 1; transform: none; transition-delay: 0.08s; }
 .st-steps--js .st-steps__item--in .st-steps__title-step { opacity: 1; transform: none; transition-delay: 0.18s; }
 .st-steps--js .st-steps__item--in .st-steps__text       { opacity: 1; transform: none; transition-delay: 0.28s; }
-
 @media (prefers-reduced-motion: reduce) {
   .st-steps--js .st-steps__dot,
   .st-steps--js .st-steps__num,
   .st-steps--js .st-steps__title-step,
-  .st-steps--js .st-steps__text {
-    transition: none; opacity: 1; transform: none;
-  }
+  .st-steps--js .st-steps__text { transition: none; opacity: 1; transform: none; }
 }
-
-/* Адаптив */
 @media (max-width: 960px) {
-  .st-steps__list::before {
-    left: 18px; top: 6px; bottom: 6px; transform: none;
-  }
-  .st-steps__item {
-    display: block;
-    padding: 18px 0 18px 52px;
-  }
+  .st-steps__list::before { left: 18px; top: 6px; bottom: 6px; transform: none; }
+  .st-steps__item { display: block; padding: 18px 0 18px 52px; }
   .st-steps__item:nth-child(odd) .st-steps__content,
-  .st-steps__item:nth-child(even) .st-steps__content {
-    grid-column: auto; grid-row: auto;
-    justify-self: stretch; text-align: left;
-    padding: 0; max-width: none;
-  }
-  .st-steps__dot {
-    left: 18px; top: 26px;
-    margin-left: calc(var(--dot) / -2);
-  }
+  .st-steps__item:nth-child(even) .st-steps__content { grid-column: auto; grid-row: auto; justify-self: stretch; text-align: left; padding: 0; max-width: none; }
+  .st-steps__dot { left: 18px; top: 26px; margin-left: calc(var(--dot) / -2); }
 }
 @media (max-width: 640px) {
   .st-steps__head { margin-bottom: 32px; }
@@ -796,7 +690,7 @@ body.sr-modal-open { overflow: hidden; }
 @media (max-width: 960px) { .vk-measure__inner { grid-template-columns: 1fr; } }
 @media (max-width: 640px) { .vk-measure { padding: 40px 16px; } .vk-measure__card { padding: 24px 18px; } .vk-measure__perks { grid-template-columns: 1fr; } }
 
-/* ========== ФУТЕР (зелёный, как в Tilda) ========== */
+/* ========== ФУТЕР (зелёный) ========== */
 .ft-block { background: var(--c-green); color: var(--c-accent); padding: 48px 20px 24px; border-top: 1px solid rgba(200,165,114,0.15); }
 .ft-block__wrap { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 32px; }
 @media (min-width: 720px) { .ft-block__wrap { grid-template-columns: 1.5fr 1fr 1fr; } }
@@ -813,10 +707,40 @@ body.sr-modal-open { overflow: hidden; }
 .kb-modal { position: fixed; inset: 0; z-index: 200; display: none; align-items: flex-start; justify-content: center; padding: 24px 16px; overflow-y: auto; }
 .kb-modal.is-open { display: flex; }
 .kb-modal__backdrop { position: fixed; inset: 0; background: rgba(6,11,7,0.85); backdrop-filter: blur(6px); }
-.kb-modal__dialog { position: relative; z-index: 1; width: min(1060px, 100%); background: #1f2420; border: 1px solid rgba(200,165,114,0.35); border-radius: 12px; padding: 32px; display: grid; grid-template-columns: 1fr; gap: 24px; }
+.kb-modal__dialog {
+  position: relative;
+  z-index: 1;
+  width: min(1060px, 100%);
+  background: #1f2420;
+  border: 1px solid rgba(200,165,114,0.35);
+  border-radius: 12px;
+  padding: 32px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  /* не даём вылезти крестику — его держим sticky */
+}
 @media (min-width: 900px) { .kb-modal__dialog { grid-template-columns: 1.1fr 1fr; gap: 32px; } }
-.kb-modal__close { position: absolute; top: 14px; right: 14px; z-index: 2; width: 40px; height: 40px; border-radius: 50%; background: rgba(13,12,13,0.85); border: 1px solid rgba(242,239,233,0.16); color: var(--c-text); cursor: pointer; }
-.kb-modal__close:hover { border-color: var(--c-accent); color: var(--c-accent); }
+
+/* Крестик — sticky, едет вместе с диалогом */
+.kb-modal__close {
+  position: sticky;
+  top: 8px;
+  float: right;
+  margin: 0 0 -40px auto;
+  z-index: 5;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: rgba(13,12,13,0.85);
+  border: 1px solid rgba(242,239,233,0.16);
+  color: var(--c-text);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+  transition: border-color .2s, color .2s, background .2s;
+}
+.kb-modal__close:hover { border-color: var(--c-accent); color: var(--c-accent); background: rgba(13,12,13,0.95); }
+
 .kb-modal__main { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px; background: var(--c-bg-alt); display: block; }
 .kb-modal__thumbs { display: flex; gap: 10px; margin-top: 12px; overflow-x: auto; }
 .kb-modal__thumbs img { flex: 0 0 80px; width: 80px; height: 80px; object-fit: cover; border-radius: 6px; cursor: pointer; border: 2px solid transparent; opacity: 0.7; }
@@ -836,8 +760,243 @@ body.sr-modal-open { overflow: hidden; }
 .kb-modal__cta:hover { background: var(--c-accent-h); }
 body.kb-modal-open { overflow: hidden; }
 
-.to-top { position: fixed; right: 24px; bottom: 24px; z-index: 60; width: 46px; height: 46px; border-radius: 50%; background: var(--c-accent); color: var(--c-bg); border: none; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 10px 24px rgba(0,0,0,.35); opacity: 0; pointer-events: none; transition: .25s; }
-.to-top.is-visible { opacity: 1; pointer-events: auto; }
+/* ========== КНОПКА ЧАТА (FAB) ========== */
+.chat-fab {
+  position: fixed;
+  right: 24px; bottom: 24px;
+  z-index: 60;
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: var(--c-accent);
+  color: var(--c-bg);
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 12px 28px rgba(0,0,0,.4), 0 0 0 0 rgba(200,165,114,0.5);
+  transition: transform .25s, background .25s, box-shadow .25s;
+}
+.chat-fab:hover { background: var(--c-accent-h); transform: translateY(-2px); box-shadow: 0 16px 32px rgba(0,0,0,.45); }
+.chat-fab:focus-visible { outline: 2px solid var(--c-accent-h); outline-offset: 3px; }
+.chat-fab svg { width: 26px; height: 26px; display: block; }
+.chat-fab__close-icon { display: none; }
+.chat-fab.is-open .chat-fab__chat-icon { display: none; }
+.chat-fab.is-open .chat-fab__close-icon { display: block; }
+@media (max-width: 480px) {
+  .chat-fab { right: 16px; bottom: 16px; width: 52px; height: 52px; }
+  .chat-fab svg { width: 24px; height: 24px; }
+}
+
+/* ========== ПОПАП «ЕСТЬ ВОПРОСЫ?» ========== */
+.chat-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 210;
+  display: none;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 24px;
+  pointer-events: none;
+}
+.chat-modal.is-open { display: flex; }
+.chat-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(13,12,13,0.7);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  pointer-events: auto;
+}
+.chat-modal__dialog {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 400px;
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  background: #1a1f17;
+  border: 1px solid rgba(200,165,114,0.28);
+  border-radius: 20px;
+  padding: 32px 28px 28px;
+  color: var(--c-text);
+  box-shadow: 0 30px 80px rgba(0,0,0,.6);
+  pointer-events: auto;
+  animation: chat-modal-rise .3s cubic-bezier(.2,.7,.2,1);
+}
+@keyframes chat-modal-rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.chat-modal__close {
+  position: absolute;
+  top: 12px; right: 12px;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: rgba(247,241,232,0.06);
+  border: 0;
+  color: var(--c-accent);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+  transition: background .2s;
+}
+.chat-modal__close:hover { background: rgba(200,165,114,0.18); }
+
+.chat-modal__title {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 0 0 20px;
+  color: #fff;
+  letter-spacing: -0.01em;
+  padding-right: 40px;
+}
+
+.chat-modal__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+.chat-modal__tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(200,165,114,0.22);
+  background: transparent;
+  color: var(--c-accent);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background .2s, border-color .2s, color .2s;
+}
+.chat-modal__tab:hover { border-color: rgba(200,165,114,0.55); }
+.chat-modal__tab.is-active {
+  background: rgba(200,165,114,0.12);
+  border-color: var(--c-accent);
+  color: #fff;
+}
+.chat-modal__tab svg { width: 16px; height: 16px; display: block; flex-shrink: 0; }
+
+.chat-modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.chat-modal__input,
+.chat-modal__textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(200,165,114,0.22);
+  background: rgba(13,12,13,0.4);
+  color: var(--c-text);
+  font-family: inherit;
+  font-size: 15px;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+.chat-modal__input::placeholder,
+.chat-modal__textarea::placeholder { color: rgba(244,237,226,0.4); }
+.chat-modal__input:focus,
+.chat-modal__textarea:focus {
+  border-color: var(--c-accent);
+  box-shadow: 0 0 0 4px rgba(200,165,114,0.14);
+}
+.chat-modal__textarea {
+  min-height: 88px;
+  resize: vertical;
+}
+
+.chat-modal__consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  margin-top: 4px;
+  font-size: 12px;
+  color: rgba(244,237,226,0.55);
+  line-height: 1.45;
+}
+.chat-modal__consent input {
+  position: absolute;
+  opacity: 0;
+  width: 1px; height: 1px;
+  pointer-events: none;
+}
+.chat-modal__consent-box {
+  flex: 0 0 18px;
+  width: 18px; height: 18px;
+  border: 1.5px solid rgba(200,165,114,0.35);
+  border-radius: 5px;
+  display: inline-grid;
+  place-items: center;
+  background: rgba(13,12,13,0.4);
+  color: var(--c-bg);
+  font-size: 12px;
+  margin-top: 1px;
+}
+.chat-modal__consent input:checked + .chat-modal__consent-box {
+  background: var(--c-accent);
+  border-color: var(--c-accent);
+  color: var(--c-bg);
+}
+
+.chat-modal__submit {
+  margin-top: 8px;
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  background: var(--c-accent);
+  color: var(--c-bg);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 15px 20px;
+  border-radius: 12px;
+  transition: background .2s;
+}
+.chat-modal__submit:hover { background: var(--c-accent-h); }
+
+.chat-modal__success {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  padding: 20px 8px 8px;
+}
+.chat-modal__success.is-active { display: flex; }
+.chat-modal__success-icon {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: rgba(111,207,151,0.14);
+  color: var(--c-success);
+  display: grid; place-items: center;
+  font-size: 32px;
+  margin-bottom: 6px;
+}
+.chat-modal__success-title { font-size: 18px; font-weight: 700; margin: 0; color: #fff; }
+.chat-modal__success-text { font-size: 14px; margin: 0; color: rgba(244,237,226,0.7); line-height: 1.5; max-width: 30ch; }
+
+body.chat-modal-open { overflow: hidden; }
+
+@media (max-width: 480px) {
+  .chat-modal { padding: 0; align-items: stretch; justify-content: stretch; }
+  .chat-modal__dialog {
+    max-width: 100%;
+    max-height: 100vh;
+    border-radius: 20px 20px 0 0;
+    align-self: flex-end;
+    padding: 28px 20px 24px;
+  }
+}
 </style>
 </head>
 
@@ -867,7 +1026,12 @@ body.kb-modal-open { overflow: hidden; }
         </a>
       </div>
     </nav>
-    <a class="hd-block__phone" href="tel:+79771004415" aria-label="Позвонить по номеру +7 977 100-44-15"></a>
+
+    <div class="hd-block__phones">
+      <a class="hd-block__phone-item" href="tel:+79771004415">+7 977 100-44-15</a>
+      <a class="hd-block__phone-item hd-block__phone-item--secondary" href="tel:+79017448855">+7 901 744-88-55</a>
+    </div>
+
     <div class="hd-block__meta">
       <span class="hd-block__hours">пн–сб 10:00–21:00</span>
       <a class="hd-block__tg" href="https://t.me/design4060" target="_blank" rel="noopener" aria-label="Мы в Telegram">
@@ -987,86 +1151,16 @@ body.kb-modal-open { overflow: hidden; }
       <p class="st-steps__lead">От первой встречи до подписанных актов — десять понятных шагов.</p>
     </header>
     <ol class="st-steps__list">
-      <li class="st-steps__item">
-        <span class="st-steps__dot" aria-hidden="true"></span>
-        <div class="st-steps__content">
-          <span class="st-steps__num">01</span>
-          <h3 class="st-steps__title-step">Знакомство и сбор ТЗ</h3>
-          <p class="st-steps__text">Лично или дистанционно.</p>
-        </div>
-      </li>
-      <li class="st-steps__item">
-        <span class="st-steps__dot" aria-hidden="true"></span>
-        <div class="st-steps__content">
-          <span class="st-steps__num">02</span>
-          <h3 class="st-steps__title-step">Предварительный расчёт</h3>
-          <p class="st-steps__text">Бюджет, объёмы, сроки.</p>
-        </div>
-      </li>
-      <li class="st-steps__item">
-        <span class="st-steps__dot" aria-hidden="true"></span>
-        <div class="st-steps__content">
-          <span class="st-steps__num">03</span>
-          <h3 class="st-steps__title-step">Подбор материалов</h3>
-          <p class="st-steps__text">Встреча на нашей выставке.</p>
-        </div>
-      </li>
-      <li class="st-steps__item">
-        <span class="st-steps__dot" aria-hidden="true"></span>
-        <div class="st-steps__content">
-          <span class="st-steps__num">04</span>
-          <h3 class="st-steps__title-step">Замер объекта</h3>
-          <p class="st-steps__text">Выезд специалиста.</p>
-        </div>
-      </li>
-      <li class="st-steps__item">
-        <span class="st-steps__dot" aria-hidden="true"></span>
-        <div class="st-steps__content">
-          <span class="st-steps__num">05</span>
-          <h3 class="st-steps__title-step">Финальное техническое задание</h3>
-          <p class="st-steps__text">Детальная спецификация работ.</p>
-        </div>
-      </li>
-      <li class="st-steps__item">
-        <span class="st-steps__dot" aria-hidden="true"></span>
-        <div class="st-steps__content">
-          <span class="st-steps__num">06</span>
-          <h3 class="st-steps__title-step">Коммерческое предложение</h3>
-          <p class="st-steps__text">Фиксированная стоимость.</p>
-        </div>
-      </li>
-      <li class="st-steps__item">
-        <span class="st-steps__dot" aria-hidden="true"></span>
-        <div class="st-steps__content">
-          <span class="st-steps__num">07</span>
-          <h3 class="st-steps__title-step">Договор и запуск</h3>
-          <p class="st-steps__text">Предоплата и производство.</p>
-        </div>
-      </li>
-      <li class="st-steps__item">
-        <span class="st-steps__dot" aria-hidden="true"></span>
-        <div class="st-steps__content">
-          <span class="st-steps__num">08</span>
-          <h3 class="st-steps__title-step">Доставка и монтаж</h3>
-          <p class="st-steps__text">Технадзор и сборщики.</p>
-        </div>
-      </li>
-      <li class="st-steps__item">
-        <span class="st-steps__dot" aria-hidden="true"></span>
-        <div class="st-steps__content">
-          <span class="st-steps__num">09</span>
-          <h3 class="st-steps__title-step">Проверка объекта</h3>
-          <p class="st-steps__text">Совместный осмотр.</p>
-        </div>
-      </li>
-      <li class="st-steps__item">
-        <span class="st-steps__dot" aria-hidden="true"></span>
-        <div class="st-steps__content">
-          <span class="st-steps__num">10</span>
-          <h3 class="st-steps__title-step">Подписание актов</h3>
-          <p class="st-steps__text">Готовый проект — ваш.</p>
-        </div>
-      </li>
+      <li class="st-steps__item"><span class="st-steps__dot" aria-hidden="true"></span><div class="st-steps__content"><span class="st-steps__num">01</span><h3 class="st-steps__title-step">Знакомство и сбор ТЗ</h3><p class="st-steps__text">Лично или дистанционно.</p></div></li>
+      <li class="st-steps__item"><span class="st-steps__dot" aria-hidden="true"></span><div class="st-steps__content"><span class="st-steps__num">02</span><h3 class="st-steps__title-step">Предварительный расчёт</h3><p class="st-steps__text">Бюджет, объёмы, сроки.</p></div></li>
+      <li class="st-steps__item"><span class="st-steps__dot" aria-hidden="true"></span><div class="st-steps__content"><span class="st-steps__num">03</span><h3 class="st-steps__title-step">Подбор материалов</h3><p class="st-steps__text">Встреча на нашей выставке.</p></div></li>
+      <li class="st-steps__item"><span class="st-steps__dot" aria-hidden="true"></span><div class="st-steps__content"><span class="st-steps__num">04</span><h3 class="st-steps__title-step">Замер объекта</h3><p class="st-steps__text">Выезд специалиста.</p></div></li>
+      <li class="st-steps__item"><span class="st-steps__dot" aria-hidden="true"></span><div class="st-steps__content"><span class="st-steps__num">05</span><h3 class="st-steps__title-step">Финальное техническое задание</h3><p class="st-steps__text">Детальная спецификация работ.</p></div></li>
+      <li class="st-steps__item"><span class="st-steps__dot" aria-hidden="true"></span><div class="st-steps__content"><span class="st-steps__num">06</span><h3 class="st-steps__title-step">Коммерческое предложение</h3><p class="st-steps__text">Фиксированная стоимость.</p></div></li>
+      <li class="st-steps__item"><span class="st-steps__dot" aria-hidden="true"></span><div class="st-steps__content"><span class="st-steps__num">07</span><h3 class="st-steps__title-step">Договор и запуск</h3><p class="st-steps__text">Предоплата и производство.</p></div></li>
+      <li class="st-steps__item"><span class="st-steps__dot" aria-hidden="true"></span><div class="st-steps__content"><span class="st-steps__num">08</span><h3 class="st-steps__title-step">Доставка и монтаж</h3><p class="st-steps__text">Технадзор и сборщики.</p></div></li>
+      <li class="st-steps__item"><span class="st-steps__dot" aria-hidden="true"></span><div class="st-steps__content"><span class="st-steps__num">09</span><h3 class="st-steps__title-step">Проверка объекта</h3><p class="st-steps__text">Совместный осмотр.</p></div></li>
+      <li class="st-steps__item"><span class="st-steps__dot" aria-hidden="true"></span><div class="st-steps__content"><span class="st-steps__num">10</span><h3 class="st-steps__title-step">Подписание актов</h3><p class="st-steps__text">Готовый проект — ваш.</p></div></li>
     </ol>
   </div>
 </section>
@@ -1086,9 +1180,7 @@ body.kb-modal-open { overflow: hidden; }
           <span class="faq-a7b__icon"></span>
         </button>
         <div class="faq-a7b__answer" hidden>
-          <div class="faq-a7b__answer-inner">
-            <p>Наши специалисты и доставка мебели бесплатно приезжают на объект на территории Москвы и ближнего МО.</p>
-          </div>
+          <div class="faq-a7b__answer-inner"><p>Наши специалисты и доставка мебели бесплатно приезжают на объект на территории Москвы и ближнего МО.</p></div>
         </div>
       </li>
       <li class="faq-a7b__item">
@@ -1098,9 +1190,7 @@ body.kb-modal-open { overflow: hidden; }
           <span class="faq-a7b__icon"></span>
         </button>
         <div class="faq-a7b__answer" hidden>
-          <div class="faq-a7b__answer-inner">
-            <p>Мы изготавливаем вашу мебель за 21 день.</p>
-          </div>
+          <div class="faq-a7b__answer-inner"><p>Мы изготавливаем вашу мебель за 21 день.</p></div>
         </div>
       </li>
       <li class="faq-a7b__item">
@@ -1110,9 +1200,7 @@ body.kb-modal-open { overflow: hidden; }
           <span class="faq-a7b__icon"></span>
         </button>
         <div class="faq-a7b__answer" hidden>
-          <div class="faq-a7b__answer-inner">
-            <p>Да, возможна, но в этом случае гарантия не предоставляется.</p>
-          </div>
+          <div class="faq-a7b__answer-inner"><p>Да, возможна, но в этом случае гарантия не предоставляется.</p></div>
         </div>
       </li>
       <li class="faq-a7b__item">
@@ -1122,9 +1210,7 @@ body.kb-modal-open { overflow: hidden; }
           <span class="faq-a7b__icon"></span>
         </button>
         <div class="faq-a7b__answer" hidden>
-          <div class="faq-a7b__answer-inner">
-            <p>Стоимость сборки составляет 10% от стоимости мебели.</p>
-          </div>
+          <div class="faq-a7b__answer-inner"><p>Стоимость сборки составляет 10% от стоимости мебели.</p></div>
         </div>
       </li>
     </ul>
@@ -1139,22 +1225,10 @@ body.kb-modal-open { overflow: hidden; }
       <h2 class="vk-measure__title">Оставьте заявку — свяжемся за 15 минут</h2>
       <p class="vk-measure__lead">Оставьте имя и телефон — специалист перезвонит и согласует удобное время замера.</p>
       <div class="vk-measure__perks">
-        <div class="vk-measure__perk">
-          <span class="vk-measure__perk-icon">⏱</span>
-          <span class="vk-measure__perk-text">Быстрый выезд<small>в день обращения</small></span>
-        </div>
-        <div class="vk-measure__perk">
-          <span class="vk-measure__perk-icon">📐</span>
-          <span class="vk-measure__perk-text">Точный замер<small>ниш, труб, розеток</small></span>
-        </div>
-        <div class="vk-measure__perk">
-          <span class="vk-measure__perk-icon">📞</span>
-          <span class="vk-measure__perk-text">Перезвон 15 мин<small>в рабочее время</small></span>
-        </div>
-        <div class="vk-measure__perk">
-          <span class="vk-measure__perk-icon">✉</span>
-          <span class="vk-measure__perk-text">Telegram — по желанию<small>для быстрой связи</small></span>
-        </div>
+        <div class="vk-measure__perk"><span class="vk-measure__perk-icon">⏱</span><span class="vk-measure__perk-text">Быстрый выезд<small>в день обращения</small></span></div>
+        <div class="vk-measure__perk"><span class="vk-measure__perk-icon">📐</span><span class="vk-measure__perk-text">Точный замер<small>ниш, труб, розеток</small></span></div>
+        <div class="vk-measure__perk"><span class="vk-measure__perk-icon">📞</span><span class="vk-measure__perk-text">Перезвон 15 мин<small>в рабочее время</small></span></div>
+        <div class="vk-measure__perk"><span class="vk-measure__perk-icon">✉</span><span class="vk-measure__perk-text">Telegram — по желанию<small>для быстрой связи</small></span></div>
       </div>
     </div>
     <div class="vk-measure__card">
@@ -1276,7 +1350,63 @@ body.kb-modal-open { overflow: hidden; }
   </div>
 </div>
 
-<button class="to-top" id="to-top" aria-label="Наверх">↑</button>
+<!-- ========== КНОПКА ЧАТА ========== -->
+<button class="chat-fab" id="chat-fab" type="button" aria-label="Написать нам" aria-controls="chat-modal" aria-expanded="false">
+  <svg class="chat-fab__chat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+  </svg>
+  <svg class="chat-fab__close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+    <line x1="6" y1="6" x2="18" y2="18"/>
+    <line x1="18" y1="6" x2="6" y2="18"/>
+  </svg>
+</button>
+
+<!-- ========== ПОПАП «ЕСТЬ ВОПРОСЫ?» ========== -->
+<div class="chat-modal" id="chat-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="chat-modal-title">
+  <div class="chat-modal__backdrop" data-chat-close></div>
+  <div class="chat-modal__dialog">
+    <button type="button" class="chat-modal__close" data-chat-close aria-label="Закрыть">✕</button>
+
+    <h3 class="chat-modal__title" id="chat-modal-title">Есть вопросы? Напишите нам!</h3>
+
+    <div class="chat-modal__tabs" role="tablist">
+      <button type="button" class="chat-modal__tab is-active" data-chat-tab="telegram" role="tab" aria-selected="true">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+        Telegram
+      </button>
+      <button type="button" class="chat-modal__tab" data-chat-tab="whatsapp" role="tab" aria-selected="false">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9s-.5-.1-.7.1-.8.9-1 1.1-.4.2-.7.1-1.3-.5-2.4-1.5-1.8-2.3-2-2.6-.1-.5 0-.6.3-.3.5-.6c.1-.2.2-.4.3-.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.4s-1 1-1 2.4 1 2.8 1.2 3c.2.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.7.5-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3zM12 21.8c-1.7 0-3.4-.5-4.9-1.4L2 22l1.7-5c-1-1.5-1.5-3.2-1.5-5C2.2 6.6 6.6 2.2 12 2.2s9.8 4.4 9.8 9.8-4.4 9.8-9.8 9.8z"/></svg>
+        WhatsApp
+      </button>
+      <button type="button" class="chat-modal__tab" data-chat-tab="vk" role="tab" aria-selected="false">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.8 17.4c-5.7 0-9-3.9-9.1-10.4h2.9c.1 4.8 2.2 6.8 3.8 7.2V7h2.7v4.1c1.6-.2 3.3-2 3.9-4.1h2.7c-.4 2.6-2.2 4.4-3.5 5.1 1.3.6 3.3 2.2 4.1 5.3h-3c-.6-2-2.1-3.5-4.2-3.7v3.7h-.3z"/></svg>
+        VK
+      </button>
+      <button type="button" class="chat-modal__tab" data-chat-tab="max" role="tab" aria-selected="false">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 7.1 17.1l2.9 1-1-2.9A10 10 0 0 0 12 2zm0 15.5a5.5 5.5 0 1 1 4.6-2.5l.7 2-2-.7a5.5 5.5 0 0 1-3.3 1.2zm-2-8a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm4 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>
+        Max
+      </button>
+    </div>
+
+    <form class="chat-modal__form" id="chat-form" novalidate>
+      <input class="chat-modal__input" type="text" name="contact" id="chat-contact" placeholder="@username или телефон" required>
+      <input class="chat-modal__input" type="text" name="name" placeholder="Например, Андрей Белов" required>
+      <textarea class="chat-modal__textarea" name="message" placeholder="Напишите ваш вопрос. Свяжемся в ближайшее время)" required></textarea>
+      <label class="chat-modal__consent">
+        <input type="checkbox" required>
+        <span class="chat-modal__consent-box">✓</span>
+        <span>Я согласен с условиями обслуживания</span>
+      </label>
+      <button type="submit" class="chat-modal__submit">Отправить</button>
+    </form>
+
+    <div class="chat-modal__success" id="chat-success">
+      <div class="chat-modal__success-icon">✓</div>
+      <h4 class="chat-modal__success-title">Спасибо!</h4>
+      <p class="chat-modal__success-text">Мы свяжемся с вами в ближайшее время.</p>
+    </div>
+  </div>
+</div>
 
 <script>
 (function () {
@@ -1551,13 +1681,87 @@ body.kb-modal-open { overflow: hidden; }
     });
   }
 
-  var toTop = document.getElementById('to-top');
-  window.addEventListener('scroll', function () {
-    toTop.classList.toggle('is-visible', window.scrollY > 500);
-  }, { passive: true });
-  toTop.addEventListener('click', function () {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+  /* ========== ЧАТ (FAB + попап) ========== */
+  var chatFab = document.getElementById('chat-fab');
+  var chatModal = document.getElementById('chat-modal');
+  var chatForm = document.getElementById('chat-form');
+  var chatSuccess = document.getElementById('chat-success');
+  var chatContact = document.getElementById('chat-contact');
+
+  var placeholderMap = {
+    telegram: '@username или телефон',
+    whatsapp: '+7 (___) ___-__-__',
+    vk: 'Ссылка на профиль или ID',
+    max: 'Телефон или @username'
+  };
+
+  function openChat() {
+    chatModal.classList.add('is-open');
+    chatModal.setAttribute('aria-hidden', 'false');
+    chatFab.classList.add('is-open');
+    chatFab.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('chat-modal-open');
+  }
+  function closeChat() {
+    chatModal.classList.remove('is-open');
+    chatModal.setAttribute('aria-hidden', 'true');
+    chatFab.classList.remove('is-open');
+    chatFab.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('chat-modal-open');
+    // Сброс формы к исходному состоянию
+    if (chatForm) {
+      chatForm.style.display = '';
+      chatForm.reset();
+    }
+    if (chatSuccess) chatSuccess.classList.remove('is-active');
+    document.querySelectorAll('.chat-modal__tab').forEach(function (t, i) {
+      t.classList.toggle('is-active', i === 0);
+      t.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+    });
+    if (chatContact) chatContact.placeholder = placeholderMap.telegram;
+  }
+
+  if (chatFab && chatModal) {
+    chatFab.addEventListener('click', function () {
+      if (chatModal.classList.contains('is-open')) closeChat();
+      else openChat();
+    });
+    chatModal.querySelectorAll('[data-chat-close]').forEach(function (el) {
+      el.addEventListener('click', closeChat);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && chatModal.classList.contains('is-open')) closeChat();
+    });
+
+    document.querySelectorAll('.chat-modal__tab').forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        document.querySelectorAll('.chat-modal__tab').forEach(function (t) {
+          t.classList.remove('is-active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        tab.classList.add('is-active');
+        tab.setAttribute('aria-selected', 'true');
+        var key = tab.getAttribute('data-chat-tab');
+        if (chatContact && placeholderMap[key]) {
+          chatContact.placeholder = placeholderMap[key];
+          chatContact.value = '';
+          chatContact.focus();
+        }
+      });
+    });
+
+    if (chatForm) {
+      chatForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (!chatForm.checkValidity()) {
+          chatForm.reportValidity();
+          return;
+        }
+        chatForm.style.display = 'none';
+        if (chatSuccess) chatSuccess.classList.add('is-active');
+      });
+    }
+  }
 
   load();
 })();
