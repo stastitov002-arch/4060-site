@@ -6,20 +6,19 @@
 <title>Все проекты — 40/60 Design</title>
 <style>
 html { scroll-behavior: smooth; }
-body { margin: 0; background: #141210; padding-top: 72px; font-family: "Inter","Helvetica Neue",Arial,sans-serif; }
+body { margin: 0; background: #0c160e; padding-top: 72px; font-family: "Inter","Helvetica Neue",Arial,sans-serif; }
 @media (max-width: 720px) { body { padding-top: 64px; } }
 *, *::before, *::after { box-sizing: border-box; }
-img { max-width: 100%; height: auto; display: block; }
+img, svg { max-width: 100%; height: auto; }
 
-/* Шапка — краткая копия с главной */
+/* ШАПКА */
 .hd-block { position: fixed; top: 0; left: 0; right: 0; z-index: 50; width: 100%; background: #0c160e; color: #c8a572; }
 .hd-block__inner { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 24px; max-width: 1280px; margin: 0 auto; padding: 14px 32px; }
 .hd-block__logo { font-size: 28px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #c8a572; text-decoration: none; }
 .hd-block__nav-list { list-style: none; margin: 0; padding: 0; display: flex; gap: 26px; }
 .hd-block__nav-link { font-size: 14px; font-weight: 500; color: #c8a572; text-decoration: none; opacity: 0.85; }
 .hd-block__nav-link--active { opacity: 1; }
-.hd-block__contacts { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
-.hd-block__phone { font-size: 18px; font-weight: 600; color: #c8a572; }
+.hd-block__phone { font-size: 18px; font-weight: 600; color: #c8a572; text-decoration: none; }
 @media (max-width: 720px) {
   .hd-block__inner { padding: 12px 16px; }
   .hd-block__nav-list { gap: 14px; }
@@ -27,25 +26,86 @@ img { max-width: 100%; height: auto; display: block; }
   .hd-block__phone { font-size: 14px; }
 }
 
-.pg-hero { background: #141210; color: #f4ede2; padding: 56px 20px 32px; border-bottom: 1px solid #2a2622; }
+/* ЗАГОЛОВОК */
+.pg-hero { background: #141210; color: #f2efe9; padding: clamp(48px,6vw,80px) 20px 32px; border-bottom: 1px solid rgba(242,239,233,0.14); }
 .pg-hero__inner { max-width: 1320px; margin: 0 auto; }
 .pg-hero__eyebrow { font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: #c8a572; margin: 0 0 14px; }
-.pg-hero__title { font-size: clamp(34px, 5vw, 60px); line-height: 1.05; letter-spacing: -0.025em; font-weight: 500; margin: 0; color: #f4ede2; }
+.pg-hero__title { font-size: clamp(34px,5vw,60px); line-height: 1.05; letter-spacing: -0.025em; font-weight: 500; margin: 0 0 12px; }
+.pg-hero__subtitle { font-size: 16px; line-height: 1.6; color: #b3ada0; margin: 0; max-width: 62ch; }
 
-.kb-grid-wrap { background: #141210; padding: 40px 0 96px; }
-.kb-grid-inner { max-width: 1320px; margin: 0 auto; padding: 0 20px; }
-.kb-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; list-style: none; padding: 0; margin: 0; }
-.kb-card { position: relative; aspect-ratio: 3/4; overflow: hidden; border-radius: 4px; background: #1d1a17; cursor: pointer; }
-.kb-card__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .9s; }
-.kb-card:hover .kb-card__img { opacity: 0.35; transform: scale(1.04); }
-.kb-card__body { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px; background: linear-gradient(180deg, transparent, rgba(20,18,16,0.85)); transform: translateY(14px); opacity: 0; transition: .5s; }
-.kb-card:hover .kb-card__body { opacity: 1; transform: translateY(0); }
-.kb-card__name { font-size: 18px; color: #f4ede2; margin: 0; }
-.kb-card__price { position: absolute; bottom: 14px; right: 14px; font-size: 10px; color: #c8a572; background: rgba(20,18,16,0.8); border: 1px solid rgba(200,165,114,0.4); padding: 6px 10px; border-radius: 2px; }
-.kb-loader { text-align: center; padding: 40px; color: #c8bfb1; grid-column: 1 / -1; }
+/* ФИЛЬТРЫ */
+.kb-filters { position: sticky; top: 72px; z-index: 20; background: #0c160e; border-bottom: 1px solid rgba(242,239,233,0.14); padding: 16px 20px; }
+.kb-filters__inner { max-width: 1320px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: flex-end; gap: 12px 14px; }
+.kb-filters__reset { appearance: none; background: transparent; border: 1px solid #c8a572; color: #c8a572; border-radius: 4px; padding: 11px 20px; font-family: inherit; font-size: 14px; cursor: pointer; }
+.kb-filters__reset:hover, .kb-filters__reset.is-active { background: #c8a572; color: #0c160e; }
+.kb-filters__selectbox { position: relative; display: flex; flex-direction: column; gap: 6px; min-width: 190px; }
+.kb-filters__label { font-size: 12px; color: #b3ada0; }
+.kb-filters__select { appearance: none; width: 100%; background: #1c1b1a; border: 1px solid rgba(242,239,233,0.14); color: #f2efe9; border-radius: 4px; padding: 11px 38px 11px 14px; font-family: inherit; font-size: 14px; cursor: pointer; }
+.kb-filters__select option { background: #1c1b1a; }
+.kb-filters__selectbox::after { content: ""; position: absolute; right: 14px; bottom: 17px; width: 8px; height: 8px; border-right: 1.5px solid #c8a572; border-bottom: 1.5px solid #c8a572; transform: rotate(45deg); pointer-events: none; }
+.kb-filters__count { font-size: 13px; color: #b3ada0; margin: 0 0 12px auto; white-space: nowrap; }
+@media (max-width: 768px) {
+  .kb-filters { position: static; }
+  .kb-filters__inner { display: grid; grid-template-columns: 1fr auto; grid-template-areas: "reset count" "styles styles" "layout budget"; gap: 10px 12px; }
+  .kb-filters__reset { grid-area: reset; }
+  .kb-filters__count { grid-area: count; margin: 0; }
+  .kb-filters__selectbox:nth-of-type(1) { grid-area: styles; }
+  .kb-filters__selectbox:nth-of-type(2) { grid-area: layout; }
+  .kb-filters__selectbox:nth-of-type(3) { grid-area: budget; }
+  .kb-filters__label { display: none; }
+}
 
-@media (max-width: 960px) { .kb-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; } }
-@media (max-width: 480px) { .kb-card { aspect-ratio: 4/5; } .kb-card__name { font-size: 14px; } }
+/* СЕТКА */
+.kb-sec { background: #0c160e; color: #f2efe9; padding: 40px 0 96px; }
+.kb-sec__inner { max-width: 1320px; margin: 0 auto; padding: 0 20px; }
+.kb-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.kb-card { display: flex; flex-direction: column; background: #2b2a28; border: 1px solid rgba(242,239,233,0.14); border-radius: 6px; overflow: hidden; cursor: pointer; transition: transform .3s, border-color .3s; }
+.kb-card:hover { transform: translateY(-4px); border-color: rgba(200,165,114,0.5); }
+.kb-card[hidden] { display: none !important; }
+.kb-card__media { position: relative; aspect-ratio: 4/3; overflow: hidden; background: #1c1b1a; }
+.kb-card__img { width: 100%; height: 100%; object-fit: cover; }
+.kb-card__badge { position: absolute; left: 12px; top: 12px; font-size: 12px; color: #f2efe9; background: rgba(12,22,14,0.82); border: 1px solid rgba(200,165,114,0.5); border-radius: 3px; padding: 5px 10px; }
+.kb-card__body { display: flex; flex-direction: column; gap: 14px; padding: 18px 20px 20px; flex: 1; }
+.kb-card__top { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.kb-card__title { font-size: 19px; font-weight: 600; margin: 0; }
+.kb-card__style { font-size: 13px; color: #c8a572; white-space: nowrap; }
+.kb-card__specs { margin: 0; display: flex; flex-direction: column; }
+.kb-card__specs > div { display: flex; justify-content: space-between; gap: 14px; padding: 9px 0; border-top: 1px solid rgba(242,239,233,0.09); }
+.kb-card__specs dt { font-size: 13px; color: #b3ada0; }
+.kb-card__specs dd { font-size: 14px; text-align: right; margin: 0; }
+.kb-card__btn { margin-top: auto; align-self: flex-start; display: inline-flex; align-items: center; justify-content: center; background: transparent; border: 1px solid #c8a572; color: #c8a572; border-radius: 4px; padding: 10px 20px; cursor: pointer; font-family: inherit; font-size: 14px; }
+.kb-card__btn:hover { background: #c8a572; color: #0c160e; }
+.kb-empty { text-align: center; padding: 40px; color: #b3ada0; }
+.kb-loader { text-align: center; padding: 40px; color: #b3ada0; grid-column: 1 / -1; }
+.kb-end { text-align: center; padding: 40px 20px; color: #b3ada0; font-size: 14px; grid-column: 1 / -1; border-top: 1px solid rgba(242,239,233,0.14); margin-top: 24px; }
+
+@media (max-width: 960px) { .kb-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; } }
+@media (max-width: 640px) { .kb-grid { grid-template-columns: 1fr; gap: 16px; } }
+
+/* МОДАЛКА */
+.kb-modal { position: fixed; inset: 0; z-index: 200; display: none; align-items: flex-start; justify-content: center; padding: 24px 16px; overflow-y: auto; }
+.kb-modal.is-open { display: flex; }
+.kb-modal__backdrop { position: fixed; inset: 0; background: rgba(6,11,7,0.85); backdrop-filter: blur(6px); }
+.kb-modal__dialog { position: relative; z-index: 1; width: min(1060px, 100%); background: #2b2a28; border: 1px solid rgba(200,165,114,0.35); border-radius: 12px; padding: 32px; display: grid; grid-template-columns: 1fr; gap: 24px; }
+@media (min-width: 900px) { .kb-modal__dialog { grid-template-columns: 1.1fr 1fr; gap: 32px; } }
+.kb-modal__close { position: absolute; top: 14px; right: 14px; z-index: 2; width: 40px; height: 40px; border-radius: 50%; background: rgba(12,22,14,0.85); border: 1px solid rgba(242,239,233,0.16); color: #f2efe9; cursor: pointer; }
+.kb-modal__main { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px; display: block; }
+.kb-modal__thumbs { display: flex; gap: 10px; margin-top: 12px; overflow-x: auto; }
+.kb-modal__thumbs img { flex: 0 0 80px; width: 80px; height: 80px; object-fit: cover; border-radius: 6px; cursor: pointer; border: 2px solid transparent; opacity: 0.7; }
+.kb-modal__thumbs img.is-current { border-color: #c8a572; opacity: 1; }
+.kb-modal__kicker { font-size: 13px; color: #b3ada0; margin: 0 0 6px; }
+.kb-modal__title { font-size: 28px; font-weight: 600; margin: 0 0 14px; color: #f2efe9; }
+.kb-modal__chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 16px; }
+.kb-modal__chip { font-size: 13px; border: 1px solid rgba(242,239,233,0.16); border-radius: 3px; padding: 6px 12px; }
+.kb-modal__chip b { color: #c8a572; font-weight: 500; }
+.kb-modal__desc { font-size: 15px; line-height: 1.65; color: #b3ada0; margin: 0 0 20px; }
+.kb-modal__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 0 0 20px; }
+@media (max-width: 560px) { .kb-modal__grid { grid-template-columns: 1fr; } }
+.kb-modal__spec { border: 1px solid rgba(242,239,233,0.14); border-radius: 6px; padding: 14px 16px; background: rgba(12,22,14,0.4); }
+.kb-modal__spec h4 { font-size: 14px; font-weight: 600; margin: 0 0 6px; }
+.kb-modal__spec p { font-size: 13px; line-height: 1.55; color: #c8a572; margin: 0; }
+.kb-modal__cta { display: inline-block; background: #c8a572; color: #0c160e; border-radius: 4px; padding: 13px 26px; font-size: 15px; text-decoration: none; font-weight: 500; }
+body.kb-modal-open { overflow: hidden; }
 </style>
 </head>
 <body>
@@ -61,9 +121,7 @@ img { max-width: 100%; height: auto; display: block; }
         <li><a class="hd-block__nav-link" href="/partners.html">Партнёрам</a></li>
       </ul>
     </nav>
-    <div class="hd-block__contacts">
-      <a class="hd-block__phone" href="tel:+79771004415">+7 977 100-44-15</a>
-    </div>
+    <a class="hd-block__phone" href="tel:+79771004415">+7 977 100-44-15</a>
   </div>
 </section>
 
@@ -71,105 +129,294 @@ img { max-width: 100%; height: auto; display: block; }
   <div class="pg-hero__inner">
     <p class="pg-hero__eyebrow">Портфолио</p>
     <h1 class="pg-hero__title">Все реализованные проекты</h1>
+    <p class="pg-hero__subtitle">Кухни, гардеробные, шкафы и другая корпусная мебель. Фильтруйте по стилю, планировке и бюджету — открывайте карточки, чтобы увидеть материалы и фурнитуру.</p>
   </div>
 </section>
 
-<section class="kb-grid-wrap">
-  <div class="kb-grid-inner">
-    <ul class="kb-grid" id="kb-grid">
-      <li class="kb-loader">Загружаем проекты…</li>
-    </ul>
+<div class="kb-filters">
+  <div class="kb-filters__inner">
+    <button type="button" class="kb-filters__reset is-active" id="kb-reset">Все проекты</button>
+    <div class="kb-filters__selectbox">
+      <label class="kb-filters__label" for="kb-f-style">По стилю</label>
+      <select class="kb-filters__select" id="kb-f-style"><option value="">Любой стиль</option></select>
+    </div>
+    <div class="kb-filters__selectbox">
+      <label class="kb-filters__label" for="kb-f-layout">По планировке</label>
+      <select class="kb-filters__select" id="kb-f-layout"><option value="">Любая планировка</option></select>
+    </div>
+    <div class="kb-filters__selectbox">
+      <label class="kb-filters__label" for="kb-f-budget">По бюджету</label>
+      <select class="kb-filters__select" id="kb-f-budget"><option value="">Любой бюджет</option></select>
+    </div>
+    <p class="kb-filters__count" id="kb-count">Показано 0 из 0</p>
+  </div>
+</div>
+
+<section class="kb-sec">
+  <div class="kb-sec__inner">
+    <ul class="kb-grid" id="kb-grid"><li class="kb-loader">Загружаем проекты…</li></ul>
   </div>
 </section>
+
+<div class="kb-modal" id="kb-modal" aria-hidden="true">
+  <div class="kb-modal__backdrop" data-kb-close></div>
+  <div class="kb-modal__dialog">
+    <button type="button" class="kb-modal__close" data-kb-close aria-label="Закрыть">✕</button>
+    <div>
+      <img class="kb-modal__main" id="kb-modal-img" src="" alt="">
+      <div class="kb-modal__thumbs" id="kb-modal-thumbs"></div>
+    </div>
+    <div>
+      <p class="kb-modal__kicker" id="kb-modal-kicker"></p>
+      <h3 class="kb-modal__title" id="kb-modal-title"></h3>
+      <div class="kb-modal__chips" id="kb-modal-chips"></div>
+      <p class="kb-modal__desc" id="kb-modal-desc"></p>
+      <div class="kb-modal__grid">
+        <div class="kb-modal__spec"><h4>Фасады и материалы</h4><p id="kb-modal-facades"></p></div>
+        <div class="kb-modal__spec"><h4>Столешница</h4><p id="kb-modal-countertop"></p></div>
+        <div class="kb-modal__spec"><h4>Фурнитура</h4><p id="kb-modal-hardware"></p></div>
+        <div class="kb-modal__spec"><h4>Комплектация</h4><p id="kb-modal-equipment"></p></div>
+      </div>
+      <a class="kb-modal__cta" href="/#measure">Рассчитать под мои размеры</a>
+    </div>
+  </div>
+</div>
 
 <script>
 (function () {
   'use strict';
   var REPO = 'stastitov002-arch/4060-site';
+  var PAGE_SIZE = 12;
   var grid = document.getElementById('kb-grid');
+  var countBox = document.getElementById('kb-count');
+  var resetBtn = document.getElementById('kb-reset');
+  var fStyle = document.getElementById('kb-f-style');
+  var fLayout = document.getElementById('kb-f-layout');
+  var fBudget = document.getElementById('kb-f-budget');
+  var modal = document.getElementById('kb-modal');
+  var lastFocus = null;
+
   var allProjects = [];
-  var pageSize = 12;
+  var filtered = [];
   var rendered = 0;
   var loading = false;
-  var allRendered = false;
+  var endReached = false;
 
   function parseYaml(text) {
-    var match = text.match(/^---\s*\n([\s\S]*?)\n---\s*\n?([\s\S]*)$/);
-    if (!match) return { data: {} };
-    var yaml = match[1];
+    var m = text.match(/^---\s*\n([\s\S]*?)\n---/);
+    if (!m) return {};
     var data = {}, gallery = [];
-    yaml.split('\n').forEach(function (line) {
+    m[1].split('\n').forEach(function (line) {
       var mg = line.match(/^\s*-\s+image:\s*(.+)$/);
       if (mg) { gallery.push(mg[1].trim().replace(/^["']|["']$/g, '')); return; }
-      var m = line.match(/^([a-z_]+)\s*:\s*(.*)$/i);
-      if (!m) return;
-      var key = m[1].trim();
-      var val = m[2].trim().replace(/^["']|["']$/g, '');
-      data[key] = val;
+      var mm = line.match(/^([a-z_]+)\s*:\s*(.*)$/i);
+      if (!mm) return;
+      data[mm[1].trim()] = mm[2].trim().replace(/^["']|["']$/g, '');
     });
     if (gallery.length) data.gallery = gallery;
-    return { data: data };
+    return data;
   }
-
   function budgetByPrice(price) {
-    if (!price || isNaN(price)) return null;
+    if (!price) return null;
+    price = parseInt(price, 10);
     if (price < 300000) return 'До 300 000 ₽';
     if (price < 500000) return '300 000–500 000 ₽';
     return 'От 500 000 ₽';
   }
+  function priceLabel(price) {
+    if (!price) return null;
+    price = parseInt(price, 10);
+    return 'от ' + String(price).replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₽';
+  }
+  function esc(s) { return s ? String(s).replace(/[&<>"']/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }) : ''; }
 
-  function escapeHtml(s) {
-    if (!s) return '';
-    return String(s).replace(/[&<>"']/g, function (c) { return { '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]; });
+  function renderCard(p, idx) {
+    var d = p.data;
+    var title = d.title || 'Проект';
+    var price = d.price ? parseInt(d.price, 10) : null;
+    var budget = budgetByPrice(price);
+    var li = document.createElement('li');
+    li.className = 'kb-card';
+    li.setAttribute('data-index', String(idx));
+    li.innerHTML =
+      '<div class="kb-card__media">' +
+        (d.cover ? '<img class="kb-card__img" src="' + esc(d.cover) + '" alt="' + esc(title) + '" loading="lazy">' : '') +
+        (budget ? '<span class="kb-card__badge">' + esc(budget) + '</span>' : '') +
+      '</div>' +
+      '<div class="kb-card__body">' +
+        '<div class="kb-card__top">' +
+          '<h3 class="kb-card__title">' + esc(title) + '</h3>' +
+          (d.style ? '<span class="kb-card__style">' + esc(d.style) + '</span>' : '') +
+        '</div>' +
+        '<dl class="kb-card__specs">' +
+          '<div><dt>Планировка</dt><dd>' + esc(d.layout || '—') + '</dd></div>' +
+          '<div><dt>Материалы</dt><dd>' + esc(d.facades || '[Заполнить]') + '</dd></div>' +
+          (priceLabel(price) ? '<div><dt>Стоимость</dt><dd>' + priceLabel(price) + '</dd></div>' : '') +
+        '</dl>' +
+        '<button type="button" class="kb-card__btn">Подробнее</button>' +
+      '</div>';
+    return li;
   }
 
   function renderChunk() {
-    if (loading || allRendered) return;
+    if (loading || endReached) return;
     loading = true;
-    var next = allProjects.slice(rendered, rendered + pageSize);
-    if (!next.length) { allRendered = true; loading = false; return; }
-    next.forEach(function (p, i) {
-      var d = p.data;
-      var price = d.price ? parseInt(d.price, 10) : null;
-      var budget = budgetByPrice(price);
-      var li = document.createElement('li');
-      li.className = 'kb-card';
-      li.innerHTML =
-        (d.cover ? '<img class="kb-card__img" src="' + escapeHtml(d.cover) + '" alt="' + escapeHtml(d.title) + '" loading="lazy">' : '') +
-        (budget ? '<span class="kb-card__price">' + escapeHtml(budget) + '</span>' : '') +
-        '<div class="kb-card__body"><h3 class="kb-card__name">' + escapeHtml(d.title || '') + '</h3></div>';
-      grid.appendChild(li);
-    });
+    var next = filtered.slice(rendered, rendered + PAGE_SIZE);
+    if (!next.length) { endReached = true; loading = false; showEnd(); return; }
+    next.forEach(function (p, i) { grid.appendChild(renderCard(p, rendered + i)); });
     rendered += next.length;
-    if (rendered >= allProjects.length) allRendered = true;
+    if (rendered >= filtered.length) { endReached = true; showEnd(); }
     loading = false;
   }
 
-  function loadAll() {
+  function showEnd() {
+    var old = grid.querySelector('.kb-end');
+    if (old) return;
+    var el = document.createElement('li');
+    el.className = 'kb-end';
+    el.textContent = 'Показаны все проекты (' + filtered.length + ')';
+    grid.appendChild(el);
+  }
+
+  function applyFilters() {
+    var s = fStyle.value, l = fLayout.value, b = fBudget.value;
+    filtered = allProjects.filter(function (p) {
+      var d = p.data;
+      var styles = (d.style || '').split(',').map(function(x){return x.trim();});
+      var layouts = (d.layout || '').split(',').map(function(x){return x.trim();});
+      var budget = budgetByPrice(d.price);
+      var okS = !s || styles.indexOf(s) !== -1;
+      var okL = !l || layouts.indexOf(l) !== -1;
+      var okB = !b || budget === b;
+      return okS && okL && okB;
+    });
+    grid.innerHTML = '';
+    rendered = 0;
+    endReached = false;
+    countBox.textContent = 'Показано ' + Math.min(PAGE_SIZE, filtered.length) + ' из ' + filtered.length;
+    resetBtn.classList.toggle('is-active', !s && !l && !b);
+    if (!filtered.length) { grid.innerHTML = '<li class="kb-empty">Под фильтры ничего не подошло.</li>'; return; }
+    renderChunk();
+    updateCount();
+  }
+
+  function updateCount() {
+    countBox.textContent = 'Показано ' + rendered + ' из ' + filtered.length;
+  }
+
+  function populateFilters() {
+    var styles = [], layouts = [], budgets = [];
+    function addUnique(arr, val) {
+      (val || '').split(',').forEach(function (v) {
+        v = v.trim();
+        if (v && arr.indexOf(v) === -1) arr.push(v);
+      });
+    }
+    allProjects.forEach(function (p) {
+      addUnique(styles, p.data.style);
+      addUnique(layouts, p.data.layout);
+      var b = budgetByPrice(p.data.price);
+      if (b && budgets.indexOf(b) === -1) budgets.push(b);
+    });
+    budgets.sort(function (a, b) {
+      var order = ['До 300 000 ₽', '300 000–500 000 ₽', 'От 500 000 ₽'];
+      return order.indexOf(a) - order.indexOf(b);
+    });
+    styles.forEach(function (v) { var o = document.createElement('option'); o.value = v; o.textContent = v; fStyle.appendChild(o); });
+    layouts.forEach(function (v) { var o = document.createElement('option'); o.value = v; o.textContent = v; fLayout.appendChild(o); });
+    budgets.forEach(function (v) { var o = document.createElement('option'); o.value = v; o.textContent = v; fBudget.appendChild(o); });
+  }
+
+  function load() {
     fetch('https://api.github.com/repos/' + REPO + '/contents/_projects?ref=main')
       .then(function (r) { return r.json(); })
       .then(function (files) {
-        if (!Array.isArray(files)) { grid.innerHTML = '<li class="kb-loader">Проектов пока нет.</li>'; return; }
+        if (!Array.isArray(files)) { grid.innerHTML = '<li class="kb-empty">Проектов пока нет.</li>'; return; }
         var md = files.filter(function (f) { return f.name.endsWith('.md'); });
         return Promise.all(md.map(function (f) { return fetch(f.download_url).then(function (r) { return r.text(); }); }))
           .then(function (contents) {
-            allProjects = contents.map(parseYaml);
-            grid.innerHTML = '';
-            renderChunk();
+            allProjects = contents.map(function (t) { return { data: parseYaml(t) }; });
+            populateFilters();
+            applyFilters();
           });
       })
-      .catch(function () { grid.innerHTML = '<li class="kb-loader">Ошибка загрузки.</li>'; });
+      .catch(function () { grid.innerHTML = '<li class="kb-empty">Ошибка загрузки.</li>'; });
   }
 
+  function openModal(idx) {
+    var p = allProjects[idx];
+    if (!p) return;
+    lastFocus = document.activeElement;
+    var d = p.data;
+    var title = d.title || 'Проект';
+    var price = d.price ? parseInt(d.price, 10) : null;
+    document.getElementById('kb-modal-kicker').textContent = title;
+    document.getElementById('kb-modal-title').textContent = title;
+    document.getElementById('kb-modal-desc').textContent = d.description || '';
+    document.getElementById('kb-modal-facades').textContent = d.facades || '—';
+    document.getElementById('kb-modal-countertop').textContent = d.countertop || '—';
+    document.getElementById('kb-modal-hardware').textContent = d.hardware || '—';
+    document.getElementById('kb-modal-equipment').textContent = d.equipment || '—';
+    var main = document.getElementById('kb-modal-img');
+    var thumbs = document.getElementById('kb-modal-thumbs');
+    main.src = d.cover || '';
+    thumbs.innerHTML = '';
+    if (d.gallery && d.gallery.length) {
+      d.gallery.forEach(function (url, i) {
+        var im = document.createElement('img');
+        im.src = url; im.alt = title + ' — фото ' + (i + 2);
+        if (i === 0) im.classList.add('is-current');
+        im.addEventListener('click', function () {
+          main.src = url;
+          thumbs.querySelectorAll('img').forEach(function (x) { x.classList.remove('is-current'); });
+          im.classList.add('is-current');
+        });
+        thumbs.appendChild(im);
+      });
+    }
+    var chips = document.getElementById('kb-modal-chips');
+    chips.innerHTML = '';
+    [['Стиль', d.style], ['Планировка', d.layout], ['Бюджет', budgetByPrice(price)]].forEach(function (pair) {
+      if (!pair[1]) return;
+      var c = document.createElement('span');
+      c.className = 'kb-modal__chip';
+      c.textContent = pair[0] + ': ';
+      var b = document.createElement('b'); b.textContent = pair[1];
+      c.appendChild(b); chips.appendChild(c);
+    });
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('kb-modal-open');
+  }
+  function closeModal() {
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('kb-modal-open');
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  grid.addEventListener('click', function (e) {
+    var card = e.target.closest('.kb-card');
+    if (!card) return;
+    openModal(parseInt(card.getAttribute('data-index'), 10));
+  });
+  modal.addEventListener('click', function (e) { if (e.target.closest('[data-kb-close]')) closeModal(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal(); });
+
+  fStyle.addEventListener('change', applyFilters);
+  fLayout.addEventListener('change', applyFilters);
+  fBudget.addEventListener('change', applyFilters);
+  resetBtn.addEventListener('click', function () { fStyle.value = ''; fLayout.value = ''; fBudget.value = ''; applyFilters(); });
+
+  /* Infinite scroll */
   var sentinel = document.createElement('div');
   sentinel.style.height = '1px';
   document.body.appendChild(sentinel);
-  var io = new IntersectionObserver(function (entries) {
-    if (entries[0].isIntersecting) renderChunk();
-  }, { rootMargin: '400px' });
-  io.observe(sentinel);
+  new IntersectionObserver(function (entries) {
+    if (entries[0].isIntersecting) { renderChunk(); updateCount(); }
+  }, { rootMargin: '400px' }).observe(sentinel);
 
-  loadAll();
+  load();
 })();
 </script>
 </body>
