@@ -20,6 +20,7 @@
   --c-gold-strong: #f5b942;
   --c-gold-light: #e9c884;
   --c-success: #6fcf97;
+  --c-error: #e07a6a;
   --c-green: #0c160e;
 }
 html { scroll-behavior: smooth; }
@@ -242,9 +243,12 @@ img, svg, video { max-width: 100%; height: auto; }
 .sr-field__input:focus { border-color: var(--c-accent-h); background: rgba(247,241,232,0.06); box-shadow: 0 0 0 4px rgba(212,178,121,0.12); }
 .sr-consent { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; margin-top: 4px; font-size: 12px; color: rgba(247,241,232,0.6); line-height: 1.45; }
 .sr-consent__input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
-.sr-consent__box { flex: 0 0 18px; width: 18px; height: 18px; border: 1.5px solid rgba(212,178,121,0.4); border-radius: 5px; display: inline-grid; place-items: center; background: rgba(247,241,232,0.04); color: #1c1b19; font-size: 12px; margin-top: 1px; }
+.sr-consent__box { flex: 0 0 18px; width: 18px; height: 18px; border: 1.5px solid rgba(212,178,121,0.4); border-radius: 5px; display: inline-grid; place-items: center; background: rgba(247,241,232,0.04); color: #1c1b19; font-size: 12px; margin-top: 1px; transition: border-color .2s, background .2s, box-shadow .2s; }
 .sr-consent__input:checked + .sr-consent__box { background: var(--c-accent-h); border-color: var(--c-accent-h); }
 .sr-consent__input:focus-visible + .sr-consent__box { box-shadow: 0 0 0 3px rgba(212,178,121,0.25); }
+.sr-consent.is-error .sr-consent__box { border-color: var(--c-error); box-shadow: 0 0 0 3px rgba(224,122,106,0.15); }
+.sr-consent-error { display: none; color: var(--c-error); font-size: 12px; line-height: 1.4; margin-top: 4px; padding-left: 28px; }
+.sr-consent-error.is-visible { display: block; }
 .sr-form__submit { background: var(--c-accent-d); color: #1c1b19; border: 1px solid var(--c-accent-d); border-radius: 12px; padding: 16px 20px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: inherit; transition: background .3s; }
 .sr-form__submit:hover { background: var(--c-accent-h); border-color: var(--c-accent-h); }
 body.sr-modal-open { overflow: hidden; }
@@ -356,9 +360,12 @@ body.sr-modal-open { overflow: hidden; }
 .vk-measure__submit { margin-top: 8px; width: 100%; border: none; cursor: pointer; background: linear-gradient(180deg,var(--c-gold-strong) 0%,#e5a82d 100%); color: var(--c-surface); font-family: inherit; font-size: 15px; font-weight: 600; padding: 16px 20px; border-radius: 14px; }
 .vk-measure__consent { display: flex; align-items: flex-start; gap: 10px; margin-top: 14px; cursor: pointer; }
 .vk-measure__consent-input { position: absolute; opacity: 0; width: 1px; height: 1px; }
-.vk-measure__consent-box { flex: 0 0 18px; width: 18px; height: 18px; border: 1.5px solid rgba(245,185,66,0.3); border-radius: 5px; display: inline-grid; place-items: center; background: rgba(13,12,13,0.5); color: var(--c-surface); font-size: 12px; }
+.vk-measure__consent-box { flex: 0 0 18px; width: 18px; height: 18px; border: 1.5px solid rgba(245,185,66,0.3); border-radius: 5px; display: inline-grid; place-items: center; background: rgba(13,12,13,0.5); color: var(--c-surface); font-size: 12px; transition: border-color .2s, background .2s, box-shadow .2s; }
 .vk-measure__consent-input:checked + .vk-measure__consent-box { background: var(--c-gold-strong); border-color: var(--c-gold-strong); }
+.vk-measure__consent.is-error .vk-measure__consent-box { border-color: var(--c-error); box-shadow: 0 0 0 3px rgba(224,122,106,0.15); }
 .vk-measure__consent-text { font-size: 12px; color: #b3a89a; line-height: 1.5; }
+.vk-measure__consent-error { display: none; color: var(--c-error); font-size: 12px; line-height: 1.4; margin-top: 4px; padding-left: 28px; }
+.vk-measure__consent-error.is-visible { display: block; }
 .vk-measure__success { display: none; flex-direction: column; align-items: center; text-align: center; gap: 14px; padding: 12px 8px; }
 .vk-measure__success.is-active { display: flex; }
 .vk-measure__success-icon { width: 80px; height: 80px; border-radius: 50%; background: rgba(111,207,151,0.14); color: var(--c-success); display: grid; place-items: center; font-size: 40px; }
@@ -411,7 +418,7 @@ body.sr-modal-open { overflow: hidden; }
 body.kb-modal-open { overflow: hidden; }
 @media (max-width: 640px) { .kb-modal__dialog { padding: 24px 18px; } .kb-modal__close { top: 6px; right: 6px; width: 36px; height: 36px; } }
 
-/* КНОПКА ЧАТА — без крестика */
+/* КНОПКА ЧАТА */
 .chat-fab { position: fixed; right: 24px; bottom: 24px; z-index: 60; width: 56px; height: 56px; border-radius: 50%; background: var(--c-accent); color: var(--c-bg); border: none; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 12px 28px rgba(0,0,0,.4); transition: transform .25s, background .25s, box-shadow .25s; }
 .chat-fab:hover { background: var(--c-accent-h); transform: translateY(-2px); box-shadow: 0 16px 32px rgba(0,0,0,.45); }
 .chat-fab:focus-visible { outline: 2px solid var(--c-accent-h); outline-offset: 3px; }
@@ -439,8 +446,11 @@ body.kb-modal-open { overflow: hidden; }
 .chat-modal__textarea { min-height: 88px; resize: vertical; }
 .chat-modal__consent { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; margin-top: 4px; font-size: 12px; color: rgba(244,237,226,0.55); line-height: 1.45; }
 .chat-modal__consent input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
-.chat-modal__consent-box { flex: 0 0 18px; width: 18px; height: 18px; border: 1.5px solid rgba(200,165,114,0.35); border-radius: 5px; display: inline-grid; place-items: center; background: rgba(13,12,13,0.4); color: var(--c-bg); font-size: 12px; margin-top: 1px; }
+.chat-modal__consent-box { flex: 0 0 18px; width: 18px; height: 18px; border: 1.5px solid rgba(200,165,114,0.35); border-radius: 5px; display: inline-grid; place-items: center; background: rgba(13,12,13,0.4); color: var(--c-bg); font-size: 12px; margin-top: 1px; transition: border-color .2s, background .2s, box-shadow .2s; }
 .chat-modal__consent input:checked + .chat-modal__consent-box { background: var(--c-accent); border-color: var(--c-accent); color: var(--c-bg); }
+.chat-modal__consent.is-error .chat-modal__consent-box { border-color: var(--c-error); box-shadow: 0 0 0 3px rgba(224,122,106,0.15); }
+.chat-modal__consent-error { display: none; color: var(--c-error); font-size: 12px; line-height: 1.4; margin-top: 4px; padding-left: 28px; }
+.chat-modal__consent-error.is-visible { display: block; }
 .chat-modal__submit { margin-top: 8px; width: 100%; border: none; cursor: pointer; background: var(--c-accent); color: var(--c-bg); font-family: inherit; font-size: 14px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 15px 20px; border-radius: 12px; transition: background .2s; }
 .chat-modal__submit:hover { background: var(--c-accent-h); }
 .chat-modal__success { display: none; flex-direction: column; align-items: center; text-align: center; gap: 10px; padding: 20px 8px 8px; }
@@ -651,7 +661,12 @@ body.chat-modal-open { overflow: hidden; }
           <div class="vk-measure__field"><label class="vk-measure__label" for="vk-phone">Телефон</label><input class="vk-measure__input" id="vk-phone" type="tel" placeholder="+7 (___) ___-__-__" required></div>
           <div class="vk-measure__field"><label class="vk-measure__label" for="vk-tg">Telegram (не обязательно)</label><input class="vk-measure__input" id="vk-tg" type="text" placeholder="nickname"></div>
           <button type="submit" class="vk-measure__submit">Записаться на замер</button>
-          <label class="vk-measure__consent"><input type="checkbox" class="vk-measure__consent-input" required><span class="vk-measure__consent-box">✓</span><span class="vk-measure__consent-text">Я согласен на обработку персональных данных</span></label>
+          <label class="vk-measure__consent" id="vk-consent-wrap">
+            <input type="checkbox" class="vk-measure__consent-input" id="vk-consent">
+            <span class="vk-measure__consent-box">✓</span>
+            <span class="vk-measure__consent-text">Я согласен на обработку персональных данных</span>
+          </label>
+          <div class="vk-measure__consent-error" id="vk-consent-error">Поставьте галочку — нужно согласие на обработку данных</div>
         </div>
       </form>
       <div class="vk-measure__success" id="vk-success">
@@ -716,11 +731,12 @@ body.chat-modal-open { overflow: hidden; }
         <label class="sr-field__label" for="sr-contact">Телефон</label>
         <input class="sr-field__input" id="sr-contact" type="tel" placeholder="+7 (___) ___-__-__" required>
       </div>
-      <label class="sr-consent">
-        <input type="checkbox" class="sr-consent__input" required>
+      <label class="sr-consent" id="sr-consent-wrap">
+        <input type="checkbox" class="sr-consent__input" id="sr-consent">
         <span class="sr-consent__box">✓</span>
         <span class="sr-consent__text">Я согласен на обработку персональных данных</span>
       </label>
+      <div class="sr-consent-error" id="sr-consent-error">Поставьте галочку — нужно согласие на обработку данных</div>
       <button type="submit" class="sr-form__submit">Отправить заявку</button>
     </form>
   </div>
@@ -755,7 +771,7 @@ body.chat-modal-open { overflow: hidden; }
   </div>
 </div>
 
-<!-- КНОПКА ЧАТА (без крестика) -->
+<!-- КНОПКА ЧАТА -->
 <button class="chat-fab" id="chat-fab" type="button" aria-label="Написать нам" aria-controls="chat-modal" aria-expanded="false">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
     <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
@@ -790,11 +806,12 @@ body.chat-modal-open { overflow: hidden; }
       <input class="chat-modal__input" type="text" name="contact" id="chat-contact" placeholder="@username или телефон" required>
       <input class="chat-modal__input" type="text" name="name" placeholder="Например, Андрей Белов" required>
       <textarea class="chat-modal__textarea" name="message" placeholder="Напишите ваш вопрос. Свяжемся в ближайшее время)" required></textarea>
-      <label class="chat-modal__consent">
-        <input type="checkbox" required>
+      <label class="chat-modal__consent" id="chat-consent-wrap">
+        <input type="checkbox" id="chat-consent">
         <span class="chat-modal__consent-box">✓</span>
         <span>Я согласен с условиями обслуживания</span>
       </label>
+      <div class="chat-modal__consent-error" id="chat-consent-error">Поставьте галочку — нужно согласие на обработку данных</div>
       <button type="submit" class="chat-modal__submit">Отправить</button>
     </form>
     <div class="chat-modal__success" id="chat-success">
@@ -862,6 +879,38 @@ body.chat-modal-open { overflow: hidden; }
     for (var j = 0; j < items.length; j++) io.observe(items[j]);
   })();
 
+  /* Хелпер проверки чекбокса согласия */
+  function bindConsent(inputId, wrapId, errId) {
+    var input = document.getElementById(inputId);
+    var wrap = document.getElementById(wrapId);
+    var err = document.getElementById(errId);
+    if (!input || !wrap || !err) return null;
+
+    input.addEventListener('change', function () {
+      if (input.checked) {
+        wrap.classList.remove('is-error');
+        err.classList.remove('is-visible');
+      }
+    });
+
+    return {
+      check: function () {
+        if (!input.checked) {
+          wrap.classList.add('is-error');
+          err.classList.add('is-visible');
+          try { input.focus({ preventScroll: true }); } catch (e) { input.focus(); }
+          wrap.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          return false;
+        }
+        return true;
+      }
+    };
+  }
+
+  var srConsent = bindConsent('sr-consent', 'sr-consent-wrap', 'sr-consent-error');
+  var vkConsent = bindConsent('vk-consent', 'vk-consent-wrap', 'vk-consent-error');
+  var chatConsent = bindConsent('chat-consent', 'chat-consent-wrap', 'chat-consent-error');
+
   /* YAML */
   function parseYaml(text) {
     var m = text.match(/^---\s*\n([\s\S]*?)\n---/);
@@ -869,10 +918,7 @@ body.chat-modal-open { overflow: hidden; }
     var data = {}, gallery = [];
     m[1].split('\n').forEach(function (line) {
       var mg = line.match(/^\s*-\s+image:\s*(.+)$/);
-      if (mg) {
-        gallery.push(mg[1].trim().replace(/^["']|["']$/g, ''));
-        return;
-      }
+      if (mg) { gallery.push(mg[1].trim().replace(/^["']|["']$/g, '')); return; }
       var mm = line.match(/^([a-z_]+)\s*:\s*(.*)$/i);
       if (!mm) return;
       data[mm[1].trim()] = mm[2].trim().replace(/^["']|["']$/g, '');
@@ -934,9 +980,8 @@ body.chat-modal-open { overflow: hidden; }
         (d.cover ? '<img class="kb-card__img" src="' + esc(d.cover) + '" alt="' + esc(title) + '" loading="lazy">' : '') +
         '<div class="kb-card__gradient"></div>' +
         (budget ? '<span class="kb-card__badge">' + esc(budget) + '</span>' : '') +
-        '<div class="kb-card__over">' +
-          '<h3 class="kb-card__title">' + esc(title) + '</h3>' +
-          (d.style ? '<span class="kb-card__style">' + esc(d.style) + '</span>' : '') +
+        '<div class="kb-card__over"><h3 class="kb-card__title">' + esc(title) + '</h3>' +
+        (d.style ? '<span class="kb-card__style">' + esc(d.style) + '</span>' : '') +
         '</div>' +
       '</div>' +
       '<div class="kb-card__body">' +
@@ -1104,6 +1149,7 @@ body.chat-modal-open { overflow: hidden; }
     if (srForm) {
       srForm.addEventListener('submit', function (e) {
         e.preventDefault();
+        if (srConsent && !srConsent.check()) return;
         srForm.innerHTML = '<p style="text-align:center;color:#d4b279;font-size:15px;padding:20px 0;">Спасибо! Заявка отправлена — дизайнер свяжется с вами.</p>';
       });
     }
@@ -1115,6 +1161,7 @@ body.chat-modal-open { overflow: hidden; }
   if (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+      if (vkConsent && !vkConsent.check()) return;
       form.style.display = 'none';
       success.classList.add('is-active');
     });
@@ -1148,6 +1195,10 @@ body.chat-modal-open { overflow: hidden; }
     if (chatForm) {
       chatForm.style.display = '';
       chatForm.reset();
+      var cw = document.getElementById('chat-consent-wrap');
+      var ce = document.getElementById('chat-consent-error');
+      if (cw) cw.classList.remove('is-error');
+      if (ce) ce.classList.remove('is-visible');
     }
     if (chatSuccess) chatSuccess.classList.remove('is-active');
     document.querySelectorAll('.chat-modal__tab').forEach(function (t, i) {
@@ -1191,6 +1242,7 @@ body.chat-modal-open { overflow: hidden; }
           chatForm.reportValidity();
           return;
         }
+        if (chatConsent && !chatConsent.check()) return;
         chatForm.style.display = 'none';
         if (chatSuccess) chatSuccess.classList.add('is-active');
       });
