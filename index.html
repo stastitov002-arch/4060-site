@@ -13,7 +13,7 @@ body { margin: 0; background: #0c160e; padding-top: 72px; font-family: "Inter","
 input, textarea, select, button { max-width: 100%; font-size: 16px; }
 img, svg, video { max-width: 100%; height: auto; }
 
-/* ШАПКА */
+/* ========== ШАПКА ========== */
 .hd-block { position: fixed; top: 0; left: 0; right: 0; z-index: 50; width: 100%; background: #0c160e; color: #c8a572; }
 .hd-block__inner { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 24px; max-width: 1280px; margin: 0 auto; padding: 14px 32px; }
 .hd-block__logo { font-size: 28px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #c8a572; text-decoration: none; transition: opacity .2s; }
@@ -58,7 +58,7 @@ img, svg, video { max-width: 100%; height: auto; }
   .hd-block__menu-tg { display: inline-flex; align-items: center; gap: 6px; color: #c8a572; text-decoration: none; font-size: 14px; }
 }
 
-/* HERO */
+/* ========== HERO ========== */
 .h40-hero { position: relative; min-height: 100vh; min-height: 100svh; width: 100%; overflow: hidden; background: #0c0c0e; color: #f4f1ec; isolation: isolate; }
 .h40-hero__media { position: absolute; inset: 0; z-index: 0; }
 .h40-hero__image { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(0.92) contrast(1.02); animation: h40-hero-kenburns 22s ease-out forwards; }
@@ -89,7 +89,7 @@ img, svg, video { max-width: 100%; height: auto; }
   .h40-hero__badge { font-size: 12px; padding: 7px 12px; }
 }
 
-/* ПОРТФОЛИО */
+/* ========== ПОРТФОЛИО ========== */
 .kb-sec {
   position: relative;
   background: linear-gradient(180deg, #0c160e 0%, #1a1f17 100%);
@@ -181,7 +181,7 @@ img, svg, video { max-width: 100%; height: auto; }
   .kb-sec__head-right { max-width: none; }
 }
 
-/* ШОУРУМ */
+/* ========== ШОУРУМ ========== */
 .sr-block { background: #0c160e; color: #f7f1e8; }
 .sr-block__container { display: grid; grid-template-columns: 1.05fr 1fr; min-height: 560px; max-width: 1280px; margin: 0 auto; }
 .sr-block__media { position: relative; overflow: hidden; background: #2b2a28; min-height: 480px; }
@@ -193,12 +193,36 @@ img, svg, video { max-width: 100%; height: auto; }
 .sr-block__eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: #c8a572; margin-bottom: 22px; }
 .sr-block__title { font-size: clamp(32px,4vw,46px); font-weight: 700; line-height: 1.08; margin: 0 0 22px; }
 .sr-block__text { font-size: 16px; line-height: 1.65; color: rgba(247,241,232,0.75); margin: 0 0 36px; max-width: 480px; }
-.sr-block__btn { align-self: flex-start; background: #c8a572; color: #0c160e; border: 1px solid #c8a572; border-radius: 4px; padding: 16px 28px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: inherit; text-decoration: none; }
+.sr-block__btn { align-self: flex-start; background: #c8a572; color: #0c160e; border: 1px solid #c8a572; border-radius: 4px; padding: 16px 28px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: inherit; }
 .sr-block__btn:hover { background: #d4b279; border-color: #d4b279; }
 @media (max-width: 960px) { .sr-block__container { grid-template-columns: 1fr; } .sr-block__media { min-height: 360px; height: 360px; } .sr-block__content { padding: 56px 32px; } }
 @media (max-width: 640px) { .sr-block__media { height: 300px; } .sr-block__content { padding: 48px 20px; } }
 
-/* ПРОЕКТ ПОД КЛЮЧ */
+/* ========== МОДАЛКА ШОУРУМА ========== */
+.sr-modal { position: fixed; inset: 0; z-index: 200; display: none; align-items: center; justify-content: center; padding: 24px; }
+.sr-modal.is-open { display: flex; }
+.sr-modal__backdrop { position: absolute; inset: 0; background: rgba(13,12,13,0.85); backdrop-filter: blur(6px); }
+.sr-modal__dialog { position: relative; z-index: 1; width: 100%; max-width: 520px; background: #1f1d1b; border: 1px solid rgba(212,178,121,0.22); border-radius: 24px; padding: 44px 40px 36px; max-height: calc(100vh - 48px); overflow-y: auto; color: #f7f1e8; }
+.sr-modal__close { position: absolute; top: 16px; right: 16px; width: 40px; height: 40px; border-radius: 50%; background: rgba(247,241,232,0.06); border: 0; color: #d4b279; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+.sr-modal__close:hover { background: rgba(212,178,121,0.18); }
+.sr-modal__eyebrow { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: #d4b279; margin-bottom: 14px; position: relative; padding-left: 32px; }
+.sr-modal__eyebrow::before { content: ""; position: absolute; left: 0; top: 50%; width: 22px; height: 1px; background: #d4b279; }
+.sr-modal__title { font-size: clamp(22px,3vw,28px); font-weight: 700; line-height: 1.15; margin: 0 0 10px; color: #fff; }
+.sr-modal__subtitle { font-size: 14px; line-height: 1.55; color: rgba(247,241,232,0.65); margin: 0 0 26px; }
+.sr-form { display: flex; flex-direction: column; gap: 18px; }
+.sr-field { display: flex; flex-direction: column; gap: 8px; }
+.sr-field__label { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(212,178,121,0.85); }
+.sr-field__input { width: 100%; padding: 14px 16px; background: rgba(247,241,232,0.04); border: 1px solid rgba(212,178,121,0.22); border-radius: 12px; color: #f7f1e8; font-family: inherit; font-size: 16px; transition: border-color .25s, box-shadow .25s; outline: none; }
+.sr-field__input:focus { border-color: #d4b279; background: rgba(247,241,232,0.06); box-shadow: 0 0 0 4px rgba(212,178,121,0.12); }
+.sr-form__submit { background: #b08a52; color: #1c1b19; border: 1px solid #b08a52; border-radius: 12px; padding: 16px 20px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: inherit; transition: background .3s; }
+.sr-form__submit:hover { background: #d4b279; border-color: #d4b279; }
+body.sr-modal-open { overflow: hidden; }
+@media (max-width: 640px) {
+  .sr-modal { padding: 16px; }
+  .sr-modal__dialog { padding: 36px 24px 28px; border-radius: 20px; }
+}
+
+/* ========== ПРОЕКТ ПОД КЛЮЧ ========== */
 .tpk-block { font-family: "Inter", Arial, sans-serif; color: #2b2a28; background: #fbf8f3; padding: 96px 24px 110px; }
 .tpk-block__container { max-width: 1200px; margin: 0 auto; }
 .tpk-block__header { text-align: center; margin-bottom: 64px; }
@@ -239,7 +263,7 @@ img, svg, video { max-width: 100%; height: auto; }
 @media (max-width: 960px) { .tpk-block { padding: 72px 20px 80px; } .tpk-block__grid { grid-template-columns: repeat(2, 1fr); gap: 16px; } }
 @media (max-width: 480px) { .tpk-block__grid { grid-template-columns: 1fr; } }
 
-/* FAQ */
+/* ========== FAQ ========== */
 .faq-a7b { background: #f5f5f3; padding: clamp(48px,8vw,96px) 0; color: #1a1a1a; }
 .faq-a7b__container { max-width: 880px; margin: 0 auto; padding: 0 40px; }
 .faq-a7b__header { margin-bottom: 48px; }
@@ -264,7 +288,7 @@ img, svg, video { max-width: 100%; height: auto; }
 .faq-a7b__answer-inner { overflow: hidden; min-height: 0; }
 .faq-a7b__answer-inner p { margin: 0; padding: 0 32px 28px calc(32px + 30px + 24px); color: #4a4a48; line-height: 1.7; font-size: 16px; }
 
-/* ФОРМА */
+/* ========== ФОРМА ЗАМЕРА ========== */
 .vk-measure { background: #1c1b19; color: #f7f1e8; padding: clamp(48px,7vw,88px) 20px; }
 .vk-measure__inner { max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; align-items: center; }
 .vk-measure__intro { display: flex; flex-direction: column; gap: 22px; }
@@ -299,7 +323,7 @@ img, svg, video { max-width: 100%; height: auto; }
 @media (max-width: 960px) { .vk-measure__inner { grid-template-columns: 1fr; } }
 @media (max-width: 640px) { .vk-measure { padding: 40px 16px; } .vk-measure__card { padding: 24px 18px; } .vk-measure__perks { grid-template-columns: 1fr; } }
 
-/* ФУТЕР */
+/* ========== ФУТЕР ========== */
 .ft-block { background: #0c160e; color: #c8a572; padding: 48px 20px 24px; border-top: 1px solid rgba(200,165,114,0.15); }
 .ft-block__wrap { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 32px; }
 @media (min-width: 720px) { .ft-block__wrap { grid-template-columns: 1.5fr 1fr 1fr; } }
@@ -312,7 +336,7 @@ img, svg, video { max-width: 100%; height: auto; }
 .ft-block__nav a { color: #c8a572; text-decoration: none; font-size: 14px; opacity: 0.85; }
 .ft-block__bottom { max-width: 1280px; margin: 40px auto 0; padding-top: 20px; border-top: 1px solid rgba(200,165,114,0.15); display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; font-size: 12px; color: #b3ada0; }
 
-/* МОДАЛКА */
+/* ========== МОДАЛКА ПРОЕКТА ========== */
 .kb-modal { position: fixed; inset: 0; z-index: 200; display: none; align-items: flex-start; justify-content: center; padding: 24px 16px; overflow-y: auto; }
 .kb-modal.is-open { display: flex; }
 .kb-modal__backdrop { position: fixed; inset: 0; background: rgba(6,11,7,0.85); backdrop-filter: blur(6px); }
@@ -345,6 +369,7 @@ body.kb-modal-open { overflow: hidden; }
 </head>
 <body>
 
+<!-- ШАПКА -->
 <section class="hd-block">
   <div class="hd-block__inner">
     <a class="hd-block__logo" href="/">40/60</a>
@@ -368,6 +393,7 @@ body.kb-modal-open { overflow: hidden; }
   </div>
 </section>
 
+<!-- HERO -->
 <section class="h40-hero">
   <div class="h40-hero__media">
     <img class="h40-hero__image" alt="" src="https://static.tildacdn.pub/tild3264-6230-4336-b938-666135316432/Gemini_Generated_Ima.jpg">
@@ -392,6 +418,7 @@ body.kb-modal-open { overflow: hidden; }
   <div class="h40-hero__corner h40-hero__corner--br"></div>
 </section>
 
+<!-- ПОРТФОЛИО -->
 <section id="portfolio" class="kb-sec">
   <div class="kb-sec__inner">
     <header class="kb-sec__head">
@@ -414,6 +441,7 @@ body.kb-modal-open { overflow: hidden; }
   </div>
 </section>
 
+<!-- ШОУРУМ -->
 <section class="sr-block">
   <div class="sr-block__container">
     <div class="sr-block__media">
@@ -424,11 +452,12 @@ body.kb-modal-open { overflow: hidden; }
       <span class="sr-block__eyebrow">Шоурум</span>
       <h2 class="sr-block__title">Приезжайте в наш шоурум</h2>
       <p class="sr-block__text">Наш дизайнер проконсультирует вас по всем материалам и возможностям на нашей выставке. Потрогайте фасады, оцените фактуру камня, сравните оттенки.</p>
-      <a class="sr-block__btn" href="#measure">Записаться на визит</a>
+      <button type="button" class="sr-block__btn" id="sr-open">Записаться на визит</button>
     </div>
   </div>
 </section>
 
+<!-- ПРОЕКТ ПОД КЛЮЧ -->
 <section class="tpk-block">
   <div class="tpk-block__container">
     <header class="tpk-block__header">
@@ -449,6 +478,7 @@ body.kb-modal-open { overflow: hidden; }
   </div>
 </section>
 
+<!-- FAQ -->
 <section class="faq-a7b">
   <div class="faq-a7b__container">
     <header class="faq-a7b__header">
@@ -464,6 +494,7 @@ body.kb-modal-open { overflow: hidden; }
   </div>
 </section>
 
+<!-- ФОРМА ЗАМЕРА -->
 <section id="measure" class="vk-measure">
   <div class="vk-measure__inner">
     <div class="vk-measure__intro">
@@ -496,6 +527,7 @@ body.kb-modal-open { overflow: hidden; }
   </div>
 </section>
 
+<!-- ФУТЕР -->
 <footer class="ft-block">
   <div class="ft-block__wrap">
     <div>
@@ -531,6 +563,29 @@ body.kb-modal-open { overflow: hidden; }
   </div>
 </footer>
 
+<!-- МОДАЛКА ЗАПИСИ В ШОУРУМ -->
+<div class="sr-modal" id="sr-modal" aria-hidden="true">
+  <div class="sr-modal__backdrop" data-sr-close></div>
+  <div class="sr-modal__dialog" role="dialog" aria-modal="true">
+    <button type="button" class="sr-modal__close" data-sr-close aria-label="Закрыть">✕</button>
+    <span class="sr-modal__eyebrow">Запись на визит</span>
+    <h3 class="sr-modal__title">Встреча в нашем шоуруме</h3>
+    <p class="sr-modal__subtitle">Оставьте контакт — наш дизайнер свяжется с вами и согласует удобное время визита.</p>
+    <form class="sr-form" id="sr-form">
+      <div class="sr-field">
+        <label class="sr-field__label" for="sr-name">Ваше имя</label>
+        <input class="sr-field__input" id="sr-name" type="text" placeholder="Например, Андрей" required>
+      </div>
+      <div class="sr-field">
+        <label class="sr-field__label" for="sr-contact">Телефон</label>
+        <input class="sr-field__input" id="sr-contact" type="tel" placeholder="+7 (___) ___-__-__" required>
+      </div>
+      <button type="submit" class="sr-form__submit">Отправить заявку</button>
+    </form>
+  </div>
+</div>
+
+<!-- МОДАЛКА ПРОЕКТА -->
 <div class="kb-modal" id="kb-modal" aria-hidden="true">
   <div class="kb-modal__backdrop" data-kb-close></div>
   <div class="kb-modal__dialog">
@@ -562,6 +617,7 @@ body.kb-modal-open { overflow: hidden; }
   'use strict';
   var REPO = 'stastitov002-arch/4060-site';
 
+  /* ШАПКА */
   var header = document.querySelector('.hd-block');
   if (header) {
     var burger = header.querySelector('.hd-block__burger');
@@ -585,6 +641,7 @@ body.kb-modal-open { overflow: hidden; }
     });
   }
 
+  /* ПАРСИНГ YAML */
   function parseYaml(text) {
     var m = text.match(/^---\s*\n([\s\S]*?)\n---/);
     if (!m) return {};
@@ -725,6 +782,7 @@ body.kb-modal-open { overflow: hidden; }
   modal.addEventListener('click', function (e) { if (e.target.closest('[data-kb-close]')) closeModal(); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal(); });
 
+  /* FAQ */
   document.querySelectorAll('.faq-a7b__question').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var item = btn.closest('.faq-a7b__item');
@@ -734,12 +792,46 @@ body.kb-modal-open { overflow: hidden; }
     });
   });
 
+  /* МОДАЛКА ЗАПИСИ В ШОУРУМ */
+  var srModal = document.getElementById('sr-modal');
+  var srOpen = document.getElementById('sr-open');
+  if (srModal && srOpen) {
+    srOpen.addEventListener('click', function () {
+      srModal.classList.add('is-open');
+      srModal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('sr-modal-open');
+    });
+    srModal.querySelectorAll('[data-sr-close]').forEach(function (el) {
+      el.addEventListener('click', function () {
+        srModal.classList.remove('is-open');
+        srModal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('sr-modal-open');
+      });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && srModal.classList.contains('is-open')) {
+        srModal.classList.remove('is-open');
+        srModal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('sr-modal-open');
+      }
+    });
+    var srForm = document.getElementById('sr-form');
+    if (srForm) {
+      srForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        srForm.innerHTML = '<p style="text-align:center;color:#d4b279;font-size:15px;padding:20px 0;">Спасибо! Заявка отправлена — дизайнер свяжется с вами.</p>';
+      });
+    }
+  }
+
+  /* ФОРМА ЗАМЕРА */
   var form = document.getElementById('vk-form');
   var success = document.getElementById('vk-success');
   if (form) form.addEventListener('submit', function (e) {
     e.preventDefault(); form.style.display = 'none'; success.classList.add('is-active');
   });
 
+  /* НАВЕРХ */
   var toTop = document.getElementById('to-top');
   window.addEventListener('scroll', function () { toTop.classList.toggle('is-visible', window.scrollY > 500); }, { passive: true });
   toTop.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
