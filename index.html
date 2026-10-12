@@ -240,6 +240,11 @@ img, svg, video { max-width: 100%; height: auto; }
 .sr-field__label { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(212,178,121,0.85); }
 .sr-field__input { width: 100%; padding: 14px 16px; background: rgba(247,241,232,0.04); border: 1px solid rgba(212,178,121,0.22); border-radius: 12px; color: var(--c-text); font-family: inherit; font-size: 16px; transition: border-color .25s, box-shadow .25s; outline: none; }
 .sr-field__input:focus { border-color: var(--c-accent-h); background: rgba(247,241,232,0.06); box-shadow: 0 0 0 4px rgba(212,178,121,0.12); }
+.sr-consent { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; margin-top: 4px; font-size: 12px; color: rgba(247,241,232,0.6); line-height: 1.45; }
+.sr-consent__input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
+.sr-consent__box { flex: 0 0 18px; width: 18px; height: 18px; border: 1.5px solid rgba(212,178,121,0.4); border-radius: 5px; display: inline-grid; place-items: center; background: rgba(247,241,232,0.04); color: #1c1b19; font-size: 12px; margin-top: 1px; }
+.sr-consent__input:checked + .sr-consent__box { background: var(--c-accent-h); border-color: var(--c-accent-h); }
+.sr-consent__input:focus-visible + .sr-consent__box { box-shadow: 0 0 0 3px rgba(212,178,121,0.25); }
 .sr-form__submit { background: var(--c-accent-d); color: #1c1b19; border: 1px solid var(--c-accent-d); border-radius: 12px; padding: 16px 20px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: inherit; transition: background .3s; }
 .sr-form__submit:hover { background: var(--c-accent-h); border-color: var(--c-accent-h); }
 body.sr-modal-open { overflow: hidden; }
@@ -407,35 +412,11 @@ body.kb-modal-open { overflow: hidden; }
 @media (max-width: 640px) { .kb-modal__dialog { padding: 24px 18px; } .kb-modal__close { top: 6px; right: 6px; width: 36px; height: 36px; } }
 
 /* КНОПКА ЧАТА — без крестика */
-.chat-fab {
-  position: fixed;
-  right: 24px;
-  bottom: 24px;
-  z-index: 60;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: var(--c-accent);
-  color: var(--c-bg);
-  border: none;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 12px 28px rgba(0,0,0,.4);
-  transition: transform .25s, background .25s, box-shadow .25s;
-}
-.chat-fab:hover {
-  background: var(--c-accent-h);
-  transform: translateY(-2px);
-  box-shadow: 0 16px 32px rgba(0,0,0,.45);
-}
+.chat-fab { position: fixed; right: 24px; bottom: 24px; z-index: 60; width: 56px; height: 56px; border-radius: 50%; background: var(--c-accent); color: var(--c-bg); border: none; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 12px 28px rgba(0,0,0,.4); transition: transform .25s, background .25s, box-shadow .25s; }
+.chat-fab:hover { background: var(--c-accent-h); transform: translateY(-2px); box-shadow: 0 16px 32px rgba(0,0,0,.45); }
 .chat-fab:focus-visible { outline: 2px solid var(--c-accent-h); outline-offset: 3px; }
 .chat-fab svg { width: 26px; height: 26px; display: block; }
-@media (max-width: 480px) {
-  .chat-fab { right: 16px; bottom: 16px; width: 52px; height: 52px; }
-  .chat-fab svg { width: 24px; height: 24px; }
-}
+@media (max-width: 480px) { .chat-fab { right: 16px; bottom: 16px; width: 52px; height: 52px; } .chat-fab svg { width: 24px; height: 24px; } }
 
 /* ПОПАП ЧАТА */
 .chat-modal { position: fixed; inset: 0; z-index: 210; display: none; align-items: flex-end; justify-content: flex-end; padding: 24px; pointer-events: none; }
@@ -727,8 +708,19 @@ body.chat-modal-open { overflow: hidden; }
     <h3 class="sr-modal__title">Встреча в нашем шоуруме</h3>
     <p class="sr-modal__subtitle">Оставьте контакт — наш дизайнер свяжется с вами и согласует удобное время визита.</p>
     <form class="sr-form" id="sr-form">
-      <div class="sr-field"><label class="sr-field__label" for="sr-name">Ваше имя</label><input class="sr-field__input" id="sr-name" type="text" placeholder="Например, Андрей Белов" required></div>
-      <div class="sr-field"><label class="sr-field__label" for="sr-contact">Телефон</label><input class="sr-field__input" id="sr-contact" type="tel" placeholder="+7 (___) ___-__-__" required></div>
+      <div class="sr-field">
+        <label class="sr-field__label" for="sr-name">Ваше имя</label>
+        <input class="sr-field__input" id="sr-name" type="text" placeholder="Например, Андрей Белов" required>
+      </div>
+      <div class="sr-field">
+        <label class="sr-field__label" for="sr-contact">Телефон</label>
+        <input class="sr-field__input" id="sr-contact" type="tel" placeholder="+7 (___) ___-__-__" required>
+      </div>
+      <label class="sr-consent">
+        <input type="checkbox" class="sr-consent__input" required>
+        <span class="sr-consent__box">✓</span>
+        <span class="sr-consent__text">Я согласен на обработку персональных данных</span>
+      </label>
       <button type="submit" class="sr-form__submit">Отправить заявку</button>
     </form>
   </div>
@@ -794,7 +786,7 @@ body.chat-modal-open { overflow: hidden; }
         Max
       </button>
     </div>
-    <form class="chat-modal__form" id="chat-form" novalidate>
+    <form class="chat-modal__form" id="chat-form">
       <input class="chat-modal__input" type="text" name="contact" id="chat-contact" placeholder="@username или телефон" required>
       <input class="chat-modal__input" type="text" name="name" placeholder="Например, Андрей Белов" required>
       <textarea class="chat-modal__textarea" name="message" placeholder="Напишите ваш вопрос. Свяжемся в ближайшее время)" required></textarea>
