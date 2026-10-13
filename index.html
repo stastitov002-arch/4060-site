@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Производство мебели — 40/60 Design</title>
-<meta name="description" content="Кухни и корпусная мебель на заказ в Москве и области. От производителя, срок 21 день, гарантия 3 года.">
+<title data-cms="meta.title">Производство мебели — 40/60 Design</title>
+<meta name="description" data-cms="meta.description" content="Кухни и корпусная мебель на заказ в Москве и области. От производителя, срок 21 день, гарантия 3 года.">
 <style>
 :root {
   --c-bg: #0d0c0d;
@@ -349,6 +349,51 @@ body.sr-modal-open { overflow: hidden; }
 .vk-measure__form-head { margin-bottom: 22px; }
 .vk-measure__form-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--c-gold-strong); margin-bottom: 6px; display: block; }
 .vk-measure__form-title { font-size: 24px; line-height: 1.15; margin: 0; }
+
+/* ПЛАШКА «ПОНРАВИЛАСЬ» */
+.vk-measure__project {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px 12px 16px;
+  background: rgba(245,185,66,0.08);
+  border: 1px solid rgba(245,185,66,0.4);
+  border-radius: 12px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  color: var(--c-text);
+}
+.vk-measure__project[hidden] { display: none; }
+.vk-measure__project-label {
+  color: var(--c-gold-strong);
+  font-weight: 600;
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+.vk-measure__project-name {
+  flex: 1 1 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--c-text);
+}
+.vk-measure__project-clear {
+  flex: 0 0 26px;
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(245,185,66,0.18);
+  color: var(--c-gold-strong);
+  cursor: pointer;
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .2s;
+  padding: 0;
+}
+.vk-measure__project-clear:hover { background: rgba(245,185,66,0.35); }
+
 .vk-measure__fields { display: flex; flex-direction: column; gap: 14px; }
 .vk-measure__field { display: flex; flex-direction: column; gap: 6px; }
 .vk-measure__label { font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(245,185,66,0.85); }
@@ -480,22 +525,22 @@ body.chat-modal-open { overflow: hidden; }
         <li><a class="hd-block__nav-link" href="partners.html">Партнёрам</a></li>
       </ul>
       <div class="hd-block__menu-contacts">
-        <span class="hd-block__menu-hours">пн–сб 10:00–21:00</span>
+        <span class="hd-block__menu-hours" data-cms="header.hours">пн–сб 10:00–21:00</span>
         <a class="hd-block__menu-tg" href="https://t.me/design4060" target="_blank" rel="noopener">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
-          <span>design4060</span>
+          <span data-cms="header.tg">design4060</span>
         </a>
       </div>
     </nav>
     <div class="hd-block__phones">
-      <a class="hd-block__phone-item" href="tel:+79771004415">+7 977 100-44-15</a>
-      <a class="hd-block__phone-item hd-block__phone-item--secondary" href="tel:+79017448855">+7 901 744-88-55</a>
+      <a class="hd-block__phone-item" href="tel:+79771004415" data-cms="header.phone1">+7 977 100-44-15</a>
+      <a class="hd-block__phone-item hd-block__phone-item--secondary" href="tel:+79017448855" data-cms="header.phone2">+7 901 744-88-55</a>
     </div>
     <div class="hd-block__meta">
-      <span class="hd-block__hours">пн–сб 10:00–21:00</span>
+      <span class="hd-block__hours" data-cms="header.hours">пн–сб 10:00–21:00</span>
       <a class="hd-block__tg" href="https://t.me/design4060" target="_blank" rel="noopener" aria-label="Мы в Telegram">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
-        <span>design4060</span>
+        <span data-cms="header.tg">design4060</span>
       </a>
     </div>
   </div>
@@ -508,23 +553,28 @@ body.chat-modal-open { overflow: hidden; }
     <div class="h40-hero__veil" aria-hidden="true"></div>
   </div>
   <div class="h40-hero__inner">
-    <p class="h40-hero__eyebrow">Студия интерьерной мебели</p>
-    <h1 class="h40-hero__title" id="h40-hero-title">Мы — компания <span class="h40-hero__title-em">40/60 Design</span><span class="h40-hero__title-dot">.</span></h1>
-    <p class="h40-hero__subtitle">Кухни и корпусная мебель под ключ<br>в Москве и области</p>
-    <div class="h40-hero__badges">
+    <p class="h40-hero__eyebrow" data-cms="hero.eyebrow">Студия интерьерной мебели</p>
+    <h1 class="h40-hero__title" id="h40-hero-title" data-cms="hero.title">
+      Мы — компания <span class="h40-hero__title-em">40/60 Design</span><span class="h40-hero__title-dot">.</span>
+    </h1>
+    <p class="h40-hero__subtitle" data-cms="hero.subtitle">
+      Кухни и корпусная мебель под ключ<br>
+      в Москве и области
+    </p>
+    <div class="h40-hero__badges" data-cms="hero.badges">
       <span class="h40-hero__badge">21 день</span>
       <span class="h40-hero__badge">Гарантия 3 года</span>
       <span class="h40-hero__badge">От 150 000 ₽</span>
       <span class="h40-hero__badge">Проект под ключ</span>
     </div>
     <div class="h40-hero__actions">
-      <a class="h40-hero__btn" href="#portfolio">Смотреть проекты</a>
-      <a class="h40-hero__btn h40-hero__btn--ghost" href="#measure">Получить расчёт</a>
+      <a class="h40-hero__btn" href="#portfolio" data-cms="hero.btn1">Смотреть проекты</a>
+      <a class="h40-hero__btn h40-hero__btn--ghost" href="#measure" data-cms="hero.btn2">Получить расчёт</a>
     </div>
   </div>
   <a class="h40-hero__scroll" href="#portfolio" aria-label="Прокрутить вниз">
     <span class="h40-hero__scroll-line" aria-hidden="true"></span>
-    <span class="h40-hero__scroll-text">Вниз</span>
+    <span class="h40-hero__scroll-text" data-cms="hero.scroll">Вниз</span>
   </a>
   <div class="h40-hero__corner h40-hero__corner--tl" aria-hidden="true"></div>
   <div class="h40-hero__corner h40-hero__corner--br" aria-hidden="true"></div>
@@ -535,10 +585,10 @@ body.chat-modal-open { overflow: hidden; }
   <div class="kb-sec__inner">
     <header class="kb-sec__head">
       <div class="kb-sec__head-left">
-        <p class="kb-sec__eyebrow">Портфолио</p>
-        <h2 class="kb-sec__title">Реализованные проекты мебели</h2>
+        <p class="kb-sec__eyebrow" data-cms="portfolio.eyebrow">Портфолио</p>
+        <h2 class="kb-sec__title" data-cms="portfolio.title">Реализованные проекты мебели</h2>
       </div>
-      <div class="kb-sec__head-right">Откройте проект, чтобы увидеть описание материалов, фурнитуры и сроков реализации.</div>
+      <div class="kb-sec__head-right" data-cms="portfolio.subtitle">Откройте проект, чтобы увидеть описание материалов, фурнитуры и сроков реализации.</div>
     </header>
     <ul class="kb-grid" id="kb-grid">
       <li class="kb-sec__empty">Загружаем проекты…</li>
@@ -562,14 +612,14 @@ body.chat-modal-open { overflow: hidden; }
       <img class="sr-block__image" src="images/showroom.jpg" alt="Шоурум">
       <div class="sr-block__badge">
         <span class="sr-block__badge-num">360°</span>
-        <span class="sr-block__badge-text">выставка материалов</span>
+        <span class="sr-block__badge-text" data-cms="showroom.badge">выставка материалов</span>
       </div>
     </div>
     <div class="sr-block__content">
-      <span class="sr-block__eyebrow">Шоурум</span>
-      <h2 class="sr-block__title">Приезжайте в наш шоурум</h2>
-      <p class="sr-block__text">Наш дизайнер проконсультирует вас по всем материалам и возможностям на нашей выставке. Потрогайте фасады, оцените фактуру камня, сравните оттенки.</p>
-      <button type="button" class="sr-block__btn" id="sr-open">Записаться на визит</button>
+      <span class="sr-block__eyebrow" data-cms="showroom.eyebrow">Шоурум</span>
+      <h2 class="sr-block__title" data-cms="showroom.title">Приезжайте в наш шоурум</h2>
+      <p class="sr-block__text" data-cms="showroom.text">Наш дизайнер проконсультирует вас по всем материалам и возможностям на нашей выставке. Потрогайте фасады, оцените фактуру камня, сравните оттенки.</p>
+      <button type="button" class="sr-block__btn" id="sr-open" data-cms="showroom.btn">Записаться на визит</button>
     </div>
   </div>
 </section>
@@ -578,9 +628,9 @@ body.chat-modal-open { overflow: hidden; }
 <section class="tpk-block">
   <div class="tpk-block__container">
     <header class="tpk-block__header">
-      <span class="tpk-block__eyebrow">Комплексный подход</span>
-      <h2 class="tpk-block__title">Проект под ключ</h2>
-      <p class="tpk-block__subtitle">Тут мы расскажем о наших преимуществах</p>
+      <span class="tpk-block__eyebrow" data-cms="tpk.eyebrow">Комплексный подход</span>
+      <h2 class="tpk-block__title" data-cms="tpk.title">Проект под ключ</h2>
+      <p class="tpk-block__subtitle" data-cms="tpk.subtitle">Тут мы расскажем о наших преимуществах</p>
     </header>
     <ol class="tpk-block__grid">
       <li class="tpk-card"><span class="tpk-card__num">01</span><div class="tpk-card__icon">📞</div><h3 class="tpk-card__title">Консультация</h3><p class="tpk-card__text">Наш дизайнер встретит вас на выставке и проконсультирует по материалам.</p></li>
@@ -599,8 +649,8 @@ body.chat-modal-open { overflow: hidden; }
 <section class="st-steps" aria-labelledby="st-steps-title">
   <div class="st-steps__inner">
     <header class="st-steps__head">
-      <h2 class="st-steps__title" id="st-steps-title">Этапы работы</h2>
-      <p class="st-steps__lead">От первой встречи до подписанных актов — десять понятных шагов.</p>
+      <h2 class="st-steps__title" id="st-steps-title" data-cms="steps.title">Этапы работы</h2>
+      <p class="st-steps__lead" data-cms="steps.lead">От первой встречи до подписанных актов — десять понятных шагов.</p>
     </header>
     <ol class="st-steps__list">
       <li class="st-steps__item"><span class="st-steps__dot" aria-hidden="true"></span><div class="st-steps__content"><span class="st-steps__num">01</span><h3 class="st-steps__title-step">Знакомство и сбор ТЗ</h3><p class="st-steps__text">Лично или дистанционно.</p></div></li>
@@ -621,14 +671,50 @@ body.chat-modal-open { overflow: hidden; }
 <section class="faq-a7b">
   <div class="faq-a7b__container">
     <header class="faq-a7b__header">
-      <h2 class="faq-a7b__title">Частые вопросы</h2>
-      <p class="faq-a7b__subtitle">Ответы на популярные вопросы о нашей мебели и услугах</p>
+      <h2 class="faq-a7b__title" data-cms="faq.title">Частые вопросы</h2>
+      <p class="faq-a7b__subtitle" data-cms="faq.subtitle">Ответы на популярные вопросы о нашей мебели и услугах</p>
     </header>
     <ul class="faq-a7b__list">
-      <li class="faq-a7b__item"><button class="faq-a7b__question" type="button"><span class="faq-a7b__num">01</span><span class="faq-a7b__q-text">Сколько стоит выезд дизайнера или замерщика?</span><span class="faq-a7b__icon"></span></button><div class="faq-a7b__answer" hidden><div class="faq-a7b__answer-inner"><p>Наши специалисты и доставка мебели бесплатно приезжают на объект на территории Москвы и ближнего МО.</p></div></div></li>
-      <li class="faq-a7b__item"><button class="faq-a7b__question" type="button"><span class="faq-a7b__num">02</span><span class="faq-a7b__q-text">Сколько производится мебель?</span><span class="faq-a7b__icon"></span></button><div class="faq-a7b__answer" hidden><div class="faq-a7b__answer-inner"><p>Мы изготавливаем вашу мебель за 21 день.</p></div></div></li>
-      <li class="faq-a7b__item"><button class="faq-a7b__question" type="button"><span class="faq-a7b__num">03</span><span class="faq-a7b__q-text">Возможна ли самостоятельная сборка мебели?</span><span class="faq-a7b__icon"></span></button><div class="faq-a7b__answer" hidden><div class="faq-a7b__answer-inner"><p>Да, возможна, но в этом случае гарантия не предоставляется.</p></div></div></li>
-      <li class="faq-a7b__item"><button class="faq-a7b__question" type="button"><span class="faq-a7b__num">04</span><span class="faq-a7b__q-text">Сколько стоит сборка мебели?</span><span class="faq-a7b__icon"></span></button><div class="faq-a7b__answer" hidden><div class="faq-a7b__answer-inner"><p>Стоимость сборки составляет 10% от стоимости мебели.</p></div></div></li>
+      <li class="faq-a7b__item">
+        <button class="faq-a7b__question" type="button">
+          <span class="faq-a7b__num">01</span>
+          <span class="faq-a7b__q-text">Сколько стоит выезд дизайнера или замерщика?</span>
+          <span class="faq-a7b__icon"></span>
+        </button>
+        <div class="faq-a7b__answer" hidden>
+          <div class="faq-a7b__answer-inner"><p>Наши специалисты и доставка мебели бесплатно приезжают на объект на территории Москвы и ближнего МО.</p></div>
+        </div>
+      </li>
+      <li class="faq-a7b__item">
+        <button class="faq-a7b__question" type="button">
+          <span class="faq-a7b__num">02</span>
+          <span class="faq-a7b__q-text">Сколько производится мебель?</span>
+          <span class="faq-a7b__icon"></span>
+        </button>
+        <div class="faq-a7b__answer" hidden>
+          <div class="faq-a7b__answer-inner"><p>Мы изготавливаем вашу мебель за 21 день.</p></div>
+        </div>
+      </li>
+      <li class="faq-a7b__item">
+        <button class="faq-a7b__question" type="button">
+          <span class="faq-a7b__num">03</span>
+          <span class="faq-a7b__q-text">Возможна ли самостоятельная сборка мебели?</span>
+          <span class="faq-a7b__icon"></span>
+        </button>
+        <div class="faq-a7b__answer" hidden>
+          <div class="faq-a7b__answer-inner"><p>Да, возможна, но в этом случае гарантия не предоставляется.</p></div>
+        </div>
+      </li>
+      <li class="faq-a7b__item">
+        <button class="faq-a7b__question" type="button">
+          <span class="faq-a7b__num">04</span>
+          <span class="faq-a7b__q-text">Сколько стоит сборка мебели?</span>
+          <span class="faq-a7b__icon"></span>
+        </button>
+        <div class="faq-a7b__answer" hidden>
+          <div class="faq-a7b__answer-inner"><p>Стоимость сборки составляет 10% от стоимости мебели.</p></div>
+        </div>
+      </li>
     </ul>
   </div>
 </section>
@@ -637,9 +723,9 @@ body.chat-modal-open { overflow: hidden; }
 <section id="measure" class="vk-measure">
   <div class="vk-measure__inner">
     <div class="vk-measure__intro">
-      <span class="vk-measure__badge">Запись на замер</span>
-      <h2 class="vk-measure__title">Оставьте заявку — свяжемся за 15 минут</h2>
-      <p class="vk-measure__lead">Оставьте имя и телефон — специалист перезвонит и согласует удобное время замера.</p>
+      <span class="vk-measure__badge" data-cms="form.badge">Запись на замер</span>
+      <h2 class="vk-measure__title" data-cms="form.title">Оставьте заявку — свяжемся за 15 минут</h2>
+      <p class="vk-measure__lead" data-cms="form.lead">Оставьте имя и телефон — специалист перезвонит и согласует удобное время замера.</p>
       <div class="vk-measure__perks">
         <div class="vk-measure__perk"><span class="vk-measure__perk-icon">⏱</span><span class="vk-measure__perk-text">Быстрый выезд<small>в день обращения</small></span></div>
         <div class="vk-measure__perk"><span class="vk-measure__perk-icon">📐</span><span class="vk-measure__perk-text">Точный замер<small>ниш, труб, розеток</small></span></div>
@@ -649,15 +735,21 @@ body.chat-modal-open { overflow: hidden; }
     </div>
     <div class="vk-measure__card">
       <div class="vk-measure__form-head">
-        <span class="vk-measure__form-eyebrow">Запись на замер</span>
-        <h3 class="vk-measure__form-title">Заполните форму</h3>
+        <span class="vk-measure__form-eyebrow" data-cms="form.eyebrow">Запись на замер</span>
+        <h3 class="vk-measure__form-title" data-cms="form.formTitle">Заполните форму</h3>
       </div>
       <form class="vk-measure__form" id="vk-form">
+        <div class="vk-measure__project" id="vk-project" hidden>
+          <span class="vk-measure__project-label" data-cms="form.projectLabel">Понравилась:</span>
+          <span class="vk-measure__project-name" id="vk-project-name"></span>
+          <button type="button" class="vk-measure__project-clear" id="vk-project-clear" aria-label="Сбросить выбор">✕</button>
+        </div>
+        <input type="hidden" name="project" id="vk-project-input" value="">
         <div class="vk-measure__fields">
           <div class="vk-measure__field"><label class="vk-measure__label" for="vk-name">Имя</label><input class="vk-measure__input" id="vk-name" type="text" placeholder="Например, Андрей Белов" required></div>
           <div class="vk-measure__field"><label class="vk-measure__label" for="vk-phone">Телефон</label><input class="vk-measure__input" id="vk-phone" type="tel" placeholder="+7 (___) ___-__-__" required></div>
           <div class="vk-measure__field"><label class="vk-measure__label" for="vk-tg">Telegram (не обязательно)</label><input class="vk-measure__input" id="vk-tg" type="text" placeholder="nickname"></div>
-          <button type="submit" class="vk-measure__submit">Записаться на замер</button>
+          <button type="submit" class="vk-measure__submit" data-cms="form.submit">Записаться на замер</button>
           <label class="vk-measure__consent" id="vk-consent-wrap">
             <input type="checkbox" class="vk-measure__consent-input" id="vk-consent">
             <span class="vk-measure__consent-box">✓</span>
@@ -668,8 +760,8 @@ body.chat-modal-open { overflow: hidden; }
       </form>
       <div class="vk-measure__success" id="vk-success">
         <div class="vk-measure__success-icon">✓</div>
-        <h3 class="vk-measure__success-title">Заявка отправлена</h3>
-        <p class="vk-measure__success-text">Специалист скоро свяжется с вами.</p>
+        <h3 class="vk-measure__success-title" data-cms="form.successTitle">Заявка отправлена</h3>
+        <p class="vk-measure__success-text" data-cms="form.successText">Специалист скоро свяжется с вами.</p>
       </div>
     </div>
   </div>
@@ -680,11 +772,11 @@ body.chat-modal-open { overflow: hidden; }
   <div class="ft-block__wrap">
     <div>
       <a class="ft-block__logo" href="index.html">40/60</a>
-      <p class="ft-block__tagline">Студия интерьерной мебели. Кухни и корпусная мебель на заказ в Москве и области.</p>
+      <p class="ft-block__tagline" data-cms="footer.tagline">Студия интерьерной мебели. Кухни и корпусная мебель на заказ в Москве и области.</p>
       <div class="ft-block__contacts">
-        <a href="tel:+79771004415">+7 977 100-44-15</a>
-        <a href="tel:+79017448855">+7 901 744-88-55</a>
-        <a href="https://t.me/design4060" target="_blank" rel="noopener">Telegram: @design4060</a>
+        <a href="tel:+79771004415" data-cms="footer.phone1">+7 977 100-44-15</a>
+        <a href="tel:+79017448855" data-cms="footer.phone2">+7 901 744-88-55</a>
+        <a href="https://t.me/design4060" target="_blank" rel="noopener" data-cms="footer.tg">Telegram: @design4060</a>
       </div>
     </div>
     <div>
@@ -706,7 +798,7 @@ body.chat-modal-open { overflow: hidden; }
     </div>
   </div>
   <div class="ft-block__bottom">
-    <span>© 40/60 Design. Производство мебели на заказ.</span>
+    <span data-cms="footer.copyright">© 40/60 Design. Производство мебели на заказ.</span>
     <span><a href="warranty.html" style="color:#b3ada0;">Гарантия</a> · <a href="about.html" style="color:#b3ada0;">О нас</a></span>
   </div>
 </footer>
@@ -905,6 +997,32 @@ body.chat-modal-open { overflow: hidden; }
   var vkConsent = bindConsent('vk-consent', 'vk-consent-wrap', 'vk-consent-error');
   var chatConsent = bindConsent('chat-consent', 'chat-consent-wrap', 'chat-consent-error');
 
+  /* Плашка «Понравилась» в форме замера */
+  var vkProject = document.getElementById('vk-project');
+  var vkProjectName = document.getElementById('vk-project-name');
+  var vkProjectInput = document.getElementById('vk-project-input');
+  var vkProjectClear = document.getElementById('vk-project-clear');
+  var currentProject = null;
+
+  function setSelectedProject(title) {
+    if (!vkProject) return;
+    if (title) {
+      vkProjectName.textContent = title;
+      vkProjectInput.value = title;
+      vkProject.removeAttribute('hidden');
+    } else {
+      vkProjectName.textContent = '';
+      vkProjectInput.value = '';
+      vkProject.setAttribute('hidden', '');
+    }
+  }
+
+  if (vkProjectClear) {
+    vkProjectClear.addEventListener('click', function () {
+      setSelectedProject('');
+    });
+  }
+
   /* YAML */
   function parseYaml(text) {
     var m = text.match(/^---\s*\n([\s\S]*?)\n---/);
@@ -1026,6 +1144,7 @@ body.chat-modal-open { overflow: hidden; }
     var p = allProjects[idx];
     if (!p) return;
     lastFocus = document.activeElement;
+    currentProject = p;
     var d = p.data;
     var title = d.title || 'Проект';
     var price = d.price ? parseInt(d.price, 10) : null;
@@ -1104,6 +1223,16 @@ body.chat-modal-open { overflow: hidden; }
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
   });
+
+  /* Клик по CTA в модалке проекта — записать проект в форму */
+  var kbCta = document.querySelector('.kb-modal__cta');
+  if (kbCta) {
+    kbCta.addEventListener('click', function () {
+      if (currentProject && currentProject.data && currentProject.data.title) {
+        setSelectedProject(currentProject.data.title);
+      }
+    });
+  }
 
   /* FAQ */
   document.querySelectorAll('.faq-a7b__question').forEach(function (btn) {
