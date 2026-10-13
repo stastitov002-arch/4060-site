@@ -264,10 +264,13 @@ img, svg, video { max-width: 100%; height: auto; }
 .ft-block__contacts a { color: var(--c-accent); text-decoration: none; }
 .ft-block__col-title { font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--c-accent); opacity: 0.6; margin: 0 0 14px; }
 .ft-block__nav { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
-.ft-block__nav a { color: var(--c-accent); text-decoration: none; font-size: 14px; opacity: 0.85; }
+.ft-block__nav a,
+.ft-block__nav button { color: var(--c-accent); text-decoration: none; font-size: 14px; opacity: 0.85; background: none; border: 0; padding: 0; font-family: inherit; cursor: pointer; text-align: left; transition: opacity .2s; }
+.ft-block__nav a:hover,
+.ft-block__nav button:hover { opacity: 1; }
 .ft-block__bottom { max-width: 1280px; margin: 40px auto 0; padding-top: 20px; border-top: 1px solid rgba(200,165,114,0.15); display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; font-size: 12px; color: #b3ada0; }
 
-/* МОДАЛКА «ОБСУДИТЬ ПРОЕКТ» */
+/* МОДАЛКА (общий стиль) */
 .ab-modal { position: fixed; inset: 0; z-index: 200; display: none; align-items: center; justify-content: center; padding: 24px; }
 .ab-modal.is-open { display: flex; }
 .ab-modal__backdrop { position: absolute; inset: 0; background: rgba(13,12,13,0.85); backdrop-filter: blur(6px); }
@@ -299,6 +302,27 @@ img, svg, video { max-width: 100%; height: auto; }
 .ab-modal__success-text { color: rgba(247,241,232,0.65); font-size: 15px; margin: 0; max-width: 36ch; }
 body.ab-modal-open { overflow: hidden; }
 @media (max-width: 640px) { .ab-modal { padding: 16px; } .ab-modal__dialog { padding: 36px 24px 28px; border-radius: 20px; } }
+
+/* МОДАЛКА «ПОЗВОНИТЬ» */
+.ab-call { position: fixed; inset: 0; z-index: 200; display: none; align-items: center; justify-content: center; padding: 24px; }
+.ab-call.is-open { display: flex; }
+.ab-call__backdrop { position: absolute; inset: 0; background: rgba(13,12,13,0.85); backdrop-filter: blur(6px); }
+.ab-call__dialog { position: relative; z-index: 1; width: 100%; max-width: 480px; background: #1f1d1b; border: 1px solid rgba(212,178,121,0.22); border-radius: 24px; padding: 44px 40px 36px; max-height: calc(100vh - 48px); overflow-y: auto; color: var(--c-text); }
+.ab-call__close { position: absolute; top: 16px; right: 16px; width: 40px; height: 40px; border-radius: 50%; background: rgba(247,241,232,0.06); border: 0; color: var(--c-accent-h); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px; transition: background .2s; }
+.ab-call__close:hover { background: rgba(212,178,121,0.18); }
+.ab-call__eyebrow { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--c-accent-h); margin-bottom: 14px; position: relative; padding-left: 32px; }
+.ab-call__eyebrow::before { content: ""; position: absolute; left: 0; top: 50%; width: 22px; height: 1px; background: var(--c-accent-h); }
+.ab-call__title { font-size: clamp(22px,3vw,26px); font-weight: 700; line-height: 1.15; margin: 0 0 10px; color: #fff; }
+.ab-call__subtitle { font-size: 14px; line-height: 1.55; color: rgba(247,241,232,0.65); margin: 0 0 24px; }
+.ab-call__list { display: flex; flex-direction: column; gap: 12px; }
+.ab-call__item { display: flex; align-items: center; gap: 16px; padding: 18px 20px; border: 1px solid rgba(212,178,121,0.28); border-radius: 16px; text-decoration: none; color: var(--c-text); background: rgba(247,241,232,0.03); transition: border-color .25s, background .25s, transform .25s; }
+.ab-call__item:hover { border-color: var(--c-accent-h); background: rgba(212,178,121,0.06); transform: translateY(-1px); }
+.ab-call__avatar { flex: 0 0 44px; width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--c-accent-h), var(--c-accent-d)); color: #1c1b19; display: grid; place-items: center; font-weight: 700; font-size: 16px; }
+.ab-call__info { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.ab-call__name { font-size: 13px; color: rgba(247,241,232,0.6); letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; }
+.ab-call__phone { font-size: 17px; font-weight: 600; color: #fff; white-space: nowrap; }
+body.ab-call-open { overflow: hidden; }
+@media (max-width: 640px) { .ab-call { padding: 16px; } .ab-call__dialog { padding: 36px 22px 26px; border-radius: 20px; } .ab-call__phone { font-size: 16px; } }
 
 /* КНОПКА ЧАТА */
 .chat-fab { position: fixed; right: 24px; bottom: 24px; z-index: 60; width: 56px; height: 56px; border-radius: 50%; background: var(--c-accent); color: var(--c-bg); border: none; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 12px 28px rgba(0,0,0,.4); transition: transform .25s, background .25s, box-shadow .25s; }
@@ -454,7 +478,6 @@ body.chat-modal-open { overflow: hidden; }
 
     <div class="ab-partners__right">
 
-      <!-- Полоса 1: материалы -->
       <div class="ab-partners__row ab-partners__row--top">
         <div class="ab-partners__media">
           <img class="ab-partners__img" src="https://picsum.photos/seed/marble-dark/800/400" alt="Камень" loading="lazy">
@@ -463,7 +486,6 @@ body.chat-modal-open { overflow: hidden; }
         <p class="ab-partners__caption">Более 200<br>вариантов материалов</p>
       </div>
 
-      <!-- Полоса 2: логотипы брендов -->
       <div class="ab-partners__row ab-partners__row--logos">
         <div class="ab-partners__media">
 
@@ -496,7 +518,6 @@ body.chat-modal-open { overflow: hidden; }
         <p class="ab-partners__caption">и другие<br>бренды</p>
       </div>
 
-      <!-- Полоса 3: образцы фактур -->
       <div class="ab-partners__row ab-partners__row--swatches">
         <div class="ab-partners__media">
           <img class="ab-partners__img" src="https://picsum.photos/seed/texture-01/300/300" alt="" loading="lazy">
@@ -537,8 +558,8 @@ body.chat-modal-open { overflow: hidden; }
     <div>
       <p class="ft-block__col-title">Контакты</p>
       <ul class="ft-block__nav">
-        <li><a href="index.html#measure">Запись на замер</a></li>
-        <li><a href="tel:+79771004415">Позвонить</a></li>
+        <li><button type="button" id="ft-measure-open">Запись на замер</button></li>
+        <li><button type="button" id="ft-call-open">Позвонить</button></li>
         <li><a href="https://t.me/design4060" target="_blank" rel="noopener">Написать в Telegram</a></li>
       </ul>
     </div>
@@ -582,6 +603,70 @@ body.chat-modal-open { overflow: hidden; }
       <div class="ab-modal__success-icon">✓</div>
       <h3 class="ab-modal__success-title">Заявка отправлена</h3>
       <p class="ab-modal__success-text">Специалист скоро свяжется с вами.</p>
+    </div>
+  </div>
+</div>
+
+<!-- МОДАЛКА «ЗАПИСЬ НА ЗАМЕР» -->
+<div class="ab-modal" id="ft-measure-modal" aria-hidden="true">
+  <div class="ab-modal__backdrop" data-ft-measure-close></div>
+  <div class="ab-modal__dialog" role="dialog" aria-modal="true">
+    <button type="button" class="ab-modal__close" data-ft-measure-close aria-label="Закрыть">✕</button>
+    <span class="ab-modal__eyebrow">Запись на замер</span>
+    <h3 class="ab-modal__title">Записаться на замер</h3>
+    <p class="ab-modal__subtitle">Оставьте контакт — специалист перезвонит и согласует удобное время замера.</p>
+    <form class="ab-modal__form" id="ft-measure-form">
+      <div class="ab-modal__field">
+        <label class="ab-modal__label" for="ft-measure-name">Ваше имя</label>
+        <input class="ab-modal__input" id="ft-measure-name" type="text" placeholder="Например, Андрей Белов" required>
+      </div>
+      <div class="ab-modal__field">
+        <label class="ab-modal__label" for="ft-measure-phone">Телефон</label>
+        <input class="ab-modal__input" id="ft-measure-phone" type="tel" placeholder="+7 (___) ___-__-__" required>
+      </div>
+      <div class="ab-modal__field">
+        <label class="ab-modal__label" for="ft-measure-tg">Telegram (не обязательно)</label>
+        <input class="ab-modal__input" id="ft-measure-tg" type="text" placeholder="nickname">
+      </div>
+      <label class="ab-modal__consent" id="ft-measure-consent-wrap">
+        <input type="checkbox" id="ft-measure-consent">
+        <span class="ab-modal__consent-box">✓</span>
+        <span>Я согласен на обработку персональных данных</span>
+      </label>
+      <div class="ab-modal__consent-error" id="ft-measure-consent-error">Поставьте галочку — нужно согласие на обработку данных</div>
+      <button type="submit" class="ab-modal__submit">Записаться на замер</button>
+    </form>
+    <div class="ab-modal__success" id="ft-measure-success">
+      <div class="ab-modal__success-icon">✓</div>
+      <h3 class="ab-modal__success-title">Заявка отправлена</h3>
+      <p class="ab-modal__success-text">Специалист скоро свяжется с вами.</p>
+    </div>
+  </div>
+</div>
+
+<!-- МОДАЛКА «ПОЗВОНИТЬ» -->
+<div class="ab-call" id="ft-call-modal" aria-hidden="true">
+  <div class="ab-call__backdrop" data-ft-call-close></div>
+  <div class="ab-call__dialog" role="dialog" aria-modal="true" aria-labelledby="ft-call-title">
+    <button type="button" class="ab-call__close" data-ft-call-close aria-label="Закрыть">✕</button>
+    <span class="ab-call__eyebrow">Связаться</span>
+    <h3 class="ab-call__title" id="ft-call-title">Позвонить нам</h3>
+    <p class="ab-call__subtitle">Выберите, кому удобнее позвонить — ответим в рабочее время (пн–сб 10:00–21:00).</p>
+    <div class="ab-call__list">
+      <a class="ab-call__item" href="tel:+79771004415">
+        <span class="ab-call__avatar" aria-hidden="true">И</span>
+        <span class="ab-call__info">
+          <span class="ab-call__name">Иван</span>
+          <span class="ab-call__phone">+7 977 100-44-15</span>
+        </span>
+      </a>
+      <a class="ab-call__item" href="tel:+79017448855">
+        <span class="ab-call__avatar" aria-hidden="true">С</span>
+        <span class="ab-call__info">
+          <span class="ab-call__name">Станислав</span>
+          <span class="ab-call__phone">+7 901 744-88-55</span>
+        </span>
+      </a>
     </div>
   </div>
 </div>
@@ -656,66 +741,100 @@ body.chat-modal-open { overflow: hidden; }
     }
   }
 
-  /* ===== МОДАЛКА «ОБСУДИТЬ ПРОЕКТ» ===== */
-  var abModal = document.getElementById('ab-modal');
-  var abOpen = document.getElementById('ab-open');
-  var abForm = document.getElementById('ab-form');
-  var abSuccess = document.getElementById('ab-success');
-  var abConsent = document.getElementById('ab-consent');
-  var abConsentWrap = document.getElementById('ab-consent-wrap');
-  var abConsentErr = document.getElementById('ab-consent-error');
+  /* Универсальный хелпер модалки */
+  function bindModal(modalId, openId, closeAttr, formId, successId, consentId, wrapId, errId, bodyClass) {
+    var modal = document.getElementById(modalId);
+    var openBtn = openId ? document.getElementById(openId) : null;
+    var form = formId ? document.getElementById(formId) : null;
+    var success = successId ? document.getElementById(successId) : null;
+    var consent = consentId ? document.getElementById(consentId) : null;
+    var wrap = wrapId ? document.getElementById(wrapId) : null;
+    var err = errId ? document.getElementById(errId) : null;
 
-  function openAb() {
-    if (!abModal) return;
-    abModal.classList.add('is-open');
-    abModal.setAttribute('aria-hidden', 'false');
-    document.body.classList.add('ab-modal-open');
-  }
-  function closeAb() {
-    if (!abModal) return;
-    abModal.classList.remove('is-open');
-    abModal.setAttribute('aria-hidden', 'true');
-    document.body.classList.remove('ab-modal-open');
-    if (abForm) {
-      abForm.style.display = '';
-      abForm.reset();
-      if (abConsentWrap) abConsentWrap.classList.remove('is-error');
-      if (abConsentErr) abConsentErr.classList.remove('is-visible');
+    function open() {
+      if (!modal) return;
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add(bodyClass);
     }
-    if (abSuccess) abSuccess.classList.remove('is-active');
+    function close() {
+      if (!modal) return;
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove(bodyClass);
+      if (form) {
+        form.style.display = '';
+        form.reset();
+        if (wrap) wrap.classList.remove('is-error');
+        if (err) err.classList.remove('is-visible');
+      }
+      if (success) success.classList.remove('is-active');
+    }
+
+    if (openBtn) openBtn.addEventListener('click', open);
+    if (modal && closeAttr) {
+      modal.querySelectorAll('[' + closeAttr + ']').forEach(function (el) {
+        el.addEventListener('click', close);
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && modal.classList.contains('is-open')) close();
+      });
+    }
+    if (consent) {
+      consent.addEventListener('change', function () {
+        if (consent.checked) {
+          if (wrap) wrap.classList.remove('is-error');
+          if (err) err.classList.remove('is-visible');
+        }
+      });
+    }
+    if (form) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (consent && !consent.checked) {
+          if (wrap) wrap.classList.add('is-error');
+          if (err) err.classList.add('is-visible');
+          try { consent.focus({ preventScroll: true }); } catch (er) { consent.focus(); }
+          return;
+        }
+        form.style.display = 'none';
+        if (success) success.classList.add('is-active');
+      });
+    }
   }
-  if (abOpen) abOpen.addEventListener('click', openAb);
-  if (abModal) {
-    abModal.querySelectorAll('[data-ab-close]').forEach(function (el) {
-      el.addEventListener('click', closeAb);
+
+  /* Модалка «Обсудить мой проект» */
+  bindModal('ab-modal', 'ab-open', 'data-ab-close', 'ab-form', 'ab-success', 'ab-consent', 'ab-consent-wrap', 'ab-consent-error', 'ab-modal-open');
+
+  /* Модалка «Запись на замер» (футер) */
+  bindModal('ft-measure-modal', 'ft-measure-open', 'data-ft-measure-close', 'ft-measure-form', 'ft-measure-success', 'ft-measure-consent', 'ft-measure-consent-wrap', 'ft-measure-consent-error', 'ab-modal-open');
+
+  /* Модалка «Позвонить» (футер) */
+  var ftCallModal = document.getElementById('ft-call-modal');
+  var ftCallOpen = document.getElementById('ft-call-open');
+  function openFtCall() {
+    if (!ftCallModal) return;
+    ftCallModal.classList.add('is-open');
+    ftCallModal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('ab-call-open');
+  }
+  function closeFtCall() {
+    if (!ftCallModal) return;
+    ftCallModal.classList.remove('is-open');
+    ftCallModal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('ab-call-open');
+  }
+  if (ftCallOpen) ftCallOpen.addEventListener('click', openFtCall);
+  if (ftCallModal) {
+    ftCallModal.querySelectorAll('[data-ft-call-close]').forEach(function (el) {
+      el.addEventListener('click', closeFtCall);
     });
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && abModal.classList.contains('is-open')) closeAb();
-    });
-  }
-  if (abConsent) {
-    abConsent.addEventListener('change', function () {
-      if (abConsent.checked) {
-        if (abConsentWrap) abConsentWrap.classList.remove('is-error');
-        if (abConsentErr) abConsentErr.classList.remove('is-visible');
-      }
-    });
-  }
-  if (abForm) {
-    abForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-      if (abConsent && !abConsent.checked) {
-        if (abConsentWrap) abConsentWrap.classList.add('is-error');
-        if (abConsentErr) abConsentErr.classList.add('is-visible');
-        try { abConsent.focus({ preventScroll: true }); } catch (err) { abConsent.focus(); }
-        return;
-      }
-      abForm.style.display = 'none';
-      if (abSuccess) abSuccess.classList.add('is-active');
+      if (e.key === 'Escape' && ftCallModal.classList.contains('is-open')) closeFtCall();
     });
   }
 
-  /* ===== ПОПАП ЧАТА (FAB) ===== */
+  /* ПОПАП ЧАТА (FAB) */
   var chatFab = document.getElementById('chat-fab');
   var chatModal = document.getElementById('chat-modal');
   var chatForm = document.getElementById('chat-form');
