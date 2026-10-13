@@ -307,6 +307,45 @@ body.ab-modal-open { overflow: hidden; }
 .chat-fab svg { width: 28px; height: 28px; display: block; }
 @media (max-width: 900px) { .chat-fab { width: 60px; height: 60px; } }
 @media (max-width: 720px) { .chat-fab { right: 18px; bottom: 18px; width: 62px; height: 62px; } .chat-fab svg { width: 28px; height: 28px; } }
+
+/* ПОПАП ЧАТА */
+.chat-modal { position: fixed; inset: 0; z-index: 210; display: none; align-items: flex-end; justify-content: flex-end; padding: 24px; pointer-events: none; }
+.chat-modal.is-open { display: flex; }
+.chat-modal__backdrop { position: absolute; inset: 0; background: rgba(13,12,13,0.7); backdrop-filter: blur(4px); pointer-events: auto; }
+.chat-modal__dialog { position: relative; z-index: 1; width: 100%; max-width: 400px; max-height: calc(100vh - 48px); overflow-y: auto; background: #1a1f17; border: 1px solid rgba(200,165,114,0.28); border-radius: 20px; padding: 32px 28px 28px; color: var(--c-text); box-shadow: 0 30px 80px rgba(0,0,0,.6); pointer-events: auto; animation: chat-modal-rise .3s cubic-bezier(.2,.7,.2,1); }
+@keyframes chat-modal-rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+.chat-modal__close { position: absolute; top: 12px; right: 12px; width: 36px; height: 36px; border-radius: 50%; background: rgba(247,241,232,0.06); border: 0; color: var(--c-accent); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; transition: background .2s; }
+.chat-modal__close:hover { background: rgba(200,165,114,0.18); }
+.chat-modal__title { font-size: 20px; font-weight: 700; line-height: 1.25; margin: 0 0 20px; color: #fff; letter-spacing: -0.01em; padding-right: 40px; }
+.chat-modal__tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+.chat-modal__tab { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 8px; border: 1px solid rgba(200,165,114,0.22); background: transparent; color: var(--c-accent); font-family: inherit; font-size: 13px; font-weight: 500; cursor: pointer; transition: background .2s, border-color .2s, color .2s; }
+.chat-modal__tab:hover { border-color: rgba(200,165,114,0.55); }
+.chat-modal__tab.is-active { background: rgba(200,165,114,0.12); border-color: var(--c-accent); color: #fff; }
+.chat-modal__tab svg { width: 16px; height: 16px; display: block; flex-shrink: 0; }
+.chat-modal__form { display: flex; flex-direction: column; gap: 12px; }
+.chat-modal__input, .chat-modal__textarea { width: 100%; padding: 14px 16px; border-radius: 12px; border: 1px solid rgba(200,165,114,0.22); background: rgba(13,12,13,0.4); color: var(--c-text); font-family: inherit; font-size: 15px; outline: none; transition: border-color .2s, box-shadow .2s; }
+.chat-modal__input::placeholder, .chat-modal__textarea::placeholder { color: rgba(244,237,226,0.4); }
+.chat-modal__input:focus, .chat-modal__textarea:focus { border-color: var(--c-accent); box-shadow: 0 0 0 4px rgba(200,165,114,0.14); }
+.chat-modal__textarea { min-height: 88px; resize: vertical; }
+.chat-modal__consent { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; margin-top: 4px; font-size: 12px; color: rgba(244,237,226,0.55); line-height: 1.45; }
+.chat-modal__consent input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
+.chat-modal__consent-box { flex: 0 0 18px; width: 18px; height: 18px; border: 1.5px solid rgba(200,165,114,0.35); border-radius: 5px; display: inline-grid; place-items: center; background: rgba(13,12,13,0.4); color: var(--c-bg); font-size: 12px; margin-top: 1px; transition: border-color .2s, background .2s, box-shadow .2s; }
+.chat-modal__consent input:checked + .chat-modal__consent-box { background: var(--c-accent); border-color: var(--c-accent); color: var(--c-bg); }
+.chat-modal__consent.is-error .chat-modal__consent-box { border-color: var(--c-error); box-shadow: 0 0 0 3px rgba(224,122,106,0.15); }
+.chat-modal__consent-error { display: none; color: var(--c-error); font-size: 12px; line-height: 1.4; margin-top: 4px; padding-left: 28px; }
+.chat-modal__consent-error.is-visible { display: block; }
+.chat-modal__submit { margin-top: 8px; width: 100%; border: none; cursor: pointer; background: var(--c-accent); color: var(--c-bg); font-family: inherit; font-size: 14px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 15px 20px; border-radius: 12px; transition: background .2s; }
+.chat-modal__submit:hover { background: var(--c-accent-h); }
+.chat-modal__success { display: none; flex-direction: column; align-items: center; text-align: center; gap: 10px; padding: 20px 8px 8px; }
+.chat-modal__success.is-active { display: flex; }
+.chat-modal__success-icon { width: 64px; height: 64px; border-radius: 50%; background: rgba(111,207,151,0.14); color: var(--c-success); display: grid; place-items: center; font-size: 32px; margin-bottom: 6px; }
+.chat-modal__success-title { font-size: 18px; font-weight: 700; margin: 0; color: #fff; }
+.chat-modal__success-text { font-size: 14px; margin: 0; color: rgba(244,237,226,0.7); line-height: 1.5; max-width: 30ch; }
+body.chat-modal-open { overflow: hidden; }
+@media (max-width: 480px) {
+  .chat-modal { padding: 0; align-items: stretch; justify-content: stretch; }
+  .chat-modal__dialog { max-width: 100%; max-height: 100vh; border-radius: 20px 20px 0 0; align-self: flex-end; padding: 28px 20px 24px; }
+}
 </style>
 </head>
 
@@ -548,11 +587,55 @@ body.ab-modal-open { overflow: hidden; }
 </div>
 
 <!-- КНОПКА ЧАТА -->
-<button class="chat-fab" type="button" aria-label="Связаться" onclick="window.open('https://t.me/design4060','_blank')">
+<button class="chat-fab" id="chat-fab" type="button" aria-label="Написать нам" aria-controls="chat-modal" aria-expanded="false">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
     <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
   </svg>
 </button>
+
+<!-- ПОПАП ЧАТА -->
+<div class="chat-modal" id="chat-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="chat-modal-title">
+  <div class="chat-modal__backdrop" data-chat-close></div>
+  <div class="chat-modal__dialog">
+    <button type="button" class="chat-modal__close" data-chat-close aria-label="Закрыть">✕</button>
+    <h3 class="chat-modal__title" id="chat-modal-title">Есть вопросы? Напишите нам!</h3>
+    <div class="chat-modal__tabs" role="tablist">
+      <button type="button" class="chat-modal__tab is-active" data-chat-tab="telegram" role="tab" aria-selected="true">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+        Telegram
+      </button>
+      <button type="button" class="chat-modal__tab" data-chat-tab="whatsapp" role="tab" aria-selected="false">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9s-.5-.1-.7.1-.8.9-1 1.1-.4.2-.7.1-1.3-.5-2.4-1.5-1.8-2.3-2-2.6-.1-.5 0-.6.3-.3.5-.6c.1-.2.2-.4.3-.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.4s-1 1-1 2.4 1 2.8 1.2 3c.2.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.7.5-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3zM12 21.8c-1.7 0-3.4-.5-4.9-1.4L2 22l1.7-5c-1-1.5-1.5-3.2-1.5-5C2.2 6.6 6.6 2.2 12 2.2s9.8 4.4 9.8 9.8-4.4 9.8-9.8 9.8z"/></svg>
+        WhatsApp
+      </button>
+      <button type="button" class="chat-modal__tab" data-chat-tab="vk" role="tab" aria-selected="false">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.8 17.4c-5.7 0-9-3.9-9.1-10.4h2.9c.1 4.8 2.2 6.8 3.8 7.2V7h2.7v4.1c1.6-.2 3.3-2 3.9-4.1h2.7c-.4 2.6-2.2 4.4-3.5 5.1 1.3.6 3.3 2.2 4.1 5.3h-3c-.6-2-2.1-3.5-4.2-3.7v3.7h-.3z"/></svg>
+        VK
+      </button>
+      <button type="button" class="chat-modal__tab" data-chat-tab="max" role="tab" aria-selected="false">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 7.1 17.1l2.9 1-1-2.9A10 10 0 0 0 12 2zm0 15.5a5.5 5.5 0 1 1 4.6-2.5l.7 2-2-.7a5.5 5.5 0 0 1-3.3 1.2zm-2-8a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm4 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>
+        Max
+      </button>
+    </div>
+    <form class="chat-modal__form" id="chat-form">
+      <input class="chat-modal__input" type="text" name="contact" id="chat-contact" placeholder="@username или телефон" required>
+      <input class="chat-modal__input" type="text" name="name" placeholder="Например, Андрей Белов" required>
+      <textarea class="chat-modal__textarea" name="message" placeholder="Напишите ваш вопрос. Свяжемся в ближайшее время)" required></textarea>
+      <label class="chat-modal__consent" id="chat-consent-wrap">
+        <input type="checkbox" id="chat-consent">
+        <span class="chat-modal__consent-box">✓</span>
+        <span>Я согласен с условиями обслуживания</span>
+      </label>
+      <div class="chat-modal__consent-error" id="chat-consent-error">Поставьте галочку — нужно согласие на обработку данных</div>
+      <button type="submit" class="chat-modal__submit">Отправить</button>
+    </form>
+    <div class="chat-modal__success" id="chat-success">
+      <div class="chat-modal__success-icon">✓</div>
+      <h4 class="chat-modal__success-title">Спасибо!</h4>
+      <p class="chat-modal__success-text">Мы свяжемся с вами в ближайшее время.</p>
+    </div>
+  </div>
+</div>
 
 <script>
 (function () {
@@ -573,63 +656,158 @@ body.ab-modal-open { overflow: hidden; }
     }
   }
 
-  var modal = document.getElementById('ab-modal');
-  var openBtn = document.getElementById('ab-open');
-  var form = document.getElementById('ab-form');
-  var success = document.getElementById('ab-success');
-  var consent = document.getElementById('ab-consent');
-  var consentWrap = document.getElementById('ab-consent-wrap');
-  var consentErr = document.getElementById('ab-consent-error');
+  /* ===== МОДАЛКА «ОБСУДИТЬ ПРОЕКТ» ===== */
+  var abModal = document.getElementById('ab-modal');
+  var abOpen = document.getElementById('ab-open');
+  var abForm = document.getElementById('ab-form');
+  var abSuccess = document.getElementById('ab-success');
+  var abConsent = document.getElementById('ab-consent');
+  var abConsentWrap = document.getElementById('ab-consent-wrap');
+  var abConsentErr = document.getElementById('ab-consent-error');
 
-  function openModal() {
-    if (!modal) return;
-    modal.classList.add('is-open');
-    modal.setAttribute('aria-hidden', 'false');
+  function openAb() {
+    if (!abModal) return;
+    abModal.classList.add('is-open');
+    abModal.setAttribute('aria-hidden', 'false');
     document.body.classList.add('ab-modal-open');
   }
-  function closeModal() {
-    if (!modal) return;
-    modal.classList.remove('is-open');
-    modal.setAttribute('aria-hidden', 'true');
+  function closeAb() {
+    if (!abModal) return;
+    abModal.classList.remove('is-open');
+    abModal.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('ab-modal-open');
-    if (form) {
-      form.style.display = '';
-      form.reset();
-      if (consentWrap) consentWrap.classList.remove('is-error');
-      if (consentErr) consentErr.classList.remove('is-visible');
+    if (abForm) {
+      abForm.style.display = '';
+      abForm.reset();
+      if (abConsentWrap) abConsentWrap.classList.remove('is-error');
+      if (abConsentErr) abConsentErr.classList.remove('is-visible');
     }
-    if (success) success.classList.remove('is-active');
+    if (abSuccess) abSuccess.classList.remove('is-active');
   }
-
-  if (openBtn) openBtn.addEventListener('click', openModal);
-  if (modal) {
-    modal.querySelectorAll('[data-ab-close]').forEach(function (el) {
-      el.addEventListener('click', closeModal);
+  if (abOpen) abOpen.addEventListener('click', openAb);
+  if (abModal) {
+    abModal.querySelectorAll('[data-ab-close]').forEach(function (el) {
+      el.addEventListener('click', closeAb);
     });
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+      if (e.key === 'Escape' && abModal.classList.contains('is-open')) closeAb();
     });
   }
-  if (consent) {
-    consent.addEventListener('change', function () {
-      if (consent.checked) {
-        if (consentWrap) consentWrap.classList.remove('is-error');
-        if (consentErr) consentErr.classList.remove('is-visible');
+  if (abConsent) {
+    abConsent.addEventListener('change', function () {
+      if (abConsent.checked) {
+        if (abConsentWrap) abConsentWrap.classList.remove('is-error');
+        if (abConsentErr) abConsentErr.classList.remove('is-visible');
       }
     });
   }
-  if (form) {
-    form.addEventListener('submit', function (e) {
+  if (abForm) {
+    abForm.addEventListener('submit', function (e) {
       e.preventDefault();
-      if (consent && !consent.checked) {
-        if (consentWrap) consentWrap.classList.add('is-error');
-        if (consentErr) consentErr.classList.add('is-visible');
-        try { consent.focus({ preventScroll: true }); } catch (err) { consent.focus(); }
+      if (abConsent && !abConsent.checked) {
+        if (abConsentWrap) abConsentWrap.classList.add('is-error');
+        if (abConsentErr) abConsentErr.classList.add('is-visible');
+        try { abConsent.focus({ preventScroll: true }); } catch (err) { abConsent.focus(); }
         return;
       }
-      form.style.display = 'none';
-      if (success) success.classList.add('is-active');
+      abForm.style.display = 'none';
+      if (abSuccess) abSuccess.classList.add('is-active');
     });
+  }
+
+  /* ===== ПОПАП ЧАТА (FAB) ===== */
+  var chatFab = document.getElementById('chat-fab');
+  var chatModal = document.getElementById('chat-modal');
+  var chatForm = document.getElementById('chat-form');
+  var chatSuccess = document.getElementById('chat-success');
+  var chatContact = document.getElementById('chat-contact');
+  var chatConsent = document.getElementById('chat-consent');
+  var chatConsentWrap = document.getElementById('chat-consent-wrap');
+  var chatConsentErr = document.getElementById('chat-consent-error');
+
+  var placeholderMap = {
+    telegram: '@username или телефон',
+    whatsapp: '+7 (___) ___-__-__',
+    vk: 'Ссылка на профиль или ID',
+    max: 'Телефон или @username'
+  };
+
+  function openChat() {
+    if (!chatModal) return;
+    chatModal.classList.add('is-open');
+    chatModal.setAttribute('aria-hidden', 'false');
+    if (chatFab) chatFab.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('chat-modal-open');
+  }
+  function closeChat() {
+    if (!chatModal) return;
+    chatModal.classList.remove('is-open');
+    chatModal.setAttribute('aria-hidden', 'true');
+    if (chatFab) chatFab.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('chat-modal-open');
+    if (chatForm) {
+      chatForm.style.display = '';
+      chatForm.reset();
+      if (chatConsentWrap) chatConsentWrap.classList.remove('is-error');
+      if (chatConsentErr) chatConsentErr.classList.remove('is-visible');
+    }
+    if (chatSuccess) chatSuccess.classList.remove('is-active');
+    document.querySelectorAll('.chat-modal__tab').forEach(function (t, i) {
+      t.classList.toggle('is-active', i === 0);
+      t.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+    });
+    if (chatContact) chatContact.placeholder = placeholderMap.telegram;
+  }
+
+  if (chatFab && chatModal) {
+    chatFab.addEventListener('click', function () {
+      if (chatModal.classList.contains('is-open')) closeChat();
+      else openChat();
+    });
+    chatModal.querySelectorAll('[data-chat-close]').forEach(function (el) {
+      el.addEventListener('click', closeChat);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && chatModal.classList.contains('is-open')) closeChat();
+    });
+    document.querySelectorAll('.chat-modal__tab').forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        document.querySelectorAll('.chat-modal__tab').forEach(function (t) {
+          t.classList.remove('is-active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        tab.classList.add('is-active');
+        tab.setAttribute('aria-selected', 'true');
+        var key = tab.getAttribute('data-chat-tab');
+        if (chatContact && placeholderMap[key]) {
+          chatContact.placeholder = placeholderMap[key];
+          chatContact.value = '';
+          chatContact.focus();
+        }
+      });
+    });
+    if (chatConsent) {
+      chatConsent.addEventListener('change', function () {
+        if (chatConsent.checked) {
+          if (chatConsentWrap) chatConsentWrap.classList.remove('is-error');
+          if (chatConsentErr) chatConsentErr.classList.remove('is-visible');
+        }
+      });
+    }
+    if (chatForm) {
+      chatForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (!chatForm.checkValidity()) { chatForm.reportValidity(); return; }
+        if (chatConsent && !chatConsent.checked) {
+          if (chatConsentWrap) chatConsentWrap.classList.add('is-error');
+          if (chatConsentErr) chatConsentErr.classList.add('is-visible');
+          try { chatConsent.focus({ preventScroll: true }); } catch (err) { chatConsent.focus(); }
+          return;
+        }
+        chatForm.style.display = 'none';
+        if (chatSuccess) chatSuccess.classList.add('is-active');
+      });
+    }
   }
 })();
 </script>
