@@ -5,27 +5,10 @@ backend:
   base_url: https://white-sound-877adecap-proxy.stas-titov-002.workers.dev
   auth_endpoint: /auth
 
-# Глобальные настройки слагов — влияют в том числе на имена файлов
-slug:
-  encoding: ascii           # транслитерация кириллицы в латиницу
-  clean_accents: true       # убирать акценты (é → e, ü → u)
-  sanitize_replacement: "-" # недопустимые символы → дефис
-  trim: true                # обрезать дефисы по краям
-  lowercase: true           # всё в нижний регистр
-
 media_folder: "images/uploads"
-public_folder: "images/uploads"   # без ведущего слэша!
-
-# Автоматическое переименование загружаемых файлов
-media_libraries:
-  default:
-    config:
-      slugify_filename: true   # главный переключатель
+public_folder: "images/uploads"
 
 collections:
-  # ============================================
-  # ПРОЕКТЫ (портфолио + главная)
-  # ============================================
   - name: "projects"
     label: "Проекты"
     label_singular: "Проект"
@@ -48,9 +31,6 @@ collections:
       - { label: "Фурнитура", name: "hardware", widget: "text", required: false }
       - { label: "Комплектация", name: "equipment", widget: "text", required: false }
 
-  # ============================================
-  # НАСТРОЙКИ САЙТА (тексты, телефоны, кнопки)
-  # ============================================
   - name: "settings"
     label: "Настройки сайта"
     files:
@@ -84,7 +64,7 @@ collections:
               - { label: "Кнопка 2", name: "btn2", widget: "string" }
               - { label: "Текст «Скролл»", name: "scroll", widget: "string" }
 
-          - label: "Главная — Портфолио (заголовок секции)"
+          - label: "Главная — Портфолио"
             name: "homePortfolio"
             widget: "object"
             fields:
