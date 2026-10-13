@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-cms="meta.title">Партнёрам — 40/60 Design</title>
+<meta name="description" data-cms="meta.description" content="Партнёрская программа 40/60 Design для дизайнеров интерьеров, агентств недвижимости и строительных компаний. Выгодные условия, поддержка, быстрые сроки.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --c-bg: #0d0c0d;
+  --c-bg-alt: #141210;
+  --c-surface: #1d1a17;
+  --c-surface-2: #2a2620;
+  --c-line: #2a2622;
+  --c-accent: #c8a572;
+  --c-accent-h: #d4b279;
+  --c-accent-d: #b08a52;
+  --c-text: #f4ede2;
+  --c-text-mute: #8f8a7e;
+  --c-gold-strong: #f5b942;
+  --c-gold-light: #e9c884;
+  --c-success: #6fcf97;
+  --c-error: #e07a6a;
+  --c-green: #0c160e;
+}
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--c-bg); padding-top: 76px; font-family: "Inter","Helvetica Neue",Arial,sans-serif; overflow-x: hidden; color: var(--c-text); }
+@media (max-width: 720px) { body { padding-top: 64px; } }
+*, *::before, *::after { box-sizing: border-box; }
+input, textarea, select, button { max-width: 100%; font-size: 16px; }
+img, svg, video { max-width: 100%; height: auto; }
+
+/* ШАПКА */
+.hd-block { position: fixed; top: 0; left: 0; right: 0; z-index: 50; width: 100%; background: var(--c-green); color: var(--c-accent); }
+.hd-block__inner { display: grid; grid-template-columns: auto 1fr auto auto; align-items: center; gap: 20px; max-width: 1140px; margin: 0 auto; padding: 14px 24px; }
+.hd-block__logo { font-size: 26px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--c-accent); text-decoration: none; transition: opacity .2s; white-space: nowrap; }
+.hd-block__logo:hover { opacity: 0.7; }
+.hd-block__burger { display: none; width: 40px; height: 40px; padding: 0; border: 0; background: transparent; cursor: pointer; align-items: center; justify-content: center; color: var(--c-accent); border-radius: 8px; }
+.hd-block__burger-lines, .hd-block__burger-lines::before, .hd-block__burger-lines::after { display: block; width: 22px; height: 1.8px; background: currentColor; border-radius: 2px; transition: transform .25s, top .25s, opacity .2s; }
+.hd-block__burger-lines { position: relative; }
+.hd-block__burger-lines::before, .hd-block__burger-lines::after { content: ""; position: absolute; left: 0; }
+.hd-block__burger-lines::before { top: -7px; }
+.hd-block__burger-lines::after { top: 7px; }
+.hd-block--menu-open .hd-block__burger-lines { background: transparent; }
+.hd-block--menu-open .hd-block__burger-lines::before { top: 0; transform: rotate(45deg); }
+.hd-block--menu-open .hd-block__burger-lines::after { top: 0; transform: rotate(-45deg); }
+.hd-block__nav { justify-self: center; min-width: 0; }
+.hd-block__nav-list { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; gap: 26px; }
+.hd-block__nav-link { font-size: 14px; font-weight: 500; color: var(--c-accent); text-decoration: none; opacity: 0.85; position: relative; padding: 4px 0; white-space: nowrap; transition: opacity .2s; }
+.hd-block__nav-link::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform .25s; }
+.hd-block__nav-link:hover { opacity: 1; }
+.hd-block__nav-link:hover::after { transform: scaleX(1); }
+.hd-block__nav-link.is-current { opacity: 1; }
+.hd-block__nav-link.is-current::after { transform: scaleX(1); }
+.hd-block__phones { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; justify-self: end; padding-right: 24px; line-height: 1.3; }
+.hd-block__phone-item { font-size: 14px; font-weight: 500; color: var(--c-accent); text-decoration: none; white-space: nowrap; transition: opacity .2s; letter-spacing: -0.01em; opacity: 0.78; }
+.hd-block__phone-item:hover { opacity: 1; }
+.hd-block__meta { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; line-height: 1.3; justify-self: end; }
+.hd-block__hours { font-size: 12px; opacity: 0.7; color: var(--c-accent); }
+.hd-block__tg { display: inline-flex; align-items: center; gap: 5px; font-size: 13px; opacity: 0.85; color: var(--c-accent); text-decoration: none; transition: opacity .2s; }
+.hd-block__tg:hover { opacity: 1; }
+.hd-block__tg svg { display: block; }
+.hd-block__menu-contacts { display: none; }
+@media (max-width: 1080px) {
+  .hd-block__inner { gap: 16px; padding: 12px 20px; max-width: 100%; }
+  .hd-block__nav-list { gap: 18px; }
+  .hd-block__nav-link { font-size: 13px; }
+  .hd-block__phone-item { font-size: 12px; }
+  .hd-block__phones { padding-right: 16px; }
+}
+@media (max-width: 720px) {
+  .hd-block__inner { display: flex; flex-wrap: wrap; align-items: center; column-gap: 10px; padding: 12px 16px; }
+  .hd-block__hours, .hd-block__meta { display: none; }
+  .hd-block__logo { order: 1; font-size: 22px; }
+  .hd-block__phones { order: 2; margin-left: auto; padding-right: 0; align-items: flex-end; gap: 1px; }
+  .hd-block__phone-item { font-size: 12px; line-height: 1.15; }
+  .hd-block__burger { order: 3; display: inline-flex; }
+  .hd-block__nav { order: 4; flex: 1 0 100%; overflow: hidden; max-height: 0; opacity: 0; pointer-events: none; transition: max-height .3s, opacity .2s, margin-top .3s; margin-top: 0; background: var(--c-green); }
+  .hd-block--menu-open .hd-block__nav { max-height: 520px; opacity: 1; pointer-events: auto; margin-top: 10px; }
+  .hd-block__nav-list { flex-direction: column; align-items: stretch; gap: 0; padding: 4px 0 0; border-top: 1px solid rgba(200,165,114,0.18); }
+  .hd-block__nav-list li { border-bottom: 1px solid rgba(200,165,114,0.12); }
+  .hd-block__nav-list li:last-child { border-bottom: 0; }
+  .hd-block__nav-link { display: block; padding: 14px 4px; font-size: 16px; opacity: 1; }
+  .hd-block__nav-link::after { display: none; }
+  .hd-block__menu-contacts { display: flex; flex-direction: column; gap: 12px; padding: 14px 4px 6px; border-top: 1px solid rgba(200,165,114,0.18); }
+  .hd-block__menu-hours { font-size: 13px; opacity: 0.85; }
+  .hd-block__menu-tg { display: inline-flex; align-items: center; gap: 6px; color: var(--c-accent); text-decoration: none; font-size: 14px; opacity: 0.85; }
+  .hd-block__menu-tg svg { display: block; }
+}
+@media (max-width: 480px) {
+  .hd-block__inner { padding: 10px 14px; column-gap: 8px; }
+  .hd-block__logo { font-size: 20px; }
+  .hd-block__phone-item { font-size: 11px; }
+  .hd-block__burger { width: 36px; height: 36px; }
+}
+
+/* HERO */
+.pt-hero {
+  position: relative;
+  background: linear-gradient(180deg, var(--c-green) 0%, var(--c-bg) 100%);
+  color: var(--c-text);
+  padding: clamp(72px, 9vw, 120px) 0 clamp(48px, 6vw, 80px);
+  border-bottom: 1px solid rgba(200,165,114,0.12);
+  overflow: hidden;
+}
+.pt-hero::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(200,165,114,0.08) 0%, transparent 45%),
+    radial-gradient(circle at 85% 80%, rgba(200,165,114,0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+.pt-hero__inner { position: relative; max-width: 1440px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); }
+.pt-hero__eyebrow {
+  display: inline-block;
+  font-size: 12px; font-weight: 500;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--c-accent);
+  margin: 0 0 16px;
+}
+.pt-hero__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(38px, 5.6vw, 72px);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  margin: 0 0 24px;
+  color: #f7f4ee;
+  max-width: 20ch;
+}
+.pt-hero__title em { color: var(--c-accent); font-style: italic; }
+.pt-hero__subtitle {
+  font-size: clamp(15px, 1.5vw, 18px);
+  line-height: 1.6;
+  color: #a8a294;
+  margin: 0 0 32px;
+  max-width: 60ch;
+}
+.pt-hero__actions { display: flex; flex-wrap: wrap; gap: 14px; }
+.pt-hero__btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 16px 30px;
+  border: 1px solid var(--c-accent);
+  background: var(--c-accent);
+  color: var(--c-bg);
+  text-decoration: none;
+  font-size: 14px; font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background .25s, border-color .25s, transform .25s, color .25s;
+}
+.pt-hero__btn:hover { background: var(--c-accent-h); border-color: var(--c-accent-h); transform: translateY(-1px); }
+.pt-hero__btn--ghost {
+  background: transparent;
+  color: var(--c-accent);
+}
+.pt-hero__btn--ghost:hover { background: rgba(200,165,114,0.1); color: var(--c-accent-h); }
+
+/* СЕКЦИЯ ОБЩАЯ */
+.pt-sec { padding: clamp(64px, 8vw, 112px) 0; }
+.pt-sec__inner { max-width: 1440px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); }
+.pt-sec__head { max-width: 720px; margin: 0 0 clamp(40px, 5vw, 64px); }
+.pt-sec__eyebrow {
+  display: inline-block;
+  font-size: 12px; font-weight: 500;
+  letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--c-accent);
+  margin: 0 0 16px;
+}
+.pt-sec__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(30px, 4.2vw, 52px);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  color: #f7f4ee;
+  margin: 0 0 18px;
+}
+.pt-sec__title em { color: var(--c-accent); font-style: italic; }
+.pt-sec__lead {
+  font-size: clamp(15px, 1.5vw, 17px);
+  line-height: 1.6;
+  color: #a8a294;
+  margin: 0;
+}
+
+/* КОМУ ПОЛЕЗНО — 4 карточки */
+.pt-who { background: linear-gradient(180deg, var(--c-bg) 0%, var(--c-bg-alt) 100%); }
+.pt-who__grid {
+  list-style: none; margin: 0; padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.pt-who__card {
+  position: relative;
+  background: var(--c-surface);
+  border: 1px solid rgba(200,165,114,0.14);
+  border-radius: 10px;
+  padding: 30px 26px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: transform .35s cubic-bezier(.22,1,.36,1), border-color .3s;
+}
+.pt-who__card:hover { transform: translateY(-4px); border-color: rgba(200,165,114,0.5); }
+.pt-who__num {
+  font-size: 13px; font-weight: 600;
+  color: var(--c-accent); letter-spacing: 0.1em;
+}
+.pt-who__title {
+  font-size: 19px; font-weight: 500;
+  color: #f7f4ee;
+  margin: 0 0 4px;
+  line-height: 1.25;
+}
+.pt-who__text {
+  font-size: 14px; line-height: 1.6;
+  color: #a8a294;
+  margin: 0;
+}
+
+/* ЧТО ПОЛУЧАЕТЕ */
+.pt-gain { background: var(--c-bg-alt); border-top: 1px solid rgba(200,165,114,0.1); border-bottom: 1px solid rgba(200,165,114,0.1); }
+.pt-gain__grid {
+  list-style: none; margin: 0; padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.pt-gain__item {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px 0;
+  border-top: 1px solid rgba(200,165,114,0.18);
+}
+.pt-gain__num {
+  font-family: 'Playfair Display', serif;
+  font-size: 38px;
+  line-height: 1;
+  color: var(--c-accent);
+  font-weight: 400;
+  display: block;
+  min-height: 38px;
+}
+.pt-gain__num--text {
+  font-size: 22px;
+  font-style: italic;
+  line-height: 38px;
+  letter-spacing: 0;
+}
+.pt-gain__title {
+  font-size: 18px; font-weight: 500;
+  color: #f7f4ee;
+  margin: 6px 0 4px;
+}
+.pt-gain__text {
+  font-size: 14px; line-height: 1.6;
+  color: #a8a294;
+  margin: 0;
+}
+
+/* КАК НАЧАТЬ */
+.pt-steps__list {
+  list-style: none; margin: 0; padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.pt-steps__item {
+  position: relative;
+  padding-top: 24px;
+}
+.pt-steps__item::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: rgba(200,165,114,0.4);
+}
+.pt-steps__num {
+  display: block;
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  color: var(--c-accent);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.pt-steps__title {
+  font-size: 17px; font-weight: 500;
+  color: #f7f4ee;
+  margin: 0 0 8px;
+}
+.pt-steps__text {
+  font-size: 14px; line-height: 1.55;
+  color: #a8a294;
+  margin: 0;
+}
+
+/* ФОРМА */
+.pt-form { background: var(--c-bg); }
+.pt-form__wrap {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: clamp(32px, 5vw, 72px);
+  align-items: start;
+}
+.pt-form__intro { display: flex; flex-direction: column; gap: 20px; }
+.pt-form__card {
+  background: var(--c-surface);
+  border: 1px solid rgba(200,165,114,0.22);
+  border-radius: 20px;
+  padding: clamp(28px, 4vw, 44px);
+}
+.pt-form__fields { display: flex; flex-direction: column; gap: 16px; }
+.pt-form__field { display: flex; flex-direction: column; gap: 6px; }
+.pt-form__label {
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(200,165,114,0.85);
+}
+.pt-form__input, .pt-form__select, .pt-form__textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(200,165,114,0.24);
+  background: rgba(13,12,13,0.55);
+  color: var(--c-text);
+  font-family: inherit;
+  font-size: 15px;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.pt-form__select {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' stroke='%23c8a572' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+}
+.pt-form__select option { background: #1a1f17; color: var(--c-text); }
+.pt-form__input:focus, .pt-form__select:focus, .pt-form__textarea:focus {
+  border-color: var(--c-accent);
+  box-shadow: 0 0 0 4px rgba(200,165,114,0.14);
+}
+.pt-form__textarea { min-height: 100px; resize: vertical; font-family: inherit; }
+.pt-form__submit {
+  margin-top: 8px;
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  background: var(--c-accent);
+  color: var(--c-bg);
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 17px 20px;
+  border-radius: 12px;
+  transition: background .25s, transform .25s;
+}
+.pt-form__submit:hover { background: var(--c-accent-h); transform: translateY(-1px); }
+.pt-form__consent {
+  display: flex; align-items: flex-start; gap: 10px;
+  margin-top: 14px; cursor: pointer;
+  font-size: 12px; color: rgba(244,237,226,0.55); line-height: 1.45;
+}
+.pt-form__consent input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
+.pt-form__consent-box {
+  flex: 0 0 18px; width: 18px; height: 18px;
+  border: 1.5px solid rgba(200,165,114,0.4);
+  border-radius: 5px;
+  display: inline-grid; place-items: center;
+  background: rgba(13,12,13,0.4);
+  color: var(--c-bg); font-size: 12px;
+  margin-top: 1px;
+  transition: border-color .2s, background .2s, box-shadow .2s;
+}
+.pt-form__consent input:checked + .pt-form__consent-box {
+  background: var(--c-accent); border-color: var(--c-accent);
+}
+.pt-form__consent.is-error .pt-form__consent-box {
+  border-color: var(--c-error); box-shadow: 0 0 0 3px rgba(224,122,106,0.15);
+}
+.pt-form__consent-error {
+  display: none; color: var(--c-error); font-size: 12px;
+  line-height: 1.4; margin-top: 4px; padding-left: 28px;
+}
+.pt-form__consent-error.is-visible { display: block; }
+.pt-form__success {
+  display: none; flex-direction: column; align-items: center;
+  text-align: center; gap: 14px; padding: 16px 8px;
+}
+.pt-form__success.is-active { display: flex; }
+.pt-form__success-icon {
+  width: 80px; height: 80px; border-radius: 50%;
+  background: rgba(111,207,151,0.14); color: var(--c-success);
+  display: grid; place-items: center; font-size: 40px;
+}
+.pt-form__success-title { font-size: 22px; margin: 0; color: #fff; }
+.pt-form__success-text { color: #a8a294; font-size: 15px; margin: 0; max-width: 36ch; }
+
+/* МОДАЛКА «ПОЗВОНИТЬ» */
+.pt-call { position: fixed; inset: 0; z-index: 200; display: none; align-items: center; justify-content: center; padding: 24px; }
+.pt-call.is-open { display: flex; }
+.pt-call__backdrop { position: absolute; inset: 0; background: rgba(13,12,13,0.85); backdrop-filter: blur(6px); }
+.pt-call__dialog {
+  position: relative; z-index: 1;
+  width: 100%; max-width: 480px;
+  background: #1f1d1b;
+  border: 1px solid rgba(212,178,121,0.22);
+  border-radius: 24px;
+  padding: 44px 40px 36px;
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  color: var(--c-text);
+}
+.pt-call__close {
+  position: absolute; top: 16px; right: 16px;
+  width: 40px; height: 40px; border-radius: 50%;
+  background: rgba(247,241,232,0.06); border: 0;
+  color: var(--c-accent-h); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; transition: background .2s;
+}
+.pt-call__close:hover { background: rgba(212,178,121,0.18); }
+.pt-call__eyebrow {
+  display: inline-block; font-size: 11px; font-weight: 600;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--c-accent-h); margin-bottom: 14px;
+  position: relative; padding-left: 32px;
+}
+.pt-call__eyebrow::before { content: ""; position: absolute; left: 0; top: 50%; width: 22px; height: 1px; background: var(--c-accent-h); }
+.pt-call__title { font-size: clamp(22px,3vw,26px); font-weight: 700; line-height: 1.15; margin: 0 0 10px; color: #fff; }
+.pt-call__subtitle { font-size: 14px; line-height: 1.55; color: rgba(247,241,232,0.65); margin: 0 0 24px; }
+.pt-call__list { display: flex; flex-direction: column; gap: 12px; }
+.pt-call__item {
+  display: flex; align-items: center; gap: 16px;
+  padding: 18px 20px;
+  border: 1px solid rgba(212,178,121,0.28);
+  border-radius: 16px;
+  text-decoration: none;
+  color: var(--c-text);
+  background: rgba(247,241,232,0.03);
+  transition: border-color .25s, background .25s, transform .25s;
+}
+.pt-call__item:hover { border-color: var(--c-accent-h); background: rgba(212,178,121,0.06); transform: translateY(-1px); }
+.pt-call__avatar {
+  flex: 0 0 44px; width: 44px; height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--c-accent-h), var(--c-accent-d));
+  color: #1c1b19;
+  display: grid; place-items: center;
+  font-weight: 700; font-size: 16px;
+}
+.pt-call__info { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.pt-call__name { font-size: 13px; color: rgba(247,241,232,0.6); letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; }
+.pt-call__phone { font-size: 17px; font-weight: 600; color: #fff; white-space: nowrap; }
+body.pt-call-open { overflow: hidden; }
+@media (max-width: 640px) { .pt-call { padding: 16px; } .pt-call__dialog { padding: 36px 22px 26px; border-radius: 20px; } .pt-call__phone { font-size: 16px; } }
+
+/* ФУТЕР */
+.ft-block { background: var(--c-green); color: var(--c-accent); padding: 48px 20px 24px; border-top: 1px solid rgba(200,165,114,0.15); }
+.ft-block__wrap { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 32px; }
+@media (min-width: 720px) { .ft-block__wrap { grid-template-columns: 1.5fr 1fr 1fr; } }
+.ft-block__logo { font-size: 26px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--c-accent); margin: 0 0 12px; text-decoration: none; display: inline-block; }
+.ft-block__tagline { font-size: 14px; line-height: 1.6; color: #b3ada0; margin: 0 0 16px; max-width: 36ch; }
+.ft-block__contacts { display: flex; flex-direction: column; gap: 8px; font-size: 14px; }
+.ft-block__contacts a { color: var(--c-accent); text-decoration: none; }
+.ft-block__col-title { font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--c-accent); opacity: 0.6; margin: 0 0 14px; }
+.ft-block__nav { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.ft-block__nav a { color: var(--c-accent); text-decoration: none; font-size: 14px; opacity: 0.85; }
+.ft-block__bottom { max-width: 1280px; margin: 40px auto 0; padding-top: 20px; border-top: 1px solid rgba(200,165,114,0.15); display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; font-size: 12px; color: #b3ada0; }
+
+/* МОБИЛЬНАЯ АДАПТАЦИЯ */
+@media (max-width: 1080px) {
+  .pt-who__grid { grid-template-columns: repeat(2, 1fr); }
+  .pt-gain__grid { grid-template-columns: repeat(2, 1fr); }
+  .pt-steps__list { grid-template-columns: repeat(2, 1fr); }
+  .pt-form__wrap { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .pt-who__grid { grid-template-columns: 1fr; gap: 14px; }
+  .pt-gain__grid { grid-template-columns: 1fr; gap: 16px; }
+  .pt-gain__num { font-size: 32px; min-height: 32px; }
+  .pt-gain__num--text { font-size: 19px; line-height: 32px; }
+  .pt-steps__list { grid-template-columns: 1fr; gap: 20px; }
+  .pt-hero__actions { width: 100%; }
+  .pt-hero__btn { flex: 1 1 auto; justify-content: center; }
+  .pt-form__card { padding: 24px 20px; }
+}
+
+/* КНОПКА ЧАТА */
+.chat-fab { position: fixed; right: 24px; bottom: 24px; z-index: 60; width: 56px; height: 56px; border-radius: 50%; background: var(--c-accent); color: var(--c-bg); border: none; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 12px 28px rgba(0,0,0,.4); transition: transform .25s, background .25s, box-shadow .25s; }
+.chat-fab:hover { background: var(--c-accent-h); transform: translateY(-2px); box-shadow: 0 16px 32px rgba(0,0,0,.45); }
+.chat-fab:focus-visible { outline: 2px solid var(--c-accent-h); outline-offset: 3px; }
+.chat-fab svg { width: 28px; height: 28px; display: block; }
+@media (max-width: 900px) { .chat-fab { width: 60px; height: 60px; } }
+@media (max-width: 720px) { .chat-fab { right: 18px; bottom: 18px; width: 62px; height: 62px; } .chat-fab svg { width: 28px; height: 28px; } }
+</style>
+</head>
+
+<body>
+
+<!-- ШАПКА -->
+<section class="hd-block" aria-label="Шапка сайта">
+  <div class="hd-block__inner">
+    <a class="hd-block__logo" href="index.html" aria-label="Перейти на главную">40/60</a>
+    <button class="hd-block__burger" type="button" aria-expanded="false" aria-controls="hd-nav" aria-label="Открыть меню">
+      <span class="hd-block__burger-lines" aria-hidden="true"></span>
+    </button>
+    <nav class="hd-block__nav" id="hd-nav" aria-label="Основная навигация">
+      <ul class="hd-block__nav-list">
+        <li><a class="hd-block__nav-link" href="about.html">О нас</a></li>
+        <li><a class="hd-block__nav-link" href="portfolio.html">Портфолио</a></li>
+        <li><a class="hd-block__nav-link" href="warranty.html">Гарантия</a></li>
+        <li><a class="hd-block__nav-link is-current" href="partners.html" aria-current="page">Партнёрам</a></li>
+      </ul>
+      <div class="hd-block__menu-contacts">
+        <span class="hd-block__menu-hours" data-cms="header.hours">пн–сб 10:00–21:00</span>
+        <a class="hd-block__menu-tg" href="https://t.me/design4060" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+          <span data-cms="header.tg">design4060</span>
+        </a>
+      </div>
+    </nav>
+    <div class="hd-block__phones">
+      <a class="hd-block__phone-item" href="tel:+79771004415" data-cms="header.phone1">+7 977 100-44-15</a>
+      <a class="hd-block__phone-item" href="tel:+79017448855" data-cms="header.phone2">+7 901 744-88-55</a>
+    </div>
+    <div class="hd-block__meta">
+      <span class="hd-block__hours" data-cms="header.hours">пн–сб 10:00–21:00</span>
+      <a class="hd-block__tg" href="https://t.me/design4060" target="_blank" rel="noopener" aria-label="Мы в Telegram">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+        <span data-cms="header.tg">design4060</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- HERO -->
+<section class="pt-hero">
+  <div class="pt-hero__inner">
+    <p class="pt-hero__eyebrow">Партнёрам</p>
+    <h1 class="pt-hero__title">Растим проекты <em>вместе.</em></h1>
+    <p class="pt-hero__subtitle">Партнёрская программа для дизайнеров интерьеров, агентств недвижимости, строительных компаний и мебельных салонов. Выгодные условия, поддержка на всех этапах, быстрые сроки производства.</p>
+    <div class="pt-hero__actions">
+      <a href="#partner-form" class="pt-hero__btn">Стать партнёром →</a>
+      <button type="button" class="pt-hero__btn pt-hero__btn--ghost" id="pt-call-open">Обсудить по телефону</button>
+    </div>
+  </div>
+</section>
+
+<!-- КОМУ ПОЛЕЗНО -->
+<section class="pt-sec pt-who">
+  <div class="pt-sec__inner">
+    <header class="pt-sec__head">
+      <p class="pt-sec__eyebrow">Кому мы полезны</p>
+      <h2 class="pt-sec__title">С кем мы работаем</h2>
+      <p class="pt-sec__lead">Мы открыты для сотрудничества с теми, кто ценит качество, соблюдение сроков и прозрачные условия.</p>
+    </header>
+    <ul class="pt-who__grid">
+      <li class="pt-who__card">
+        <span class="pt-who__num">01</span>
+        <h3 class="pt-who__title">Дизайнерам интерьеров</h3>
+        <p class="pt-who__text">Возьмём на себя всю техническую часть: замер, проектирование, производство и монтаж. Вы получаете надёжного подрядчика и вознаграждение.</p>
+      </li>
+      <li class="pt-who__card">
+        <span class="pt-who__num">02</span>
+        <h3 class="pt-who__title">Агентствам недвижимости</h3>
+        <p class="pt-who__text">Поможем клиентам обустроить кухню и корпусную мебель под ключ. Срок 21 день — к сдаче объекта всё будет готово.</p>
+      </li>
+      <li class="pt-who__card">
+        <span class="pt-who__num">03</span>
+        <h3 class="pt-who__title">Строительным компаниям</h3>
+        <p class="pt-who__text">Встраиваемся в ваш график ремонта. Работаем с объектами любого масштаба, координируем с прорабами и технадзором.</p>
+      </li>
+      <li class="pt-who__card">
+        <span class="pt-who__num">04</span>
+        <h3 class="pt-who__title">Мебельным салонам</h3>
+        <p class="pt-who__text">Дополним ваш ассортимент производством под заказ. Возьмём на себя нестандартные размеры и сложные проекты.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ЧТО ПОЛУЧАЕТЕ -->
+<section class="pt-sec pt-gain">
+  <div class="pt-sec__inner">
+    <header class="pt-sec__head">
+      <p class="pt-sec__eyebrow">Условия</p>
+      <h2 class="pt-sec__title">Что вы получаете</h2>
+      <p class="pt-sec__lead">Партнёрская программа построена так, чтобы вам было удобно и выгодно работать с нами долгосрочно.</p>
+    </header>
+    <ul class="pt-gain__grid">
+      <li class="pt-gain__item">
+        <span class="pt-gain__num pt-gain__num--text">Выше рынка</span>
+        <h3 class="pt-gain__title">Вознаграждение</h3>
+        <p class="pt-gain__text">Индивидуальный процент от суммы заказа — выше среднего по рынку. Выплачиваем после сдачи объекта.</p>
+      </li>
+      <li class="pt-gain__item">
+        <span class="pt-gain__num">21</span>
+        <h3 class="pt-gain__title">День на производство</h3>
+        <p class="pt-gain__text">Стандартный срок изготовления мебели — три недели с момента запуска в цех.</p>
+      </li>
+      <li class="pt-gain__item">
+        <span class="pt-gain__num pt-gain__num--text">В чате</span>
+        <h3 class="pt-gain__title">Команда на связи</h3>
+        <p class="pt-gain__text">С вами общаются дизайнер-продажник, технадзор и владелец компании. Отвечаем в течение 15 минут.</p>
+      </li>
+      <li class="pt-gain__item">
+        <span class="pt-gain__num">100%</span>
+        <h3 class="pt-gain__title">Прозрачные цены</h3>
+        <p class="pt-gain__text">Специальный прайс для партнёров. Никаких скрытых наценок и неожиданных доплат.</p>
+      </li>
+      <li class="pt-gain__item">
+        <span class="pt-gain__num">0 ₽</span>
+        <h3 class="pt-gain__title">Выезд замерщика</h3>
+        <p class="pt-gain__text">Бесплатный выезд специалиста на объект в Москве и ближнем Подмосковье.</p>
+      </li>
+      <li class="pt-gain__item">
+        <span class="pt-gain__num">3</span>
+        <h3 class="pt-gain__title">Года гарантии</h3>
+        <p class="pt-gain__text">Даём расширенную гарантию на всю мебель. Отвечаем перед вашим клиентом как перед своим.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- КАК НАЧАТЬ -->
+<section class="pt-sec">
+  <div class="pt-sec__inner">
+    <header class="pt-sec__head">
+      <p class="pt-sec__eyebrow">Процесс</p>
+      <h2 class="pt-sec__title">Как начать работать</h2>
+      <p class="pt-sec__lead">Четыре простых шага — от знакомства до первого совместного проекта.</p>
+    </header>
+    <ol class="pt-steps__list">
+      <li class="pt-steps__item">
+        <span class="pt-steps__num">01</span>
+        <h3 class="pt-steps__title">Заявка</h3>
+        <p class="pt-steps__text">Оставляете заявку на сайте или пишете в Telegram. Отвечаем в течение 15 минут.</p>
+      </li>
+      <li class="pt-steps__item">
+        <span class="pt-steps__num">02</span>
+        <h3 class="pt-steps__title">Знакомство</h3>
+        <p class="pt-steps__text">Обсуждаем формат сотрудничества, ваши задачи и типовые проекты. Подписываем договор.</p>
+      </li>
+      <li class="pt-steps__item">
+        <span class="pt-steps__num">03</span>
+        <h3 class="pt-steps__title">Первый проект</h3>
+        <p class="pt-steps__text">Передаёте нам клиента или проект. Мы берём всю работу на себя — от замера до монтажа.</p>
+      </li>
+      <li class="pt-steps__item">
+        <span class="pt-steps__num">04</span>
+        <h3 class="pt-steps__title">Расчёт и выплата</h3>
+        <p class="pt-steps__text">После сдачи объекта получаете вознаграждение и продолжаете работу на постоянной основе.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ФОРМА -->
+<section class="pt-sec pt-form" id="partner-form">
+  <div class="pt-sec__inner">
+    <div class="pt-form__wrap">
+
+      <div class="pt-form__intro">
+        <p class="pt-sec__eyebrow">Заявка</p>
+        <h2 class="pt-sec__title">Стать партнёром</h2>
+        <p class="pt-sec__lead">Заполните форму — менеджер свяжется с вами, расскажет об условиях и ответит на вопросы. Или напишите напрямую в Telegram.</p>
+        <a href="https://t.me/design4060" target="_blank" rel="noopener" class="pt-hero__btn pt-hero__btn--ghost" style="align-self:flex-start;">Написать в Telegram</a>
+      </div>
+
+      <div class="pt-form__card">
+        <form class="pt-form__fields" id="pt-form">
+          <div class="pt-form__field">
+            <label class="pt-form__label" for="pt-name">Ваше имя</label>
+            <input class="pt-form__input" id="pt-name" type="text" placeholder="Например, Андрей Белов" required>
+          </div>
+          <div class="pt-form__field">
+            <label class="pt-form__label" for="pt-phone">Телефон</label>
+            <input class="pt-form__input" id="pt-phone" type="tel" placeholder="+7 (___) ___-__-__" required>
+          </div>
+          <div class="pt-form__field">
+            <label class="pt-form__label" for="pt-type">Сфера деятельности</label>
+            <select class="pt-form__select" id="pt-type" required>
+              <option value="">Выберите вариант</option>
+              <option value="designer">Дизайнер интерьеров</option>
+              <option value="agency">Агентство недвижимости</option>
+              <option value="construction">Строительная компания</option>
+              <option value="salon">Мебельный салон</option>
+              <option value="other">Другое</option>
+            </select>
+          </div>
+          <div class="pt-form__field">
+            <label class="pt-form__label" for="pt-message">Комментарий (не обязательно)</label>
+            <textarea class="pt-form__textarea" id="pt-message" placeholder="Коротко о вашей задаче или объёме проектов"></textarea>
+          </div>
+          <label class="pt-form__consent" id="pt-consent-wrap">
+            <input type="checkbox" id="pt-consent">
+            <span class="pt-form__consent-box">✓</span>
+            <span>Я согласен на обработку персональных данных</span>
+          </label>
+          <div class="pt-form__consent-error" id="pt-consent-error">Поставьте галочку — нужно согласие на обработку данных</div>
+          <button type="submit" class="pt-form__submit">Отправить заявку</button>
+        </form>
+        <div class="pt-form__success" id="pt-success">
+          <div class="pt-form__success-icon">✓</div>
+          <h3 class="pt-form__success-title">Заявка отправлена</h3>
+          <p class="pt-form__success-text">Спасибо! Менеджер свяжется с вами в ближайшее время.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- МОДАЛКА «ПОЗВОНИТЬ» -->
+<div class="pt-call" id="pt-call" aria-hidden="true">
+  <div class="pt-call__backdrop" data-pt-call-close></div>
+  <div class="pt-call__dialog" role="dialog" aria-modal="true" aria-labelledby="pt-call-title">
+    <button type="button" class="pt-call__close" data-pt-call-close aria-label="Закрыть">✕</button>
+    <span class="pt-call__eyebrow">Связаться</span>
+    <h3 class="pt-call__title" id="pt-call-title">Позвонить нам</h3>
+    <p class="pt-call__subtitle">Выберите, кому удобнее позвонить — ответим в рабочее время (пн–сб 10:00–21:00).</p>
+    <div class="pt-call__list">
+      <a class="pt-call__item" href="tel:+79771004415">
+        <span class="pt-call__avatar" aria-hidden="true">И</span>
+        <span class="pt-call__info">
+          <span class="pt-call__name">Иван</span>
+          <span class="pt-call__phone">+7 977 100-44-15</span>
+        </span>
+      </a>
+      <a class="pt-call__item" href="tel:+79017448855">
+        <span class="pt-call__avatar" aria-hidden="true">С</span>
+        <span class="pt-call__info">
+          <span class="pt-call__name">Станислав</span>
+          <span class="pt-call__phone">+7 901 744-88-55</span>
+        </span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ФУТЕР -->
+<footer class="ft-block">
+  <div class="ft-block__wrap">
+    <div>
+      <a class="ft-block__logo" href="index.html">40/60</a>
+      <p class="ft-block__tagline" data-cms="footer.tagline">Студия интерьерной мебели. Кухни и корпусная мебель на заказ в Москве и области.</p>
+      <div class="ft-block__contacts">
+        <a href="tel:+79771004415" data-cms="footer.phone1">+7 977 100-44-15</a>
+        <a href="tel:+79017448855" data-cms="footer.phone2">+7 901 744-88-55</a>
+        <a href="https://t.me/design4060" target="_blank" rel="noopener" data-cms="footer.tg">Telegram: @design4060</a>
+      </div>
+    </div>
+    <div>
+      <p class="ft-block__col-title">Навигация</p>
+      <ul class="ft-block__nav">
+        <li><a href="portfolio.html">Портфолио</a></li>
+        <li><a href="about.html">О нас</a></li>
+        <li><a href="warranty.html">Гарантия</a></li>
+        <li><a href="partners.html">Партнёрам</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ft-block__col-title">Контакты</p>
+      <ul class="ft-block__nav">
+        <li><a href="index.html#measure">Запись на замер</a></li>
+        <li><a href="tel:+79771004415">Позвонить</a></li>
+        <li><a href="https://t.me/design4060" target="_blank" rel="noopener">Написать в Telegram</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-block__bottom">
+    <span data-cms="footer.copyright">© 40/60 Design. Производство мебели на заказ.</span>
+    <span><a href="warranty.html" style="color:#b3ada0;">Гарантия</a> · <a href="about.html" style="color:#b3ada0;">О нас</a></span>
+  </div>
+</footer>
+
+<!-- КНОПКА ЧАТА -->
+<button class="chat-fab" type="button" aria-label="Связаться" onclick="window.open('https://t.me/design4060','_blank')">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+  </svg>
+</button>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ШАПКА */
+  var header = document.querySelector('.hd-block');
+  if (header) {
+    var burger = header.querySelector('.hd-block__burger');
+    var nav = header.querySelector('.hd-block__nav');
+    if (burger && nav) {
+      burger.addEventListener('click', function () {
+        var open = !header.classList.contains('hd-block--menu-open');
+        header.classList.toggle('hd-block--menu-open', open);
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      nav.addEventListener('click', function (e) {
+        if (e.target.tagName === 'A') header.classList.remove('hd-block--menu-open');
+      });
+    }
+  }
+
+  /* МОДАЛКА «ПОЗВОНИТЬ» */
+  var callModal = document.getElementById('pt-call');
+  var callOpenBtn = document.getElementById('pt-call-open');
+
+  function openCall() {
+    if (!callModal) return;
+    callModal.classList.add('is-open');
+    callModal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('pt-call-open');
+  }
+  function closeCall() {
+    if (!callModal) return;
+    callModal.classList.remove('is-open');
+    callModal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('pt-call-open');
+  }
+
+  if (callOpenBtn) callOpenBtn.addEventListener('click', openCall);
+  if (callModal) {
+    callModal.querySelectorAll('[data-pt-call-close]').forEach(function (el) {
+      el.addEventListener('click', closeCall);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && callModal.classList.contains('is-open')) closeCall();
+    });
+  }
+
+  /* ФОРМА ПАРТНЁРА */
+  var form = document.getElementById('pt-form');
+  var success = document.getElementById('pt-success');
+  var consent = document.getElementById('pt-consent');
+  var consentWrap = document.getElementById('pt-consent-wrap');
+  var consentErr = document.getElementById('pt-consent-error');
+
+  if (consent) {
+    consent.addEventListener('change', function () {
+      if (consent.checked) {
+        if (consentWrap) consentWrap.classList.remove('is-error');
+        if (consentErr) consentErr.classList.remove('is-visible');
+      }
+    });
+  }
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (consent && !consent.checked) {
+        if (consentWrap) consentWrap.classList.add('is-error');
+        if (consentErr) consentErr.classList.add('is-visible');
+        try { consent.focus({ preventScroll: true }); } catch (err) { consent.focus(); }
+        return;
+      }
+      form.style.display = 'none';
+      if (success) success.classList.add('is-active');
+    });
+  }
+})();
+</script>
+</body>
+</html>
