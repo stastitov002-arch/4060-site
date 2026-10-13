@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-cms="meta.title">О компании — 40/60 Design</title>
+<meta name="description" data-cms="meta.description" content="О студии 40/60 Design. Мы создаем кухни и корпусную мебель по индивидуальным проектам в Москве и области.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --c-bg: #0d0c0d;
+  --c-bg-alt: #141210;
+  --c-surface: #1d1a17;
+  --c-surface-2: #2a2620;
+  --c-line: #2a2622;
+  --c-accent: #c8a572;
+  --c-accent-h: #d4b279;
+  --c-accent-d: #b08a52;
+  --c-text: #f4ede2;
+  --c-text-mute: #8f8a7e;
+  --c-gold-strong: #f5b942;
+  --c-gold-light: #e9c884;
+  --c-success: #6fcf97;
+  --c-error: #e07a6a;
+  --c-green: #0c160e;
+}
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--c-bg); padding-top: 76px; font-family: "Inter","Helvetica Neue",Arial,sans-serif; overflow-x: hidden; color: var(--c-text); }
+@media (max-width: 720px) { body { padding-top: 64px; } }
+*, *::before, *::after { box-sizing: border-box; }
+input, textarea, select, button { max-width: 100%; font-size: 16px; }
+img, svg, video { max-width: 100%; height: auto; }
+
+.img-fallback {
+  position: absolute; inset: 0;
+  background-color: #1a1f17;
+  background-image:
+    radial-gradient(circle at 30% 30%, rgba(200,165,114,0.08) 0%, transparent 50%),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none' stroke='%23c8a572' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M8 28 L32 12 L56 28'/><path d='M12 28 L12 52 L52 52 L52 28'/><rect x='24' y='38' width='16' height='14'/></svg>");
+  background-repeat: no-repeat; background-position: center; background-size: 30% auto;
+  z-index: 0;
+}
+
+/* ШАПКА */
+.hd-block { position: fixed; top: 0; left: 0; right: 0; z-index: 50; width: 100%; background: var(--c-green); color: var(--c-accent); }
+.hd-block__inner { display: grid; grid-template-columns: auto 1fr auto auto; align-items: center; gap: 20px; max-width: 1140px; margin: 0 auto; padding: 14px 24px; }
+.hd-block__logo { font-size: 26px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--c-accent); text-decoration: none; transition: opacity .2s; white-space: nowrap; }
+.hd-block__logo:hover { opacity: 0.7; }
+.hd-block__burger { display: none; width: 40px; height: 40px; padding: 0; border: 0; background: transparent; cursor: pointer; align-items: center; justify-content: center; color: var(--c-accent); border-radius: 8px; }
+.hd-block__burger-lines, .hd-block__burger-lines::before, .hd-block__burger-lines::after { display: block; width: 22px; height: 1.8px; background: currentColor; border-radius: 2px; transition: transform .25s, top .25s, opacity .2s; }
+.hd-block__burger-lines { position: relative; }
+.hd-block__burger-lines::before, .hd-block__burger-lines::after { content: ""; position: absolute; left: 0; }
+.hd-block__burger-lines::before { top: -7px; }
+.hd-block__burger-lines::after { top: 7px; }
+.hd-block--menu-open .hd-block__burger-lines { background: transparent; }
+.hd-block--menu-open .hd-block__burger-lines::before { top: 0; transform: rotate(45deg); }
+.hd-block--menu-open .hd-block__burger-lines::after { top: 0; transform: rotate(-45deg); }
+.hd-block__nav { justify-self: center; min-width: 0; }
+.hd-block__nav-list { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; gap: 26px; }
+.hd-block__nav-link { font-size: 14px; font-weight: 500; color: var(--c-accent); text-decoration: none; opacity: 0.85; position: relative; padding: 4px 0; white-space: nowrap; transition: opacity .2s; }
+.hd-block__nav-link::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform .25s; }
+.hd-block__nav-link:hover { opacity: 1; }
+.hd-block__nav-link:hover::after { transform: scaleX(1); }
+.hd-block__nav-link.is-current { opacity: 1; }
+.hd-block__nav-link.is-current::after { transform: scaleX(1); }
+.hd-block__phones { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; justify-self: end; padding-right: 24px; line-height: 1.3; }
+.hd-block__phone-item { font-size: 14px; font-weight: 500; color: var(--c-accent); text-decoration: none; white-space: nowrap; transition: opacity .2s; letter-spacing: -0.01em; opacity: 0.78; }
+.hd-block__phone-item:hover { opacity: 1; }
+.hd-block__meta { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; line-height: 1.3; justify-self: end; }
+.hd-block__hours { font-size: 12px; opacity: 0.7; color: var(--c-accent); }
+.hd-block__tg { display: inline-flex; align-items: center; gap: 5px; font-size: 13px; opacity: 0.85; color: var(--c-accent); text-decoration: none; transition: opacity .2s; }
+.hd-block__tg:hover { opacity: 1; }
+.hd-block__tg svg { display: block; }
+.hd-block__menu-contacts { display: none; }
+@media (max-width: 1080px) {
+  .hd-block__inner { gap: 16px; padding: 12px 20px; max-width: 100%; }
+  .hd-block__nav-list { gap: 18px; }
+  .hd-block__nav-link { font-size: 13px; }
+  .hd-block__phone-item { font-size: 12px; }
+  .hd-block__phones { padding-right: 16px; }
+}
+@media (max-width: 720px) {
+  .hd-block__inner { display: flex; flex-wrap: wrap; align-items: center; column-gap: 10px; padding: 12px 16px; }
+  .hd-block__hours, .hd-block__meta { display: none; }
+  .hd-block__logo { order: 1; font-size: 22px; }
+  .hd-block__phones { order: 2; margin-left: auto; padding-right: 0; align-items: flex-end; gap: 1px; }
+  .hd-block__phone-item { font-size: 12px; line-height: 1.15; }
+  .hd-block__burger { order: 3; display: inline-flex; }
+  .hd-block__nav { order: 4; flex: 1 0 100%; overflow: hidden; max-height: 0; opacity: 0; pointer-events: none; transition: max-height .3s, opacity .2s, margin-top .3s; margin-top: 0; background: var(--c-green); }
+  .hd-block--menu-open .hd-block__nav { max-height: 520px; opacity: 1; pointer-events: auto; margin-top: 10px; }
+  .hd-block__nav-list { flex-direction: column; align-items: stretch; gap: 0; padding: 4px 0 0; border-top: 1px solid rgba(200,165,114,0.18); }
+  .hd-block__nav-list li { border-bottom: 1px solid rgba(200,165,114,0.12); }
+  .hd-block__nav-list li:last-child { border-bottom: 0; }
+  .hd-block__nav-link { display: block; padding: 14px 4px; font-size: 16px; opacity: 1; }
+  .hd-block__nav-link::after { display: none; }
+  .hd-block__menu-contacts { display: flex; flex-direction: column; gap: 12px; padding: 14px 4px 6px; border-top: 1px solid rgba(200,165,114,0.18); }
+  .hd-block__menu-hours { font-size: 13px; opacity: 0.85; }
+  .hd-block__menu-tg { display: inline-flex; align-items: center; gap: 6px; color: var(--c-accent); text-decoration: none; font-size: 14px; opacity: 0.85; }
+  .hd-block__menu-tg svg { display: block; }
+}
+@media (max-width: 480px) {
+  .hd-block__inner { padding: 10px 14px; column-gap: 8px; }
+  .hd-block__logo { font-size: 20px; }
+  .hd-block__phone-item { font-size: 11px; }
+  .hd-block__burger { width: 36px; height: 36px; }
+}
+
+/* СТРАНИЦА О НАС */
+.ab-hero { padding: 80px 0; }
+.ab-hero__inner { max-width: 1440px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: 1fr 1.2fr 0.8fr; gap: 40px; align-items: center; }
+.ab-hero__left { display: flex; flex-direction: column; gap: 24px; }
+.ab-hero__eyebrow { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--c-accent); display: flex; align-items: center; gap: 16px; margin: 0; }
+.ab-hero__eyebrow::before { content: ""; width: 40px; height: 1px; background: var(--c-accent); }
+.ab-hero__title { font-family: 'Playfair Display', serif; font-size: clamp(36px, 4.5vw, 64px); line-height: 1.05; color: #fff; font-weight: 400; margin: 0; }
+.ab-hero__title em { color: var(--c-accent); font-style: normal; }
+.ab-hero__desc { font-size: 16px; line-height: 1.6; color: #b3ada0; margin: 0; }
+.ab-hero__btn { align-self: flex-start; display: inline-flex; align-items: center; gap: 12px; padding: 16px 28px; border: 1px solid var(--c-accent); color: var(--c-accent); text-decoration: none; font-size: 14px; font-weight: 500; transition: all 0.3s; background: transparent; cursor: pointer; font-family: inherit; }
+.ab-hero__btn:hover { background: var(--c-accent); color: var(--c-bg); }
+.ab-hero__media-main { position: relative; height: 100%; min-height: 480px; overflow: hidden; border-radius: 8px; background: #1a1f17; }
+.ab-hero__media-main img { width: 100%; height: 100%; object-fit: cover; display: block; position: relative; z-index: 1; }
+.ab-hero__right { display: flex; flex-direction: column; gap: 24px; height: 100%; }
+.ab-hero__right-title { font-family: 'Playfair Display', serif; font-size: 28px; line-height: 1.2; color: #fff; font-weight: 400; margin: 0; }
+.ab-hero__right-text { font-size: 15px; line-height: 1.6; color: #b3ada0; margin: 0; }
+.ab-hero__right-link { color: var(--c-accent); text-decoration: none; font-size: 14px; display: inline-flex; align-items: center; gap: 8px; transition: gap 0.3s; margin-top: 8px; }
+.ab-hero__right-link:hover { gap: 12px; }
+.ab-hero__right-img { margin-top: auto; overflow: hidden; border-radius: 8px; height: 180px; background: #1a1f17; }
+.ab-hero__right-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.ab-adv { border-top: 1px solid rgba(200,165,114,0.15); border-bottom: 1px solid rgba(200,165,114,0.15); padding: 64px 0; }
+.ab-adv__inner { max-width: 1440px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
+.ab-adv__item { display: flex; flex-direction: column; gap: 16px; }
+.ab-adv__num { font-size: 14px; color: var(--c-accent); font-weight: 600; letter-spacing: 0.1em; }
+.ab-adv__title { font-size: 20px; color: #fff; font-weight: 500; margin: 0; }
+.ab-adv__text { font-size: 15px; line-height: 1.6; color: #a8a294; margin: 0; }
+
+/* ПАРТНЁРЫ */
+.ab-partners { padding: 80px 0; }
+.ab-partners__inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 72px;
+  align-items: start;
+}
+.ab-partners__left { display: flex; flex-direction: column; gap: 22px; padding-top: 8px; }
+.ab-partners__eyebrow { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--c-accent); margin: 0; }
+.ab-partners__title { font-family: 'Playfair Display', serif; font-size: 32px; line-height: 1.15; color: #fff; font-weight: 400; margin: 0; }
+.ab-partners__list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; color: #a8a294; font-size: 15px; line-height: 1.5; }
+
+.ab-partners__right { display: flex; flex-direction: column; gap: 32px; }
+
+.ab-partners__row {
+  display: grid;
+  grid-template-columns: 1fr 170px;
+  gap: 32px;
+  align-items: start;
+}
+.ab-partners__media { display: grid; gap: 12px; }
+
+.ab-partners__row--top .ab-partners__media { grid-template-columns: 1.45fr 1fr; }
+.ab-partners__row--logos .ab-partners__media { grid-template-columns: repeat(4, 1fr); gap: 20px; align-items: center; }
+.ab-partners__row--swatches .ab-partners__media { grid-template-columns: repeat(5, 1fr); gap: 10px; }
+
+.ab-partners__img {
+  width: 100%;
+  display: block;
+  border-radius: 2px;
+  background: #1a1f17;
+  object-fit: cover;
+  object-position: center;
+}
+.ab-partners__row--top .ab-partners__img { height: 132px; }
+.ab-partners__row--swatches .ab-partners__img { height: 74px; }
+
+.ab-partners__logo { display: flex; align-items: center; justify-content: center; height: 48px; }
+.ab-partners__logo img,
+.ab-partners__logo svg {
+  max-width: 100%;
+  max-height: 34px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  opacity: 0.9;
+  transition: opacity 0.3s;
+  display: block;
+}
+.ab-partners__logo:hover img,
+.ab-partners__logo:hover svg { opacity: 1; }
+
+.ab-partners__caption {
+  border-top: 1px solid rgba(244,237,226,0.18);
+  padding-top: 14px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #a8a294;
+  margin: 0;
+}
+
+@media (max-width: 1080px) {
+  .ab-hero__inner { grid-template-columns: 1fr; gap: 32px; }
+  .ab-hero__media-main { min-height: 360px; }
+  .ab-hero__right-img { height: 240px; margin-top: 0; }
+  .ab-adv__inner { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+  .ab-partners__inner { grid-template-columns: 1fr; gap: 40px; }
+  .ab-partners__left { padding-top: 0; }
+}
+
+@media (max-width: 720px) {
+  .ab-hero { padding: 48px 0; }
+  .ab-hero__inner { gap: 28px; }
+  .ab-hero__title { font-size: 34px; }
+  .ab-hero__media-main { min-height: 300px; }
+  .ab-hero__right-title { font-size: 24px; }
+  .ab-hero__right-img { height: 200px; }
+
+  .ab-adv { padding: 48px 0; }
+  .ab-adv__inner { grid-template-columns: 1fr; gap: 28px; }
+  .ab-adv__title { font-size: 18px; }
+
+  .ab-partners { padding: 56px 0; }
+  .ab-partners__inner { padding: 0 20px; }
+  .ab-partners__title { font-size: 26px; }
+  .ab-partners__list { font-size: 14px; }
+
+  .ab-partners__right { gap: 28px; }
+  .ab-partners__row { grid-template-columns: 1fr; gap: 12px; }
+
+  .ab-partners__row--top .ab-partners__media { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .ab-partners__row--top .ab-partners__img { height: 110px; }
+
+  .ab-partners__row--logos .ab-partners__media { grid-template-columns: repeat(2, 1fr); gap: 10px 20px; }
+  .ab-partners__logo { height: 42px; }
+  .ab-partners__logo img,
+  .ab-partners__logo svg { max-height: 28px; }
+
+  .ab-partners__row--swatches .ab-partners__media { grid-template-columns: repeat(5, 1fr); gap: 6px; }
+  .ab-partners__row--swatches .ab-partners__img { height: 56px; }
+
+  .ab-partners__caption { font-size: 12px; padding-top: 10px; }
+}
+
+@media (max-width: 480px) {
+  .ab-hero__title { font-size: 30px; }
+  .ab-hero__eyebrow { font-size: 11px; }
+  .ab-partners__title { font-size: 24px; }
+  .ab-partners__row--top .ab-partners__img { height: 92px; }
+  .ab-partners__row--swatches .ab-partners__img { height: 46px; }
+  .ab-partners__logo { height: 36px; }
+  .ab-partners__logo img,
+  .ab-partners__logo svg { max-height: 24px; }
+}
+
+/* ФУТЕР */
+.ft-block { background: var(--c-green); color: var(--c-accent); padding: 48px 20px 24px; border-top: 1px solid rgba(200,165,114,0.15); }
+.ft-block__wrap { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 32px; }
+@media (min-width: 720px) { .ft-block__wrap { grid-template-columns: 1.5fr 1fr 1fr; } }
+.ft-block__logo { font-size: 26px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--c-accent); margin: 0 0 12px; text-decoration: none; display: inline-block; }
+.ft-block__tagline { font-size: 14px; line-height: 1.6; color: #b3ada0; margin: 0 0 16px; max-width: 36ch; }
+.ft-block__contacts { display: flex; flex-direction: column; gap: 8px; font-size: 14px; }
+.ft-block__contacts a { color: var(--c-accent); text-decoration: none; }
+.ft-block__col-title { font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--c-accent); opacity: 0.6; margin: 0 0 14px; }
+.ft-block__nav { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.ft-block__nav a { color: var(--c-accent); text-decoration: none; font-size: 14px; opacity: 0.85; }
+.ft-block__bottom { max-width: 1280px; margin: 40px auto 0; padding-top: 20px; border-top: 1px solid rgba(200,165,114,0.15); display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; font-size: 12px; color: #b3ada0; }
+
+/* МОДАЛКА «ОБСУДИТЬ ПРОЕКТ» (как sr-modal на главной) */
+.ab-modal { position: fixed; inset: 0; z-index: 200; display: none; align-items: center; justify-content: center; padding: 24px; }
+.ab-modal.is-open { display: flex; }
+.ab-modal__backdrop { position: absolute; inset: 0; background: rgba(13,12,13,0.85); backdrop-filter: blur(6px); }
+.ab-modal__dialog { position: relative; z-index: 1; width: 100%; max-width: 520px; background: #1f1d1b; border: 1px solid rgba(212,178,121,0.22); border-radius: 24px; padding: 44px 40px 36px; max-height: calc(100vh - 48px); overflow-y: auto; color: var(--c-text); }
+.ab-modal__close { position: absolute; top: 16px; right: 16px; width: 40px; height: 40px; border-radius: 50%; background: rgba(247,241,232,0.06); border: 0; color: var(--c-accent-h); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px; transition: background .2s; }
+.ab-modal__close:hover { background: rgba(212,178,121,0.18); }
+.ab-modal__eyebrow { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--c-accent-h); margin-bottom: 14px; position: relative; padding-left: 32px; }
+.ab-modal__eyebrow::before { content: ""; position: absolute; left: 0; top: 50%; width: 22px; height: 1px; background: var(--c-accent-h); }
+.ab-modal__title { font-size: clamp(22px,3vw,28px); font-weight: 700; line-height: 1.15; margin: 0 0 10px; color: #fff; }
+.ab-modal__subtitle { font-size: 14px; line-height: 1.55; color: rgba(247,241,232,0.65); margin: 0 0 26px; }
+.ab-modal__form { display: flex; flex-direction: column; gap: 18px; }
+.ab-modal__field { display: flex; flex-direction: column; gap: 8px; }
+.ab-modal__label { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(212,178,121,0.85); }
+.ab-modal__input { width: 100%; padding: 14px 16px; background: rgba(247,241,232,0.04); border: 1px solid rgba(212,178,121,0.22); border-radius: 12px; color: var(--c-text); font-family: inherit; font-size: 16px; transition: border-color .25s, box-shadow .25s; outline: none; }
+.ab-modal__input:focus { border-color: var(--c-accent-h); background: rgba(247,241,232,0.06); box-shadow: 0 0 0 4px rgba(212,178,121,0.12); }
+.ab-modal__consent { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; margin-top: 4px; font-size: 12px; color: rgba(247,241,232,0.6); line-height: 1.45; }
+.ab-modal__consent input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
+.ab-modal__consent-box { flex: 0 0 18px; width: 18px; height: 18px; border: 1.5px solid rgba(212,178,121,0.4); border-radius: 5px; display: inline-grid; place-items: center; background: rgba(247,241,232,0.04); color: #1c1b19; font-size: 12px; margin-top: 1px; transition: border-color .2s, background .2s, box-shadow .2s; }
+.ab-modal__consent input:checked + .ab-modal__consent-box { background: var(--c-accent-h); border-color: var(--c-accent-h); }
+.ab-modal__consent.is-error .ab-modal__consent-box { border-color: var(--c-error); box-shadow: 0 0 0 3px rgba(224,122,106,0.15); }
+.ab-modal__consent-error { display: none; color: var(--c-error); font-size: 12px; line-height: 1.4; margin-top: 4px; padding-left: 28px; }
+.ab-modal__consent-error.is-visible { display: block; }
+.ab-modal__submit { background: var(--c-accent-d); color: #1c1b19; border: 1px solid var(--c-accent-d); border-radius: 12px; padding: 16px 20px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: inherit; transition: background .3s; }
+.ab-modal__submit:hover { background: var(--c-accent-h); border-color: var(--c-accent-h); }
+.ab-modal__success { display: none; flex-direction: column; align-items: center; text-align: center; gap: 14px; padding: 12px 8px; }
+.ab-modal__success.is-active { display: flex; }
+.ab-modal__success-icon { width: 80px; height: 80px; border-radius: 50%; background: rgba(111,207,151,0.14); color: var(--c-success); display: grid; place-items: center; font-size: 40px; }
+.ab-modal__success-title { font-size: 22px; margin: 0; color: #fff; }
+.ab-modal__success-text { color: rgba(247,241,232,0.65); font-size: 15px; margin: 0; max-width: 36ch; }
+body.ab-modal-open { overflow: hidden; }
+@media (max-width: 640px) { .ab-modal { padding: 16px; } .ab-modal__dialog { padding: 36px 24px 28px; border-radius: 20px; } }
+
+/* КНОПКА ЧАТА */
+.chat-fab { position: fixed; right: 24px; bottom: 24px; z-index: 60; width: 56px; height: 56px; border-radius: 50%; background: var(--c-accent); color: var(--c-bg); border: none; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 12px 28px rgba(0,0,0,.4); transition: transform .25s, background .25s, box-shadow .25s; }
+.chat-fab:hover { background: var(--c-accent-h); transform: translateY(-2px); box-shadow: 0 16px 32px rgba(0,0,0,.45); }
+.chat-fab:focus-visible { outline: 2px solid var(--c-accent-h); outline-offset: 3px; }
+.chat-fab svg { width: 28px; height: 28px; display: block; }
+@media (max-width: 900px) { .chat-fab { width: 60px; height: 60px; } }
+@media (max-width: 720px) { .chat-fab { right: 18px; bottom: 18px; width: 62px; height: 62px; } .chat-fab svg { width: 28px; height: 28px; } }
+</style>
+</head>
+
+<body>
+
+<!-- ШАПКА -->
+<section class="hd-block" aria-label="Шапка сайта">
+  <div class="hd-block__inner">
+    <a class="hd-block__logo" href="index.html" aria-label="Перейти на главную">40/60</a>
+    <button class="hd-block__burger" type="button" aria-expanded="false" aria-controls="hd-nav" aria-label="Открыть меню">
+      <span class="hd-block__burger-lines" aria-hidden="true"></span>
+    </button>
+    <nav class="hd-block__nav" id="hd-nav" aria-label="Основная навигация">
+      <ul class="hd-block__nav-list">
+        <li><a class="hd-block__nav-link is-current" href="about.html" aria-current="page">О нас</a></li>
+        <li><a class="hd-block__nav-link" href="portfolio.html">Портфолио</a></li>
+        <li><a class="hd-block__nav-link" href="warranty.html">Гарантия</a></li>
+        <li><a class="hd-block__nav-link" href="partners.html">Партнёрам</a></li>
+      </ul>
+      <div class="hd-block__menu-contacts">
+        <span class="hd-block__menu-hours" data-cms="header.hours">пн–сб 10:00–21:00</span>
+        <a class="hd-block__menu-tg" href="https://t.me/design4060" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+          <span data-cms="header.tg">design4060</span>
+        </a>
+      </div>
+    </nav>
+    <div class="hd-block__phones">
+      <a class="hd-block__phone-item" href="tel:+79771004415" data-cms="header.phone1">+7 977 100-44-15</a>
+      <a class="hd-block__phone-item" href="tel:+79017448855" data-cms="header.phone2">+7 901 744-88-55</a>
+    </div>
+    <div class="hd-block__meta">
+      <span class="hd-block__hours" data-cms="header.hours">пн–сб 10:00–21:00</span>
+      <a class="hd-block__tg" href="https://t.me/design4060" target="_blank" rel="noopener" aria-label="Мы в Telegram">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+        <span data-cms="header.tg">design4060</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- О НАС -->
+<section class="ab-hero">
+  <div class="ab-hero__inner">
+    <div class="ab-hero__left">
+      <p class="ab-hero__eyebrow">О компании</p>
+      <p style="font-size:12px; letter-spacing:0.1em; color:#b3ada0; text-transform:uppercase; margin:0 0 -12px;">Мы — не просто производитель мебели,<br>мы — ваш партнер в создании пространства.</p>
+      <h1 class="ab-hero__title">Хорошая мебель начинается <em>с правильных решений.</em></h1>
+      <p class="ab-hero__desc">Мы создаем кухни и корпусную мебель по индивидуальным проектам. Продумываем конструкцию, подбираем материалы под ваш интерьер и бюджет и контролируем реализацию — от первых чертежей до монтажа.</p>
+      <button type="button" class="ab-hero__btn" id="ab-open">Обсудить мой проект →</button>
+    </div>
+    <div class="ab-hero__media-main">
+      <img src="images/about-main.jpg" alt="Кухня 40/60 Design">
+    </div>
+    <div class="ab-hero__right">
+      <p class="ab-hero__eyebrow">Нас выбирают</p>
+      <h2 class="ab-hero__right-title">Дизайнеры, агентства и строительные компании.</h2>
+      <p class="ab-hero__right-text">Мы закрываем задачи любой сложности и работаем с партнерами по всей России. Ценим долгосрочные отношения и всегда находим лучшие решения под каждый проект.</p>
+      <a href="partners.html" class="ab-hero__right-link">Стать партнёром →</a>
+      <div class="ab-hero__right-img">
+        <img src="images/about-small.jpg" alt="Работа над проектом">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ПРЕИМУЩЕСТВА -->
+<section class="ab-adv">
+  <div class="ab-adv__inner">
+    <div class="ab-adv__item">
+      <span class="ab-adv__num">01</span>
+      <h3 class="ab-adv__title">Материалы без ограничений</h3>
+      <p class="ab-adv__text">Работаем со всеми материалами: от ЛДСП и МДФ до шпона, массива, камня и металла. Подберем идеальное решение под ваш проект.</p>
+    </div>
+    <div class="ab-adv__item">
+      <span class="ab-adv__num">02</span>
+      <h3 class="ab-adv__title">Фурнитура и техника</h3>
+      <p class="ab-adv__text">Используем премиальную фурнитуру и встраиваемую технику от ведущих брендов: Blum, Hettich, Siemens, Bosch и других.</p>
+    </div>
+    <div class="ab-adv__item">
+      <span class="ab-adv__num">03</span>
+      <h3 class="ab-adv__title">Столешницы и поверхности</h3>
+      <p class="ab-adv__text">Кварц, акрил, натуральный камень, керамика, HPL. Подберем материал, который прослужит долгие годы и будет радовать каждый день.</p>
+    </div>
+    <div class="ab-adv__item">
+      <span class="ab-adv__num">04</span>
+      <h3 class="ab-adv__title">Контроль на каждом этапе</h3>
+      <p class="ab-adv__text">От проектирования до монтажа — все процессы под контролем нашей команды. Технический надзор и гарантия на результат.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ПАРТНЁРЫ -->
+<section class="ab-partners">
+  <div class="ab-partners__inner">
+
+    <div class="ab-partners__left">
+      <p class="ab-partners__eyebrow">Наши партнеры</p>
+      <h2 class="ab-partners__title">Мы работаем с теми, кто ценит качество.</h2>
+      <ul class="ab-partners__list">
+        <li>Дизайнеры интерьеров</li>
+        <li>Агентства недвижимости</li>
+        <li>Строительные компании</li>
+      </ul>
+    </div>
+
+    <div class="ab-partners__right">
+
+      <!-- Полоса 1: материалы -->
+      <div class="ab-partners__row ab-partners__row--top">
+        <div class="ab-partners__media">
+          <img class="ab-partners__img" src="https://picsum.photos/seed/marble-dark/800/400" alt="Камень" loading="lazy">
+          <img class="ab-partners__img" src="https://picsum.photos/seed/wood-oak/500/400" alt="Дерево" loading="lazy">
+        </div>
+        <p class="ab-partners__caption">Более 200<br>вариантов материалов</p>
+      </div>
+
+      <!-- Полоса 2: логотипы брендов -->
+      <div class="ab-partners__row ab-partners__row--logos">
+        <div class="ab-partners__media">
+
+          <div class="ab-partners__logo" aria-label="Blum">
+            <svg viewBox="0 0 180 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+              <text x="90" y="40" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="48" font-style="italic" font-weight="400" fill="#ffffff" letter-spacing="-2">blum</text>
+              <path d="M22 50 Q90 60 158 50" stroke="#ffffff" stroke-width="1.6" fill="none" opacity="0.85"/>
+            </svg>
+          </div>
+
+          <div class="ab-partners__logo" aria-label="Hettich">
+            <svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+              <text x="100" y="42" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="30" font-weight="700" fill="#ffffff" letter-spacing="-0.5">Hettich</text>
+            </svg>
+          </div>
+
+          <div class="ab-partners__logo" aria-label="Siemens">
+            <svg viewBox="0 0 240 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+              <text x="120" y="40" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#ffffff" letter-spacing="6">SIEMENS</text>
+            </svg>
+          </div>
+
+          <div class="ab-partners__logo" aria-label="Bosch">
+            <svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+              <text x="100" y="42" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#ffffff" letter-spacing="2">BOSCH</text>
+            </svg>
+          </div>
+
+        </div>
+        <p class="ab-partners__caption">и другие<br>бренды</p>
+      </div>
+
+      <!-- Полоса 3: образцы фактур -->
+      <div class="ab-partners__row ab-partners__row--swatches">
+        <div class="ab-partners__media">
+          <img class="ab-partners__img" src="https://picsum.photos/seed/texture-01/300/300" alt="" loading="lazy">
+          <img class="ab-partners__img" src="https://picsum.photos/seed/texture-02/300/300" alt="" loading="lazy">
+          <img class="ab-partners__img" src="https://picsum.photos/seed/texture-03/300/300" alt="" loading="lazy">
+          <img class="ab-partners__img" src="https://picsum.photos/seed/texture-04/300/300" alt="" loading="lazy">
+          <img class="ab-partners__img" src="https://picsum.photos/seed/texture-05/300/300" alt="" loading="lazy">
+        </div>
+        <p class="ab-partners__caption">Любые<br>материалы<br>и фактуры</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ФУТЕР -->
+<footer class="ft-block">
+  <div class="ft-block__wrap">
+    <div>
+      <a class="ft-block__logo" href="index.html">40/60</a>
+      <p class="ft-block__tagline" data-cms="footer.tagline">Студия интерьерной мебели. Кухни и корпусная мебель на заказ в Москве и области.</p>
+      <div class="ft-block__contacts">
+        <a href="tel:+79771004415" data-cms="footer.phone1">+7 977 100-44-15</a>
+        <a href="tel:+79017448855" data-cms="footer.phone2">+7 901 744-88-55</a>
+        <a href="https://t.me/design4060" target="_blank" rel="noopener" data-cms="footer.tg">Telegram: @design4060</a>
+      </div>
+    </div>
+    <div>
+      <p class="ft-block__col-title">Навигация</p>
+      <ul class="ft-block__nav">
+        <li><a href="portfolio.html">Портфолио</a></li>
+        <li><a href="about.html">О нас</a></li>
+        <li><a href="warranty.html">Гарантия</a></li>
+        <li><a href="partners.html">Партнёрам</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="ft-block__col-title">Контакты</p>
+      <ul class="ft-block__nav">
+        <li><a href="#measure">Запись на замер</a></li>
+        <li><a href="tel:+79771004415">Позвонить</a></li>
+        <li><a href="https://t.me/design4060" target="_blank" rel="noopener">Написать в Telegram</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-block__bottom">
+    <span data-cms="footer.copyright">© 40/60 Design. Производство мебели на заказ.</span>
+    <span><a href="warranty.html" style="color:#b3ada0;">Гарантия</a> · <a href="about.html" style="color:#b3ada0;">О нас</a></span>
+  </div>
+</footer>
+
+<!-- МОДАЛКА «ОБСУДИТЬ ПРОЕКТ» -->
+<div class="ab-modal" id="ab-modal" aria-hidden="true">
+  <div class="ab-modal__backdrop" data-ab-close></div>
+  <div class="ab-modal__dialog" role="dialog" aria-modal="true">
+    <button type="button" class="ab-modal__close" data-ab-close aria-label="Закрыть">✕</button>
+    <span class="ab-modal__eyebrow">Заявка</span>
+    <h3 class="ab-modal__title">Обсудить мой проект</h3>
+    <p class="ab-modal__subtitle">Оставьте контакт — специалист свяжется с вами и поможет рассчитать проект.</p>
+    <form class="ab-modal__form" id="ab-form">
+      <div class="ab-modal__field">
+        <label class="ab-modal__label" for="ab-name">Ваше имя</label>
+        <input class="ab-modal__input" id="ab-name" type="text" placeholder="Например, Андрей Белов" required>
+      </div>
+      <div class="ab-modal__field">
+        <label class="ab-modal__label" for="ab-phone">Телефон</label>
+        <input class="ab-modal__input" id="ab-phone" type="tel" placeholder="+7 (___) ___-__-__" required>
+      </div>
+      <div class="ab-modal__field">
+        <label class="ab-modal__label" for="ab-tg">Telegram (не обязательно)</label>
+        <input class="ab-modal__input" id="ab-tg" type="text" placeholder="nickname">
+      </div>
+      <label class="ab-modal__consent" id="ab-consent-wrap">
+        <input type="checkbox" id="ab-consent">
+        <span class="ab-modal__consent-box">✓</span>
+        <span>Я согласен на обработку персональных данных</span>
+      </label>
+      <div class="ab-modal__consent-error" id="ab-consent-error">Поставьте галочку — нужно согласие на обработку данных</div>
+      <button type="submit" class="ab-modal__submit">Отправить заявку</button>
+    </form>
+    <div class="ab-modal__success" id="ab-success">
+      <div class="ab-modal__success-icon">✓</div>
+      <h3 class="ab-modal__success-title">Заявка отправлена</h3>
+      <p class="ab-modal__success-text">Специалист скоро свяжется с вами.</p>
+    </div>
+  </div>
+</div>
+
+<!-- КНОПКА ЧАТА -->
+<button class="chat-fab" type="button" aria-label="Связаться" onclick="window.open('https://t.me/design4060','_blank')">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+  </svg>
+</button>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ШАПКА */
+  var header = document.querySelector('.hd-block');
+  if (header) {
+    var burger = header.querySelector('.hd-block__burger');
+    var nav = header.querySelector('.hd-block__nav');
+    if (burger && nav) {
+      burger.addEventListener('click', function () {
+        var open = !header.classList.contains('hd-block--menu-open');
+        header.classList.toggle('hd-block--menu-open', open);
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      nav.addEventListener('click', function (e) {
+        if (e.target.tagName === 'A') header.classList.remove('hd-block--menu-open');
+      });
+    }
+  }
+
+  /* МОДАЛКА «ОБСУДИТЬ ПРОЕКТ» */
+  var modal = document.getElementById('ab-modal');
+  var openBtn = document.getElementById('ab-open');
+  var form = document.getElementById('ab-form');
+  var success = document.getElementById('ab-success');
+  var consent = document.getElementById('ab-consent');
+  var consentWrap = document.getElementById('ab-consent-wrap');
+  var consentErr = document.getElementById('ab-consent-error');
+
+  function openModal() {
+    if (!modal) return;
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('ab-modal-open');
+  }
+  function closeModal() {
+    if (!modal) return;
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('ab-modal-open');
+    if (form) {
+      form.style.display = '';
+      form.reset();
+      if (consentWrap) consentWrap.classList.remove('is-error');
+      if (consentErr) consentErr.classList.remove('is-visible');
+    }
+    if (success) success.classList.remove('is-active');
+  }
+
+  if (openBtn) openBtn.addEventListener('click', openModal);
+  if (modal) {
+    modal.querySelectorAll('[data-ab-close]').forEach(function (el) {
+      el.addEventListener('click', closeModal);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+    });
+  }
+  if (consent) {
+    consent.addEventListener('change', function () {
+      if (consent.checked) {
+        if (consentWrap) consentWrap.classList.remove('is-error');
+        if (consentErr) consentErr.classList.remove('is-visible');
+      }
+    });
+  }
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (consent && !consent.checked) {
+        if (consentWrap) consentWrap.classList.add('is-error');
+        if (consentErr) consentErr.classList.add('is-visible');
+        try { consent.focus({ preventScroll: true }); } catch (err) { consent.focus(); }
+        return;
+      }
+      form.style.display = 'none';
+      if (success) success.classList.add('is-active');
+    });
+  }
+})();
+</script>
+</body>
+</html>
