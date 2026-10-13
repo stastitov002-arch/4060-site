@@ -61,7 +61,7 @@ img, svg, video { max-width: 100%; height: auto; }
 .hd-block__nav-link:hover { opacity: 1; }
 .hd-block__nav-link:hover::after { transform: scaleX(1); }
 .hd-block__phones { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; justify-self: end; padding-right: 24px; line-height: 1.3; }
-.hd-block__phone-item { font-size: 14px; font-weight: 500; color: var(--c-accent); text-decoration: none; white-space: nowrap; transition: opacity .2s; letter-spacing: -0.01em; opacity: 0.78; }
+.hd-block__phone-item { font-size: 14px; font-weight: 500; color: var(--c-accent); text-decoration: none; white-space: nowrap; transition: opacity .2s; letter-spacing: -0.01em; opacity: 0.78; font-variant-numeric: tabular-nums; }
 .hd-block__phone-item:hover { opacity: 1; }
 .hd-block__meta { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; line-height: 1.3; justify-self: end; }
 .hd-block__hours { font-size: 12px; opacity: 0.7; color: var(--c-accent); }
@@ -77,12 +77,11 @@ img, svg, video { max-width: 100%; height: auto; }
   .hd-block__phones { padding-right: 16px; }
 }
 @media (max-width: 720px) {
-  .hd-block__inner { display: flex; flex-wrap: wrap; align-items: center; column-gap: 12px; padding: 12px 16px; }
+  .hd-block__inner { display: flex; flex-wrap: wrap; align-items: center; column-gap: 10px; padding: 12px 16px; }
   .hd-block__hours, .hd-block__meta { display: none; }
   .hd-block__logo { order: 1; font-size: 22px; }
-  .hd-block__phones { order: 2; margin-left: auto; padding-right: 0; align-items: flex-end; gap: 0; }
-  .hd-block__phone-item { font-size: 13px; }
-  .hd-block__phone-item--secondary { display: none; }
+  .hd-block__phones { order: 2; margin-left: auto; padding-right: 0; align-items: flex-end; gap: 1px; }
+  .hd-block__phone-item { font-size: 12px; line-height: 1.15; }
   .hd-block__burger { order: 3; display: inline-flex; }
   .hd-block__nav { order: 4; flex: 1 0 100%; overflow: hidden; max-height: 0; opacity: 0; pointer-events: none; transition: max-height .3s, opacity .2s, margin-top .3s; margin-top: 0; background: var(--c-green); }
   .hd-block--menu-open .hd-block__nav { max-height: 520px; opacity: 1; pointer-events: auto; margin-top: 10px; }
@@ -97,9 +96,9 @@ img, svg, video { max-width: 100%; height: auto; }
   .hd-block__menu-tg svg { display: block; }
 }
 @media (max-width: 480px) {
-  .hd-block__inner { padding: 10px 14px; column-gap: 10px; }
+  .hd-block__inner { padding: 10px 14px; column-gap: 8px; }
   .hd-block__logo { font-size: 20px; }
-  .hd-block__phone-item { font-size: 13px; }
+  .hd-block__phone-item { font-size: 11px; }
   .hd-block__burger { width: 36px; height: 36px; }
 }
 
@@ -242,7 +241,6 @@ img, svg, video { max-width: 100%; height: auto; }
 .sr-consent__input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
 .sr-consent__box { flex: 0 0 18px; width: 18px; height: 18px; border: 1.5px solid rgba(212,178,121,0.4); border-radius: 5px; display: inline-grid; place-items: center; background: rgba(247,241,232,0.04); color: #1c1b19; font-size: 12px; margin-top: 1px; transition: border-color .2s, background .2s, box-shadow .2s; }
 .sr-consent__input:checked + .sr-consent__box { background: var(--c-accent-h); border-color: var(--c-accent-h); }
-.sr-consent__input:focus-visible + .sr-consent__box { box-shadow: 0 0 0 3px rgba(212,178,121,0.25); }
 .sr-consent.is-error .sr-consent__box { border-color: var(--c-error); box-shadow: 0 0 0 3px rgba(224,122,106,0.15); }
 .sr-consent-error { display: none; color: var(--c-error); font-size: 12px; line-height: 1.4; margin-top: 4px; padding-left: 28px; }
 .sr-consent-error.is-visible { display: block; }
@@ -349,51 +347,12 @@ body.sr-modal-open { overflow: hidden; }
 .vk-measure__form-head { margin-bottom: 22px; }
 .vk-measure__form-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--c-gold-strong); margin-bottom: 6px; display: block; }
 .vk-measure__form-title { font-size: 24px; line-height: 1.15; margin: 0; }
-
-/* ПЛАШКА «ПОНРАВИЛАСЬ» */
-.vk-measure__project {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 14px 12px 16px;
-  background: rgba(245,185,66,0.08);
-  border: 1px solid rgba(245,185,66,0.4);
-  border-radius: 12px;
-  margin-bottom: 16px;
-  font-size: 14px;
-  color: var(--c-text);
-}
+.vk-measure__project { display: flex; align-items: center; gap: 10px; padding: 12px 14px 12px 16px; background: rgba(245,185,66,0.08); border: 1px solid rgba(245,185,66,0.4); border-radius: 12px; margin-bottom: 16px; font-size: 14px; color: var(--c-text); }
 .vk-measure__project[hidden] { display: none; }
-.vk-measure__project-label {
-  color: var(--c-gold-strong);
-  font-weight: 600;
-  white-space: nowrap;
-  flex: 0 0 auto;
-}
-.vk-measure__project-name {
-  flex: 1 1 auto;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  color: var(--c-text);
-}
-.vk-measure__project-clear {
-  flex: 0 0 26px;
-  width: 26px; height: 26px;
-  border-radius: 50%;
-  border: 0;
-  background: rgba(245,185,66,0.18);
-  color: var(--c-gold-strong);
-  cursor: pointer;
-  font-size: 13px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition: background .2s;
-  padding: 0;
-}
+.vk-measure__project-label { color: var(--c-gold-strong); font-weight: 600; white-space: nowrap; flex: 0 0 auto; }
+.vk-measure__project-name { flex: 1 1 auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--c-text); }
+.vk-measure__project-clear { flex: 0 0 26px; width: 26px; height: 26px; border-radius: 50%; border: 0; background: rgba(245,185,66,0.18); color: var(--c-gold-strong); cursor: pointer; font-size: 13px; display: inline-flex; align-items: center; justify-content: center; transition: background .2s; padding: 0; }
 .vk-measure__project-clear:hover { background: rgba(245,185,66,0.35); }
-
 .vk-measure__fields { display: flex; flex-direction: column; gap: 14px; }
 .vk-measure__field { display: flex; flex-direction: column; gap: 6px; }
 .vk-measure__label { font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(245,185,66,0.85); }
@@ -426,7 +385,10 @@ body.sr-modal-open { overflow: hidden; }
 .ft-block__contacts a { color: var(--c-accent); text-decoration: none; }
 .ft-block__col-title { font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--c-accent); opacity: 0.6; margin: 0 0 14px; }
 .ft-block__nav { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
-.ft-block__nav a { color: var(--c-accent); text-decoration: none; font-size: 14px; opacity: 0.85; }
+.ft-block__nav a,
+.ft-block__nav button { color: var(--c-accent); text-decoration: none; font-size: 14px; opacity: 0.85; background: none; border: 0; padding: 0; font-family: inherit; cursor: pointer; text-align: left; transition: opacity .2s; }
+.ft-block__nav a:hover,
+.ft-block__nav button:hover { opacity: 1; }
 .ft-block__bottom { max-width: 1280px; margin: 40px auto 0; padding-top: 20px; border-top: 1px solid rgba(200,165,114,0.15); display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; font-size: 12px; color: #b3ada0; }
 
 /* МОДАЛКА ПРОЕКТА */
@@ -460,12 +422,67 @@ body.sr-modal-open { overflow: hidden; }
 body.kb-modal-open { overflow: hidden; }
 @media (max-width: 640px) { .kb-modal__dialog { padding: 24px 18px; } .kb-modal__close { top: 6px; right: 6px; width: 36px; height: 36px; } }
 
+/* МОДАЛКИ ФУТЕРА (общий стиль) */
+.ft-modal { position: fixed; inset: 0; z-index: 200; display: none; align-items: center; justify-content: center; padding: 24px; }
+.ft-modal.is-open { display: flex; }
+.ft-modal__backdrop { position: absolute; inset: 0; background: rgba(13,12,13,0.85); backdrop-filter: blur(6px); }
+.ft-modal__dialog { position: relative; z-index: 1; width: 100%; max-width: 520px; background: #1f1d1b; border: 1px solid rgba(212,178,121,0.22); border-radius: 24px; padding: 44px 40px 36px; max-height: calc(100vh - 48px); overflow-y: auto; color: var(--c-text); }
+.ft-modal__close { position: absolute; top: 16px; right: 16px; width: 40px; height: 40px; border-radius: 50%; background: rgba(247,241,232,0.06); border: 0; color: var(--c-accent-h); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px; transition: background .2s; }
+.ft-modal__close:hover { background: rgba(212,178,121,0.18); }
+.ft-modal__eyebrow { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--c-accent-h); margin-bottom: 14px; position: relative; padding-left: 32px; }
+.ft-modal__eyebrow::before { content: ""; position: absolute; left: 0; top: 50%; width: 22px; height: 1px; background: var(--c-accent-h); }
+.ft-modal__title { font-size: clamp(22px,3vw,28px); font-weight: 700; line-height: 1.15; margin: 0 0 10px; color: #fff; }
+.ft-modal__subtitle { font-size: 14px; line-height: 1.55; color: rgba(247,241,232,0.65); margin: 0 0 26px; }
+.ft-modal__form { display: flex; flex-direction: column; gap: 18px; }
+.ft-modal__field { display: flex; flex-direction: column; gap: 8px; }
+.ft-modal__label { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(212,178,121,0.85); }
+.ft-modal__input { width: 100%; padding: 14px 16px; background: rgba(247,241,232,0.04); border: 1px solid rgba(212,178,121,0.22); border-radius: 12px; color: var(--c-text); font-family: inherit; font-size: 16px; transition: border-color .25s, box-shadow .25s; outline: none; }
+.ft-modal__input:focus { border-color: var(--c-accent-h); background: rgba(247,241,232,0.06); box-shadow: 0 0 0 4px rgba(212,178,121,0.12); }
+.ft-modal__consent { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; margin-top: 4px; font-size: 12px; color: rgba(247,241,232,0.6); line-height: 1.45; }
+.ft-modal__consent input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
+.ft-modal__consent-box { flex: 0 0 18px; width: 18px; height: 18px; border: 1.5px solid rgba(212,178,121,0.4); border-radius: 5px; display: inline-grid; place-items: center; background: rgba(247,241,232,0.04); color: #1c1b19; font-size: 12px; margin-top: 1px; transition: border-color .2s, background .2s, box-shadow .2s; }
+.ft-modal__consent input:checked + .ft-modal__consent-box { background: var(--c-accent-h); border-color: var(--c-accent-h); }
+.ft-modal__consent.is-error .ft-modal__consent-box { border-color: var(--c-error); box-shadow: 0 0 0 3px rgba(224,122,106,0.15); }
+.ft-modal__consent-error { display: none; color: var(--c-error); font-size: 12px; line-height: 1.4; margin-top: 4px; padding-left: 28px; }
+.ft-modal__consent-error.is-visible { display: block; }
+.ft-modal__submit { background: var(--c-accent-d); color: #1c1b19; border: 1px solid var(--c-accent-d); border-radius: 12px; padding: 16px 20px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: inherit; transition: background .3s; }
+.ft-modal__submit:hover { background: var(--c-accent-h); border-color: var(--c-accent-h); }
+.ft-modal__success { display: none; flex-direction: column; align-items: center; text-align: center; gap: 14px; padding: 12px 8px; }
+.ft-modal__success.is-active { display: flex; }
+.ft-modal__success-icon { width: 80px; height: 80px; border-radius: 50%; background: rgba(111,207,151,0.14); color: var(--c-success); display: grid; place-items: center; font-size: 40px; }
+.ft-modal__success-title { font-size: 22px; margin: 0; color: #fff; }
+.ft-modal__success-text { color: rgba(247,241,232,0.65); font-size: 15px; margin: 0; max-width: 36ch; }
+body.ft-modal-open { overflow: hidden; }
+@media (max-width: 640px) { .ft-modal { padding: 16px; } .ft-modal__dialog { padding: 36px 24px 28px; border-radius: 20px; } }
+
+/* МОДАЛКА «ПОЗВОНИТЬ» */
+.ft-call { position: fixed; inset: 0; z-index: 200; display: none; align-items: center; justify-content: center; padding: 24px; }
+.ft-call.is-open { display: flex; }
+.ft-call__backdrop { position: absolute; inset: 0; background: rgba(13,12,13,0.85); backdrop-filter: blur(6px); }
+.ft-call__dialog { position: relative; z-index: 1; width: 100%; max-width: 480px; background: #1f1d1b; border: 1px solid rgba(212,178,121,0.22); border-radius: 24px; padding: 44px 40px 36px; max-height: calc(100vh - 48px); overflow-y: auto; color: var(--c-text); }
+.ft-call__close { position: absolute; top: 16px; right: 16px; width: 40px; height: 40px; border-radius: 50%; background: rgba(247,241,232,0.06); border: 0; color: var(--c-accent-h); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px; transition: background .2s; }
+.ft-call__close:hover { background: rgba(212,178,121,0.18); }
+.ft-call__eyebrow { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--c-accent-h); margin-bottom: 14px; position: relative; padding-left: 32px; }
+.ft-call__eyebrow::before { content: ""; position: absolute; left: 0; top: 50%; width: 22px; height: 1px; background: var(--c-accent-h); }
+.ft-call__title { font-size: clamp(22px,3vw,26px); font-weight: 700; line-height: 1.15; margin: 0 0 10px; color: #fff; }
+.ft-call__subtitle { font-size: 14px; line-height: 1.55; color: rgba(247,241,232,0.65); margin: 0 0 24px; }
+.ft-call__list { display: flex; flex-direction: column; gap: 12px; }
+.ft-call__item { display: flex; align-items: center; gap: 16px; padding: 18px 20px; border: 1px solid rgba(212,178,121,0.28); border-radius: 16px; text-decoration: none; color: var(--c-text); background: rgba(247,241,232,0.03); transition: border-color .25s, background .25s, transform .25s; }
+.ft-call__item:hover { border-color: var(--c-accent-h); background: rgba(212,178,121,0.06); transform: translateY(-1px); }
+.ft-call__avatar { flex: 0 0 44px; width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--c-accent-h), var(--c-accent-d)); color: #1c1b19; display: grid; place-items: center; font-weight: 700; font-size: 16px; }
+.ft-call__info { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.ft-call__name { font-size: 13px; color: rgba(247,241,232,0.6); letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; }
+.ft-call__phone { font-size: 17px; font-weight: 600; color: #fff; white-space: nowrap; }
+body.ft-call-open { overflow: hidden; }
+@media (max-width: 640px) { .ft-call { padding: 16px; } .ft-call__dialog { padding: 36px 22px 26px; border-radius: 20px; } .ft-call__phone { font-size: 16px; } }
+
 /* КНОПКА ЧАТА */
 .chat-fab { position: fixed; right: 24px; bottom: 24px; z-index: 60; width: 56px; height: 56px; border-radius: 50%; background: var(--c-accent); color: var(--c-bg); border: none; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 12px 28px rgba(0,0,0,.4); transition: transform .25s, background .25s, box-shadow .25s; }
 .chat-fab:hover { background: var(--c-accent-h); transform: translateY(-2px); box-shadow: 0 16px 32px rgba(0,0,0,.45); }
 .chat-fab:focus-visible { outline: 2px solid var(--c-accent-h); outline-offset: 3px; }
-.chat-fab svg { width: 26px; height: 26px; display: block; }
-@media (max-width: 480px) { .chat-fab { right: 16px; bottom: 16px; width: 52px; height: 52px; } .chat-fab svg { width: 24px; height: 24px; } }
+.chat-fab svg { width: 28px; height: 28px; display: block; }
+@media (max-width: 900px) { .chat-fab { width: 60px; height: 60px; } }
+@media (max-width: 720px) { .chat-fab { right: 18px; bottom: 18px; width: 62px; height: 62px; } .chat-fab svg { width: 28px; height: 28px; } }
 
 /* ПОПАП ЧАТА */
 .chat-modal { position: fixed; inset: 0; z-index: 210; display: none; align-items: flex-end; justify-content: flex-end; padding: 24px; pointer-events: none; }
@@ -534,7 +551,7 @@ body.chat-modal-open { overflow: hidden; }
     </nav>
     <div class="hd-block__phones">
       <a class="hd-block__phone-item" href="tel:+79771004415" data-cms="header.phone1">+7 977 100-44-15</a>
-      <a class="hd-block__phone-item hd-block__phone-item--secondary" href="tel:+79017448855" data-cms="header.phone2">+7 901 744-88-55</a>
+      <a class="hd-block__phone-item" href="tel:+79017448855" data-cms="header.phone2">+7 901 744-88-55</a>
     </div>
     <div class="hd-block__meta">
       <span class="hd-block__hours" data-cms="header.hours">пн–сб 10:00–21:00</span>
@@ -791,8 +808,8 @@ body.chat-modal-open { overflow: hidden; }
     <div>
       <p class="ft-block__col-title">Контакты</p>
       <ul class="ft-block__nav">
-        <li><a href="#measure">Запись на замер</a></li>
-        <li><a href="tel:+79771004415">Позвонить</a></li>
+        <li><button type="button" id="ft-measure-open">Запись на замер</button></li>
+        <li><button type="button" id="ft-call-open">Позвонить</button></li>
         <li><a href="https://t.me/design4060" target="_blank" rel="noopener">Написать в Telegram</a></li>
       </ul>
     </div>
@@ -856,6 +873,70 @@ body.chat-modal-open { overflow: hidden; }
         </div>
         <a class="kb-modal__cta" href="#measure" data-kb-close>Рассчитать кухню под мои размеры</a>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- МОДАЛКА «ЗАПИСЬ НА ЗАМЕР» (футер) -->
+<div class="ft-modal" id="ft-measure-modal" aria-hidden="true">
+  <div class="ft-modal__backdrop" data-ft-measure-close></div>
+  <div class="ft-modal__dialog" role="dialog" aria-modal="true">
+    <button type="button" class="ft-modal__close" data-ft-measure-close aria-label="Закрыть">✕</button>
+    <span class="ft-modal__eyebrow">Запись на замер</span>
+    <h3 class="ft-modal__title">Записаться на замер</h3>
+    <p class="ft-modal__subtitle">Оставьте контакт — специалист перезвонит и согласует удобное время замера.</p>
+    <form class="ft-modal__form" id="ft-measure-form">
+      <div class="ft-modal__field">
+        <label class="ft-modal__label" for="ft-measure-name">Ваше имя</label>
+        <input class="ft-modal__input" id="ft-measure-name" type="text" placeholder="Например, Андрей Белов" required>
+      </div>
+      <div class="ft-modal__field">
+        <label class="ft-modal__label" for="ft-measure-phone">Телефон</label>
+        <input class="ft-modal__input" id="ft-measure-phone" type="tel" placeholder="+7 (___) ___-__-__" required>
+      </div>
+      <div class="ft-modal__field">
+        <label class="ft-modal__label" for="ft-measure-tg">Telegram (не обязательно)</label>
+        <input class="ft-modal__input" id="ft-measure-tg" type="text" placeholder="nickname">
+      </div>
+      <label class="ft-modal__consent" id="ft-measure-consent-wrap">
+        <input type="checkbox" id="ft-measure-consent">
+        <span class="ft-modal__consent-box">✓</span>
+        <span>Я согласен на обработку персональных данных</span>
+      </label>
+      <div class="ft-modal__consent-error" id="ft-measure-consent-error">Поставьте галочку — нужно согласие на обработку данных</div>
+      <button type="submit" class="ft-modal__submit">Записаться на замер</button>
+    </form>
+    <div class="ft-modal__success" id="ft-measure-success">
+      <div class="ft-modal__success-icon">✓</div>
+      <h3 class="ft-modal__success-title">Заявка отправлена</h3>
+      <p class="ft-modal__success-text">Специалист скоро свяжется с вами.</p>
+    </div>
+  </div>
+</div>
+
+<!-- МОДАЛКА «ПОЗВОНИТЬ» -->
+<div class="ft-call" id="ft-call-modal" aria-hidden="true">
+  <div class="ft-call__backdrop" data-ft-call-close></div>
+  <div class="ft-call__dialog" role="dialog" aria-modal="true" aria-labelledby="ft-call-title">
+    <button type="button" class="ft-call__close" data-ft-call-close aria-label="Закрыть">✕</button>
+    <span class="ft-call__eyebrow">Связаться</span>
+    <h3 class="ft-call__title" id="ft-call-title">Позвонить нам</h3>
+    <p class="ft-call__subtitle">Выберите, кому удобнее позвонить — ответим в рабочее время (пн–сб 10:00–21:00).</p>
+    <div class="ft-call__list">
+      <a class="ft-call__item" href="tel:+79771004415">
+        <span class="ft-call__avatar" aria-hidden="true">И</span>
+        <span class="ft-call__info">
+          <span class="ft-call__name">Иван</span>
+          <span class="ft-call__phone">+7 977 100-44-15</span>
+        </span>
+      </a>
+      <a class="ft-call__item" href="tel:+79017448855">
+        <span class="ft-call__avatar" aria-hidden="true">С</span>
+        <span class="ft-call__info">
+          <span class="ft-call__name">Станислав</span>
+          <span class="ft-call__phone">+7 901 744-88-55</span>
+        </span>
+      </a>
     </div>
   </div>
 </div>
@@ -997,7 +1078,7 @@ body.chat-modal-open { overflow: hidden; }
   var vkConsent = bindConsent('vk-consent', 'vk-consent-wrap', 'vk-consent-error');
   var chatConsent = bindConsent('chat-consent', 'chat-consent-wrap', 'chat-consent-error');
 
-  /* Плашка «Понравилась» в форме замера */
+  /* Плашка «Понравилась» */
   var vkProject = document.getElementById('vk-project');
   var vkProjectName = document.getElementById('vk-project-name');
   var vkProjectInput = document.getElementById('vk-project-input');
@@ -1224,7 +1305,6 @@ body.chat-modal-open { overflow: hidden; }
     if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
   });
 
-  /* Клик по CTA в модалке проекта — записать проект в форму */
   var kbCta = document.querySelector('.kb-modal__cta');
   if (kbCta) {
     kbCta.addEventListener('click', function () {
@@ -1278,7 +1358,7 @@ body.chat-modal-open { overflow: hidden; }
     }
   }
 
-  /* ФОРМА ЗАМЕРА */
+  /* ФОРМА ЗАМЕРА (на странице) */
   var form = document.getElementById('vk-form');
   var success = document.getElementById('vk-success');
   if (form) {
@@ -1290,7 +1370,98 @@ body.chat-modal-open { overflow: hidden; }
     });
   }
 
-  /* ЧАТ */
+  /* МОДАЛКА «ЗАПИСЬ НА ЗАМЕР» (футер) */
+  (function () {
+    var modal = document.getElementById('ft-measure-modal');
+    var openBtn = document.getElementById('ft-measure-open');
+    var form = document.getElementById('ft-measure-form');
+    var success = document.getElementById('ft-measure-success');
+    var consent = document.getElementById('ft-measure-consent');
+    var consentWrap = document.getElementById('ft-measure-consent-wrap');
+    var consentErr = document.getElementById('ft-measure-consent-error');
+
+    function openModal() {
+      if (!modal) return;
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('ft-modal-open');
+    }
+    function closeModal() {
+      if (!modal) return;
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('ft-modal-open');
+      if (form) {
+        form.style.display = '';
+        form.reset();
+        if (consentWrap) consentWrap.classList.remove('is-error');
+        if (consentErr) consentErr.classList.remove('is-visible');
+      }
+      if (success) success.classList.remove('is-active');
+    }
+
+    if (openBtn) openBtn.addEventListener('click', openModal);
+    if (modal) {
+      modal.querySelectorAll('[data-ft-measure-close]').forEach(function (el) {
+        el.addEventListener('click', closeModal);
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+      });
+    }
+    if (consent) {
+      consent.addEventListener('change', function () {
+        if (consent.checked) {
+          if (consentWrap) consentWrap.classList.remove('is-error');
+          if (consentErr) consentErr.classList.remove('is-visible');
+        }
+      });
+    }
+    if (form) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (consent && !consent.checked) {
+          if (consentWrap) consentWrap.classList.add('is-error');
+          if (consentErr) consentErr.classList.add('is-visible');
+          try { consent.focus({ preventScroll: true }); } catch (er) { consent.focus(); }
+          return;
+        }
+        form.style.display = 'none';
+        if (success) success.classList.add('is-active');
+      });
+    }
+  })();
+
+  /* МОДАЛКА «ПОЗВОНИТЬ» */
+  (function () {
+    var modal = document.getElementById('ft-call-modal');
+    var openBtn = document.getElementById('ft-call-open');
+
+    function openModal() {
+      if (!modal) return;
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('ft-call-open');
+    }
+    function closeModal() {
+      if (!modal) return;
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('ft-call-open');
+    }
+
+    if (openBtn) openBtn.addEventListener('click', openModal);
+    if (modal) {
+      modal.querySelectorAll('[data-ft-call-close]').forEach(function (el) {
+        el.addEventListener('click', closeModal);
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+      });
+    }
+  })();
+
+  /* ПОПАП ЧАТА (FAB) */
   var chatFab = document.getElementById('chat-fab');
   var chatModal = document.getElementById('chat-modal');
   var chatForm = document.getElementById('chat-form');
@@ -1305,12 +1476,14 @@ body.chat-modal-open { overflow: hidden; }
   };
 
   function openChat() {
+    if (!chatModal) return;
     chatModal.classList.add('is-open');
     chatModal.setAttribute('aria-hidden', 'false');
     chatFab.setAttribute('aria-expanded', 'true');
     document.body.classList.add('chat-modal-open');
   }
   function closeChat() {
+    if (!chatModal) return;
     chatModal.classList.remove('is-open');
     chatModal.setAttribute('aria-hidden', 'true');
     chatFab.setAttribute('aria-expanded', 'false');
