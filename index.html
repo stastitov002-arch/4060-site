@@ -7,21 +7,10 @@
 <meta name="description" data-cms="meta.description" content="Кухни и корпусная мебель на заказ в Москве и области. От производителя, срок 21 день, гарантия 3 года.">
 <style>
 :root {
-  --c-bg: #0d0c0d;
-  --c-bg-alt: #141210;
-  --c-surface: #1d1a17;
-  --c-surface-2: #2a2620;
-  --c-line: #2a2622;
-  --c-accent: #c8a572;
-  --c-accent-h: #d4b279;
-  --c-accent-d: #b08a52;
-  --c-text: #f4ede2;
-  --c-text-mute: #8f8a7e;
-  --c-gold-strong: #f5b942;
-  --c-gold-light: #e9c884;
-  --c-success: #6fcf97;
-  --c-error: #e07a6a;
-  --c-green: #0c160e;
+  --c-bg: #0d0c0d; --c-bg-alt: #141210; --c-surface: #1d1a17; --c-surface-2: #2a2620;
+  --c-line: #2a2622; --c-accent: #c8a572; --c-accent-h: #d4b279; --c-accent-d: #b08a52;
+  --c-text: #f4ede2; --c-text-mute: #8f8a7e; --c-gold-strong: #f5b942; --c-gold-light: #e9c884;
+  --c-success: #6fcf97; --c-error: #e07a6a; --c-green: #0c160e;
 }
 html { scroll-behavior: smooth; }
 body { margin: 0; background: var(--c-bg); padding-top: 76px; font-family: "Inter","Helvetica Neue",Arial,sans-serif; overflow-x: hidden; }
@@ -29,17 +18,7 @@ body { margin: 0; background: var(--c-bg); padding-top: 76px; font-family: "Inte
 *, *::before, *::after { box-sizing: border-box; }
 input, textarea, select, button { max-width: 100%; font-size: 16px; }
 img, svg, video { max-width: 100%; height: auto; }
-
-.img-fallback {
-  position: absolute; inset: 0;
-  background-color: #1a1f17;
-  background-image:
-    radial-gradient(circle at 30% 30%, rgba(200,165,114,0.08) 0%, transparent 50%),
-    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none' stroke='%23c8a572' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M8 28 L32 12 L56 28'/><path d='M12 28 L12 52 L52 52 L52 28'/><rect x='24' y='38' width='16' height='14'/></svg>");
-  background-repeat: no-repeat; background-position: center; background-size: 30% auto;
-  z-index: 0;
-}
-
+.img-fallback { position: absolute; inset: 0; background-color: #1a1f17; background-image: radial-gradient(circle at 30% 30%, rgba(200,165,114,0.08) 0%, transparent 50%), url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none' stroke='%23c8a572' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M8 28 L32 12 L56 28'/><path d='M12 28 L12 52 L52 52 L52 28'/><rect x='24' y='38' width='16' height='14'/></svg>"); background-repeat: no-repeat; background-position: center; background-size: 30% auto; z-index: 0; }
 /* ШАПКА */
 .hd-block { position: fixed; top: 0; left: 0; right: 0; z-index: 50; width: 100%; background: var(--c-green); color: var(--c-accent); }
 .hd-block__inner { display: grid; grid-template-columns: auto 1fr auto auto; align-items: center; gap: 20px; max-width: 1140px; margin: 0 auto; padding: 14px 24px; }
@@ -69,13 +48,7 @@ img, svg, video { max-width: 100%; height: auto; }
 .hd-block__tg:hover { opacity: 1; }
 .hd-block__tg svg { display: block; }
 .hd-block__menu-contacts { display: none; }
-@media (max-width: 1080px) {
-  .hd-block__inner { gap: 16px; padding: 12px 20px; max-width: 100%; }
-  .hd-block__nav-list { gap: 18px; }
-  .hd-block__nav-link { font-size: 13px; }
-  .hd-block__phone-item { font-size: 12px; }
-  .hd-block__phones { padding-right: 16px; }
-}
+@media (max-width: 1080px) { .hd-block__inner { gap: 16px; padding: 12px 20px; max-width: 100%; } .hd-block__nav-list { gap: 18px; } .hd-block__nav-link { font-size: 13px; } .hd-block__phone-item { font-size: 12px; } .hd-block__phones { padding-right: 16px; } }
 @media (max-width: 720px) {
   .hd-block__inner { display: flex; flex-wrap: wrap; align-items: center; column-gap: 10px; padding: 12px 16px; }
   .hd-block__hours, .hd-block__meta { display: none; }
@@ -95,13 +68,7 @@ img, svg, video { max-width: 100%; height: auto; }
   .hd-block__menu-tg { display: inline-flex; align-items: center; gap: 6px; color: var(--c-accent); text-decoration: none; font-size: 14px; opacity: 0.85; }
   .hd-block__menu-tg svg { display: block; }
 }
-@media (max-width: 480px) {
-  .hd-block__inner { padding: 10px 14px; column-gap: 8px; }
-  .hd-block__logo { font-size: 20px; }
-  .hd-block__phone-item { font-size: 11px; }
-  .hd-block__burger { width: 36px; height: 36px; }
-}
-
+@media (max-width: 480px) { .hd-block__inner { padding: 10px 14px; column-gap: 8px; } .hd-block__logo { font-size: 20px; } .hd-block__phone-item { font-size: 11px; } .hd-block__burger { width: 36px; height: 36px; } }
 /* HERO */
 .h40-hero { position: relative; min-height: 100vh; min-height: 100svh; width: 100%; overflow: hidden; background: #0c0c0e; color: var(--c-text); isolation: isolate; }
 .h40-hero__media { position: absolute; inset: 0; z-index: 0; }
@@ -138,23 +105,9 @@ img, svg, video { max-width: 100%; height: auto; }
 .h40-hero--anim.h40-hero--in .h40-hero__badges { opacity: 1; transform: none; transition-delay: .66s; }
 .h40-hero--anim.h40-hero--in .h40-hero__actions { opacity: 1; transform: none; transition-delay: .82s; }
 @media (max-width: 960px) { .h40-hero__title { max-width: 18ch; } .h40-hero__veil { background: linear-gradient(180deg, rgba(8,8,10,0.55) 0%, rgba(8,8,10,0.35) 45%, rgba(8,8,10,0.82) 100%); } }
-@media (max-width: 640px) {
-  .h40-hero__inner { padding-top: 110px; padding-bottom: 100px; gap: 16px; }
-  .h40-hero__actions { gap: 10px; width: 100%; }
-  .h40-hero__btn { padding: 16px 22px; flex: 1 1 auto; justify-content: center; }
-  .h40-hero__badges { gap: 8px; }
-  .h40-hero__badge { font-size: 12px; padding: 7px 12px; }
-  .h40-hero__scroll { left: 50%; transform: translateX(-50%); bottom: 28px; }
-  .h40-hero__corner--br, .h40-hero__corner--tl { width: 32px; height: 32px; }
-}
+@media (max-width: 640px) { .h40-hero__inner { padding-top: 110px; padding-bottom: 100px; gap: 16px; } .h40-hero__actions { gap: 10px; width: 100%; } .h40-hero__btn { padding: 16px 22px; flex: 1 1 auto; justify-content: center; } .h40-hero__badges { gap: 8px; } .h40-hero__badge { font-size: 12px; padding: 7px 12px; } .h40-hero__scroll { left: 50%; transform: translateX(-50%); bottom: 28px; } .h40-hero__corner--br, .h40-hero__corner--tl { width: 32px; height: 32px; } }
 @media (max-width: 480px) { .h40-hero__title { font-size: clamp(2.05rem,9vw,2.6rem); } .h40-hero__subtitle { font-size: 0.95rem; } }
-@media (prefers-reduced-motion: reduce) {
-  .h40-hero__image { animation: none; transform: none; }
-  .h40-hero__scroll-line::after { animation: none; top: 0; opacity: 0.6; }
-  .h40-hero__btn { transition: none; }
-  .h40-hero--anim .h40-hero__eyebrow, .h40-hero--anim .h40-hero__title, .h40-hero--anim .h40-hero__subtitle, .h40-hero--anim .h40-hero__badges, .h40-hero--anim .h40-hero__actions { opacity: 1 !important; transform: none !important; transition: none !important; }
-}
-
+@media (prefers-reduced-motion: reduce) { .h40-hero__image { animation: none; transform: none; } .h40-hero__scroll-line::after { animation: none; top: 0; opacity: 0.6; } .h40-hero__btn { transition: none; } .h40-hero--anim .h40-hero__eyebrow, .h40-hero--anim .h40-hero__title, .h40-hero--anim .h40-hero__subtitle, .h40-hero--anim .h40-hero__badges, .h40-hero--anim .h40-hero__actions { opacity: 1 !important; transform: none !important; transition: none !important; } }
 /* ПОРТФОЛИО */
 .kb-sec { position: relative; background: linear-gradient(180deg, var(--c-bg) 0%, var(--c-bg-alt) 100%); color: var(--c-text); padding: clamp(64px,8vw,120px) 0 clamp(64px,8vw,110px); }
 .kb-sec__inner { max-width: 1440px; margin: 0 auto; padding: 0 clamp(20px,4vw,48px); }
@@ -193,17 +146,8 @@ img, svg, video { max-width: 100%; height: auto; }
 .kb-sec__cta-btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 26px; background: var(--c-accent); color: var(--c-bg); text-decoration: none; font-size: 14px; font-weight: 600; border-radius: 4px; white-space: nowrap; transition: background .25s, transform .25s; }
 .kb-sec__cta-btn:hover { background: var(--c-accent-h); transform: translateY(-2px); }
 @media (max-width: 1200px) { .kb-grid { grid-template-columns: repeat(3,1fr); } }
-@media (max-width: 900px) {
-  .kb-grid { grid-template-columns: repeat(2,1fr); gap: 16px; }
-  .kb-sec__cta-box { flex-direction: column; align-items: flex-start; gap: 24px; padding: 28px 24px; }
-  .kb-sec__cta-btn { width: 100%; justify-content: center; }
-}
-@media (max-width: 560px) {
-  .kb-grid { grid-template-columns: 1fr; gap: 14px; }
-  .kb-sec__head { flex-direction: column; align-items: flex-start; gap: 16px; }
-  .kb-sec__head-right { max-width: none; }
-}
-
+@media (max-width: 900px) { .kb-grid { grid-template-columns: repeat(2,1fr); gap: 16px; } .kb-sec__cta-box { flex-direction: column; align-items: flex-start; gap: 24px; padding: 28px 24px; } .kb-sec__cta-btn { width: 100%; justify-content: center; } }
+@media (max-width: 560px) { .kb-grid { grid-template-columns: 1fr; gap: 14px; } .kb-sec__head { flex-direction: column; align-items: flex-start; gap: 16px; } .kb-sec__head-right { max-width: none; } }
 /* ШОУРУМ */
 .sr-block { background: var(--c-bg); color: var(--c-text); }
 .sr-block__container { display: grid; grid-template-columns: 1.05fr 1fr; min-height: 560px; max-width: 1280px; margin: 0 auto; }
@@ -220,7 +164,6 @@ img, svg, video { max-width: 100%; height: auto; }
 .sr-block__btn:hover { background: var(--c-accent-h); border-color: var(--c-accent-h); }
 @media (max-width: 960px) { .sr-block__container { grid-template-columns: 1fr; } .sr-block__media { min-height: 360px; height: 360px; } .sr-block__content { padding: 56px 32px; } }
 @media (max-width: 640px) { .sr-block__media { height: 300px; } .sr-block__content { padding: 48px 20px; } }
-
 /* МОДАЛКА ШОУРУМА */
 .sr-modal { position: fixed; inset: 0; z-index: 200; display: none; align-items: center; justify-content: center; padding: 24px; }
 .sr-modal.is-open { display: flex; }
@@ -248,7 +191,6 @@ img, svg, video { max-width: 100%; height: auto; }
 .sr-form__submit:hover { background: var(--c-accent-h); border-color: var(--c-accent-h); }
 body.sr-modal-open { overflow: hidden; }
 @media (max-width: 640px) { .sr-modal { padding: 16px; } .sr-modal__dialog { padding: 36px 24px 28px; border-radius: 20px; } }
-
 /* ПРОЕКТ ПОД КЛЮЧ */
 .tpk-block { font-family: "Inter", Arial, sans-serif; color: #2b2a28; background: #fbf8f3; padding: 96px 24px 110px; }
 .tpk-block__container { max-width: 1200px; margin: 0 auto; }
@@ -269,8 +211,7 @@ body.sr-modal-open { overflow: hidden; }
 @media (max-width: 1200px) { .tpk-block__grid { grid-template-columns: repeat(3,1fr); } }
 @media (max-width: 960px) { .tpk-block { padding: 72px 20px 80px; } .tpk-block__grid { grid-template-columns: repeat(2,1fr); gap: 16px; } }
 @media (max-width: 480px) { .tpk-block__grid { grid-template-columns: 1fr; } }
-
-/* ЭТАПЫ РАБОТЫ */
+/* ЭТАПЫ */
 .st-steps { --accent: #b04a26; --ink: #161513; --muted: #56524a; --bg: #f6f4ee; --rail: rgba(22,21,19,0.14); --dot: 11px; --row-gap: clamp(28px,3.6vw,44px); --col-gap: clamp(48px,7vw,96px); --num-size: clamp(28px,3.2vw,36px); --title-size: clamp(18px,1.7vw,21px); background: var(--bg); color: var(--ink); padding: clamp(56px,7vw,88px) 0 clamp(64px,8vw,96px); position: relative; overflow: hidden; }
 .st-steps__inner { width: min(1180px, calc(100% - 48px)); margin: 0 auto; }
 .st-steps__head { max-width: 720px; margin: 0 0 clamp(36px,4.5vw,64px); }
@@ -294,18 +235,10 @@ body.sr-modal-open { overflow: hidden; }
 .st-steps--js .st-steps__item--in .st-steps__num { opacity: 1; transform: none; transition-delay: 0.08s; }
 .st-steps--js .st-steps__item--in .st-steps__title-step { opacity: 1; transform: none; transition-delay: 0.18s; }
 .st-steps--js .st-steps__item--in .st-steps__text { opacity: 1; transform: none; transition-delay: 0.28s; }
-@media (prefers-reduced-motion: reduce) {
-  .st-steps--js .st-steps__dot, .st-steps--js .st-steps__num, .st-steps--js .st-steps__title-step, .st-steps--js .st-steps__text { transition: none; opacity: 1; transform: none; }
-}
-@media (max-width: 960px) {
-  .st-steps__list::before { left: 18px; top: 6px; bottom: 6px; transform: none; }
-  .st-steps__item { display: block; padding: 18px 0 18px 52px; }
-  .st-steps__item:nth-child(odd) .st-steps__content, .st-steps__item:nth-child(even) .st-steps__content { grid-column: auto; grid-row: auto; justify-self: stretch; text-align: left; padding: 0; max-width: none; }
-  .st-steps__dot { left: 18px; top: 26px; margin-left: calc(var(--dot) / -2); }
-}
+@media (prefers-reduced-motion: reduce) { .st-steps--js .st-steps__dot, .st-steps--js .st-steps__num, .st-steps--js .st-steps__title-step, .st-steps--js .st-steps__text { transition: none; opacity: 1; transform: none; } }
+@media (max-width: 960px) { .st-steps__list::before { left: 18px; top: 6px; bottom: 6px; transform: none; } .st-steps__item { display: block; padding: 18px 0 18px 52px; } .st-steps__item:nth-child(odd) .st-steps__content, .st-steps__item:nth-child(even) .st-steps__content { grid-column: auto; grid-row: auto; justify-self: stretch; text-align: left; padding: 0; max-width: none; } .st-steps__dot { left: 18px; top: 26px; margin-left: calc(var(--dot) / -2); } }
 @media (max-width: 640px) { .st-steps__head { margin-bottom: 32px; } .st-steps__list::before { left: 14px; } .st-steps__item { padding: 14px 0 14px 42px; } .st-steps__dot { left: 14px; top: 20px; } }
 @media (max-width: 380px) { .st-steps { --row-gap: 20px; } .st-steps__title { font-size: 28px; } }
-
 /* FAQ */
 .faq-a7b { background: #f5f5f3; padding: clamp(48px,8vw,96px) 0; color: #1a1a1a; }
 .faq-a7b__container { max-width: 880px; margin: 0 auto; padding: 0 40px; }
@@ -330,7 +263,6 @@ body.sr-modal-open { overflow: hidden; }
 .faq-a7b__item--open .faq-a7b__answer { grid-template-rows: 1fr; }
 .faq-a7b__answer-inner { overflow: hidden; min-height: 0; }
 .faq-a7b__answer-inner p { margin: 0; padding: 0 32px 28px calc(32px + 30px + 24px); color: #4a4a48; line-height: 1.7; font-size: 16px; }
-
 /* ФОРМА ЗАМЕРА */
 .vk-measure { background: var(--c-surface); color: var(--c-text); padding: clamp(48px,7vw,88px) 20px; }
 .vk-measure__inner { max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; align-items: center; }
@@ -374,7 +306,6 @@ body.sr-modal-open { overflow: hidden; }
 .vk-measure__success-text { color: #b3a89a; font-size: 15px; margin: 0; max-width: 36ch; }
 @media (max-width: 960px) { .vk-measure__inner { grid-template-columns: 1fr; } }
 @media (max-width: 640px) { .vk-measure { padding: 40px 16px; } .vk-measure__card { padding: 24px 18px; } .vk-measure__perks { grid-template-columns: 1fr; } }
-
 /* ФУТЕР */
 .ft-block { background: var(--c-green); color: var(--c-accent); padding: 48px 20px 24px; border-top: 1px solid rgba(200,165,114,0.15); }
 .ft-block__wrap { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 32px; }
@@ -385,12 +316,9 @@ body.sr-modal-open { overflow: hidden; }
 .ft-block__contacts a { color: var(--c-accent); text-decoration: none; }
 .ft-block__col-title { font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--c-accent); opacity: 0.6; margin: 0 0 14px; }
 .ft-block__nav { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
-.ft-block__nav a,
-.ft-block__nav button { color: var(--c-accent); text-decoration: none; font-size: 14px; opacity: 0.85; background: none; border: 0; padding: 0; font-family: inherit; cursor: pointer; text-align: left; transition: opacity .2s; }
-.ft-block__nav a:hover,
-.ft-block__nav button:hover { opacity: 1; }
+.ft-block__nav a, .ft-block__nav button { color: var(--c-accent); text-decoration: none; font-size: 14px; opacity: 0.85; background: none; border: 0; padding: 0; font-family: inherit; cursor: pointer; text-align: left; transition: opacity .2s; }
+.ft-block__nav a:hover, .ft-block__nav button:hover { opacity: 1; }
 .ft-block__bottom { max-width: 1280px; margin: 40px auto 0; padding-top: 20px; border-top: 1px solid rgba(200,165,114,0.15); display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; font-size: 12px; color: #b3ada0; }
-
 /* МОДАЛКА ПРОЕКТА */
 .kb-modal { position: fixed; inset: 0; z-index: 200; display: none; align-items: flex-start; justify-content: center; padding: 24px 16px; overflow-y: auto; }
 .kb-modal.is-open { display: flex; }
@@ -421,7 +349,6 @@ body.sr-modal-open { overflow: hidden; }
 .kb-modal__cta:hover { background: var(--c-accent-h); }
 body.kb-modal-open { overflow: hidden; }
 @media (max-width: 640px) { .kb-modal__dialog { padding: 24px 18px; } .kb-modal__close { top: 6px; right: 6px; width: 36px; height: 36px; } }
-
 /* МОДАЛКИ ФУТЕРА */
 .ft-modal { position: fixed; inset: 0; z-index: 200; display: none; align-items: center; justify-content: center; padding: 24px; }
 .ft-modal.is-open { display: flex; }
@@ -454,8 +381,6 @@ body.kb-modal-open { overflow: hidden; }
 .ft-modal__success-text { color: rgba(247,241,232,0.65); font-size: 15px; margin: 0; max-width: 36ch; }
 body.ft-modal-open { overflow: hidden; }
 @media (max-width: 640px) { .ft-modal { padding: 16px; } .ft-modal__dialog { padding: 36px 24px 28px; border-radius: 20px; } }
-
-/* МОДАЛКА «ПОЗВОНИТЬ» */
 .ft-call { position: fixed; inset: 0; z-index: 200; display: none; align-items: center; justify-content: center; padding: 24px; }
 .ft-call.is-open { display: flex; }
 .ft-call__backdrop { position: absolute; inset: 0; background: rgba(13,12,13,0.85); backdrop-filter: blur(6px); }
@@ -475,16 +400,12 @@ body.ft-modal-open { overflow: hidden; }
 .ft-call__phone { font-size: 17px; font-weight: 600; color: #fff; white-space: nowrap; }
 body.ft-call-open { overflow: hidden; }
 @media (max-width: 640px) { .ft-call { padding: 16px; } .ft-call__dialog { padding: 36px 22px 26px; border-radius: 20px; } .ft-call__phone { font-size: 16px; } }
-
-/* КНОПКА ЧАТА */
 .chat-fab { position: fixed; right: 24px; bottom: 24px; z-index: 60; width: 56px; height: 56px; border-radius: 50%; background: var(--c-accent); color: var(--c-bg); border: none; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 12px 28px rgba(0,0,0,.4); transition: transform .25s, background .25s, box-shadow .25s; }
 .chat-fab:hover { background: var(--c-accent-h); transform: translateY(-2px); box-shadow: 0 16px 32px rgba(0,0,0,.45); }
 .chat-fab:focus-visible { outline: 2px solid var(--c-accent-h); outline-offset: 3px; }
 .chat-fab svg { width: 28px; height: 28px; display: block; }
 @media (max-width: 900px) { .chat-fab { width: 60px; height: 60px; } }
 @media (max-width: 720px) { .chat-fab { right: 18px; bottom: 18px; width: 62px; height: 62px; } .chat-fab svg { width: 28px; height: 28px; } }
-
-/* ПОПАП ЧАТА */
 .chat-modal { position: fixed; inset: 0; z-index: 210; display: none; align-items: flex-end; justify-content: flex-end; padding: 24px; pointer-events: none; }
 .chat-modal.is-open { display: flex; }
 .chat-modal__backdrop { position: absolute; inset: 0; background: rgba(13,12,13,0.7); backdrop-filter: blur(4px); pointer-events: auto; }
@@ -518,10 +439,7 @@ body.ft-call-open { overflow: hidden; }
 .chat-modal__success-title { font-size: 18px; font-weight: 700; margin: 0; color: #fff; }
 .chat-modal__success-text { font-size: 14px; margin: 0; color: rgba(244,237,226,0.7); line-height: 1.5; max-width: 30ch; }
 body.chat-modal-open { overflow: hidden; }
-@media (max-width: 480px) {
-  .chat-modal { padding: 0; align-items: stretch; justify-content: stretch; }
-  .chat-modal__dialog { max-width: 100%; max-height: 100vh; border-radius: 20px 20px 0 0; align-self: flex-end; padding: 28px 20px 24px; }
-}
+@media (max-width: 480px) { .chat-modal { padding: 0; align-items: stretch; justify-content: stretch; } .chat-modal__dialog { max-width: 100%; max-height: 100vh; border-radius: 20px 20px 0 0; align-self: flex-end; padding: 28px 20px 24px; } }
 </style>
 </head>
 
@@ -571,13 +489,8 @@ body.chat-modal-open { overflow: hidden; }
   </div>
   <div class="h40-hero__inner">
     <p class="h40-hero__eyebrow" data-cms="hero.eyebrow">Студия интерьерной мебели</p>
-    <h1 class="h40-hero__title" id="h40-hero-title" data-cms="hero.title">
-      Мы — компания <span class="h40-hero__title-em">40/60 Design</span><span class="h40-hero__title-dot">.</span>
-    </h1>
-    <p class="h40-hero__subtitle" data-cms="hero.subtitle">
-      Кухни и корпусная мебель под ключ<br>
-      в Москве и области
-    </p>
+    <h1 class="h40-hero__title" id="h40-hero-title" data-cms="hero.title">Мы — компания <span class="h40-hero__title-em">40/60 Design</span><span class="h40-hero__title-dot">.</span></h1>
+    <p class="h40-hero__subtitle" data-cms="hero.subtitle">Кухни и корпусная мебель под ключ<br>в Москве и области</p>
     <div class="h40-hero__badges">
       <span class="h40-hero__badge" data-cms="hero.badge1">21 день</span>
       <span class="h40-hero__badge" data-cms="hero.badge2">Гарантия 3 года</span>
@@ -607,9 +520,7 @@ body.chat-modal-open { overflow: hidden; }
       </div>
       <div class="kb-sec__head-right" data-cms="homePortfolio.subtitle">Откройте проект, чтобы увидеть описание материалов, фурнитуры и сроков реализации.</div>
     </header>
-    <ul class="kb-grid" id="kb-grid">
-      <li class="kb-sec__empty">Загружаем проекты…</li>
-    </ul>
+    <ul class="kb-grid" id="kb-grid"><li class="kb-sec__empty">Загружаем проекты…</li></ul>
     <div class="kb-sec__cta">
       <div class="kb-sec__cta-box">
         <div>
@@ -692,46 +603,10 @@ body.chat-modal-open { overflow: hidden; }
       <p class="faq-a7b__subtitle" data-cms="faq.subtitle">Ответы на популярные вопросы о нашей мебели и услугах</p>
     </header>
     <ul class="faq-a7b__list">
-      <li class="faq-a7b__item">
-        <button class="faq-a7b__question" type="button">
-          <span class="faq-a7b__num">01</span>
-          <span class="faq-a7b__q-text">Сколько стоит выезд дизайнера или замерщика?</span>
-          <span class="faq-a7b__icon"></span>
-        </button>
-        <div class="faq-a7b__answer" hidden>
-          <div class="faq-a7b__answer-inner"><p>Наши специалисты и доставка мебели бесплатно приезжают на объект на территории Москвы и ближнего МО.</p></div>
-        </div>
-      </li>
-      <li class="faq-a7b__item">
-        <button class="faq-a7b__question" type="button">
-          <span class="faq-a7b__num">02</span>
-          <span class="faq-a7b__q-text">Сколько производится мебель?</span>
-          <span class="faq-a7b__icon"></span>
-        </button>
-        <div class="faq-a7b__answer" hidden>
-          <div class="faq-a7b__answer-inner"><p>Мы изготавливаем вашу мебель за 21 день.</p></div>
-        </div>
-      </li>
-      <li class="faq-a7b__item">
-        <button class="faq-a7b__question" type="button">
-          <span class="faq-a7b__num">03</span>
-          <span class="faq-a7b__q-text">Возможна ли самостоятельная сборка мебели?</span>
-          <span class="faq-a7b__icon"></span>
-        </button>
-        <div class="faq-a7b__answer" hidden>
-          <div class="faq-a7b__answer-inner"><p>Да, возможна, но в этом случае гарантия не предоставляется.</p></div>
-        </div>
-      </li>
-      <li class="faq-a7b__item">
-        <button class="faq-a7b__question" type="button">
-          <span class="faq-a7b__num">04</span>
-          <span class="faq-a7b__q-text">Сколько стоит сборка мебели?</span>
-          <span class="faq-a7b__icon"></span>
-        </button>
-        <div class="faq-a7b__answer" hidden>
-          <div class="faq-a7b__answer-inner"><p>Стоимость сборки составляет 10% от стоимости мебели.</p></div>
-        </div>
-      </li>
+      <li class="faq-a7b__item"><button class="faq-a7b__question" type="button"><span class="faq-a7b__num">01</span><span class="faq-a7b__q-text">Сколько стоит выезд дизайнера или замерщика?</span><span class="faq-a7b__icon"></span></button><div class="faq-a7b__answer" hidden><div class="faq-a7b__answer-inner"><p>Наши специалисты и доставка мебели бесплатно приезжают на объект на территории Москвы и ближнего МО.</p></div></div></li>
+      <li class="faq-a7b__item"><button class="faq-a7b__question" type="button"><span class="faq-a7b__num">02</span><span class="faq-a7b__q-text">Сколько производится мебель?</span><span class="faq-a7b__icon"></span></button><div class="faq-a7b__answer" hidden><div class="faq-a7b__answer-inner"><p>Мы изготавливаем вашу мебель за 21 день.</p></div></div></li>
+      <li class="faq-a7b__item"><button class="faq-a7b__question" type="button"><span class="faq-a7b__num">03</span><span class="faq-a7b__q-text">Возможна ли самостоятельная сборка мебели?</span><span class="faq-a7b__icon"></span></button><div class="faq-a7b__answer" hidden><div class="faq-a7b__answer-inner"><p>Да, возможна, но в этом случае гарантия не предоставляется.</p></div></div></li>
+      <li class="faq-a7b__item"><button class="faq-a7b__question" type="button"><span class="faq-a7b__num">04</span><span class="faq-a7b__q-text">Сколько стоит сборка мебели?</span><span class="faq-a7b__icon"></span></button><div class="faq-a7b__answer" hidden><div class="faq-a7b__answer-inner"><p>Стоимость сборки составляет 10% от стоимости мебели.</p></div></div></li>
     </ul>
   </div>
 </section>
@@ -829,19 +704,9 @@ body.chat-modal-open { overflow: hidden; }
     <h3 class="sr-modal__title">Встреча в нашем шоуруме</h3>
     <p class="sr-modal__subtitle">Оставьте контакт — наш дизайнер свяжется с вами и согласует удобное время визита.</p>
     <form class="sr-form" id="sr-form">
-      <div class="sr-field">
-        <label class="sr-field__label" for="sr-name">Ваше имя</label>
-        <input class="sr-field__input" id="sr-name" type="text" placeholder="Например, Андрей Белов" required>
-      </div>
-      <div class="sr-field">
-        <label class="sr-field__label" for="sr-contact">Телефон</label>
-        <input class="sr-field__input" id="sr-contact" type="tel" placeholder="+7 (___) ___-__-__" required>
-      </div>
-      <label class="sr-consent" id="sr-consent-wrap">
-        <input type="checkbox" class="sr-consent__input" id="sr-consent">
-        <span class="sr-consent__box">✓</span>
-        <span class="sr-consent__text">Я согласен на обработку персональных данных</span>
-      </label>
+      <div class="sr-field"><label class="sr-field__label" for="sr-name">Ваше имя</label><input class="sr-field__input" id="sr-name" type="text" placeholder="Например, Андрей Белов" required></div>
+      <div class="sr-field"><label class="sr-field__label" for="sr-contact">Телефон</label><input class="sr-field__input" id="sr-contact" type="tel" placeholder="+7 (___) ___-__-__" required></div>
+      <label class="sr-consent" id="sr-consent-wrap"><input type="checkbox" class="sr-consent__input" id="sr-consent"><span class="sr-consent__box">✓</span><span class="sr-consent__text">Я согласен на обработку персональных данных</span></label>
       <div class="sr-consent-error" id="sr-consent-error">Поставьте галочку — нужно согласие на обработку данных</div>
       <button type="submit" class="sr-form__submit">Отправить заявку</button>
     </form>
@@ -855,9 +720,7 @@ body.chat-modal-open { overflow: hidden; }
     <button type="button" class="kb-modal__close" data-kb-close aria-label="Закрыть">✕</button>
     <div class="kb-modal__dialog">
       <div>
-        <div class="kb-modal__main-wrap">
-          <img class="kb-modal__main" id="kb-modal-img" src="" alt="">
-        </div>
+        <div class="kb-modal__main-wrap"><img class="kb-modal__main" id="kb-modal-img" src="" alt=""></div>
         <div class="kb-modal__thumbs" id="kb-modal-thumbs"></div>
       </div>
       <div>
@@ -877,7 +740,7 @@ body.chat-modal-open { overflow: hidden; }
   </div>
 </div>
 
-<!-- МОДАЛКА «ЗАПИСЬ НА ЗАМЕР» (футер) -->
+<!-- МОДАЛКА «ЗАПИСЬ НА ЗАМЕР» -->
 <div class="ft-modal" id="ft-measure-modal" aria-hidden="true">
   <div class="ft-modal__backdrop" data-ft-measure-close></div>
   <div class="ft-modal__dialog" role="dialog" aria-modal="true">
@@ -886,31 +749,14 @@ body.chat-modal-open { overflow: hidden; }
     <h3 class="ft-modal__title">Записаться на замер</h3>
     <p class="ft-modal__subtitle">Оставьте контакт — специалист перезвонит и согласует удобное время замера.</p>
     <form class="ft-modal__form" id="ft-measure-form">
-      <div class="ft-modal__field">
-        <label class="ft-modal__label" for="ft-measure-name">Ваше имя</label>
-        <input class="ft-modal__input" id="ft-measure-name" type="text" placeholder="Например, Андрей Белов" required>
-      </div>
-      <div class="ft-modal__field">
-        <label class="ft-modal__label" for="ft-measure-phone">Телефон</label>
-        <input class="ft-modal__input" id="ft-measure-phone" type="tel" placeholder="+7 (___) ___-__-__" required>
-      </div>
-      <div class="ft-modal__field">
-        <label class="ft-modal__label" for="ft-measure-tg">Telegram (не обязательно)</label>
-        <input class="ft-modal__input" id="ft-measure-tg" type="text" placeholder="nickname">
-      </div>
-      <label class="ft-modal__consent" id="ft-measure-consent-wrap">
-        <input type="checkbox" id="ft-measure-consent">
-        <span class="ft-modal__consent-box">✓</span>
-        <span>Я согласен на обработку персональных данных</span>
-      </label>
+      <div class="ft-modal__field"><label class="ft-modal__label" for="ft-measure-name">Ваше имя</label><input class="ft-modal__input" id="ft-measure-name" type="text" placeholder="Например, Андрей Белов" required></div>
+      <div class="ft-modal__field"><label class="ft-modal__label" for="ft-measure-phone">Телефон</label><input class="ft-modal__input" id="ft-measure-phone" type="tel" placeholder="+7 (___) ___-__-__" required></div>
+      <div class="ft-modal__field"><label class="ft-modal__label" for="ft-measure-tg">Telegram (не обязательно)</label><input class="ft-modal__input" id="ft-measure-tg" type="text" placeholder="nickname"></div>
+      <label class="ft-modal__consent" id="ft-measure-consent-wrap"><input type="checkbox" id="ft-measure-consent"><span class="ft-modal__consent-box">✓</span><span>Я согласен на обработку персональных данных</span></label>
       <div class="ft-modal__consent-error" id="ft-measure-consent-error">Поставьте галочку — нужно согласие на обработку данных</div>
       <button type="submit" class="ft-modal__submit">Записаться на замер</button>
     </form>
-    <div class="ft-modal__success" id="ft-measure-success">
-      <div class="ft-modal__success-icon">✓</div>
-      <h3 class="ft-modal__success-title">Заявка отправлена</h3>
-      <p class="ft-modal__success-text">Специалист скоро свяжется с вами.</p>
-    </div>
+    <div class="ft-modal__success" id="ft-measure-success"><div class="ft-modal__success-icon">✓</div><h3 class="ft-modal__success-title">Заявка отправлена</h3><p class="ft-modal__success-text">Специалист скоро свяжется с вами.</p></div>
   </div>
 </div>
 
@@ -923,29 +769,15 @@ body.chat-modal-open { overflow: hidden; }
     <h3 class="ft-call__title" id="ft-call-title">Позвонить нам</h3>
     <p class="ft-call__subtitle">Выберите, кому удобнее позвонить — ответим в рабочее время (пн–сб 10:00–21:00).</p>
     <div class="ft-call__list">
-      <a class="ft-call__item" href="tel:+79771004415">
-        <span class="ft-call__avatar" aria-hidden="true">И</span>
-        <span class="ft-call__info">
-          <span class="ft-call__name">Иван</span>
-          <span class="ft-call__phone">+7 977 100-44-15</span>
-        </span>
-      </a>
-      <a class="ft-call__item" href="tel:+79017448855">
-        <span class="ft-call__avatar" aria-hidden="true">С</span>
-        <span class="ft-call__info">
-          <span class="ft-call__name">Станислав</span>
-          <span class="ft-call__phone">+7 901 744-88-55</span>
-        </span>
-      </a>
+      <a class="ft-call__item" href="tel:+79771004415"><span class="ft-call__avatar" aria-hidden="true">И</span><span class="ft-call__info"><span class="ft-call__name">Иван</span><span class="ft-call__phone">+7 977 100-44-15</span></span></a>
+      <a class="ft-call__item" href="tel:+79017448855"><span class="ft-call__avatar" aria-hidden="true">С</span><span class="ft-call__info"><span class="ft-call__name">Станислав</span><span class="ft-call__phone">+7 901 744-88-55</span></span></a>
     </div>
   </div>
 </div>
 
 <!-- КНОПКА ЧАТА -->
 <button class="chat-fab" id="chat-fab" type="button" aria-label="Написать нам" aria-controls="chat-modal" aria-expanded="false">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-  </svg>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
 </button>
 
 <!-- ПОПАП ЧАТА -->
@@ -955,40 +787,20 @@ body.chat-modal-open { overflow: hidden; }
     <button type="button" class="chat-modal__close" data-chat-close aria-label="Закрыть">✕</button>
     <h3 class="chat-modal__title" id="chat-modal-title">Есть вопросы? Напишите нам!</h3>
     <div class="chat-modal__tabs" role="tablist">
-      <button type="button" class="chat-modal__tab is-active" data-chat-tab="telegram" role="tab" aria-selected="true">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
-        Telegram
-      </button>
-      <button type="button" class="chat-modal__tab" data-chat-tab="whatsapp" role="tab" aria-selected="false">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9s-.5-.1-.7.1-.8.9-1 1.1-.4.2-.7.1-1.3-.5-2.4-1.5-1.8-2.3-2-2.6-.1-.5 0-.6.3-.3.5-.6c.1-.2.2-.4.3-.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.4s-1 1-1 2.4 1 2.8 1.2 3c.2.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.7.5-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3zM12 21.8c-1.7 0-3.4-.5-4.9-1.4L2 22l1.7-5c-1-1.5-1.5-3.2-1.5-5C2.2 6.6 6.6 2.2 12 2.2s9.8 4.4 9.8 9.8-4.4 9.8-9.8 9.8z"/></svg>
-        WhatsApp
-      </button>
-      <button type="button" class="chat-modal__tab" data-chat-tab="vk" role="tab" aria-selected="false">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.8 17.4c-5.7 0-9-3.9-9.1-10.4h2.9c.1 4.8 2.2 6.8 3.8 7.2V7h2.7v4.1c1.6-.2 3.3-2 3.9-4.1h2.7c-.4 2.6-2.2 4.4-3.5 5.1 1.3.6 3.3 2.2 4.1 5.3h-3c-.6-2-2.1-3.5-4.2-3.7v3.7h-.3z"/></svg>
-        VK
-      </button>
-      <button type="button" class="chat-modal__tab" data-chat-tab="max" role="tab" aria-selected="false">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 7.1 17.1l2.9 1-1-2.9A10 10 0 0 0 12 2zm0 15.5a5.5 5.5 0 1 1 4.6-2.5l.7 2-2-.7a5.5 5.5 0 0 1-3.3 1.2zm-2-8a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm4 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>
-        Max
-      </button>
+      <button type="button" class="chat-modal__tab is-active" data-chat-tab="telegram" role="tab" aria-selected="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>Telegram</button>
+      <button type="button" class="chat-modal__tab" data-chat-tab="whatsapp" role="tab" aria-selected="false"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9s-.5-.1-.7.1-.8.9-1 1.1-.4.2-.7.1-1.3-.5-2.4-1.5-1.8-2.3-2-2.6-.1-.5 0-.6.3-.3.5-.6c.1-.2.2-.4.3-.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.4s-1 1-1 2.4 1 2.8 1.2 3c.2.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.7.5-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3zM12 21.8c-1.7 0-3.4-.5-4.9-1.4L2 22l1.7-5c-1-1.5-1.5-3.2-1.5-5C2.2 6.6 6.6 2.2 12 2.2s9.8 4.4 9.8 9.8-4.4 9.8-9.8 9.8z"/></svg>WhatsApp</button>
+      <button type="button" class="chat-modal__tab" data-chat-tab="vk" role="tab" aria-selected="false"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.8 17.4c-5.7 0-9-3.9-9.1-10.4h2.9c.1 4.8 2.2 6.8 3.8 7.2V7h2.7v4.1c1.6-.2 3.3-2 3.9-4.1h2.7c-.4 2.6-2.2 4.4-3.5 5.1 1.3.6 3.3 2.2 4.1 5.3h-3c-.6-2-2.1-3.5-4.2-3.7v3.7h-.3z"/></svg>VK</button>
+      <button type="button" class="chat-modal__tab" data-chat-tab="max" role="tab" aria-selected="false"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 7.1 17.1l2.9 1-1-2.9A10 10 0 0 0 12 2zm0 15.5a5.5 5.5 0 1 1 4.6-2.5l.7 2-2-.7a5.5 5.5 0 0 1-3.3 1.2zm-2-8a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm4 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>Max</button>
     </div>
     <form class="chat-modal__form" id="chat-form">
       <input class="chat-modal__input" type="text" name="contact" id="chat-contact" placeholder="@username или телефон" required>
       <input class="chat-modal__input" type="text" name="name" placeholder="Например, Андрей Белов" required>
       <textarea class="chat-modal__textarea" name="message" placeholder="Напишите ваш вопрос. Свяжемся в ближайшее время)" required></textarea>
-      <label class="chat-modal__consent" id="chat-consent-wrap">
-        <input type="checkbox" id="chat-consent">
-        <span class="chat-modal__consent-box">✓</span>
-        <span>Я согласен с условиями обслуживания</span>
-      </label>
+      <label class="chat-modal__consent" id="chat-consent-wrap"><input type="checkbox" id="chat-consent"><span class="chat-modal__consent-box">✓</span><span>Я согласен с условиями обслуживания</span></label>
       <div class="chat-modal__consent-error" id="chat-consent-error">Поставьте галочку — нужно согласие на обработку данных</div>
       <button type="submit" class="chat-modal__submit">Отправить</button>
     </form>
-    <div class="chat-modal__success" id="chat-success">
-      <div class="chat-modal__success-icon">✓</div>
-      <h4 class="chat-modal__success-title">Спасибо!</h4>
-      <p class="chat-modal__success-text">Мы свяжемся с вами в ближайшее время.</p>
-    </div>
+    <div class="chat-modal__success" id="chat-success"><div class="chat-modal__success-icon">✓</div><h4 class="chat-modal__success-title">Спасибо!</h4><p class="chat-modal__success-text">Мы свяжемся с вами в ближайшее время.</p></div>
   </div>
 </div>
 
@@ -997,6 +809,12 @@ body.chat-modal-open { overflow: hidden; }
 (function () {
   'use strict';
   var REPO = 'stastitov002-arch/4060-site';
+
+  /* ФИКС: убирает ведущий слэш в путях к картинкам */
+  function fixImgPath(url) {
+    if (!url) return url;
+    return String(url).replace(/^\/+/, '');
+  }
 
   /* ШАПКА */
   var header = document.querySelector('.hd-block');
@@ -1021,11 +839,7 @@ body.chat-modal-open { overflow: hidden; }
     if (!hero) return;
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     hero.classList.add('h40-hero--anim');
-    requestAnimationFrame(function () {
-      requestAnimationFrame(function () {
-        hero.classList.add('h40-hero--in');
-      });
-    });
+    requestAnimationFrame(function () { requestAnimationFrame(function () { hero.classList.add('h40-hero--in'); }); });
   })();
 
   /* st-steps reveal */
@@ -1041,10 +855,7 @@ body.chat-modal-open { overflow: hidden; }
     var items = root.querySelectorAll('.st-steps__item');
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('st-steps__item--in');
-          io.unobserve(entry.target);
-        }
+        if (entry.isIntersecting) { entry.target.classList.add('st-steps__item--in'); io.unobserve(entry.target); }
       });
     }, { threshold: 0.2, rootMargin: '0px 0px -60px 0px' });
     for (var j = 0; j < items.length; j++) io.observe(items[j]);
@@ -1057,10 +868,7 @@ body.chat-modal-open { overflow: hidden; }
     var err = document.getElementById(errId);
     if (!input || !wrap || !err) return null;
     input.addEventListener('change', function () {
-      if (input.checked) {
-        wrap.classList.remove('is-error');
-        err.classList.remove('is-visible');
-      }
+      if (input.checked) { wrap.classList.remove('is-error'); err.classList.remove('is-visible'); }
     });
     return {
       check: function () {
@@ -1088,22 +896,10 @@ body.chat-modal-open { overflow: hidden; }
 
   function setSelectedProject(title) {
     if (!vkProject) return;
-    if (title) {
-      vkProjectName.textContent = title;
-      vkProjectInput.value = title;
-      vkProject.removeAttribute('hidden');
-    } else {
-      vkProjectName.textContent = '';
-      vkProjectInput.value = '';
-      vkProject.setAttribute('hidden', '');
-    }
+    if (title) { vkProjectName.textContent = title; vkProjectInput.value = title; vkProject.removeAttribute('hidden'); }
+    else { vkProjectName.textContent = ''; vkProjectInput.value = ''; vkProject.setAttribute('hidden', ''); }
   }
-
-  if (vkProjectClear) {
-    vkProjectClear.addEventListener('click', function () {
-      setSelectedProject('');
-    });
-  }
+  if (vkProjectClear) vkProjectClear.addEventListener('click', function () { setSelectedProject(''); });
 
   /* YAML */
   function parseYaml(text) {
@@ -1151,9 +947,7 @@ body.chat-modal-open { overflow: hidden; }
         parent.insertBefore(fb, parent.firstChild);
       }
     });
-    if (img.complete && img.naturalWidth === 0) {
-      img.dispatchEvent(new Event('error'));
-    }
+    if (img.complete && img.naturalWidth === 0) img.dispatchEvent(new Event('error'));
   }
 
   var allProjects = [];
@@ -1166,17 +960,17 @@ body.chat-modal-open { overflow: hidden; }
     var title = d.title || 'Проект';
     var price = d.price ? parseInt(d.price, 10) : null;
     var budget = budgetByPrice(price);
+    var coverSrc = fixImgPath(d.cover);
     var li = document.createElement('li');
     li.className = 'kb-card';
     li.setAttribute('data-index', String(i));
     li.innerHTML =
       '<div class="kb-card__media">' +
-        (d.cover ? '<img class="kb-card__img" src="' + esc(d.cover) + '" alt="' + esc(title) + '" loading="lazy">' : '') +
+        (coverSrc ? '<img class="kb-card__img" src="' + esc(coverSrc) + '" alt="' + esc(title) + '" loading="lazy">' : '') +
         '<div class="kb-card__gradient"></div>' +
         (budget ? '<span class="kb-card__badge">' + esc(budget) + '</span>' : '') +
         '<div class="kb-card__over"><h3 class="kb-card__title">' + esc(title) + '</h3>' +
-        (d.style ? '<span class="kb-card__style">' + esc(d.style) + '</span>' : '') +
-        '</div>' +
+        (d.style ? '<span class="kb-card__style">' + esc(d.style) + '</span>' : '') + '</div>' +
       '</div>' +
       '<div class="kb-card__body">' +
         '<dl class="kb-card__specs">' +
@@ -1195,31 +989,18 @@ body.chat-modal-open { overflow: hidden; }
     fetch('https://api.github.com/repos/' + REPO + '/contents/_projects?ref=main')
       .then(function (r) { return r.json(); })
       .then(function (files) {
-        if (!Array.isArray(files)) {
-          grid.innerHTML = '<li class="kb-sec__empty">Проектов пока нет.</li>';
-          return;
-        }
+        if (!Array.isArray(files)) { grid.innerHTML = '<li class="kb-sec__empty">Проектов пока нет.</li>'; return; }
         var md = files.filter(function (f) { return f.name.endsWith('.md'); });
-        return Promise.all(md.map(function (f) {
-          return fetch(f.download_url).then(function (r) { return r.text(); });
-        })).then(function (contents) {
-          var projects = contents.map(function (t) { return { data: parseYaml(t) }; });
-          allProjects = projects.filter(function (p) {
-            return p.data.featured === 'true';
-          }).slice(0, 4);
-          grid.innerHTML = '';
-          if (!allProjects.length) {
-            grid.innerHTML = '<li class="kb-sec__empty">Пока нет избранных проектов.</li>';
-            return;
-          }
-          allProjects.forEach(function (p, i) {
-            grid.appendChild(renderCard(p, i));
+        return Promise.all(md.map(function (f) { return fetch(f.download_url).then(function (r) { return r.text(); }); }))
+          .then(function (contents) {
+            var projects = contents.map(function (t) { return { data: parseYaml(t) }; });
+            allProjects = projects.filter(function (p) { return p.data.featured === 'true'; }).slice(0, 4);
+            grid.innerHTML = '';
+            if (!allProjects.length) { grid.innerHTML = '<li class="kb-sec__empty">Пока нет избранных проектов.</li>'; return; }
+            allProjects.forEach(function (p, i) { grid.appendChild(renderCard(p, i)); });
           });
-        });
       })
-      .catch(function () {
-        grid.innerHTML = '<li class="kb-sec__empty">Ошибка загрузки.</li>';
-      });
+      .catch(function () { grid.innerHTML = '<li class="kb-sec__empty">Ошибка загрузки.</li>'; });
   }
 
   function openModal(idx) {
@@ -1243,7 +1024,7 @@ body.chat-modal-open { overflow: hidden; }
     var oldFb = mainWrap.querySelector('.img-fallback');
     if (oldFb) oldFb.remove();
     main.style.display = '';
-    main.src = d.cover || '';
+    main.src = fixImgPath(d.cover) || '';
     attachFallback(main);
 
     var thumbs = document.getElementById('kb-modal-thumbs');
@@ -1253,7 +1034,7 @@ body.chat-modal-open { overflow: hidden; }
         var wrap = document.createElement('div');
         wrap.className = 'kb-modal__thumb-wrap' + (i === 0 ? ' is-current' : '');
         var im = document.createElement('img');
-        im.src = url;
+        im.src = fixImgPath(url);
         im.alt = title + ' — фото ' + (i + 2);
         attachFallback(im);
         wrap.appendChild(im);
@@ -1261,10 +1042,8 @@ body.chat-modal-open { overflow: hidden; }
           var oldFb2 = mainWrap.querySelector('.img-fallback');
           if (oldFb2) oldFb2.remove();
           main.style.display = '';
-          main.src = url;
-          thumbs.querySelectorAll('.kb-modal__thumb-wrap').forEach(function (x) {
-            x.classList.remove('is-current');
-          });
+          main.src = fixImgPath(url);
+          thumbs.querySelectorAll('.kb-modal__thumb-wrap').forEach(function (x) { x.classList.remove('is-current'); });
           wrap.classList.add('is-current');
         });
         thumbs.appendChild(wrap);
@@ -1299,21 +1078,13 @@ body.chat-modal-open { overflow: hidden; }
     if (!card) return;
     openModal(parseInt(card.getAttribute('data-index'), 10));
   });
-  modal.addEventListener('click', function (e) {
-    if (e.target.closest('[data-kb-close]')) closeModal();
-  });
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
-  });
+  modal.addEventListener('click', function (e) { if (e.target.closest('[data-kb-close]')) closeModal(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal(); });
 
   var kbCta = document.querySelector('.kb-modal__cta');
-  if (kbCta) {
-    kbCta.addEventListener('click', function () {
-      if (currentProject && currentProject.data && currentProject.data.title) {
-        setSelectedProject(currentProject.data.title);
-      }
-    });
-  }
+  if (kbCta) kbCta.addEventListener('click', function () {
+    if (currentProject && currentProject.data && currentProject.data.title) setSelectedProject(currentProject.data.title);
+  });
 
   /* FAQ */
   document.querySelectorAll('.faq-a7b__question').forEach(function (btn) {
@@ -1321,8 +1092,7 @@ body.chat-modal-open { overflow: hidden; }
       var item = btn.closest('.faq-a7b__item');
       var ans = item.querySelector('.faq-a7b__answer');
       var open = item.classList.toggle('faq-a7b__item--open');
-      if (open) ans.removeAttribute('hidden');
-      else ans.setAttribute('hidden', '');
+      if (open) ans.removeAttribute('hidden'); else ans.setAttribute('hidden', '');
     });
   });
 
@@ -1330,46 +1100,30 @@ body.chat-modal-open { overflow: hidden; }
   var srModal = document.getElementById('sr-modal');
   var srOpen = document.getElementById('sr-open');
   if (srModal && srOpen) {
-    srOpen.addEventListener('click', function () {
-      srModal.classList.add('is-open');
-      srModal.setAttribute('aria-hidden', 'false');
-      document.body.classList.add('sr-modal-open');
-    });
+    srOpen.addEventListener('click', function () { srModal.classList.add('is-open'); srModal.setAttribute('aria-hidden', 'false'); document.body.classList.add('sr-modal-open'); });
     srModal.querySelectorAll('[data-sr-close]').forEach(function (el) {
-      el.addEventListener('click', function () {
-        srModal.classList.remove('is-open');
-        srModal.setAttribute('aria-hidden', 'true');
-        document.body.classList.remove('sr-modal-open');
-      });
+      el.addEventListener('click', function () { srModal.classList.remove('is-open'); srModal.setAttribute('aria-hidden', 'true'); document.body.classList.remove('sr-modal-open'); });
     });
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && srModal.classList.contains('is-open')) {
-        srModal.classList.remove('is-open');
-        srModal.setAttribute('aria-hidden', 'true');
-        document.body.classList.remove('sr-modal-open');
-      }
+      if (e.key === 'Escape' && srModal.classList.contains('is-open')) { srModal.classList.remove('is-open'); srModal.setAttribute('aria-hidden', 'true'); document.body.classList.remove('sr-modal-open'); }
     });
     var srForm = document.getElementById('sr-form');
-    if (srForm) {
-      srForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-        if (srConsent && !srConsent.check()) return;
-        srForm.innerHTML = '<p style="text-align:center;color:#d4b279;font-size:15px;padding:20px 0;">Спасибо! Заявка отправлена — дизайнер свяжется с вами.</p>';
-      });
-    }
-  }
-
-  /* ФОРМА ЗАМЕРА (на странице) */
-  var form = document.getElementById('vk-form');
-  var success = document.getElementById('vk-success');
-  if (form) {
-    form.addEventListener('submit', function (e) {
+    if (srForm) srForm.addEventListener('submit', function (e) {
       e.preventDefault();
-      if (vkConsent && !vkConsent.check()) return;
-      form.style.display = 'none';
-      success.classList.add('is-active');
+      if (srConsent && !srConsent.check()) return;
+      srForm.innerHTML = '<p style="text-align:center;color:#d4b279;font-size:15px;padding:20px 0;">Спасибо! Заявка отправлена — дизайнер свяжется с вами.</p>';
     });
   }
+
+  /* ФОРМА ЗАМЕРА */
+  var form = document.getElementById('vk-form');
+  var success = document.getElementById('vk-success');
+  if (form) form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (vkConsent && !vkConsent.check()) return;
+    form.style.display = 'none';
+    success.classList.add('is-active');
+  });
 
   /* МОДАЛКА «ЗАПИСЬ НА ЗАМЕР» (футер) */
   (function () {
@@ -1380,173 +1134,81 @@ body.chat-modal-open { overflow: hidden; }
     var consent = document.getElementById('ft-measure-consent');
     var consentWrap = document.getElementById('ft-measure-consent-wrap');
     var consentErr = document.getElementById('ft-measure-consent-error');
-
-    function openModal() {
-      if (!modal) return;
-      modal.classList.add('is-open');
-      modal.setAttribute('aria-hidden', 'false');
-      document.body.classList.add('ft-modal-open');
-    }
+    function openModal() { if (!modal) return; modal.classList.add('is-open'); modal.setAttribute('aria-hidden', 'false'); document.body.classList.add('ft-modal-open'); }
     function closeModal() {
       if (!modal) return;
-      modal.classList.remove('is-open');
-      modal.setAttribute('aria-hidden', 'true');
-      document.body.classList.remove('ft-modal-open');
-      if (form) {
-        form.style.display = '';
-        form.reset();
-        if (consentWrap) consentWrap.classList.remove('is-error');
-        if (consentErr) consentErr.classList.remove('is-visible');
-      }
+      modal.classList.remove('is-open'); modal.setAttribute('aria-hidden', 'true'); document.body.classList.remove('ft-modal-open');
+      if (form) { form.style.display = ''; form.reset(); if (consentWrap) consentWrap.classList.remove('is-error'); if (consentErr) consentErr.classList.remove('is-visible'); }
       if (success) success.classList.remove('is-active');
     }
-
     if (openBtn) openBtn.addEventListener('click', openModal);
     if (modal) {
-      modal.querySelectorAll('[data-ft-measure-close]').forEach(function (el) {
-        el.addEventListener('click', closeModal);
-      });
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
-      });
+      modal.querySelectorAll('[data-ft-measure-close]').forEach(function (el) { el.addEventListener('click', closeModal); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal(); });
     }
-    if (consent) {
-      consent.addEventListener('change', function () {
-        if (consent.checked) {
-          if (consentWrap) consentWrap.classList.remove('is-error');
-          if (consentErr) consentErr.classList.remove('is-visible');
-        }
-      });
-    }
-    if (form) {
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        if (consent && !consent.checked) {
-          if (consentWrap) consentWrap.classList.add('is-error');
-          if (consentErr) consentErr.classList.add('is-visible');
-          try { consent.focus({ preventScroll: true }); } catch (er) { consent.focus(); }
-          return;
-        }
-        form.style.display = 'none';
-        if (success) success.classList.add('is-active');
-      });
-    }
+    if (consent) consent.addEventListener('change', function () { if (consent.checked) { if (consentWrap) consentWrap.classList.remove('is-error'); if (consentErr) consentErr.classList.remove('is-visible'); } });
+    if (form) form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (consent && !consent.checked) { if (consentWrap) consentWrap.classList.add('is-error'); if (consentErr) consentErr.classList.add('is-visible'); try { consent.focus({ preventScroll: true }); } catch (er) { consent.focus(); } return; }
+      form.style.display = 'none'; if (success) success.classList.add('is-active');
+    });
   })();
 
   /* МОДАЛКА «ПОЗВОНИТЬ» */
   (function () {
     var modal = document.getElementById('ft-call-modal');
     var openBtn = document.getElementById('ft-call-open');
-
-    function openModal() {
-      if (!modal) return;
-      modal.classList.add('is-open');
-      modal.setAttribute('aria-hidden', 'false');
-      document.body.classList.add('ft-call-open');
-    }
-    function closeModal() {
-      if (!modal) return;
-      modal.classList.remove('is-open');
-      modal.setAttribute('aria-hidden', 'true');
-      document.body.classList.remove('ft-call-open');
-    }
-
+    function openModal() { if (!modal) return; modal.classList.add('is-open'); modal.setAttribute('aria-hidden', 'false'); document.body.classList.add('ft-call-open'); }
+    function closeModal() { if (!modal) return; modal.classList.remove('is-open'); modal.setAttribute('aria-hidden', 'true'); document.body.classList.remove('ft-call-open'); }
     if (openBtn) openBtn.addEventListener('click', openModal);
     if (modal) {
-      modal.querySelectorAll('[data-ft-call-close]').forEach(function (el) {
-        el.addEventListener('click', closeModal);
-      });
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
-      });
+      modal.querySelectorAll('[data-ft-call-close]').forEach(function (el) { el.addEventListener('click', closeModal); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal(); });
     }
   })();
 
-  /* ПОПАП ЧАТА (FAB) */
+  /* ПОПАП ЧАТА */
   var chatFab = document.getElementById('chat-fab');
   var chatModal = document.getElementById('chat-modal');
   var chatForm = document.getElementById('chat-form');
   var chatSuccess = document.getElementById('chat-success');
   var chatContact = document.getElementById('chat-contact');
 
-  var placeholderMap = {
-    telegram: '@username или телефон',
-    whatsapp: '+7 (___) ___-__-__',
-    vk: 'Ссылка на профиль или ID',
-    max: 'Телефон или @username'
-  };
+  var placeholderMap = { telegram: '@username или телефон', whatsapp: '+7 (___) ___-__-__', vk: 'Ссылка на профиль или ID', max: 'Телефон или @username' };
 
-  function openChat() {
-    if (!chatModal) return;
-    chatModal.classList.add('is-open');
-    chatModal.setAttribute('aria-hidden', 'false');
-    chatFab.setAttribute('aria-expanded', 'true');
-    document.body.classList.add('chat-modal-open');
-  }
+  function openChat() { if (!chatModal) return; chatModal.classList.add('is-open'); chatModal.setAttribute('aria-hidden', 'false'); chatFab.setAttribute('aria-expanded', 'true'); document.body.classList.add('chat-modal-open'); }
   function closeChat() {
     if (!chatModal) return;
-    chatModal.classList.remove('is-open');
-    chatModal.setAttribute('aria-hidden', 'true');
-    chatFab.setAttribute('aria-expanded', 'false');
-    document.body.classList.remove('chat-modal-open');
-    if (chatForm) {
-      chatForm.style.display = '';
-      chatForm.reset();
-      var cw = document.getElementById('chat-consent-wrap');
-      var ce = document.getElementById('chat-consent-error');
-      if (cw) cw.classList.remove('is-error');
-      if (ce) ce.classList.remove('is-visible');
-    }
+    chatModal.classList.remove('is-open'); chatModal.setAttribute('aria-hidden', 'true'); chatFab.setAttribute('aria-expanded', 'false'); document.body.classList.remove('chat-modal-open');
+    if (chatForm) { chatForm.style.display = ''; chatForm.reset(); var cw = document.getElementById('chat-consent-wrap'); var ce = document.getElementById('chat-consent-error'); if (cw) cw.classList.remove('is-error'); if (ce) ce.classList.remove('is-visible'); }
     if (chatSuccess) chatSuccess.classList.remove('is-active');
-    document.querySelectorAll('.chat-modal__tab').forEach(function (t, i) {
-      t.classList.toggle('is-active', i === 0);
-      t.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
-    });
+    document.querySelectorAll('.chat-modal__tab').forEach(function (t, i) { t.classList.toggle('is-active', i === 0); t.setAttribute('aria-selected', i === 0 ? 'true' : 'false'); });
     if (chatContact) chatContact.placeholder = placeholderMap.telegram;
   }
 
   if (chatFab && chatModal) {
-    chatFab.addEventListener('click', function () {
-      if (chatModal.classList.contains('is-open')) closeChat();
-      else openChat();
-    });
-    chatModal.querySelectorAll('[data-chat-close]').forEach(function (el) {
-      el.addEventListener('click', closeChat);
-    });
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && chatModal.classList.contains('is-open')) closeChat();
-    });
+    chatFab.addEventListener('click', function () { if (chatModal.classList.contains('is-open')) closeChat(); else openChat(); });
+    chatModal.querySelectorAll('[data-chat-close]').forEach(function (el) { el.addEventListener('click', closeChat); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && chatModal.classList.contains('is-open')) closeChat(); });
     document.querySelectorAll('.chat-modal__tab').forEach(function (tab) {
       tab.addEventListener('click', function () {
-        document.querySelectorAll('.chat-modal__tab').forEach(function (t) {
-          t.classList.remove('is-active');
-          t.setAttribute('aria-selected', 'false');
-        });
-        tab.classList.add('is-active');
-        tab.setAttribute('aria-selected', 'true');
+        document.querySelectorAll('.chat-modal__tab').forEach(function (t) { t.classList.remove('is-active'); t.setAttribute('aria-selected', 'false'); });
+        tab.classList.add('is-active'); tab.setAttribute('aria-selected', 'true');
         var key = tab.getAttribute('data-chat-tab');
-        if (chatContact && placeholderMap[key]) {
-          chatContact.placeholder = placeholderMap[key];
-          chatContact.value = '';
-          chatContact.focus();
-        }
+        if (chatContact && placeholderMap[key]) { chatContact.placeholder = placeholderMap[key]; chatContact.value = ''; chatContact.focus(); }
       });
     });
-    if (chatForm) {
-      chatForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-        if (!chatForm.checkValidity()) { chatForm.reportValidity(); return; }
-        if (chatConsent && !chatConsent.check()) return;
-        chatForm.style.display = 'none';
-        if (chatSuccess) chatSuccess.classList.add('is-active');
-      });
-    }
+    if (chatForm) chatForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!chatForm.checkValidity()) { chatForm.reportValidity(); return; }
+      if (chatConsent && !chatConsent.check()) return;
+      chatForm.style.display = 'none';
+      if (chatSuccess) chatSuccess.classList.add('is-active');
+    });
   }
 
   /* Фолбэк hero и showroom */
-  document.querySelectorAll('.h40-hero__image, .sr-block__image').forEach(function (img) {
-    attachFallback(img);
-  });
+  document.querySelectorAll('.h40-hero__image, .sr-block__image').forEach(function (img) { attachFallback(img); });
 
   load();
 })();
