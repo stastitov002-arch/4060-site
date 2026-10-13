@@ -351,7 +351,7 @@ body.kb-modal-open { overflow: hidden; }
 .ft-block__nav button:hover { opacity: 1; }
 .ft-block__bottom { max-width: 1280px; margin: 40px auto 0; padding-top: 20px; border-top: 1px solid rgba(200,165,114,0.15); display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; font-size: 12px; color: #b3ada0; }
 
-/* МОДАЛКИ ФУТЕРА (общий стиль) */
+/* МОДАЛКИ ФУТЕРА */
 .ft-modal { position: fixed; inset: 0; z-index: 200; display: none; align-items: center; justify-content: center; padding: 24px; }
 .ft-modal.is-open { display: flex; }
 .ft-modal__backdrop { position: absolute; inset: 0; background: rgba(13,12,13,0.85); backdrop-filter: blur(6px); }
@@ -471,22 +471,22 @@ body.chat-modal-open { overflow: hidden; }
         <li><a class="hd-block__nav-link" href="partners.html">Партнёрам</a></li>
       </ul>
       <div class="hd-block__menu-contacts">
-        <span class="hd-block__menu-hours" data-cms="header.hours">пн–сб 10:00–21:00</span>
+        <span class="hd-block__menu-hours" data-cms="common.hours">пн–сб 10:00–21:00</span>
         <a class="hd-block__menu-tg" href="https://t.me/design4060" target="_blank" rel="noopener">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
-          <span data-cms="header.tg">design4060</span>
+          <span data-cms="common.tg">design4060</span>
         </a>
       </div>
     </nav>
     <div class="hd-block__phones">
-      <a class="hd-block__phone-item" href="tel:+79771004415" data-cms="header.phone1">+7 977 100-44-15</a>
-      <a class="hd-block__phone-item" href="tel:+79017448855" data-cms="header.phone2">+7 901 744-88-55</a>
+      <a class="hd-block__phone-item" href="tel:+79771004415" data-cms="common.phone1">+7 977 100-44-15</a>
+      <a class="hd-block__phone-item" href="tel:+79017448855" data-cms="common.phone2">+7 901 744-88-55</a>
     </div>
     <div class="hd-block__meta">
-      <span class="hd-block__hours" data-cms="header.hours">пн–сб 10:00–21:00</span>
+      <span class="hd-block__hours" data-cms="common.hours">пн–сб 10:00–21:00</span>
       <a class="hd-block__tg" href="https://t.me/design4060" target="_blank" rel="noopener" aria-label="Мы в Telegram">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
-        <span data-cms="header.tg">design4060</span>
+        <span data-cms="common.tg">design4060</span>
       </a>
     </div>
   </div>
@@ -495,9 +495,9 @@ body.chat-modal-open { overflow: hidden; }
 <!-- HERO -->
 <section class="pf-hero">
   <div class="pf-hero__inner">
-    <p class="pf-hero__eyebrow" data-cms="pfHero.eyebrow">Портфолио</p>
-    <h1 class="pf-hero__title" data-cms="pfHero.title">Реализованные проекты мебели</h1>
-    <p class="pf-hero__subtitle" data-cms="pfHero.subtitle">Полный каталог работ — от компактных кухонь до гардеробных и столовых. Выберите материал фасадов, планировку или бюджет, чтобы найти подходящее.</p>
+    <p class="pf-hero__eyebrow" data-cms="portfolio.heroEyebrow">Портфолио</p>
+    <h1 class="pf-hero__title" data-cms="portfolio.heroTitle">Реализованные проекты мебели</h1>
+    <p class="pf-hero__subtitle" data-cms="portfolio.heroSubtitle">Полный каталог работ — от компактных кухонь до гардеробных и столовых. Выберите материал фасадов, планировку или бюджет, чтобы найти подходящее.</p>
   </div>
 </section>
 
@@ -505,7 +505,7 @@ body.chat-modal-open { overflow: hidden; }
 <section class="kb-sec">
   <div class="kb-sec__inner">
     <div class="pf-filters" role="search" aria-label="Фильтры проектов">
-      <span class="pf-filters__label" data-cms="filters.label">Фильтры:</span>
+      <span class="pf-filters__label" data-cms="portfolio.filtersLabel">Фильтры:</span>
 
       <label class="pf-filter">
         <select class="pf-filter__select" id="pf-material" aria-label="Фильтр по материалу">
@@ -532,7 +532,7 @@ body.chat-modal-open { overflow: hidden; }
         </select>
       </label>
 
-      <button type="button" class="pf-filters__reset" id="pf-reset" data-cms="filters.reset">Сбросить</button>
+      <button type="button" class="pf-filters__reset" id="pf-reset" data-cms="portfolio.filtersReset">Сбросить</button>
 
       <div class="pf-filters__meta">
         <span class="pf-filters__counter" id="pf-counter" aria-live="polite"></span>
@@ -603,11 +603,11 @@ body.chat-modal-open { overflow: hidden; }
   <div class="ft-block__wrap">
     <div>
       <a class="ft-block__logo" href="index.html">40/60</a>
-      <p class="ft-block__tagline" data-cms="footer.tagline">Студия интерьерной мебели. Кухни и корпусная мебель на заказ в Москве и области.</p>
+      <p class="ft-block__tagline" data-cms="common.tagline">Студия интерьерной мебели. Кухни и корпусная мебель на заказ в Москве и области.</p>
       <div class="ft-block__contacts">
-        <a href="tel:+79771004415" data-cms="footer.phone1">+7 977 100-44-15</a>
-        <a href="tel:+79017448855" data-cms="footer.phone2">+7 901 744-88-55</a>
-        <a href="https://t.me/design4060" target="_blank" rel="noopener" data-cms="footer.tg">Telegram: @design4060</a>
+        <a href="tel:+79771004415" data-cms="common.phone1">+7 977 100-44-15</a>
+        <a href="tel:+79017448855" data-cms="common.phone2">+7 901 744-88-55</a>
+        <a href="https://t.me/design4060" target="_blank" rel="noopener" data-cms="common.tg">Telegram: @design4060</a>
       </div>
     </div>
     <div>
@@ -629,7 +629,7 @@ body.chat-modal-open { overflow: hidden; }
     </div>
   </div>
   <div class="ft-block__bottom">
-    <span data-cms="footer.copyright">© 40/60 Design. Производство мебели на заказ.</span>
+    <span data-cms="common.copyright">© 40/60 Design. Производство мебели на заказ.</span>
     <span><a href="warranty.html" style="color:#b3ada0;">Гарантия</a> · <a href="about.html" style="color:#b3ada0;">О нас</a></span>
   </div>
 </footer>
@@ -778,6 +778,7 @@ body.chat-modal-open { overflow: hidden; }
   </div>
 </div>
 
+<script src="js/site-content.js" defer></script>
 <script>
 (function () {
   'use strict';
