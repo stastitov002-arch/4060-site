@@ -47,11 +47,25 @@ collections:
       - { label: "Показать на главной", name: "featured", widget: "boolean", default: false, required: false, hint: "Максимум 4 проекта" }
       - { label: "Стиль", name: "style", widget: "string", required: false }
       - { label: "Планировка", name: "layout", widget: "string", required: false }
+      - label: "Материал фасада"
+        name: "material"
+        widget: "select"
+        required: false
+        hint: "Выбери из списка — этот материал появится в фильтре портфолио."
+        options:
+          - "ЛДСП"
+          - "AGT"
+          - "Пленка ПВХ"
+          - "Пластик"
+          - "ALVIC Luxe"
+          - "Массив"
+          - "Шпон"
+          - "Эмаль"
       - { label: "Цена", name: "price", widget: "number", required: false }
       - { label: "Описание", name: "description", widget: "text" }
       - { label: "Главное фото", name: "cover", widget: "image" }
       - { label: "Галерея (2–5 фото)", name: "gallery", widget: "list", required: false, field: { label: "Фото", name: "image", widget: "image" } }
-      - { label: "Фасады и материалы", name: "facades", widget: "text", required: false }
+      - { label: "Фасады и материалы (подробно)", name: "facades", widget: "text", required: false, hint: "Текстовое описание — краска, декор, толщина. Не влияет на фильтр." }
       - { label: "Столешница", name: "countertop", widget: "text", required: false }
       - { label: "Фурнитура", name: "hardware", widget: "text", required: false }
       - { label: "Комплектация", name: "equipment", widget: "text", required: false }
