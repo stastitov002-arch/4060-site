@@ -602,6 +602,8 @@ var layoutSel=document.getElementById('pf-layout');
 var budgetSel=document.getElementById('pf-budget');
 var lastFocus=null;
 
+var MATERIAL_ORDER=['ЛДСП','AGT','Пленка ПВХ','Пластик','ALVIC Luxe','Массив','Шпон','Эмаль'];
+
 function renderCard(p,i){
 var d=p.data;var title=d.title||'Проект';var price=d.price?parseInt(d.price,10):null;var budget=budgetByPrice(price);
 var coverSrc=fixImgPath(d.cover);
@@ -641,30 +643,40 @@ populateLayouts();populateMaterials();applyFilters();
 .catch(function(){grid.innerHTML='<li class="kb-sec__empty">Ошибка загрузки.</li>';loader.classList.add('is-hidden');});
 }
 
-function populateLayouts(){var layouts={};allProjects.forEach(function(p){if(p.data.layout)layouts[p.data.layout]=true;});
-Object.keys(layouts).sort().forEach(function(l){var opt=document.createElement('option');opt.value=l;opt.textContent=l;layoutSel.appendChild(opt);});}
+function populateLayouts(){
+var layouts={};
+allProjects.forEach(function(p){if(p.data.layout)layouts[p.data.layout]=true;});
+var keys=Object.keys(layouts).sort(function(a,b){return a.localeCompare(b,'ru');});
+keys.forEach(function(l){var opt=document.createElement('option');opt.value=l;opt.textContent=l;layoutSel.appendChild(opt);});
+var wrap=layoutSel.closest('.pf-filter');
+if(wrap)wrap.style.display=keys.length?'':'none';
+}
 
 function populateMaterials(){
-var known=['МДФ','ЛДСП','АЛВИК','Плёнка','Шпон','Массив','Эмаль','Акрил','Стекло','Камень'];
 var materials={};
-allProjects.forEach(function(p){var d=p.data;
-if(d.material){materials[d.material]=true;}
-else if(d.facades){var f=d.facades.toLowerCase();known.forEach(function(k){if(f.indexOf(k.toLowerCase())!==-1)materials[k]=true;});}
+allProjects.forEach(function(p){if(p.data.material)materials[p.data.material]=true;});
+var keys=Object.keys(materials);
+keys.sort(function(a,b){
+  var ia=MATERIAL_ORDER.indexOf(a),ib=MATERIAL_ORDER.indexOf(b);
+  if(ia===-1&&ib===-1)return a.localeCompare(b,'ru');
+  if(ia===-1)return 1;
+  if(ib===-1)return -1;
+  return ia-ib;
 });
-Object.keys(materials).sort().forEach(function(m){var opt=document.createElement('option');opt.value=m;opt.textContent=m;materialSel.appendChild(opt);});
+keys.forEach(function(m){var opt=document.createElement('option');opt.value=m;opt.textContent=m;materialSel.appendChild(opt);});
+var wrap=materialSel.closest('.pf-filter');
+if(wrap)wrap.style.display=keys.length?'':'none';
 }
 
 function applyFilters(){
 var mv=materialSel.value;var lv=layoutSel.value;var bv=budgetSel.value;
-filtered=allProjects.filter(function(p){var d=p.data;
-if(mv){var query=mv.toLowerCase();var mat=(d.material||'').toLowerCase();var facades=(d.facades||'').toLowerCase();
-var found=mat===query||mat.indexOf(query)!==-1||facades.indexOf(query)!==-1;
-if(!found&&query==='алвик')found=facades.indexOf('alvic')!==-1;
-if(!found&&query==='плёнка'){found=facades.indexOf('пленка')!==-1||facades.indexOf('пвх')!==-1;}
-if(!found)return false;}
-if(lv&&d.layout!==lv)return false;
-if(bv){var b=budgetByPrice(d.price);if(b!==bv)return false;}
-return true;});
+filtered=allProjects.filter(function(p){
+  var d=p.data;
+  if(mv&&d.material!==mv)return false;
+  if(lv&&d.layout!==lv)return false;
+  if(bv){var b=budgetByPrice(d.price);if(b!==bv)return false;}
+  return true;
+});
 visibleCount=PAGE_SIZE;
 materialSel.classList.toggle('is-active',!!mv);
 layoutSel.classList.toggle('is-active',!!lv);
@@ -697,11 +709,21 @@ if(!p)return;lastFocus=document.activeElement;currentProject=p;
 var d=p.data;var title=d.title||'Проект';var price=d.price?parseInt(d.price,10):null;
 document.getElementById('kb-modal-kicker').textContent=title;
 document.getElementById('kb-modal-title').textContent=title;
-document.getElementById('kb-modal-desc').textContent=d.description||'';
-document.getElementById('kb-modal-facades').textContent=d.facades||'—';
-document.getElementById('kb-modal-countertop').textContent=d.countertop||'—';
-document.getElementById('kb-modal-hardware').textContent=d.hardware||'—';
-document.getElementById('kb-modal-equipment').textContent=d.equipment||'—';
+
+var descEl=document.getElementById('kb-modal-desc');
+if(d.description&&String(d.description).trim()){descEl.textContent=d.description;descEl.style.display='';}
+else{descEl.textContent='';descEl.style.display='none';}
+
+var specGrid=document.querySelector('.kb-modal__grid');
+var specCards=specGrid?specGrid.querySelectorAll('.kb-modal__spec'):[];
+var specValues=[d.facades,d.countertop,d.hardware,d.equipment];
+var visibleSpecs=0;
+for(var i=0;i<specCards.length;i++){
+  var card=specCards[i];var pEl=card.querySelector('p');var val=specValues[i];
+  if(val&&String(val).trim()){pEl.textContent=val;card.style.display='';visibleSpecs++;}
+  else{pEl.textContent='';card.style.display='none';}
+}
+if(specGrid)specGrid.style.display=visibleSpecs?'':'none';
 
 var main=document.getElementById('kb-modal-img');
 var mainWrap=main.parentElement;
@@ -771,28 +793,28 @@ var success=document.getElementById('vk-success');
 if(form)form.addEventListener('submit',function(e){e.preventDefault();if(vkConsent&&!vkConsent.check())return;form.style.display='none';success.classList.add('is-active');});
 
 (function(){
-var modal=document.getElementById('ft-measure-modal');
+var m=document.getElementById('ft-measure-modal');
 var openBtn=document.getElementById('ft-measure-open');
-var form=document.getElementById('ft-measure-form');
-var success=document.getElementById('ft-measure-success');
+var f=document.getElementById('ft-measure-form');
+var s=document.getElementById('ft-measure-success');
 var consent=document.getElementById('ft-measure-consent');
 var consentWrap=document.getElementById('ft-measure-consent-wrap');
 var consentErr=document.getElementById('ft-measure-consent-error');
-function openModal(){if(!modal)return;modal.classList.add('is-open');modal.setAttribute('aria-hidden','false');document.body.classList.add('ft-modal-open');}
-function closeModal(){if(!modal)return;modal.classList.remove('is-open');modal.setAttribute('aria-hidden','true');document.body.classList.remove('ft-modal-open');if(form){form.style.display='';form.reset();if(consentWrap)consentWrap.classList.remove('is-error');if(consentErr)consentErr.classList.remove('is-visible');}if(success)success.classList.remove('is-active');}
+function openModal(){if(!m)return;m.classList.add('is-open');m.setAttribute('aria-hidden','false');document.body.classList.add('ft-modal-open');}
+function closeModal(){if(!m)return;m.classList.remove('is-open');m.setAttribute('aria-hidden','true');document.body.classList.remove('ft-modal-open');if(f){f.style.display='';f.reset();if(consentWrap)consentWrap.classList.remove('is-error');if(consentErr)consentErr.classList.remove('is-visible');}if(s)s.classList.remove('is-active');}
 if(openBtn)openBtn.addEventListener('click',openModal);
-if(modal){modal.querySelectorAll('[data-ft-measure-close]').forEach(function(el){el.addEventListener('click',closeModal);});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&modal.classList.contains('is-open'))closeModal();});}
+if(m){m.querySelectorAll('[data-ft-measure-close]').forEach(function(el){el.addEventListener('click',closeModal);});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&m.classList.contains('is-open'))closeModal();});}
 if(consent)consent.addEventListener('change',function(){if(consent.checked){if(consentWrap)consentWrap.classList.remove('is-error');if(consentErr)consentErr.classList.remove('is-visible');}});
-if(form)form.addEventListener('submit',function(e){e.preventDefault();if(consent&&!consent.checked){if(consentWrap)consentWrap.classList.add('is-error');if(consentErr)consentErr.classList.add('is-visible');try{consent.focus({preventScroll:true});}catch(er){consent.focus();}return;}form.style.display='none';if(success)success.classList.add('is-active');});
+if(f)f.addEventListener('submit',function(e){e.preventDefault();if(consent&&!consent.checked){if(consentWrap)consentWrap.classList.add('is-error');if(consentErr)consentErr.classList.add('is-visible');try{consent.focus({preventScroll:true});}catch(er){consent.focus();}return;}f.style.display='none';if(s)s.classList.add('is-active');});
 })();
 
 (function(){
-var modal=document.getElementById('ft-call-modal');
+var m=document.getElementById('ft-call-modal');
 var openBtn=document.getElementById('ft-call-open');
-function openModal(){if(!modal)return;modal.classList.add('is-open');modal.setAttribute('aria-hidden','false');document.body.classList.add('ft-call-open');}
-function closeModal(){if(!modal)return;modal.classList.remove('is-open');modal.setAttribute('aria-hidden','true');document.body.classList.remove('ft-call-open');}
+function openModal(){if(!m)return;m.classList.add('is-open');m.setAttribute('aria-hidden','false');document.body.classList.add('ft-call-open');}
+function closeModal(){if(!m)return;m.classList.remove('is-open');m.setAttribute('aria-hidden','true');document.body.classList.remove('ft-call-open');}
 if(openBtn)openBtn.addEventListener('click',openModal);
-if(modal){modal.querySelectorAll('[data-ft-call-close]').forEach(function(el){el.addEventListener('click',closeModal);});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&modal.classList.contains('is-open'))closeModal();});}
+if(m){m.querySelectorAll('[data-ft-call-close]').forEach(function(el){el.addEventListener('click',closeModal);});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&m.classList.contains('is-open'))closeModal();});}
 })();
 
 var chatFab=document.getElementById('chat-fab');
