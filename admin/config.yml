@@ -5,19 +5,44 @@ backend:
   base_url: https://white-sound-877adecap-proxy.stas-titov-002.workers.dev
   auth_endpoint: /auth
 
+# Глобальные правила генерации слагов.
+# Применяются и к именам файлов проектов, и к загружаемым фото.
+slug:
+  encoding: ascii           # только ASCII (a-z, 0-9, дефис, подчёркивание, тильда)
+  clean_accents: true       # é→e, ü→u, а также транслитерация (ß→ss и т.д.)
+  sanitize_replacement: "-" # недопустимые символы → дефис
+  trim: true                # убирать дефисы по краям
+  lowercase: true           # всё в нижний регистр
+
 media_folder: "images/uploads"
 public_folder: "images/uploads"
 
+# Главное: автоматическое переименование загружаемых файлов.
+# Без этой опции Sveltia сохраняет оригинальные имена (с пробелами и кириллицей).
+media_libraries:
+  default:
+    config:
+      slugify_filename: true   # ← вот эта опция включает переименование
+
 collections:
+  # ============================================
+  # ПРОЕКТЫ (портфолио + главная)
+  # ============================================
   - name: "projects"
     label: "Проекты"
     label_singular: "Проект"
     folder: "_projects"
     create: true
-    slug: "{{slug}}"
+    identifier_field: "title"
+    slug: "{{fields.slug}}"
     summary: "{{title}} {% if featured %}★ на главной{% endif %}"
-    description: "Отметьте 4 проекта как «Показать на главной» — они появятся на главной. Остальные — в портфолио."
+    description: "Заполни поле «Слаг» латиницей — это имя файла. Остальное можно писать по-русски."
     fields:
+      - label: "Слаг (имя файла, латиница)"
+        name: "slug"
+        widget: "string"
+        hint: "Только латиница, цифры и дефис. Например: kitchen-modern-01. Без пробелов, без русских букв."
+        pattern: ['^[a-z0-9\-]+$', 'Только латиница, цифры и дефис']
       - { label: "Название проекта", name: "title", widget: "string" }
       - { label: "Показать на главной", name: "featured", widget: "boolean", default: false, required: false, hint: "Максимум 4 проекта" }
       - { label: "Стиль", name: "style", widget: "string", required: false }
@@ -31,6 +56,9 @@ collections:
       - { label: "Фурнитура", name: "hardware", widget: "text", required: false }
       - { label: "Комплектация", name: "equipment", widget: "text", required: false }
 
+  # ============================================
+  # НАСТРОЙКИ САЙТА (тексты, телефоны, кнопки)
+  # ============================================
   - name: "settings"
     label: "Настройки сайта"
     files:
