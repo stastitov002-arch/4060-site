@@ -270,7 +270,7 @@ img, svg, video { max-width: 100%; height: auto; }
 .ft-block__nav button:hover { opacity: 1; }
 .ft-block__bottom { max-width: 1280px; margin: 40px auto 0; padding-top: 20px; border-top: 1px solid rgba(200,165,114,0.15); display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; font-size: 12px; color: #b3ada0; }
 
-/* МОДАЛКА (общий стиль) */
+/* МОДАЛКА общий */
 .ab-modal { position: fixed; inset: 0; z-index: 200; display: none; align-items: center; justify-content: center; padding: 24px; }
 .ab-modal.is-open { display: flex; }
 .ab-modal__backdrop { position: absolute; inset: 0; background: rgba(13,12,13,0.85); backdrop-filter: blur(6px); }
@@ -390,22 +390,22 @@ body.chat-modal-open { overflow: hidden; }
         <li><a class="hd-block__nav-link" href="partners.html">Партнёрам</a></li>
       </ul>
       <div class="hd-block__menu-contacts">
-        <span class="hd-block__menu-hours" data-cms="header.hours">пн–сб 10:00–21:00</span>
+        <span class="hd-block__menu-hours" data-cms="common.hours">пн–сб 10:00–21:00</span>
         <a class="hd-block__menu-tg" href="https://t.me/design4060" target="_blank" rel="noopener">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
-          <span data-cms="header.tg">design4060</span>
+          <span data-cms="common.tg">design4060</span>
         </a>
       </div>
     </nav>
     <div class="hd-block__phones">
-      <a class="hd-block__phone-item" href="tel:+79771004415" data-cms="header.phone1">+7 977 100-44-15</a>
-      <a class="hd-block__phone-item" href="tel:+79017448855" data-cms="header.phone2">+7 901 744-88-55</a>
+      <a class="hd-block__phone-item" href="tel:+79771004415" data-cms="common.phone1">+7 977 100-44-15</a>
+      <a class="hd-block__phone-item" href="tel:+79017448855" data-cms="common.phone2">+7 901 744-88-55</a>
     </div>
     <div class="hd-block__meta">
-      <span class="hd-block__hours" data-cms="header.hours">пн–сб 10:00–21:00</span>
+      <span class="hd-block__hours" data-cms="common.hours">пн–сб 10:00–21:00</span>
       <a class="hd-block__tg" href="https://t.me/design4060" target="_blank" rel="noopener" aria-label="Мы в Telegram">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
-        <span data-cms="header.tg">design4060</span>
+        <span data-cms="common.tg">design4060</span>
       </a>
     </div>
   </div>
@@ -415,20 +415,20 @@ body.chat-modal-open { overflow: hidden; }
 <section class="ab-hero">
   <div class="ab-hero__inner">
     <div class="ab-hero__left">
-      <p class="ab-hero__eyebrow">О компании</p>
-      <p style="font-size:12px; letter-spacing:0.1em; color:#b3ada0; text-transform:uppercase; margin:0 0 -12px;">Мы — не просто производитель мебели,<br>мы — ваш партнер в создании пространства.</p>
-      <h1 class="ab-hero__title">Хорошая мебель начинается <em>с правильных решений.</em></h1>
-      <p class="ab-hero__desc">Мы создаем кухни и корпусную мебель по индивидуальным проектам. Продумываем конструкцию, подбираем материалы под ваш интерьер и бюджет и контролируем реализацию — от первых чертежей до монтажа.</p>
-      <button type="button" class="ab-hero__btn" id="ab-open">Обсудить мой проект →</button>
+      <p class="ab-hero__eyebrow" data-cms="about.heroEyebrow">О компании</p>
+      <p style="font-size:12px; letter-spacing:0.1em; color:#b3ada0; text-transform:uppercase; margin:0 0 -12px;" data-cms="about.heroLead">Мы — не просто производитель мебели,<br>мы — ваш партнер в создании пространства.</p>
+      <h1 class="ab-hero__title" data-cms="about.heroTitle">Хорошая мебель начинается <em>с правильных решений.</em></h1>
+      <p class="ab-hero__desc" data-cms="about.heroDesc">Мы создаем кухни и корпусную мебель по индивидуальным проектам. Продумываем конструкцию, подбираем материалы под ваш интерьер и бюджет и контролируем реализацию — от первых чертежей до монтажа.</p>
+      <button type="button" class="ab-hero__btn" id="ab-open" data-cms="about.heroBtn">Обсудить мой проект →</button>
     </div>
     <div class="ab-hero__media-main">
       <img src="images/about-main.jpg" alt="Кухня 40/60 Design">
     </div>
     <div class="ab-hero__right">
-      <p class="ab-hero__eyebrow">Нас выбирают</p>
-      <h2 class="ab-hero__right-title">Дизайнеры, агентства и строительные компании.</h2>
-      <p class="ab-hero__right-text">Мы закрываем задачи любой сложности и работаем с партнерами по всей России. Ценим долгосрочные отношения и всегда находим лучшие решения под каждый проект.</p>
-      <a href="partners.html" class="ab-hero__right-link">Стать партнёром →</a>
+      <p class="ab-hero__eyebrow" data-cms="about.rightEyebrow">Нас выбирают</p>
+      <h2 class="ab-hero__right-title" data-cms="about.rightTitle">Дизайнеры, агентства и строительные компании.</h2>
+      <p class="ab-hero__right-text" data-cms="about.rightText">Мы закрываем задачи любой сложности и работаем с партнерами по всей России. Ценим долгосрочные отношения и всегда находим лучшие решения под каждый проект.</p>
+      <a href="partners.html" class="ab-hero__right-link" data-cms="about.rightLink">Стать партнёром →</a>
       <div class="ab-hero__right-img">
         <img src="images/about-small.jpg" alt="Работа над проектом">
       </div>
@@ -441,22 +441,22 @@ body.chat-modal-open { overflow: hidden; }
   <div class="ab-adv__inner">
     <div class="ab-adv__item">
       <span class="ab-adv__num">01</span>
-      <h3 class="ab-adv__title">Материалы без ограничений</h3>
+      <h3 class="ab-adv__title" data-cms="about.adv1Title">Материалы без ограничений</h3>
       <p class="ab-adv__text">Работаем со всеми материалами: от ЛДСП и МДФ до шпона, массива, камня и металла. Подберем идеальное решение под ваш проект.</p>
     </div>
     <div class="ab-adv__item">
       <span class="ab-adv__num">02</span>
-      <h3 class="ab-adv__title">Фурнитура и техника</h3>
+      <h3 class="ab-adv__title" data-cms="about.adv2Title">Фурнитура и техника</h3>
       <p class="ab-adv__text">Используем премиальную фурнитуру и встраиваемую технику от ведущих брендов: Blum, Hettich, Siemens, Bosch и других.</p>
     </div>
     <div class="ab-adv__item">
       <span class="ab-adv__num">03</span>
-      <h3 class="ab-adv__title">Столешницы и поверхности</h3>
+      <h3 class="ab-adv__title" data-cms="about.adv3Title">Столешницы и поверхности</h3>
       <p class="ab-adv__text">Кварц, акрил, натуральный камень, керамика, HPL. Подберем материал, который прослужит долгие годы и будет радовать каждый день.</p>
     </div>
     <div class="ab-adv__item">
       <span class="ab-adv__num">04</span>
-      <h3 class="ab-adv__title">Контроль на каждом этапе</h3>
+      <h3 class="ab-adv__title" data-cms="about.adv4Title">Контроль на каждом этапе</h3>
       <p class="ab-adv__text">От проектирования до монтажа — все процессы под контролем нашей команды. Технический надзор и гарантия на результат.</p>
     </div>
   </div>
@@ -467,8 +467,8 @@ body.chat-modal-open { overflow: hidden; }
   <div class="ab-partners__inner">
 
     <div class="ab-partners__left">
-      <p class="ab-partners__eyebrow">Наши партнеры</p>
-      <h2 class="ab-partners__title">Мы работаем с теми, кто ценит качество.</h2>
+      <p class="ab-partners__eyebrow" data-cms="about.partnersEyebrow">Наши партнеры</p>
+      <h2 class="ab-partners__title" data-cms="about.partnersTitle">Мы работаем с теми, кто ценит качество.</h2>
       <ul class="ab-partners__list">
         <li>Дизайнеры интерьеров</li>
         <li>Агентства недвижимости</li>
@@ -480,10 +480,10 @@ body.chat-modal-open { overflow: hidden; }
 
       <div class="ab-partners__row ab-partners__row--top">
         <div class="ab-partners__media">
-          <img class="ab-partners__img" src="https://picsum.photos/seed/marble-dark/800/400" alt="Камень" loading="lazy">
-          <img class="ab-partners__img" src="https://picsum.photos/seed/wood-oak/500/400" alt="Дерево" loading="lazy">
+          <img class="ab-partners__img" src="images/brands/material-1.jpg" alt="Камень" loading="lazy">
+          <img class="ab-partners__img" src="images/brands/material-2.jpg" alt="Дерево" loading="lazy">
         </div>
-        <p class="ab-partners__caption">Более 200<br>вариантов материалов</p>
+        <p class="ab-partners__caption" data-cms="about.materialsCaption">Более 200<br>вариантов материалов</p>
       </div>
 
       <div class="ab-partners__row ab-partners__row--logos">
@@ -515,18 +515,18 @@ body.chat-modal-open { overflow: hidden; }
           </div>
 
         </div>
-        <p class="ab-partners__caption">и другие<br>бренды</p>
+        <p class="ab-partners__caption" data-cms="about.brandsCaption">и другие<br>бренды</p>
       </div>
 
       <div class="ab-partners__row ab-partners__row--swatches">
         <div class="ab-partners__media">
-          <img class="ab-partners__img" src="https://picsum.photos/seed/texture-01/300/300" alt="" loading="lazy">
-          <img class="ab-partners__img" src="https://picsum.photos/seed/texture-02/300/300" alt="" loading="lazy">
-          <img class="ab-partners__img" src="https://picsum.photos/seed/texture-03/300/300" alt="" loading="lazy">
-          <img class="ab-partners__img" src="https://picsum.photos/seed/texture-04/300/300" alt="" loading="lazy">
-          <img class="ab-partners__img" src="https://picsum.photos/seed/texture-05/300/300" alt="" loading="lazy">
+          <img class="ab-partners__img" src="images/brands/swatch-1.jpg" alt="" loading="lazy">
+          <img class="ab-partners__img" src="images/brands/swatch-2.jpg" alt="" loading="lazy">
+          <img class="ab-partners__img" src="images/brands/swatch-3.jpg" alt="" loading="lazy">
+          <img class="ab-partners__img" src="images/brands/swatch-4.jpg" alt="" loading="lazy">
+          <img class="ab-partners__img" src="images/brands/swatch-5.jpg" alt="" loading="lazy">
         </div>
-        <p class="ab-partners__caption">Любые<br>материалы<br>и фактуры</p>
+        <p class="ab-partners__caption" data-cms="about.swatchesCaption">Любые<br>материалы<br>и фактуры</p>
       </div>
 
     </div>
@@ -539,11 +539,11 @@ body.chat-modal-open { overflow: hidden; }
   <div class="ft-block__wrap">
     <div>
       <a class="ft-block__logo" href="index.html">40/60</a>
-      <p class="ft-block__tagline" data-cms="footer.tagline">Студия интерьерной мебели. Кухни и корпусная мебель на заказ в Москве и области.</p>
+      <p class="ft-block__tagline" data-cms="common.tagline">Студия интерьерной мебели. Кухни и корпусная мебель на заказ в Москве и области.</p>
       <div class="ft-block__contacts">
-        <a href="tel:+79771004415" data-cms="footer.phone1">+7 977 100-44-15</a>
-        <a href="tel:+79017448855" data-cms="footer.phone2">+7 901 744-88-55</a>
-        <a href="https://t.me/design4060" target="_blank" rel="noopener" data-cms="footer.tg">Telegram: @design4060</a>
+        <a href="tel:+79771004415" data-cms="common.phone1">+7 977 100-44-15</a>
+        <a href="tel:+79017448855" data-cms="common.phone2">+7 901 744-88-55</a>
+        <a href="https://t.me/design4060" target="_blank" rel="noopener" data-cms="common.tg">Telegram: @design4060</a>
       </div>
     </div>
     <div>
@@ -565,7 +565,7 @@ body.chat-modal-open { overflow: hidden; }
     </div>
   </div>
   <div class="ft-block__bottom">
-    <span data-cms="footer.copyright">© 40/60 Design. Производство мебели на заказ.</span>
+    <span data-cms="common.copyright">© 40/60 Design. Производство мебели на заказ.</span>
     <span><a href="warranty.html" style="color:#b3ada0;">Гарантия</a> · <a href="about.html" style="color:#b3ada0;">О нас</a></span>
   </div>
 </footer>
@@ -607,7 +607,7 @@ body.chat-modal-open { overflow: hidden; }
   </div>
 </div>
 
-<!-- МОДАЛКА «ЗАПИСЬ НА ЗАМЕР» -->
+<!-- МОДАЛКА «ЗАПИСЬ НА ЗАМЕР» (футер) -->
 <div class="ab-modal" id="ft-measure-modal" aria-hidden="true">
   <div class="ab-modal__backdrop" data-ft-measure-close></div>
   <div class="ab-modal__dialog" role="dialog" aria-modal="true">
@@ -722,9 +722,11 @@ body.chat-modal-open { overflow: hidden; }
   </div>
 </div>
 
+<script src="js/site-content.js" defer></script>
 <script>
 (function () {
   'use strict';
+
   var header = document.querySelector('.hd-block');
   if (header) {
     var burger = header.querySelector('.hd-block__burger');
@@ -741,7 +743,6 @@ body.chat-modal-open { overflow: hidden; }
     }
   }
 
-  /* Универсальный хелпер модалки */
   function bindModal(modalId, openId, closeAttr, formId, successId, consentId, wrapId, errId, bodyClass) {
     var modal = document.getElementById(modalId);
     var openBtn = openId ? document.getElementById(openId) : null;
@@ -803,13 +804,10 @@ body.chat-modal-open { overflow: hidden; }
     }
   }
 
-  /* Модалка «Обсудить мой проект» */
   bindModal('ab-modal', 'ab-open', 'data-ab-close', 'ab-form', 'ab-success', 'ab-consent', 'ab-consent-wrap', 'ab-consent-error', 'ab-modal-open');
-
-  /* Модалка «Запись на замер» (футер) */
   bindModal('ft-measure-modal', 'ft-measure-open', 'data-ft-measure-close', 'ft-measure-form', 'ft-measure-success', 'ft-measure-consent', 'ft-measure-consent-wrap', 'ft-measure-consent-error', 'ab-modal-open');
 
-  /* Модалка «Позвонить» (футер) */
+  /* Модалка «Позвонить» */
   var ftCallModal = document.getElementById('ft-call-modal');
   var ftCallOpen = document.getElementById('ft-call-open');
   function openFtCall() {
@@ -834,7 +832,7 @@ body.chat-modal-open { overflow: hidden; }
     });
   }
 
-  /* ПОПАП ЧАТА (FAB) */
+  /* ПОПАП ЧАТА */
   var chatFab = document.getElementById('chat-fab');
   var chatModal = document.getElementById('chat-modal');
   var chatForm = document.getElementById('chat-form');
