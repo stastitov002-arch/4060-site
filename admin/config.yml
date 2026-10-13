@@ -9,16 +9,20 @@ media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
 collections:
+  # ============================================
+  # ПРОЕКТЫ (портфолио + главная)
+  # ============================================
   - name: "projects"
     label: "Проекты"
     label_singular: "Проект"
     folder: "_projects"
     create: true
     slug: "{{slug}}"
-    summary: "{{title}} {% if featured %}★{% endif %}"
+    summary: "{{title}} {% if featured %}★ на главной{% endif %}"
+    description: "Отметьте 4 проекта как «Показать на главной» — они появятся на главной. Остальные — в портфолио."
     fields:
       - { label: "Название проекта", name: "title", widget: "string" }
-      - { label: "Показать на главной", name: "featured", widget: "boolean", default: false, required: false }
+      - { label: "Показать на главной", name: "featured", widget: "boolean", default: false, required: false, hint: "Максимум 4 проекта" }
       - { label: "Стиль", name: "style", widget: "string", required: false }
       - { label: "Планировка", name: "layout", widget: "string", required: false }
       - { label: "Цена", name: "price", widget: "number", required: false }
@@ -29,3 +33,180 @@ collections:
       - { label: "Столешница", name: "countertop", widget: "text", required: false }
       - { label: "Фурнитура", name: "hardware", widget: "text", required: false }
       - { label: "Комплектация", name: "equipment", widget: "text", required: false }
+
+  # ============================================
+  # НАСТРОЙКИ САЙТА (тексты, телефоны, кнопки)
+  # ============================================
+  - name: "settings"
+    label: "Настройки сайта"
+    files:
+      - name: "site"
+        label: "Тексты и контакты"
+        file: "_data/site.json"
+        fields:
+          - label: "Общее (шапка, футер)"
+            name: "common"
+            widget: "object"
+            fields:
+              - { label: "Телефон 1", name: "phone1", widget: "string" }
+              - { label: "Телефон 2", name: "phone2", widget: "string" }
+              - { label: "Часы работы", name: "hours", widget: "string" }
+              - { label: "Telegram (username без @)", name: "tg", widget: "string" }
+              - { label: "Текст в подвале", name: "tagline", widget: "text" }
+              - { label: "Копирайт", name: "copyright", widget: "string" }
+
+          - label: "Главная — Hero"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Надстрочник", name: "eyebrow", widget: "string" }
+              - { label: "Заголовок (можно HTML)", name: "title", widget: "text" }
+              - { label: "Подзаголовок (можно HTML)", name: "subtitle", widget: "text" }
+              - { label: "Бейдж 1", name: "badge1", widget: "string" }
+              - { label: "Бейдж 2", name: "badge2", widget: "string" }
+              - { label: "Бейдж 3", name: "badge3", widget: "string" }
+              - { label: "Бейдж 4", name: "badge4", widget: "string" }
+              - { label: "Кнопка 1", name: "btn1", widget: "string" }
+              - { label: "Кнопка 2", name: "btn2", widget: "string" }
+              - { label: "Текст «Скролл»", name: "scroll", widget: "string" }
+
+          - label: "Главная — Портфолио (заголовок секции)"
+            name: "homePortfolio"
+            widget: "object"
+            fields:
+              - { label: "Надстрочник", name: "eyebrow", widget: "string" }
+              - { label: "Заголовок", name: "title", widget: "string" }
+              - { label: "Описание", name: "subtitle", widget: "text" }
+              - { label: "Заголовок CTA-блока (можно HTML)", name: "ctaTitle", widget: "text" }
+              - { label: "Описание CTA-блока", name: "ctaSub", widget: "text" }
+              - { label: "Кнопка CTA", name: "ctaBtn", widget: "string" }
+
+          - label: "Главная — Шоурум"
+            name: "showroom"
+            widget: "object"
+            fields:
+              - { label: "Надстрочник", name: "eyebrow", widget: "string" }
+              - { label: "Заголовок", name: "title", widget: "string" }
+              - { label: "Описание", name: "text", widget: "text" }
+              - { label: "Текст бейджа", name: "badge", widget: "string" }
+              - { label: "Кнопка", name: "btn", widget: "string" }
+
+          - label: "Главная — Проект под ключ"
+            name: "tpk"
+            widget: "object"
+            fields:
+              - { label: "Надстрочник", name: "eyebrow", widget: "string" }
+              - { label: "Заголовок", name: "title", widget: "string" }
+              - { label: "Описание", name: "subtitle", widget: "string" }
+
+          - label: "Главная — Этапы работы"
+            name: "steps"
+            widget: "object"
+            fields:
+              - { label: "Заголовок", name: "title", widget: "string" }
+              - { label: "Описание", name: "lead", widget: "string" }
+
+          - label: "Главная — FAQ"
+            name: "faq"
+            widget: "object"
+            fields:
+              - { label: "Заголовок", name: "title", widget: "string" }
+              - { label: "Описание", name: "subtitle", widget: "string" }
+
+          - label: "Форма замера"
+            name: "form"
+            widget: "object"
+            fields:
+              - { label: "Бейдж", name: "badge", widget: "string" }
+              - { label: "Заголовок", name: "title", widget: "string" }
+              - { label: "Описание", name: "lead", widget: "text" }
+              - { label: "Надстрочник формы", name: "eyebrow", widget: "string" }
+              - { label: "Заголовок формы", name: "formTitle", widget: "string" }
+              - { label: "Кнопка", name: "submit", widget: "string" }
+              - { label: "Плашка «Понравилась»", name: "projectLabel", widget: "string" }
+              - { label: "Заголовок успеха", name: "successTitle", widget: "string" }
+              - { label: "Текст успеха", name: "successText", widget: "string" }
+
+          - label: "О компании"
+            name: "about"
+            widget: "object"
+            fields:
+              - { label: "Hero — надстрочник", name: "heroEyebrow", widget: "string" }
+              - { label: "Hero — лид (можно HTML)", name: "heroLead", widget: "text" }
+              - { label: "Hero — заголовок (можно HTML)", name: "heroTitle", widget: "text" }
+              - { label: "Hero — описание", name: "heroDesc", widget: "text" }
+              - { label: "Hero — кнопка", name: "heroBtn", widget: "string" }
+              - { label: "Правая колонка — надстрочник", name: "rightEyebrow", widget: "string" }
+              - { label: "Правая колонка — заголовок", name: "rightTitle", widget: "string" }
+              - { label: "Правая колонка — текст", name: "rightText", widget: "text" }
+              - { label: "Правая колонка — ссылка", name: "rightLink", widget: "string" }
+              - { label: "Преимущество 1 — заголовок", name: "adv1Title", widget: "string" }
+              - { label: "Преимущество 2 — заголовок", name: "adv2Title", widget: "string" }
+              - { label: "Преимущество 3 — заголовок", name: "adv3Title", widget: "string" }
+              - { label: "Преимущество 4 — заголовок", name: "adv4Title", widget: "string" }
+              - { label: "Партнёры — надстрочник", name: "partnersEyebrow", widget: "string" }
+              - { label: "Партнёры — заголовок", name: "partnersTitle", widget: "string" }
+              - { label: "Материалы — подпись (можно HTML)", name: "materialsCaption", widget: "text" }
+              - { label: "Бренды — подпись (можно HTML)", name: "brandsCaption", widget: "text" }
+              - { label: "Фактуры — подпись (можно HTML)", name: "swatchesCaption", widget: "text" }
+
+          - label: "Партнёрам"
+            name: "partners"
+            widget: "object"
+            fields:
+              - { label: "Hero — надстрочник", name: "heroEyebrow", widget: "string" }
+              - { label: "Hero — заголовок (можно HTML)", name: "heroTitle", widget: "text" }
+              - { label: "Hero — описание", name: "heroSubtitle", widget: "text" }
+              - { label: "Hero — кнопка 1", name: "heroBtn1", widget: "string" }
+              - { label: "Hero — кнопка 2", name: "heroBtn2", widget: "string" }
+              - { label: "«С кем работаем» — надстрочник", name: "whoEyebrow", widget: "string" }
+              - { label: "«С кем работаем» — заголовок", name: "whoTitle", widget: "string" }
+              - { label: "«С кем работаем» — описание", name: "whoLead", widget: "text" }
+              - { label: "«Что получаете» — надстрочник", name: "gainEyebrow", widget: "string" }
+              - { label: "«Что получаете» — заголовок", name: "gainTitle", widget: "string" }
+              - { label: "«Что получаете» — описание", name: "gainLead", widget: "text" }
+              - { label: "«Как начать» — надстрочник", name: "stepsEyebrow", widget: "string" }
+              - { label: "«Как начать» — заголовок", name: "stepsTitle", widget: "string" }
+              - { label: "«Как начать» — описание", name: "stepsLead", widget: "text" }
+              - { label: "Форма — надстрочник", name: "formEyebrow", widget: "string" }
+              - { label: "Форма — заголовок", name: "formTitle", widget: "string" }
+              - { label: "Форма — описание", name: "formLead", widget: "text" }
+              - { label: "Форма — кнопка Telegram", name: "formTgBtn", widget: "string" }
+              - { label: "Форма — кнопка отправки", name: "formSubmit", widget: "string" }
+              - { label: "Форма — заголовок успеха", name: "formSuccessTitle", widget: "string" }
+              - { label: "Форма — текст успеха", name: "formSuccessText", widget: "string" }
+
+          - label: "Гарантия"
+            name: "warranty"
+            widget: "object"
+            fields:
+              - { label: "Hero — надстрочник", name: "heroEyebrow", widget: "string" }
+              - { label: "Hero — заголовок (можно HTML)", name: "heroTitle", widget: "text" }
+              - { label: "Hero — описание", name: "heroSubtitle", widget: "text" }
+              - { label: "Бейдж — число", name: "badgeNum", widget: "string" }
+              - { label: "Бейдж — текст", name: "badgeText", widget: "string" }
+              - { label: "«Что покрывает» — надстрочник", name: "coverEyebrow", widget: "string" }
+              - { label: "«Что покрывает» — заголовок", name: "coverTitle", widget: "string" }
+              - { label: "«Что покрывает» — описание", name: "coverLead", widget: "text" }
+              - { label: "«Ограничения» — надстрочник", name: "notEyebrow", widget: "string" }
+              - { label: "«Ограничения» — заголовок", name: "notTitle", widget: "string" }
+              - { label: "«Ограничения» — описание", name: "notLead", widget: "text" }
+              - { label: "«Сроки» — надстрочник", name: "termsEyebrow", widget: "string" }
+              - { label: "«Сроки» — заголовок", name: "termsTitle", widget: "string" }
+              - { label: "«Сроки» — описание", name: "termsLead", widget: "text" }
+              - { label: "«Обращение» — надстрочник", name: "howEyebrow", widget: "string" }
+              - { label: "«Обращение» — заголовок", name: "howTitle", widget: "string" }
+              - { label: "«Обращение» — описание", name: "howLead", widget: "text" }
+              - { label: "CTA — заголовок (можно HTML)", name: "ctaTitle", widget: "text" }
+              - { label: "CTA — описание", name: "ctaSub", widget: "text" }
+              - { label: "CTA — кнопка", name: "ctaBtn", widget: "string" }
+
+          - label: "Портфолио"
+            name: "portfolio"
+            widget: "object"
+            fields:
+              - { label: "Hero — надстрочник", name: "heroEyebrow", widget: "string" }
+              - { label: "Hero — заголовок", name: "heroTitle", widget: "string" }
+              - { label: "Hero — описание", name: "heroSubtitle", widget: "text" }
+              - { label: "Фильтры — надпись", name: "filtersLabel", widget: "string" }
+              - { label: "Фильтры — кнопка «Сбросить»", name: "filtersReset", widget: "string" }
