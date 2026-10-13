@@ -180,7 +180,7 @@ img, svg, video { max-width: 100%; height: auto; }
 .ft-block__nav button:hover { opacity: 1; }
 .ft-block__bottom { max-width: 1280px; margin: 40px auto 0; padding-top: 20px; border-top: 1px solid rgba(200,165,114,0.15); display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; font-size: 12px; color: #b3ada0; }
 
-/* МОДАЛКА общий стиль */
+/* МОДАЛКИ ОБЩИЕ */
 .ab-modal { position: fixed; inset: 0; z-index: 200; display: none; align-items: center; justify-content: center; padding: 24px; }
 .ab-modal.is-open { display: flex; }
 .ab-modal__backdrop { position: absolute; inset: 0; background: rgba(13,12,13,0.85); backdrop-filter: blur(6px); }
@@ -320,22 +320,22 @@ body.chat-modal-open { overflow: hidden; }
         <li><a class="hd-block__nav-link" href="partners.html">Партнёрам</a></li>
       </ul>
       <div class="hd-block__menu-contacts">
-        <span class="hd-block__menu-hours" data-cms="header.hours">пн–сб 10:00–21:00</span>
+        <span class="hd-block__menu-hours" data-cms="common.hours">пн–сб 10:00–21:00</span>
         <a class="hd-block__menu-tg" href="https://t.me/design4060" target="_blank" rel="noopener">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
-          <span data-cms="header.tg">design4060</span>
+          <span data-cms="common.tg">design4060</span>
         </a>
       </div>
     </nav>
     <div class="hd-block__phones">
-      <a class="hd-block__phone-item" href="tel:+79771004415" data-cms="header.phone1">+7 977 100-44-15</a>
-      <a class="hd-block__phone-item" href="tel:+79017448855" data-cms="header.phone2">+7 901 744-88-55</a>
+      <a class="hd-block__phone-item" href="tel:+79771004415" data-cms="common.phone1">+7 977 100-44-15</a>
+      <a class="hd-block__phone-item" href="tel:+79017448855" data-cms="common.phone2">+7 901 744-88-55</a>
     </div>
     <div class="hd-block__meta">
-      <span class="hd-block__hours" data-cms="header.hours">пн–сб 10:00–21:00</span>
+      <span class="hd-block__hours" data-cms="common.hours">пн–сб 10:00–21:00</span>
       <a class="hd-block__tg" href="https://t.me/design4060" target="_blank" rel="noopener" aria-label="Мы в Telegram">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
-        <span data-cms="header.tg">design4060</span>
+        <span data-cms="common.tg">design4060</span>
       </a>
     </div>
   </div>
@@ -345,12 +345,12 @@ body.chat-modal-open { overflow: hidden; }
 <section class="wt-hero">
   <div class="wt-hero__inner">
     <div class="wt-hero__content">
-      <p class="wt-hero__eyebrow">Гарантия</p>
-      <h1 class="wt-hero__title">Гарантия <em>3 года</em> на всю мебель</h1>
-      <p class="wt-hero__subtitle">Мы уверены в качестве своей мебели и даём расширенную гарантию. Если что-то пойдёт не так — приедем, разберёмся и исправим за свой счёт.</p>
+      <p class="wt-hero__eyebrow" data-cms="warranty.heroEyebrow">Гарантия</p>
+      <h1 class="wt-hero__title" data-cms="warranty.heroTitle">Гарантия <em>3 года</em> на всю мебель</h1>
+      <p class="wt-hero__subtitle" data-cms="warranty.heroSubtitle">Мы уверены в качестве своей мебели и даём расширенную гарантию. Если что-то пойдёт не так — приедем, разберёмся и исправим за свой счёт.</p>
       <div class="wt-hero__badge">
-        <span class="wt-hero__badge-num">3</span>
-        <span class="wt-hero__badge-text">года расширенной гарантии на мебель и фурнитуру</span>
+        <span class="wt-hero__badge-num" data-cms="warranty.badgeNum">3</span>
+        <span class="wt-hero__badge-text" data-cms="warranty.badgeText">года расширенной гарантии на мебель и фурнитуру</span>
       </div>
     </div>
     <div class="wt-hero__visual">
@@ -368,9 +368,9 @@ body.chat-modal-open { overflow: hidden; }
 <section class="wt-sec">
   <div class="wt-sec__inner">
     <header class="wt-sec__head">
-      <p class="wt-sec__eyebrow">Что покрывает</p>
-      <h2 class="wt-sec__title">Что входит в гарантию</h2>
-      <p class="wt-sec__lead">Стандартная гарантия распространяется на все элементы мебели, которые мы произвели, доставили и собрали сами.</p>
+      <p class="wt-sec__eyebrow" data-cms="warranty.coverEyebrow">Что покрывает</p>
+      <h2 class="wt-sec__title" data-cms="warranty.coverTitle">Что входит в гарантию</h2>
+      <p class="wt-sec__lead" data-cms="warranty.coverLead">Стандартная гарантия распространяется на все элементы мебели, которые мы произвели, доставили и собрали сами.</p>
     </header>
     <ul class="wt-cover__grid">
       <li class="wt-cover__item">
@@ -409,9 +409,9 @@ body.chat-modal-open { overflow: hidden; }
 <section class="wt-sec wt-sec--alt">
   <div class="wt-sec__inner">
     <header class="wt-sec__head">
-      <p class="wt-sec__eyebrow">Ограничения</p>
-      <h2 class="wt-sec__title">Что гарантия не покрывает</h2>
-      <p class="wt-sec__lead">Эти случаи не связаны с качеством продукции и не подпадают под гарантийные обязательства.</p>
+      <p class="wt-sec__eyebrow" data-cms="warranty.notEyebrow">Ограничения</p>
+      <h2 class="wt-sec__title" data-cms="warranty.notTitle">Что гарантия не покрывает</h2>
+      <p class="wt-sec__lead" data-cms="warranty.notLead">Эти случаи не связаны с качеством продукции и не подпадают под гарантийные обязательства.</p>
     </header>
     <ul class="wt-not">
       <li class="wt-not__item"><span class="wt-not__mark">✕</span><p class="wt-not__text">Механические повреждения после подписания акта приёмки (сколы, царапины, вмятины).</p></li>
@@ -428,9 +428,9 @@ body.chat-modal-open { overflow: hidden; }
 <section class="wt-sec">
   <div class="wt-sec__inner">
     <header class="wt-sec__head">
-      <p class="wt-sec__eyebrow">Сроки</p>
-      <h2 class="wt-sec__title">Сколько действует гарантия</h2>
-      <p class="wt-sec__lead">Разные элементы мебели имеют разные гарантийные сроки — от 1 года до 3 лет.</p>
+      <p class="wt-sec__eyebrow" data-cms="warranty.termsEyebrow">Сроки</p>
+      <h2 class="wt-sec__title" data-cms="warranty.termsTitle">Сколько действует гарантия</h2>
+      <p class="wt-sec__lead" data-cms="warranty.termsLead">Разные элементы мебели имеют разные гарантийные сроки — от 1 года до 3 лет.</p>
     </header>
     <ul class="wt-terms__grid">
       <li class="wt-terms__item">
@@ -456,9 +456,9 @@ body.chat-modal-open { overflow: hidden; }
 <section class="wt-sec wt-sec--alt">
   <div class="wt-sec__inner">
     <header class="wt-sec__head">
-      <p class="wt-sec__eyebrow">Обращение</p>
-      <h2 class="wt-sec__title">Как обратиться по гарантии</h2>
-      <p class="wt-sec__lead">Четыре простых шага — от обращения до решения вопроса.</p>
+      <p class="wt-sec__eyebrow" data-cms="warranty.howEyebrow">Обращение</p>
+      <h2 class="wt-sec__title" data-cms="warranty.howTitle">Как обратиться по гарантии</h2>
+      <p class="wt-sec__lead" data-cms="warranty.howLead">Четыре простых шага — от обращения до решения вопроса.</p>
     </header>
     <ol class="wt-how__grid">
       <li class="wt-how__item">
@@ -490,10 +490,10 @@ body.chat-modal-open { overflow: hidden; }
   <div class="wt-sec__inner">
     <div class="wt-cta__box">
       <div class="wt-cta__text">
-        <h2 class="wt-cta__title">Нужна помощь <em>по гарантии?</em></h2>
-        <p class="wt-cta__sub">Оставьте заявку — специалист свяжется с вами, уточнит детали и согласует удобное время визита мастера.</p>
+        <h2 class="wt-cta__title" data-cms="warranty.ctaTitle">Нужна помощь <em>по гарантии?</em></h2>
+        <p class="wt-cta__sub" data-cms="warranty.ctaSub">Оставьте заявку — специалист свяжется с вами, уточнит детали и согласует удобное время визита мастера.</p>
       </div>
-      <button type="button" class="wt-cta__btn" id="wt-open">Оставить заявку →</button>
+      <button type="button" class="wt-cta__btn" id="wt-open" data-cms="warranty.ctaBtn">Оставить заявку →</button>
     </div>
   </div>
 </section>
@@ -503,11 +503,11 @@ body.chat-modal-open { overflow: hidden; }
   <div class="ft-block__wrap">
     <div>
       <a class="ft-block__logo" href="index.html">40/60</a>
-      <p class="ft-block__tagline" data-cms="footer.tagline">Студия интерьерной мебели. Кухни и корпусная мебель на заказ в Москве и области.</p>
+      <p class="ft-block__tagline" data-cms="common.tagline">Студия интерьерной мебели. Кухни и корпусная мебель на заказ в Москве и области.</p>
       <div class="ft-block__contacts">
-        <a href="tel:+79771004415" data-cms="footer.phone1">+7 977 100-44-15</a>
-        <a href="tel:+79017448855" data-cms="footer.phone2">+7 901 744-88-55</a>
-        <a href="https://t.me/design4060" target="_blank" rel="noopener" data-cms="footer.tg">Telegram: @design4060</a>
+        <a href="tel:+79771004415" data-cms="common.phone1">+7 977 100-44-15</a>
+        <a href="tel:+79017448855" data-cms="common.phone2">+7 901 744-88-55</a>
+        <a href="https://t.me/design4060" target="_blank" rel="noopener" data-cms="common.tg">Telegram: @design4060</a>
       </div>
     </div>
     <div>
@@ -529,12 +529,12 @@ body.chat-modal-open { overflow: hidden; }
     </div>
   </div>
   <div class="ft-block__bottom">
-    <span data-cms="footer.copyright">© 40/60 Design. Производство мебели на заказ.</span>
+    <span data-cms="common.copyright">© 40/60 Design. Производство мебели на заказ.</span>
     <span><a href="warranty.html" style="color:#b3ada0;">Гарантия</a> · <a href="about.html" style="color:#b3ada0;">О нас</a></span>
   </div>
 </footer>
 
-<!-- МОДАЛКА «ОСТАВИТЬ ЗАЯВКУ ПО ГАРАНТИИ» -->
+<!-- МОДАЛКА «ЗАЯВКА ПО ГАРАНТИИ» -->
 <div class="ab-modal" id="wt-modal" aria-hidden="true">
   <div class="ab-modal__backdrop" data-wt-close></div>
   <div class="ab-modal__dialog" role="dialog" aria-modal="true">
@@ -686,11 +686,11 @@ body.chat-modal-open { overflow: hidden; }
   </div>
 </div>
 
+<script src="js/site-content.js" defer></script>
 <script>
 (function () {
   'use strict';
 
-  /* ШАПКА */
   var header = document.querySelector('.hd-block');
   if (header) {
     var burger = header.querySelector('.hd-block__burger');
@@ -707,7 +707,6 @@ body.chat-modal-open { overflow: hidden; }
     }
   }
 
-  /* Универсальный хелпер модалки */
   function bindModal(modalId, openId, closeAttr, formId, successId, consentId, wrapId, errId, bodyClass) {
     var modal = document.getElementById(modalId);
     var openBtn = openId ? document.getElementById(openId) : null;
@@ -769,10 +768,7 @@ body.chat-modal-open { overflow: hidden; }
     }
   }
 
-  /* Модалка «Оставить заявку по гарантии» */
   bindModal('wt-modal', 'wt-open', 'data-wt-close', 'wt-form', 'wt-success', 'wt-consent', 'wt-consent-wrap', 'wt-consent-error', 'ab-modal-open');
-
-  /* Модалка «Запись на замер» (футер) */
   bindModal('ft-measure-modal', 'ft-measure-open', 'data-ft-measure-close', 'ft-measure-form', 'ft-measure-success', 'ft-measure-consent', 'ft-measure-consent-wrap', 'ft-measure-consent-error', 'ab-modal-open');
 
   /* Модалка «Позвонить» */
@@ -800,7 +796,7 @@ body.chat-modal-open { overflow: hidden; }
     });
   }
 
-  /* ПОПАП ЧАТА (FAB) */
+  /* ПОПАП ЧАТА */
   var chatFab = document.getElementById('chat-fab');
   var chatModal = document.getElementById('chat-modal');
   var chatForm = document.getElementById('chat-form');
