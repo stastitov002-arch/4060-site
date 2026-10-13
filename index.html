@@ -31,15 +31,12 @@ input, textarea, select, button { max-width: 100%; font-size: 16px; }
 img, svg, video { max-width: 100%; height: auto; }
 
 .img-fallback {
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0;
   background-color: #1a1f17;
   background-image:
     radial-gradient(circle at 30% 30%, rgba(200,165,114,0.08) 0%, transparent 50%),
     url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none' stroke='%23c8a572' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M8 28 L32 12 L56 28'/><path d='M12 28 L12 52 L52 52 L52 28'/><rect x='24' y='38' width='16' height='14'/></svg>");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 30% auto;
+  background-repeat: no-repeat; background-position: center; background-size: 30% auto;
   z-index: 0;
 }
 
@@ -471,16 +468,16 @@ body.chat-modal-open { overflow: hidden; }
 <!-- ШАПКА -->
 <section class="hd-block" aria-label="Шапка сайта">
   <div class="hd-block__inner">
-    <a class="hd-block__logo" href="/" aria-label="Перейти на главную">40/60</a>
+    <a class="hd-block__logo" href="index.html" aria-label="Перейти на главную">40/60</a>
     <button class="hd-block__burger" type="button" aria-expanded="false" aria-controls="hd-nav" aria-label="Открыть меню">
       <span class="hd-block__burger-lines" aria-hidden="true"></span>
     </button>
     <nav class="hd-block__nav" id="hd-nav" aria-label="Основная навигация">
       <ul class="hd-block__nav-list">
-        <li><a class="hd-block__nav-link" href="/about.html">О нас</a></li>
-        <li><a class="hd-block__nav-link" href="#portfolio">Портфолио</a></li>
-        <li><a class="hd-block__nav-link" href="/warranty.html">Гарантия</a></li>
-        <li><a class="hd-block__nav-link" href="/partners.html">Партнёрам</a></li>
+        <li><a class="hd-block__nav-link" href="about.html">О нас</a></li>
+        <li><a class="hd-block__nav-link" href="portfolio.html">Портфолио</a></li>
+        <li><a class="hd-block__nav-link" href="warranty.html">Гарантия</a></li>
+        <li><a class="hd-block__nav-link" href="partners.html">Партнёрам</a></li>
       </ul>
       <div class="hd-block__menu-contacts">
         <span class="hd-block__menu-hours">пн–сб 10:00–21:00</span>
@@ -552,7 +549,7 @@ body.chat-modal-open { overflow: hidden; }
           <h3 class="kb-sec__cta-title">Смотрите все проекты <em>в полном портфолио</em></h3>
           <p class="kb-sec__cta-sub">Больше реализованных кухонь и гардеробных с описанием материалов и фурнитуры.</p>
         </div>
-        <a class="kb-sec__cta-btn" href="/portfolio.html">Смотреть все проекты →</a>
+        <a class="kb-sec__cta-btn" href="portfolio.html">Смотреть все проекты →</a>
       </div>
     </div>
   </div>
@@ -682,7 +679,7 @@ body.chat-modal-open { overflow: hidden; }
 <footer class="ft-block">
   <div class="ft-block__wrap">
     <div>
-      <a class="ft-block__logo" href="/">40/60</a>
+      <a class="ft-block__logo" href="index.html">40/60</a>
       <p class="ft-block__tagline">Студия интерьерной мебели. Кухни и корпусная мебель на заказ в Москве и области.</p>
       <div class="ft-block__contacts">
         <a href="tel:+79771004415">+7 977 100-44-15</a>
@@ -693,10 +690,10 @@ body.chat-modal-open { overflow: hidden; }
     <div>
       <p class="ft-block__col-title">Навигация</p>
       <ul class="ft-block__nav">
-        <li><a href="/portfolio.html">Портфолио</a></li>
-        <li><a href="/about.html">О нас</a></li>
-        <li><a href="/warranty.html">Гарантия</a></li>
-        <li><a href="/partners.html">Партнёрам</a></li>
+        <li><a href="portfolio.html">Портфолио</a></li>
+        <li><a href="about.html">О нас</a></li>
+        <li><a href="warranty.html">Гарантия</a></li>
+        <li><a href="partners.html">Партнёрам</a></li>
       </ul>
     </div>
     <div>
@@ -710,7 +707,7 @@ body.chat-modal-open { overflow: hidden; }
   </div>
   <div class="ft-block__bottom">
     <span>© 40/60 Design. Производство мебели на заказ.</span>
-    <span><a href="/warranty.html" style="color:#b3ada0;">Гарантия</a> · <a href="/about.html" style="color:#b3ada0;">О нас</a></span>
+    <span><a href="warranty.html" style="color:#b3ada0;">Гарантия</a> · <a href="about.html" style="color:#b3ada0;">О нас</a></span>
   </div>
 </footer>
 
@@ -879,20 +876,18 @@ body.chat-modal-open { overflow: hidden; }
     for (var j = 0; j < items.length; j++) io.observe(items[j]);
   })();
 
-  /* Хелпер проверки чекбокса согласия */
+  /* Хелпер согласия */
   function bindConsent(inputId, wrapId, errId) {
     var input = document.getElementById(inputId);
     var wrap = document.getElementById(wrapId);
     var err = document.getElementById(errId);
     if (!input || !wrap || !err) return null;
-
     input.addEventListener('change', function () {
       if (input.checked) {
         wrap.classList.remove('is-error');
         err.classList.remove('is-visible');
       }
     });
-
     return {
       check: function () {
         if (!input.checked) {
@@ -906,7 +901,6 @@ body.chat-modal-open { overflow: hidden; }
       }
     };
   }
-
   var srConsent = bindConsent('sr-consent', 'sr-consent-wrap', 'sr-consent-error');
   var vkConsent = bindConsent('vk-consent', 'vk-consent-wrap', 'vk-consent-error');
   var chatConsent = bindConsent('chat-consent', 'chat-consent-wrap', 'chat-consent-error');
@@ -945,7 +939,7 @@ body.chat-modal-open { overflow: hidden; }
     });
   }
 
-  /* Фолбэк битых картинок */
+  /* Фолбэк картинок */
   function attachFallback(img) {
     if (!img) return;
     img.addEventListener('error', function () {
@@ -1238,10 +1232,7 @@ body.chat-modal-open { overflow: hidden; }
     if (chatForm) {
       chatForm.addEventListener('submit', function (e) {
         e.preventDefault();
-        if (!chatForm.checkValidity()) {
-          chatForm.reportValidity();
-          return;
-        }
+        if (!chatForm.checkValidity()) { chatForm.reportValidity(); return; }
         if (chatConsent && !chatConsent.check()) return;
         chatForm.style.display = 'none';
         if (chatSuccess) chatSuccess.classList.add('is-active');
