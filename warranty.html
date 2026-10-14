@@ -70,8 +70,8 @@ img,svg,video{max-width:100%;height:auto}
 .wt-hero{position:relative;background:#0c0c0e;color:var(--c-text);padding:clamp(96px,12vw,160px) 0 clamp(64px,8vw,110px);border-bottom:1px solid rgba(200,165,114,0.12);overflow:hidden;isolation:isolate;min-height:560px;display:flex;align-items:center}
 .wt-hero::before{content:"";position:absolute;inset:0;background-image:url("images/hero.jpg");background-size:cover;background-position:center;filter:saturate(0.9) contrast(1.02);z-index:0}
 .wt-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,8,10,0.92) 0%,rgba(8,8,10,0.74) 45%,rgba(8,8,10,0.42) 100%),linear-gradient(180deg,rgba(8,8,10,0.55) 0%,rgba(8,8,10,0.25) 40%,rgba(8,8,10,0.88) 100%);z-index:1;pointer-events:none}
-.wt-hero__inner{position:relative;z-index:2;width:100%;max-width:1440px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
-.wt-hero__content{display:flex;flex-direction:column;gap:20px;max-width:640px}
+.wt-hero__inner{position:relative;z-index:2;width:100%;max-width:1440px;margin:0 auto;padding:0 clamp(20px,4vw,48px);display:grid;grid-template-columns:1.2fr 0.8fr;gap:clamp(32px,5vw,80px);align-items:center}
+.wt-hero__content{display:flex;flex-direction:column;gap:20px}
 .wt-hero__eyebrow{display:inline-block;font-size:12px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--c-accent);margin:0}
 .wt-hero__title{font-family:'Playfair Display',serif;font-size:clamp(38px,5.6vw,72px);line-height:1.02;letter-spacing:-0.02em;font-weight:400;margin:0;color:#f7f4ee;max-width:16ch}
 .wt-hero__title em{color:var(--c-accent);font-style:italic}
@@ -79,6 +79,9 @@ img,svg,video{max-width:100%;height:auto}
 .wt-hero__badge{display:inline-flex;align-items:center;gap:18px;padding:22px 28px;border:1px solid rgba(200,165,114,0.4);border-radius:16px;background:rgba(13,12,13,0.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);align-self:flex-start;margin-top:8px}
 .wt-hero__badge-num{font-family:'Playfair Display',serif;font-size:clamp(38px,4vw,52px);color:var(--c-accent);line-height:1;font-weight:400}
 .wt-hero__badge-text{font-size:14px;color:#d8d2c5;line-height:1.4;max-width:20ch}
+.wt-hero__visual{display:flex;justify-content:center;align-items:center}
+.wt-hero__shield{width:100%;max-width:340px;aspect-ratio:1;border-radius:24px;background:radial-gradient(circle at 50% 40%,rgba(200,165,114,0.18) 0%,transparent 60%),rgba(13,12,13,0.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(200,165,114,0.3);display:grid;place-items:center;position:relative}
+.wt-hero__shield svg{width:55%;height:auto;color:var(--c-accent);opacity:0.9}
 .wt-sec{padding:clamp(64px,8vw,112px) 0}
 .wt-sec--alt{background:var(--c-bg-alt);border-top:1px solid rgba(200,165,114,0.1);border-bottom:1px solid rgba(200,165,114,0.1)}
 .wt-sec__inner{max-width:1440px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
@@ -182,7 +185,7 @@ body.ab-modal-open{overflow:hidden}
 .ab-call__phone{font-size:17px;font-weight:600;color:#fff;white-space:nowrap}
 body.ab-call-open{overflow:hidden}
 @media(max-width:640px){.ab-call{padding:16px}.ab-call__dialog{padding:36px 22px 26px;border-radius:20px}.ab-call__phone{font-size:16px}}
-@media(max-width:1080px){.wt-cover__grid{grid-template-columns:1fr}.wt-not{grid-template-columns:1fr;gap:0}.wt-terms__grid{grid-template-columns:1fr}.wt-how__grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:1080px){.wt-hero__inner{grid-template-columns:1fr;gap:40px}.wt-hero__visual{order:-1}.wt-hero__shield{max-width:240px}.wt-cover__grid{grid-template-columns:1fr}.wt-not{grid-template-columns:1fr;gap:0}.wt-terms__grid{grid-template-columns:1fr}.wt-how__grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:640px){.wt-how__grid{grid-template-columns:1fr;gap:20px}.wt-cta__box{padding:28px 22px}.wt-cta__btn{width:100%;justify-content:center}.wt-hero__badge{padding:18px 22px;gap:14px}.wt-cover__item{padding:22px 20px;gap:14px}.wt-cover__icon{flex:0 0 40px;width:40px;height:40px;font-size:18px}.wt-hero{min-height:480px}}
 .chat-fab{position:fixed;right:24px;bottom:24px;z-index:60;width:56px;height:56px;border-radius:50%;background:var(--c-accent);color:var(--c-bg);border:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 12px 28px rgba(0,0,0,.4);transition:transform .25s,background .25s,box-shadow .25s}
 .chat-fab:hover{background:var(--c-accent-h);transform:translateY(-2px);box-shadow:0 16px 32px rgba(0,0,0,.45)}
@@ -266,6 +269,14 @@ body.chat-modal-open{overflow:hidden}
       <div class="wt-hero__badge">
         <span class="wt-hero__badge-num" data-cms="warranty.badgeNum">3</span>
         <span class="wt-hero__badge-text" data-cms="warranty.badgeText">года расширенной гарантии на мебель и фурнитуру</span>
+      </div>
+    </div>
+    <div class="wt-hero__visual">
+      <div class="wt-hero__shield" aria-hidden="true">
+        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M32 6 L54 14 L54 30 C54 44 44 54 32 58 C20 54 10 44 10 30 L10 14 Z"/>
+          <path d="M22 32 L29 39 L44 24"/>
+        </svg>
       </div>
     </div>
   </div>
