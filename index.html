@@ -158,7 +158,7 @@ img,svg,video{max-width:100%;height:auto}
 .sr-modal.is-open{display:flex}
 .sr-modal__backdrop{position:absolute;inset:0;background:rgba(13,12,13,0.85);backdrop-filter:blur(6px)}
 .sr-modal__dialog{position:relative;z-index:1;width:100%;max-width:520px;background:#1f1d1b;border:1px solid rgba(212,178,121,0.22);border-radius:24px;padding:44px 40px 36px;max-height:calc(100vh - 48px);overflow-y:auto;color:var(--c-text)}
-.sr-modal__close{position:absolute;top:16px;right:16px;width:40px;height:40px;border-radius:50%;background:rgba(247,241,232,0.06);border:0;color:var(--c-accent-h);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px}
+.sr-modal__close{position:absolute;top:16px;right:16px;width:44px;height:44px;border-radius:50%;background:rgba(247,241,232,0.06);border:0;color:var(--c-accent-h);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:20px;transition:background .2s}
 .sr-modal__close:hover{background:rgba(212,178,121,0.18)}
 .sr-modal__eyebrow{display:inline-block;font-size:11px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--c-accent-h);margin-bottom:14px;position:relative;padding-left:32px}
 .sr-modal__eyebrow::before{content:"";position:absolute;left:0;top:50%;width:22px;height:1px;background:var(--c-accent-h)}
@@ -178,6 +178,7 @@ img,svg,video{max-width:100%;height:auto}
 .sr-consent-error.is-visible{display:block}
 .sr-form__submit{background:var(--c-accent-d);color:#1c1b19;border:1px solid var(--c-accent-d);border-radius:12px;padding:16px 20px;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .3s}
 .sr-form__submit:hover{background:var(--c-accent-h);border-color:var(--c-accent-h)}
+.sr-form__submit:disabled{opacity:0.6;cursor:wait}
 body.sr-modal-open{overflow:hidden}
 @media(max-width:640px){.sr-modal{padding:16px}.sr-modal__dialog{padding:36px 24px 28px;border-radius:20px}}
 .tpk-block{font-family:"Inter",Arial,sans-serif;color:#2b2a28;background:#fbf8f3;padding:96px 24px 110px}
@@ -249,7 +250,7 @@ body.sr-modal-open{overflow:hidden}
 .faq-a7b__item--open .faq-a7b__answer{grid-template-rows:1fr}
 .faq-a7b__answer-inner{overflow:hidden;min-height:0}
 .faq-a7b__answer-inner p{margin:0;padding:0 32px 28px calc(32px + 30px + 24px);color:#4a4a48;line-height:1.7;font-size:16px}
-.vk-measure{background:var(--c-surface);color:var(--c-text);padding:clamp(48px,7vw,88px) 20px}
+.vk-measure{background:var(--c-surface);color:var(--c-text);padding:clamp(48px,7vw,88px) 20px;scroll-margin-top:100px}
 .vk-measure__inner{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
 .vk-measure__intro{display:flex;flex-direction:column;gap:22px}
 .vk-measure__badge{display:inline-flex;align-items:center;padding:8px 14px;border-radius:999px;background:var(--c-gold-strong);color:var(--c-surface);font-size:12px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;width:fit-content}
@@ -276,6 +277,7 @@ body.sr-modal-open{overflow:hidden}
 .vk-measure__input{width:100%;padding:14px 16px;border-radius:12px;border:1px solid rgba(245,185,66,0.22);background:rgba(13,12,13,0.45);color:var(--c-text);font-family:inherit;font-size:16px;outline:none}
 .vk-measure__input:focus{border-color:var(--c-gold-strong);box-shadow:0 0 0 4px rgba(245,185,66,0.14)}
 .vk-measure__submit{margin-top:8px;width:100%;border:none;cursor:pointer;background:linear-gradient(180deg,var(--c-gold-strong) 0%,#e5a82d 100%);color:var(--c-surface);font-family:inherit;font-size:15px;font-weight:600;padding:16px 20px;border-radius:14px}
+.vk-measure__submit:disabled{opacity:0.6;cursor:wait}
 .vk-measure__consent{display:flex;align-items:flex-start;gap:10px;margin-top:14px;cursor:pointer}
 .vk-measure__consent-input{position:absolute;opacity:0;width:1px;height:1px}
 .vk-measure__consent-box{flex:0 0 18px;width:18px;height:18px;border:1.5px solid rgba(245,185,66,0.3);border-radius:5px;display:inline-grid;place-items:center;background:rgba(13,12,13,0.5);color:var(--c-surface);font-size:12px;transition:border-color .2s,background .2s,box-shadow .2s}
@@ -307,7 +309,7 @@ body.sr-modal-open{overflow:hidden}
 .kb-modal.is-open{display:flex}
 .kb-modal__backdrop{position:fixed;inset:0;background:rgba(6,11,7,0.85);backdrop-filter:blur(6px)}
 .kb-modal__dialog-wrap{position:relative;width:min(1060px,100%);margin:auto}
-.kb-modal__close{position:absolute;top:8px;right:8px;z-index:10;width:40px;height:40px;border-radius:50%;background:rgba(13,12,13,0.9);border:1px solid rgba(242,239,233,0.16);color:var(--c-text);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;transition:border-color .2s,color .2s,background .2s}
+.kb-modal__close{position:absolute;top:8px;right:8px;z-index:10;width:44px;height:44px;border-radius:50%;background:rgba(13,12,13,0.9);border:1px solid rgba(242,239,233,0.16);color:var(--c-text);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;transition:border-color .2s,color .2s,background .2s}
 .kb-modal__close:hover{border-color:var(--c-accent);color:var(--c-accent);background:rgba(13,12,13,1)}
 .kb-modal__dialog{position:relative;width:100%;background:#1f2420;border:1px solid rgba(200,165,114,0.35);border-radius:12px;padding:32px;display:grid;grid-template-columns:1fr;gap:24px}
 @media(min-width:900px){.kb-modal__dialog{grid-template-columns:1.1fr 1fr;gap:32px}}
@@ -331,12 +333,12 @@ body.sr-modal-open{overflow:hidden}
 .kb-modal__cta{display:inline-block;background:var(--c-accent);color:var(--c-bg);border:0;border-radius:4px;padding:13px 26px;font-size:15px;cursor:pointer;text-decoration:none;font-weight:500}
 .kb-modal__cta:hover{background:var(--c-accent-h)}
 body.kb-modal-open{overflow:hidden}
-@media(max-width:640px){.kb-modal__dialog{padding:24px 18px}.kb-modal__close{top:6px;right:6px;width:36px;height:36px}}
+@media(max-width:640px){.kb-modal__dialog{padding:24px 18px}.kb-modal__close{top:6px;right:6px;width:40px;height:40px}}
 .ft-modal{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:24px}
 .ft-modal.is-open{display:flex}
 .ft-modal__backdrop{position:absolute;inset:0;background:rgba(13,12,13,0.85);backdrop-filter:blur(6px)}
 .ft-modal__dialog{position:relative;z-index:1;width:100%;max-width:520px;background:#1f1d1b;border:1px solid rgba(212,178,121,0.22);border-radius:24px;padding:44px 40px 36px;max-height:calc(100vh - 48px);overflow-y:auto;color:var(--c-text)}
-.ft-modal__close{position:absolute;top:16px;right:16px;width:40px;height:40px;border-radius:50%;background:rgba(247,241,232,0.06);border:0;color:var(--c-accent-h);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;transition:background .2s}
+.ft-modal__close{position:absolute;top:16px;right:16px;width:44px;height:44px;border-radius:50%;background:rgba(247,241,232,0.06);border:0;color:var(--c-accent-h);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:20px;transition:background .2s}
 .ft-modal__close:hover{background:rgba(212,178,121,0.18)}
 .ft-modal__eyebrow{display:inline-block;font-size:11px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--c-accent-h);margin-bottom:14px;position:relative;padding-left:32px}
 .ft-modal__eyebrow::before{content:"";position:absolute;left:0;top:50%;width:22px;height:1px;background:var(--c-accent-h)}
@@ -356,6 +358,7 @@ body.kb-modal-open{overflow:hidden}
 .ft-modal__consent-error.is-visible{display:block}
 .ft-modal__submit{background:var(--c-accent-d);color:#1c1b19;border:1px solid var(--c-accent-d);border-radius:12px;padding:16px 20px;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .3s}
 .ft-modal__submit:hover{background:var(--c-accent-h);border-color:var(--c-accent-h)}
+.ft-modal__submit:disabled{opacity:0.6;cursor:wait}
 .ft-modal__success{display:none;flex-direction:column;align-items:center;text-align:center;gap:14px;padding:12px 8px}
 .ft-modal__success.is-active{display:flex}
 .ft-modal__success-icon{width:80px;height:80px;border-radius:50%;background:rgba(111,207,151,0.14);color:var(--c-success);display:grid;place-items:center;font-size:40px}
@@ -367,7 +370,7 @@ body.ft-modal-open{overflow:hidden}
 .ft-call.is-open{display:flex}
 .ft-call__backdrop{position:absolute;inset:0;background:rgba(13,12,13,0.85);backdrop-filter:blur(6px)}
 .ft-call__dialog{position:relative;z-index:1;width:100%;max-width:480px;background:#1f1d1b;border:1px solid rgba(212,178,121,0.22);border-radius:24px;padding:44px 40px 36px;max-height:calc(100vh - 48px);overflow-y:auto;color:var(--c-text)}
-.ft-call__close{position:absolute;top:16px;right:16px;width:40px;height:40px;border-radius:50%;background:rgba(247,241,232,0.06);border:0;color:var(--c-accent-h);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;transition:background .2s}
+.ft-call__close{position:absolute;top:16px;right:16px;width:44px;height:44px;border-radius:50%;background:rgba(247,241,232,0.06);border:0;color:var(--c-accent-h);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:20px;transition:background .2s}
 .ft-call__close:hover{background:rgba(212,178,121,0.18)}
 .ft-call__eyebrow{display:inline-block;font-size:11px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--c-accent-h);margin-bottom:14px;position:relative;padding-left:32px}
 .ft-call__eyebrow::before{content:"";position:absolute;left:0;top:50%;width:22px;height:1px;background:var(--c-accent-h)}
@@ -386,14 +389,14 @@ body.ft-call-open{overflow:hidden}
 .chat-fab:hover{background:var(--c-accent-h);transform:translateY(-2px);box-shadow:0 16px 32px rgba(0,0,0,.45)}
 .chat-fab:focus-visible{outline:2px solid var(--c-accent-h);outline-offset:3px}
 .chat-fab svg{width:28px;height:28px;display:block}
-@media(max-width:900px){.chat-fab{width:60px;height:60px}}
-@media(max-width:720px){.chat-fab{right:18px;bottom:18px;width:62px;height:62px}.chat-fab svg{width:28px;height:28px}}
+@media(max-width:900px){.chat-fab{width:64px;height:64px}.chat-fab svg{width:30px;height:30px}}
+@media(max-width:720px){.chat-fab{right:18px;bottom:18px;width:68px;height:68px}.chat-fab svg{width:32px;height:32px}}
 .chat-modal{position:fixed;inset:0;z-index:210;display:none;align-items:flex-end;justify-content:flex-end;padding:24px;pointer-events:none}
 .chat-modal.is-open{display:flex}
 .chat-modal__backdrop{position:absolute;inset:0;background:rgba(13,12,13,0.7);backdrop-filter:blur(4px);pointer-events:auto}
 .chat-modal__dialog{position:relative;z-index:1;width:100%;max-width:400px;max-height:calc(100vh - 48px);overflow-y:auto;background:#1a1f17;border:1px solid rgba(200,165,114,0.28);border-radius:20px;padding:32px 28px 28px;color:var(--c-text);box-shadow:0 30px 80px rgba(0,0,0,.6);pointer-events:auto;animation:chat-modal-rise .3s cubic-bezier(.2,.7,.2,1)}
 @keyframes chat-modal-rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-.chat-modal__close{position:absolute;top:12px;right:12px;width:36px;height:36px;border-radius:50%;background:rgba(247,241,232,0.06);border:0;color:var(--c-accent);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;transition:background .2s}
+.chat-modal__close{position:absolute;top:12px;right:12px;width:40px;height:40px;border-radius:50%;background:rgba(247,241,232,0.06);border:0;color:var(--c-accent);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;transition:background .2s}
 .chat-modal__close:hover{background:rgba(200,165,114,0.18)}
 .chat-modal__title{font-size:20px;font-weight:700;line-height:1.25;margin:0 0 20px;color:#fff;letter-spacing:-0.01em;padding-right:40px}
 .chat-modal__tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
@@ -415,6 +418,7 @@ body.ft-call-open{overflow:hidden}
 .chat-modal__consent-error.is-visible{display:block}
 .chat-modal__submit{margin-top:8px;width:100%;border:none;cursor:pointer;background:var(--c-accent);color:var(--c-bg);font-family:inherit;font-size:14px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:15px 20px;border-radius:12px;transition:background .2s}
 .chat-modal__submit:hover{background:var(--c-accent-h)}
+.chat-modal__submit:disabled{opacity:0.6;cursor:wait}
 .chat-modal__success{display:none;flex-direction:column;align-items:center;text-align:center;gap:10px;padding:20px 8px 8px}
 .chat-modal__success.is-active{display:flex}
 .chat-modal__success-icon{width:64px;height:64px;border-radius:50%;background:rgba(111,207,151,0.14);color:var(--c-success);display:grid;place-items:center;font-size:32px;margin-bottom:6px}
@@ -422,6 +426,8 @@ body.ft-call-open{overflow:hidden}
 .chat-modal__success-text{font-size:14px;margin:0;color:rgba(244,237,226,0.7);line-height:1.5;max-width:30ch}
 body.chat-modal-open{overflow:hidden}
 @media(max-width:480px){.chat-modal{padding:0;align-items:stretch;justify-content:stretch}.chat-modal__dialog{max-width:100%;max-height:100vh;border-radius:20px 20px 0 0;align-self:flex-end;padding:28px 20px 24px}}
+@media(max-width:720px){.h40-hero__image{animation:none!important;transform:none!important}.h40-hero__scroll-line::after{animation:none}}
+#measure{scroll-margin-top:100px}
 </style>
 </head>
 
@@ -613,7 +619,7 @@ body.chat-modal-open{overflow:hidden}
       <div class="ft-block__contacts">
         <a href="tel:+79771004415" data-cms="common.phone1">+7 977 100-44-15</a>
         <a href="tel:+79017448855" data-cms="common.phone2">+7 901 744-88-55</a>
-        <a href="https://t.me/design4060" target="_blank" rel="noopener" data-cms="common.tg">Telegram: @design4060</a>
+        <a href="https://t.me/official4060Design" target="_blank" rel="noopener">Telegram: @official4060Design</a>
       </div>
     </div>
     <div>
@@ -630,7 +636,7 @@ body.chat-modal-open{overflow:hidden}
       <ul class="ft-block__nav">
         <li><button type="button" id="ft-measure-open">Запись на замер</button></li>
         <li><button type="button" id="ft-call-open">Позвонить</button></li>
-        <li><a href="https://t.me/design4060" target="_blank" rel="noopener">Написать в Telegram</a></li>
+        <li><a href="https://t.me/official4060Design" target="_blank" rel="noopener">Написать в Telegram</a></li>
       </ul>
     </div>
   </div>
@@ -746,10 +752,18 @@ body.chat-modal-open{overflow:hidden}
 (function(){
 'use strict';
 var REPO='stastitov002-arch/4060-site';
+var WORKER_URL='https://hidden-bar-8272form-to-telegram.stas-titov-002.workers.dev';
+
+function sendToWorker(payload,onSuccess,onError){
+  fetch(WORKER_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
+  .then(function(r){return r.json();})
+  .then(function(res){if(res&&res.success){if(onSuccess)onSuccess(res);}else{if(onError)onError(res&&res.error?res.error:'Ошибка отправки');}})
+  .catch(function(err){if(onError)onError(String(err&&err.message?err.message:err));});
+}
+function showFormError(btn,orig,msg){if(btn){btn.disabled=false;btn.textContent=orig;}alert('Не удалось отправить заявку. '+(msg?'Ошибка: '+msg:'Попробуйте ещё раз или позвоните нам.'));}
 
 function fixImgPath(url){if(!url)return '';var s=String(url).trim().replace(/^\/+/,'');if(s.indexOf('images/')===0)return s;if(s.indexOf('uploads/')===0)return 'images/'+s;if(s.indexOf('/')===-1)return 'images/uploads/'+s;return s;}
-
-function showError(msg){var g=document.getElementById('kb-grid');if(g) g.innerHTML='<li class="kb-sec__empty" style="color:#e07a6a">Ошибка: '+String(msg).replace(/</g,'&lt;')+'</li>';}
+function showError(msg){var g=document.getElementById('kb-grid');if(g)g.innerHTML='<li class="kb-sec__empty" style="color:#e07a6a">Ошибка: '+String(msg).replace(/</g,'&lt;')+'</li>';}
 
 try{var header=document.querySelector('.hd-block');if(header){var burger=header.querySelector('.hd-block__burger');var nav=header.querySelector('.hd-block__nav');if(burger&&nav){burger.addEventListener('click',function(){var open=!header.classList.contains('hd-block--menu-open');header.classList.toggle('hd-block--menu-open',open);burger.setAttribute('aria-expanded',open?'true':'false');});nav.addEventListener('click',function(e){if(e.target.tagName==='A')header.classList.remove('hd-block--menu-open');});}}}catch(e){}
 
@@ -784,14 +798,8 @@ function parseYaml(text){
       if(key==='gallery'){
         inGallery=true;
         if(val){
-          if(val.indexOf(',')!==-1){
-            val.split(',').forEach(function(s){
-              var t=s.trim().replace(/^["']|["']$/g,'');
-              if(t)gallery.push(t);
-            });
-          } else {
-            gallery.push(val);
-          }
+          if(val.indexOf(',')!==-1){val.split(',').forEach(function(s){var t=s.trim().replace(/^["']|["']$/g,'');if(t)gallery.push(t);});}
+          else{gallery.push(val);}
           inGallery=false;
         }
         continue;
@@ -803,9 +811,7 @@ function parseYaml(text){
     var ml=line.match(/^\s*-\s+(.+)$/);
     if(ml&&inGallery){
       var v=ml[1].trim().replace(/^["']|["']$/g,'');
-      if(v.indexOf('image:')===0){
-        v=v.slice(6).trim().replace(/^["']|["']$/g,'');
-      }
+      if(v.indexOf('image:')===0){v=v.slice(6).trim().replace(/^["']|["']$/g,'');}
       if(v)gallery.push(v);
     }
   }
@@ -867,11 +873,21 @@ function openModal(idx){
   var price=d.price?parseInt(d.price,10):null;
   document.getElementById('kb-modal-kicker').textContent=title;
   document.getElementById('kb-modal-title').textContent=title;
-  document.getElementById('kb-modal-desc').textContent=d.description||'';
-  document.getElementById('kb-modal-facades').textContent=d.facades||'—';
-  document.getElementById('kb-modal-countertop').textContent=d.countertop||'—';
-  document.getElementById('kb-modal-hardware').textContent=d.hardware||'—';
-  document.getElementById('kb-modal-equipment').textContent=d.equipment||'—';
+
+  var descEl=document.getElementById('kb-modal-desc');
+  if(d.description&&String(d.description).trim()){descEl.textContent=d.description;descEl.style.display='';}
+  else{descEl.textContent='';descEl.style.display='none';}
+
+  var specGrid=document.querySelector('.kb-modal__grid');
+  var specCards=specGrid?specGrid.querySelectorAll('.kb-modal__spec'):[];
+  var specValues=[d.facades,d.countertop,d.hardware,d.equipment];
+  var visibleSpecs=0;
+  for(var i=0;i<specCards.length;i++){
+    var card=specCards[i];var pEl=card.querySelector('p');var val=specValues[i];
+    if(val&&String(val).trim()){pEl.textContent=val;card.style.display='';visibleSpecs++;}
+    else{pEl.textContent='';card.style.display='none';}
+  }
+  if(specGrid)specGrid.style.display=visibleSpecs?'':'none';
 
   var main=document.getElementById('kb-modal-img');
   var mainWrap=main.parentElement;
@@ -935,6 +951,32 @@ if(kbCta)kbCta.addEventListener('click',function(){if(currentProject&&currentPro
 
 document.querySelectorAll('.faq-a7b__question').forEach(function(btn){btn.addEventListener('click',function(){var item=btn.closest('.faq-a7b__item');var ans=item.querySelector('.faq-a7b__answer');var open=item.classList.toggle('faq-a7b__item--open');if(open)ans.removeAttribute('hidden');else ans.setAttribute('hidden','');});});
 
+/* ФОРМА ЗАМЕРА НА СТРАНИЦЕ */
+var vkForm=document.getElementById('vk-form');
+var vkSuccess=document.getElementById('vk-success');
+if(vkForm)vkForm.addEventListener('submit',function(e){
+  e.preventDefault();
+  if(vkConsent&&!vkConsent.check())return;
+  var payload={
+    source:'🔔 Замер — форма на странице',
+    name:(document.getElementById('vk-name')||{}).value||'',
+    phone:(document.getElementById('vk-phone')||{}).value||'',
+    tg:(document.getElementById('vk-tg')||{}).value||'',
+    project:(document.getElementById('vk-project-input')||{}).value||''
+  };
+  payload.name=String(payload.name).trim();
+  payload.phone=String(payload.phone).trim();
+  payload.tg=String(payload.tg).trim();
+  var submitBtn=vkForm.querySelector('button[type="submit"]');
+  var orig=submitBtn?submitBtn.textContent:'';
+  if(submitBtn){submitBtn.disabled=true;submitBtn.textContent='Отправка…';}
+  sendToWorker(payload,
+    function(){vkForm.style.display='none';vkSuccess.classList.add('is-active');},
+    function(errMsg){showFormError(submitBtn,orig,errMsg);}
+  );
+});
+
+/* МОДАЛКА «ЗАПИСЬ НА ВИЗИТ» (шоурум) */
 var srModal=document.getElementById('sr-modal');
 var srOpen=document.getElementById('sr-open');
 if(srModal&&srOpen){
@@ -942,38 +984,69 @@ if(srModal&&srOpen){
   srModal.querySelectorAll('[data-sr-close]').forEach(function(el){el.addEventListener('click',function(){srModal.classList.remove('is-open');srModal.setAttribute('aria-hidden','true');document.body.classList.remove('sr-modal-open');});});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&srModal.classList.contains('is-open')){srModal.classList.remove('is-open');srModal.setAttribute('aria-hidden','true');document.body.classList.remove('sr-modal-open');}});
   var srForm=document.getElementById('sr-form');
-  if(srForm)srForm.addEventListener('submit',function(e){e.preventDefault();if(srConsent&&!srConsent.check())return;srForm.innerHTML='<p style="text-align:center;color:#d4b279;font-size:15px;padding:20px 0;">Спасибо! Заявка отправлена — дизайнер свяжется с вами.</p>';});
+  if(srForm)srForm.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(srConsent&&!srConsent.check())return;
+    var payload={
+      source:'🔔 Визит в шоурум',
+      name:(document.getElementById('sr-name')||{}).value||'',
+      phone:(document.getElementById('sr-contact')||{}).value||''
+    };
+    payload.name=String(payload.name).trim();
+    payload.phone=String(payload.phone).trim();
+    var submitBtn=srForm.querySelector('button[type="submit"]');
+    var orig=submitBtn?submitBtn.textContent:'';
+    if(submitBtn){submitBtn.disabled=true;submitBtn.textContent='Отправка…';}
+    sendToWorker(payload,
+      function(){srForm.style.display='none';var ok=document.createElement('p');ok.style.textAlign='center';ok.style.color='#d4b279';ok.style.fontSize='15px';ok.style.padding='20px 0';ok.textContent='Спасибо! Заявка отправлена — дизайнер свяжется с вами.';srForm.parentNode.appendChild(ok);},
+      function(errMsg){showFormError(submitBtn,orig,errMsg);}
+    );
+  });
 }
 
-var vkForm=document.getElementById('vk-form');
-var vkSuccess=document.getElementById('vk-success');
-if(vkForm)vkForm.addEventListener('submit',function(e){e.preventDefault();if(vkConsent&&!vkConsent.check())return;vkForm.style.display='none';vkSuccess.classList.add('is-active');});
+/* МОДАЛКА «ЗАМЕР» (футер) */
+var ftMeasureModal=document.getElementById('ft-measure-modal');
+var ftMeasureOpen=document.getElementById('ft-measure-open');
+var ftMeasureForm=document.getElementById('ft-measure-form');
+var ftMeasureSuccess=document.getElementById('ft-measure-success');
+var ftMeasureConsent=document.getElementById('ft-measure-consent');
+var ftMeasureConsentWrap=document.getElementById('ft-measure-consent-wrap');
+var ftMeasureConsentErr=document.getElementById('ft-measure-consent-error');
+function openFtMeasure(){if(!ftMeasureModal)return;ftMeasureModal.classList.add('is-open');ftMeasureModal.setAttribute('aria-hidden','false');document.body.classList.add('ft-modal-open');}
+function closeFtMeasure(){if(!ftMeasureModal)return;ftMeasureModal.classList.remove('is-open');ftMeasureModal.setAttribute('aria-hidden','true');document.body.classList.remove('ft-modal-open');if(ftMeasureForm){ftMeasureForm.style.display='';ftMeasureForm.reset();if(ftMeasureConsentWrap)ftMeasureConsentWrap.classList.remove('is-error');if(ftMeasureConsentErr)ftMeasureConsentErr.classList.remove('is-visible');}if(ftMeasureSuccess)ftMeasureSuccess.classList.remove('is-active');}
+if(ftMeasureOpen)ftMeasureOpen.addEventListener('click',openFtMeasure);
+if(ftMeasureModal){ftMeasureModal.querySelectorAll('[data-ft-measure-close]').forEach(function(el){el.addEventListener('click',closeFtMeasure);});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ftMeasureModal.classList.contains('is-open'))closeFtMeasure();});}
+if(ftMeasureConsent)ftMeasureConsent.addEventListener('change',function(){if(ftMeasureConsent.checked){if(ftMeasureConsentWrap)ftMeasureConsentWrap.classList.remove('is-error');if(ftMeasureConsentErr)ftMeasureConsentErr.classList.remove('is-visible');}});
+if(ftMeasureForm)ftMeasureForm.addEventListener('submit',function(e){
+  e.preventDefault();
+  if(ftMeasureConsent&&!ftMeasureConsent.checked){if(ftMeasureConsentWrap)ftMeasureConsentWrap.classList.add('is-error');if(ftMeasureConsentErr)ftMeasureConsentErr.classList.add('is-visible');try{ftMeasureConsent.focus({preventScroll:true});}catch(er){ftMeasureConsent.focus();}return;}
+  var payload={
+    source:'🔔 Замер — модалка футера',
+    name:(document.getElementById('ft-measure-name')||{}).value||'',
+    phone:(document.getElementById('ft-measure-phone')||{}).value||'',
+    tg:(document.getElementById('ft-measure-tg')||{}).value||''
+  };
+  payload.name=String(payload.name).trim();
+  payload.phone=String(payload.phone).trim();
+  payload.tg=String(payload.tg).trim();
+  var submitBtn=ftMeasureForm.querySelector('button[type="submit"]');
+  var orig=submitBtn?submitBtn.textContent:'';
+  if(submitBtn){submitBtn.disabled=true;submitBtn.textContent='Отправка…';}
+  sendToWorker(payload,
+    function(){ftMeasureForm.style.display='none';if(ftMeasureSuccess)ftMeasureSuccess.classList.add('is-active');},
+    function(errMsg){showFormError(submitBtn,orig,errMsg);}
+  );
+});
 
-(function(){
-  var m=document.getElementById('ft-measure-modal');
-  var o=document.getElementById('ft-measure-open');
-  var f=document.getElementById('ft-measure-form');
-  var s=document.getElementById('ft-measure-success');
-  var c=document.getElementById('ft-measure-consent');
-  var cw=document.getElementById('ft-measure-consent-wrap');
-  var ce=document.getElementById('ft-measure-consent-error');
-  function op(){if(!m)return;m.classList.add('is-open');m.setAttribute('aria-hidden','false');document.body.classList.add('ft-modal-open');}
-  function cl(){if(!m)return;m.classList.remove('is-open');m.setAttribute('aria-hidden','true');document.body.classList.remove('ft-modal-open');if(f){f.style.display='';f.reset();if(cw)cw.classList.remove('is-error');if(ce)ce.classList.remove('is-visible');}if(s)s.classList.remove('is-active');}
-  if(o)o.addEventListener('click',op);
-  if(m){m.querySelectorAll('[data-ft-measure-close]').forEach(function(el){el.addEventListener('click',cl);});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&m.classList.contains('is-open'))cl();});}
-  if(c)c.addEventListener('change',function(){if(c.checked){if(cw)cw.classList.remove('is-error');if(ce)ce.classList.remove('is-visible');}});
-  if(f)f.addEventListener('submit',function(e){e.preventDefault();if(c&&!c.checked){if(cw)cw.classList.add('is-error');if(ce)ce.classList.add('is-visible');try{c.focus({preventScroll:true});}catch(er){c.focus();}return;}f.style.display='none';if(s)s.classList.add('is-active');});
-})();
+/* МОДАЛКА «ПОЗВОНИТЬ» */
+var ftCallModal=document.getElementById('ft-call-modal');
+var ftCallOpen=document.getElementById('ft-call-open');
+function openFtCall(){if(!ftCallModal)return;ftCallModal.classList.add('is-open');ftCallModal.setAttribute('aria-hidden','false');document.body.classList.add('ft-call-open');}
+function closeFtCall(){if(!ftCallModal)return;ftCallModal.classList.remove('is-open');ftCallModal.setAttribute('aria-hidden','true');document.body.classList.remove('ft-call-open');}
+if(ftCallOpen)ftCallOpen.addEventListener('click',openFtCall);
+if(ftCallModal){ftCallModal.querySelectorAll('[data-ft-call-close]').forEach(function(el){el.addEventListener('click',closeFtCall);});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ftCallModal.classList.contains('is-open'))closeFtCall();});}
 
-(function(){
-  var m=document.getElementById('ft-call-modal');
-  var o=document.getElementById('ft-call-open');
-  function op(){if(!m)return;m.classList.add('is-open');m.setAttribute('aria-hidden','false');document.body.classList.add('ft-call-open');}
-  function cl(){if(!m)return;m.classList.remove('is-open');m.setAttribute('aria-hidden','true');document.body.classList.remove('ft-call-open');}
-  if(o)o.addEventListener('click',op);
-  if(m){m.querySelectorAll('[data-ft-call-close]').forEach(function(el){el.addEventListener('click',cl);});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&m.classList.contains('is-open'))cl();});}
-})();
-
+/* ЧАТ */
 var chatFab=document.getElementById('chat-fab');
 var chatModal=document.getElementById('chat-modal');
 var chatForm=document.getElementById('chat-form');
@@ -987,7 +1060,28 @@ if(chatFab&&chatModal){
   chatModal.querySelectorAll('[data-chat-close]').forEach(function(el){el.addEventListener('click',closeChat);});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&chatModal.classList.contains('is-open'))closeChat();});
   document.querySelectorAll('.chat-modal__tab').forEach(function(tab){tab.addEventListener('click',function(){document.querySelectorAll('.chat-modal__tab').forEach(function(t){t.classList.remove('is-active');t.setAttribute('aria-selected','false');});tab.classList.add('is-active');tab.setAttribute('aria-selected','true');var key=tab.getAttribute('data-chat-tab');if(chatContact&&placeholderMap[key]){chatContact.placeholder=placeholderMap[key];chatContact.value='';chatContact.focus();}});});
-  if(chatForm)chatForm.addEventListener('submit',function(e){e.preventDefault();if(!chatForm.checkValidity()){chatForm.reportValidity();return;}if(chatConsent&&!chatConsent.check())return;chatForm.style.display='none';if(chatSuccess)chatSuccess.classList.add('is-active');});
+  if(chatForm)chatForm.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(!chatForm.checkValidity()){chatForm.reportValidity();return;}
+    if(chatConsent&&!chatConsent.check())return;
+    var activeTab=document.querySelector('.chat-modal__tab.is-active');
+    var tabKey=activeTab?activeTab.getAttribute('data-chat-tab'):'';
+    var tabLabel=({telegram:'Telegram',whatsapp:'WhatsApp',vk:'VK',max:'Max'})[tabKey]||tabKey;
+    var fd=new FormData(chatForm);
+    var payload={
+      source:'🔔 Сообщение из чата ('+tabLabel+')',
+      name:fd.get('name')||'',
+      contact:fd.get('contact')||'',
+      message:fd.get('message')||''
+    };
+    var submitBtn=chatForm.querySelector('button[type="submit"]');
+    var orig=submitBtn?submitBtn.textContent:'';
+    if(submitBtn){submitBtn.disabled=true;submitBtn.textContent='Отправка…';}
+    sendToWorker(payload,
+      function(){chatForm.style.display='none';if(chatSuccess)chatSuccess.classList.add('is-active');},
+      function(errMsg){showFormError(submitBtn,orig,errMsg);}
+    );
+  });
 }
 
 document.querySelectorAll('.h40-hero__image, .sr-block__image').forEach(function(img){attachFallback(img);});
