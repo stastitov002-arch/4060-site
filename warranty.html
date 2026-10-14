@@ -9,309 +9,231 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
-:root {
-  --c-bg: #0d0c0d;
-  --c-bg-alt: #141210;
-  --c-surface: #1d1a17;
-  --c-surface-2: #2a2620;
-  --c-line: #2a2622;
-  --c-accent: #c8a572;
-  --c-accent-h: #d4b279;
-  --c-accent-d: #b08a52;
-  --c-text: #f4ede2;
-  --c-text-mute: #8f8a7e;
-  --c-gold-strong: #f5b942;
-  --c-gold-light: #e9c884;
-  --c-success: #6fcf97;
-  --c-error: #e07a6a;
-  --c-green: #0c160e;
+:root{--c-bg:#0d0c0d;--c-bg-alt:#141210;--c-surface:#1d1a17;--c-surface-2:#2a2620;--c-line:#2a2622;--c-accent:#c8a572;--c-accent-h:#d4b279;--c-accent-d:#b08a52;--c-text:#f4ede2;--c-text-mute:#8f8a7e;--c-gold-strong:#f5b942;--c-gold-light:#e9c884;--c-success:#6fcf97;--c-error:#e07a6a;--c-green:#0c160e}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--c-bg);padding-top:76px;font-family:"Inter","Helvetica Neue",Arial,sans-serif;overflow-x:hidden;color:var(--c-text)}
+@media(max-width:720px){body{padding-top:64px}}
+*,*::before,*::after{box-sizing:border-box}
+input,textarea,select,button{max-width:100%;font-size:16px}
+img,svg,video{max-width:100%;height:auto}
+.hd-block{position:fixed;top:0;left:0;right:0;z-index:50;width:100%;background:var(--c-green);color:var(--c-accent)}
+.hd-block__inner{display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:20px;max-width:1140px;margin:0 auto;padding:14px 24px}
+.hd-block__logo{font-size:26px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:var(--c-accent);text-decoration:none;transition:opacity .2s;white-space:nowrap}
+.hd-block__logo:hover{opacity:0.7}
+.hd-block__burger{display:none;width:40px;height:40px;padding:0;border:0;background:transparent;cursor:pointer;align-items:center;justify-content:center;color:var(--c-accent);border-radius:8px}
+.hd-block__burger-lines,.hd-block__burger-lines::before,.hd-block__burger-lines::after{display:block;width:22px;height:1.8px;background:currentColor;border-radius:2px;transition:transform .25s,top .25s,opacity .2s}
+.hd-block__burger-lines{position:relative}
+.hd-block__burger-lines::before,.hd-block__burger-lines::after{content:"";position:absolute;left:0}
+.hd-block__burger-lines::before{top:-7px}
+.hd-block__burger-lines::after{top:7px}
+.hd-block--menu-open .hd-block__burger-lines{background:transparent}
+.hd-block--menu-open .hd-block__burger-lines::before{top:0;transform:rotate(45deg)}
+.hd-block--menu-open .hd-block__burger-lines::after{top:0;transform:rotate(-45deg)}
+.hd-block__nav{justify-self:center;min-width:0}
+.hd-block__nav-list{list-style:none;margin:0;padding:0;display:flex;align-items:center;gap:26px}
+.hd-block__nav-link{font-size:14px;font-weight:500;color:var(--c-accent);text-decoration:none;opacity:0.85;position:relative;padding:4px 0;white-space:nowrap;transition:opacity .2s}
+.hd-block__nav-link::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .25s}
+.hd-block__nav-link:hover{opacity:1}
+.hd-block__nav-link:hover::after{transform:scaleX(1)}
+.hd-block__nav-link.is-current{opacity:1}
+.hd-block__nav-link.is-current::after{transform:scaleX(1)}
+.hd-block__phones{display:flex;flex-direction:column;align-items:flex-end;gap:3px;justify-self:end;padding-right:24px;line-height:1.3}
+.hd-block__phone-item{font-size:14px;font-weight:500;color:var(--c-accent);text-decoration:none;white-space:nowrap;transition:opacity .2s;letter-spacing:-0.01em;opacity:0.78;font-variant-numeric:tabular-nums}
+.hd-block__phone-item:hover{opacity:1}
+.hd-block__meta{display:flex;flex-direction:column;align-items:flex-end;gap:2px;line-height:1.3;justify-self:end}
+.hd-block__hours{font-size:12px;opacity:0.7;color:var(--c-accent)}
+.hd-block__tg{display:inline-flex;align-items:center;gap:5px;font-size:13px;opacity:0.85;color:var(--c-accent);text-decoration:none;transition:opacity .2s}
+.hd-block__tg:hover{opacity:1}
+.hd-block__tg svg{display:block}
+.hd-block__menu-contacts{display:none}
+@media(max-width:1080px){.hd-block__inner{gap:16px;padding:12px 20px;max-width:100%}.hd-block__nav-list{gap:18px}.hd-block__nav-link{font-size:13px}.hd-block__phone-item{font-size:12px}.hd-block__phones{padding-right:16px}}
+@media(max-width:720px){
+.hd-block__inner{display:flex;flex-wrap:wrap;align-items:center;column-gap:10px;padding:12px 16px}
+.hd-block__hours,.hd-block__meta{display:none}
+.hd-block__logo{order:1;font-size:22px}
+.hd-block__phones{order:2;margin-left:auto;padding-right:0;align-items:flex-end;gap:1px}
+.hd-block__phone-item{font-size:12px;line-height:1.15}
+.hd-block__burger{order:3;display:inline-flex}
+.hd-block__nav{order:4;flex:1 0 100%;overflow:hidden;max-height:0;opacity:0;pointer-events:none;transition:max-height .3s,opacity .2s,margin-top .3s;margin-top:0;background:var(--c-green)}
+.hd-block--menu-open .hd-block__nav{max-height:520px;opacity:1;pointer-events:auto;margin-top:10px}
+.hd-block__nav-list{flex-direction:column;align-items:stretch;gap:0;padding:4px 0 0;border-top:1px solid rgba(200,165,114,0.18)}
+.hd-block__nav-list li{border-bottom:1px solid rgba(200,165,114,0.12)}
+.hd-block__nav-list li:last-child{border-bottom:0}
+.hd-block__nav-link{display:block;padding:14px 4px;font-size:16px;opacity:1}
+.hd-block__nav-link::after{display:none}
+.hd-block__menu-contacts{display:flex;flex-direction:column;gap:12px;padding:14px 4px 6px;border-top:1px solid rgba(200,165,114,0.18)}
+.hd-block__menu-hours{font-size:13px;opacity:0.85}
+.hd-block__menu-tg{display:inline-flex;align-items:center;gap:6px;color:var(--c-accent);text-decoration:none;font-size:14px;opacity:0.85}
+.hd-block__menu-tg svg{display:block}
 }
-html { scroll-behavior: smooth; }
-body { margin: 0; background: var(--c-bg); padding-top: 76px; font-family: "Inter","Helvetica Neue",Arial,sans-serif; overflow-x: hidden; color: var(--c-text); }
-@media (max-width: 720px) { body { padding-top: 64px; } }
-*, *::before, *::after { box-sizing: border-box; }
-input, textarea, select, button { max-width: 100%; font-size: 16px; }
-img, svg, video { max-width: 100%; height: auto; }
-
-/* ШАПКА */
-.hd-block { position: fixed; top: 0; left: 0; right: 0; z-index: 50; width: 100%; background: var(--c-green); color: var(--c-accent); }
-.hd-block__inner { display: grid; grid-template-columns: auto 1fr auto auto; align-items: center; gap: 20px; max-width: 1140px; margin: 0 auto; padding: 14px 24px; }
-.hd-block__logo { font-size: 26px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--c-accent); text-decoration: none; transition: opacity .2s; white-space: nowrap; }
-.hd-block__logo:hover { opacity: 0.7; }
-.hd-block__burger { display: none; width: 40px; height: 40px; padding: 0; border: 0; background: transparent; cursor: pointer; align-items: center; justify-content: center; color: var(--c-accent); border-radius: 8px; }
-.hd-block__burger-lines, .hd-block__burger-lines::before, .hd-block__burger-lines::after { display: block; width: 22px; height: 1.8px; background: currentColor; border-radius: 2px; transition: transform .25s, top .25s, opacity .2s; }
-.hd-block__burger-lines { position: relative; }
-.hd-block__burger-lines::before, .hd-block__burger-lines::after { content: ""; position: absolute; left: 0; }
-.hd-block__burger-lines::before { top: -7px; }
-.hd-block__burger-lines::after { top: 7px; }
-.hd-block--menu-open .hd-block__burger-lines { background: transparent; }
-.hd-block--menu-open .hd-block__burger-lines::before { top: 0; transform: rotate(45deg); }
-.hd-block--menu-open .hd-block__burger-lines::after { top: 0; transform: rotate(-45deg); }
-.hd-block__nav { justify-self: center; min-width: 0; }
-.hd-block__nav-list { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; gap: 26px; }
-.hd-block__nav-link { font-size: 14px; font-weight: 500; color: var(--c-accent); text-decoration: none; opacity: 0.85; position: relative; padding: 4px 0; white-space: nowrap; transition: opacity .2s; }
-.hd-block__nav-link::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform .25s; }
-.hd-block__nav-link:hover { opacity: 1; }
-.hd-block__nav-link:hover::after { transform: scaleX(1); }
-.hd-block__nav-link.is-current { opacity: 1; }
-.hd-block__nav-link.is-current::after { transform: scaleX(1); }
-.hd-block__phones { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; justify-self: end; padding-right: 24px; line-height: 1.3; }
-.hd-block__phone-item { font-size: 14px; font-weight: 500; color: var(--c-accent); text-decoration: none; white-space: nowrap; transition: opacity .2s; letter-spacing: -0.01em; opacity: 0.78; font-variant-numeric: tabular-nums; }
-.hd-block__phone-item:hover { opacity: 1; }
-.hd-block__meta { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; line-height: 1.3; justify-self: end; }
-.hd-block__hours { font-size: 12px; opacity: 0.7; color: var(--c-accent); }
-.hd-block__tg { display: inline-flex; align-items: center; gap: 5px; font-size: 13px; opacity: 0.85; color: var(--c-accent); text-decoration: none; transition: opacity .2s; }
-.hd-block__tg:hover { opacity: 1; }
-.hd-block__tg svg { display: block; }
-.hd-block__menu-contacts { display: none; }
-@media (max-width: 1080px) {
-  .hd-block__inner { gap: 16px; padding: 12px 20px; max-width: 100%; }
-  .hd-block__nav-list { gap: 18px; }
-  .hd-block__nav-link { font-size: 13px; }
-  .hd-block__phone-item { font-size: 12px; }
-  .hd-block__phones { padding-right: 16px; }
-}
-@media (max-width: 720px) {
-  .hd-block__inner { display: flex; flex-wrap: wrap; align-items: center; column-gap: 10px; padding: 12px 16px; }
-  .hd-block__hours, .hd-block__meta { display: none; }
-  .hd-block__logo { order: 1; font-size: 22px; }
-  .hd-block__phones { order: 2; margin-left: auto; padding-right: 0; align-items: flex-end; gap: 1px; }
-  .hd-block__phone-item { font-size: 12px; line-height: 1.15; }
-  .hd-block__burger { order: 3; display: inline-flex; }
-  .hd-block__nav { order: 4; flex: 1 0 100%; overflow: hidden; max-height: 0; opacity: 0; pointer-events: none; transition: max-height .3s, opacity .2s, margin-top .3s; margin-top: 0; background: var(--c-green); }
-  .hd-block--menu-open .hd-block__nav { max-height: 520px; opacity: 1; pointer-events: auto; margin-top: 10px; }
-  .hd-block__nav-list { flex-direction: column; align-items: stretch; gap: 0; padding: 4px 0 0; border-top: 1px solid rgba(200,165,114,0.18); }
-  .hd-block__nav-list li { border-bottom: 1px solid rgba(200,165,114,0.12); }
-  .hd-block__nav-list li:last-child { border-bottom: 0; }
-  .hd-block__nav-link { display: block; padding: 14px 4px; font-size: 16px; opacity: 1; }
-  .hd-block__nav-link::after { display: none; }
-  .hd-block__menu-contacts { display: flex; flex-direction: column; gap: 12px; padding: 14px 4px 6px; border-top: 1px solid rgba(200,165,114,0.18); }
-  .hd-block__menu-hours { font-size: 13px; opacity: 0.85; }
-  .hd-block__menu-tg { display: inline-flex; align-items: center; gap: 6px; color: var(--c-accent); text-decoration: none; font-size: 14px; opacity: 0.85; }
-  .hd-block__menu-tg svg { display: block; }
-}
-@media (max-width: 480px) {
-  .hd-block__inner { padding: 10px 14px; column-gap: 8px; }
-  .hd-block__logo { font-size: 20px; }
-  .hd-block__phone-item { font-size: 11px; }
-  .hd-block__burger { width: 36px; height: 36px; }
-}
-
-/* HERO */
-.wt-hero { position: relative; background: linear-gradient(180deg, var(--c-green) 0%, var(--c-bg) 100%); color: var(--c-text); padding: clamp(72px, 9vw, 120px) 0 clamp(48px, 6vw, 80px); border-bottom: 1px solid rgba(200,165,114,0.12); overflow: hidden; }
-.wt-hero::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(circle at 15% 20%, rgba(200,165,114,0.08) 0%, transparent 45%), radial-gradient(circle at 85% 80%, rgba(200,165,114,0.05) 0%, transparent 50%); pointer-events: none; }
-.wt-hero__inner { position: relative; max-width: 1440px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); display: grid; grid-template-columns: 1.2fr 0.8fr; gap: clamp(32px, 5vw, 80px); align-items: center; }
-.wt-hero__content { display: flex; flex-direction: column; gap: 20px; }
-.wt-hero__eyebrow { display: inline-block; font-size: 12px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--c-accent); margin: 0; }
-.wt-hero__title { font-family: 'Playfair Display', serif; font-size: clamp(38px, 5.6vw, 72px); line-height: 1.02; letter-spacing: -0.02em; font-weight: 400; margin: 0; color: #f7f4ee; max-width: 16ch; }
-.wt-hero__title em { color: var(--c-accent); font-style: italic; }
-.wt-hero__subtitle { font-size: clamp(15px, 1.5vw, 18px); line-height: 1.6; color: #a8a294; margin: 0; max-width: 56ch; }
-.wt-hero__badge { display: inline-flex; align-items: center; gap: 18px; padding: 22px 28px; border: 1px solid rgba(200,165,114,0.4); border-radius: 16px; background: rgba(200,165,114,0.06); align-self: flex-start; margin-top: 8px; }
-.wt-hero__badge-num { font-family: 'Playfair Display', serif; font-size: clamp(38px, 4vw, 52px); color: var(--c-accent); line-height: 1; font-weight: 400; }
-.wt-hero__badge-text { font-size: 14px; color: #a8a294; line-height: 1.4; max-width: 20ch; }
-.wt-hero__visual { display: flex; justify-content: center; align-items: center; }
-.wt-hero__shield { width: 100%; max-width: 340px; aspect-ratio: 1; border-radius: 24px; background: radial-gradient(circle at 50% 40%, rgba(200,165,114,0.14) 0%, transparent 60%), var(--c-surface); border: 1px solid rgba(200,165,114,0.22); display: grid; place-items: center; position: relative; }
-.wt-hero__shield svg { width: 55%; height: auto; color: var(--c-accent); opacity: 0.9; }
-
-/* СЕКЦИЯ ОБЩАЯ */
-.wt-sec { padding: clamp(64px, 8vw, 112px) 0; }
-.wt-sec--alt { background: var(--c-bg-alt); border-top: 1px solid rgba(200,165,114,0.1); border-bottom: 1px solid rgba(200,165,114,0.1); }
-.wt-sec__inner { max-width: 1440px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); }
-.wt-sec__head { max-width: 720px; margin: 0 0 clamp(40px, 5vw, 64px); }
-.wt-sec__eyebrow { display: inline-block; font-size: 12px; font-weight: 500; letter-spacing: 0.24em; text-transform: uppercase; color: var(--c-accent); margin: 0 0 16px; }
-.wt-sec__title { font-family: 'Playfair Display', serif; font-size: clamp(30px, 4.2vw, 52px); line-height: 1.08; letter-spacing: -0.02em; font-weight: 400; color: #f7f4ee; margin: 0 0 18px; }
-.wt-sec__title em { color: var(--c-accent); font-style: italic; }
-.wt-sec__lead { font-size: clamp(15px, 1.5vw, 17px); line-height: 1.6; color: #a8a294; margin: 0; }
-
-/* ЧТО ПОКРЫВАЕТ */
-.wt-cover__grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-.wt-cover__item { display: flex; gap: 18px; padding: 28px 26px; background: var(--c-surface); border: 1px solid rgba(200,165,114,0.14); border-radius: 12px; transition: border-color .3s, transform .35s; }
-.wt-cover__item:hover { border-color: rgba(200,165,114,0.45); transform: translateY(-3px); }
-.wt-cover__icon { flex: 0 0 44px; width: 44px; height: 44px; border-radius: 10px; background: rgba(200,165,114,0.12); color: var(--c-accent); display: grid; place-items: center; font-size: 20px; }
-.wt-cover__body { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
-.wt-cover__title { font-size: 18px; font-weight: 500; color: #f7f4ee; margin: 0; line-height: 1.3; }
-.wt-cover__text { font-size: 14px; line-height: 1.6; color: #a8a294; margin: 0; }
-
-/* ЧТО НЕ ПОКРЫВАЕТ */
-.wt-not { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px 40px; }
-.wt-not__item { display: flex; gap: 14px; padding: 16px 0; border-bottom: 1px solid rgba(200,165,114,0.14); align-items: flex-start; }
-.wt-not__mark { flex: 0 0 22px; width: 22px; height: 22px; border-radius: 50%; background: rgba(224,122,106,0.14); color: var(--c-error); display: grid; place-items: center; font-size: 13px; font-weight: 700; margin-top: 1px; }
-.wt-not__text { font-size: 15px; line-height: 1.55; color: #d6cfc1; margin: 0; }
-
-/* СРОКИ */
-.wt-terms__grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-.wt-terms__item { padding: 28px 26px; border: 1px solid rgba(200,165,114,0.2); border-radius: 12px; background: rgba(200,165,114,0.03); display: flex; flex-direction: column; gap: 12px; }
-.wt-terms__num { font-family: 'Playfair Display', serif; font-size: 42px; line-height: 1; color: var(--c-accent); font-weight: 400; }
-.wt-terms__num small { font-size: 16px; color: #a8a294; font-family: 'Inter', sans-serif; margin-left: 4px; }
-.wt-terms__title { font-size: 17px; font-weight: 500; color: #f7f4ee; margin: 0; }
-.wt-terms__text { font-size: 14px; line-height: 1.55; color: #a8a294; margin: 0; }
-
-/* КАК ОБРАТИТЬСЯ */
-.wt-how__grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-.wt-how__item { position: relative; padding-top: 24px; }
-.wt-how__item::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: rgba(200,165,114,0.4); }
-.wt-how__num { display: block; font-size: 13px; letter-spacing: 0.16em; color: var(--c-accent); font-weight: 600; margin-bottom: 10px; }
-.wt-how__title { font-size: 17px; font-weight: 500; color: #f7f4ee; margin: 0 0 8px; }
-.wt-how__text { font-size: 14px; line-height: 1.55; color: #a8a294; margin: 0; }
-
-/* CTA */
-.wt-cta { padding: clamp(56px, 7vw, 88px) 0 clamp(72px, 8vw, 96px); }
-.wt-cta__box { max-width: 1080px; margin: 0 auto; padding: clamp(32px, 5vw, 56px); border: 1px solid rgba(200,165,114,0.3); border-radius: 20px; background: linear-gradient(135deg, rgba(200,165,114,0.06) 0%, rgba(13,12,13,0.4) 100%); display: flex; justify-content: space-between; align-items: center; gap: 32px; flex-wrap: wrap; }
-.wt-cta__text { display: flex; flex-direction: column; gap: 10px; max-width: 560px; }
-.wt-cta__title { font-family: 'Playfair Display', serif; font-size: clamp(24px, 2.8vw, 34px); line-height: 1.15; color: #f7f4ee; font-weight: 400; margin: 0; }
-.wt-cta__title em { color: var(--c-accent); font-style: italic; }
-.wt-cta__sub { font-size: 15px; line-height: 1.55; color: #a8a294; margin: 0; }
-.wt-cta__btn { display: inline-flex; align-items: center; gap: 10px; padding: 16px 30px; border: 1px solid var(--c-accent); background: var(--c-accent); color: var(--c-bg); text-decoration: none; font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit; white-space: nowrap; transition: background .25s, border-color .25s, transform .25s; }
-.wt-cta__btn:hover { background: var(--c-accent-h); border-color: var(--c-accent-h); transform: translateY(-1px); }
-
-/* ФУТЕР */
-.ft-block { background: var(--c-green); color: var(--c-accent); padding: 48px 20px 24px; border-top: 1px solid rgba(200,165,114,0.15); }
-.ft-block__wrap { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 32px; }
-@media (min-width: 720px) { .ft-block__wrap { grid-template-columns: 1.5fr 1fr 1fr; } }
-.ft-block__logo { font-size: 26px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--c-accent); margin: 0 0 12px; text-decoration: none; display: inline-block; }
-.ft-block__tagline { font-size: 14px; line-height: 1.6; color: #b3ada0; margin: 0 0 16px; max-width: 36ch; }
-.ft-block__contacts { display: flex; flex-direction: column; gap: 8px; font-size: 14px; }
-.ft-block__contacts a { color: var(--c-accent); text-decoration: none; }
-.ft-block__col-title { font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--c-accent); opacity: 0.6; margin: 0 0 14px; }
-.ft-block__nav { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
-.ft-block__nav a,
-.ft-block__nav button { color: var(--c-accent); text-decoration: none; font-size: 14px; opacity: 0.85; background: none; border: 0; padding: 0; font-family: inherit; cursor: pointer; text-align: left; transition: opacity .2s; }
-.ft-block__nav a:hover,
-.ft-block__nav button:hover { opacity: 1; }
-.ft-block__bottom { max-width: 1280px; margin: 40px auto 0; padding-top: 20px; border-top: 1px solid rgba(200,165,114,0.15); display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; font-size: 12px; color: #b3ada0; }
-
-/* МОДАЛКИ ОБЩИЕ */
-.ab-modal { position: fixed; inset: 0; z-index: 200; display: none; align-items: center; justify-content: center; padding: 24px; }
-.ab-modal.is-open { display: flex; }
-.ab-modal__backdrop { position: absolute; inset: 0; background: rgba(13,12,13,0.85); backdrop-filter: blur(6px); }
-.ab-modal__dialog { position: relative; z-index: 1; width: 100%; max-width: 520px; background: #1f1d1b; border: 1px solid rgba(212,178,121,0.22); border-radius: 24px; padding: 44px 40px 36px; max-height: calc(100vh - 48px); overflow-y: auto; color: var(--c-text); }
-.ab-modal__close { position: absolute; top: 16px; right: 16px; width: 40px; height: 40px; border-radius: 50%; background: rgba(247,241,232,0.06); border: 0; color: var(--c-accent-h); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px; transition: background .2s; }
-.ab-modal__close:hover { background: rgba(212,178,121,0.18); }
-.ab-modal__eyebrow { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--c-accent-h); margin-bottom: 14px; position: relative; padding-left: 32px; }
-.ab-modal__eyebrow::before { content: ""; position: absolute; left: 0; top: 50%; width: 22px; height: 1px; background: var(--c-accent-h); }
-.ab-modal__title { font-size: clamp(22px,3vw,28px); font-weight: 700; line-height: 1.15; margin: 0 0 10px; color: #fff; }
-.ab-modal__subtitle { font-size: 14px; line-height: 1.55; color: rgba(247,241,232,0.65); margin: 0 0 26px; }
-.ab-modal__form { display: flex; flex-direction: column; gap: 18px; }
-.ab-modal__field { display: flex; flex-direction: column; gap: 8px; }
-.ab-modal__label { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(212,178,121,0.85); }
-.ab-modal__input, .ab-modal__textarea { width: 100%; padding: 14px 16px; background: rgba(247,241,232,0.04); border: 1px solid rgba(212,178,121,0.22); border-radius: 12px; color: var(--c-text); font-family: inherit; font-size: 16px; transition: border-color .25s, box-shadow .25s; outline: none; }
-.ab-modal__textarea { min-height: 100px; resize: vertical; }
-.ab-modal__input:focus, .ab-modal__textarea:focus { border-color: var(--c-accent-h); background: rgba(247,241,232,0.06); box-shadow: 0 0 0 4px rgba(212,178,121,0.12); }
-.ab-modal__consent { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; margin-top: 4px; font-size: 12px; color: rgba(247,241,232,0.6); line-height: 1.45; }
-.ab-modal__consent input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
-.ab-modal__consent-box { flex: 0 0 18px; width: 18px; height: 18px; border: 1.5px solid rgba(212,178,121,0.4); border-radius: 5px; display: inline-grid; place-items: center; background: rgba(247,241,232,0.04); color: #1c1b19; font-size: 12px; margin-top: 1px; transition: border-color .2s, background .2s, box-shadow .2s; }
-.ab-modal__consent input:checked + .ab-modal__consent-box { background: var(--c-accent-h); border-color: var(--c-accent-h); }
-.ab-modal__consent.is-error .ab-modal__consent-box { border-color: var(--c-error); box-shadow: 0 0 0 3px rgba(224,122,106,0.15); }
-.ab-modal__consent-error { display: none; color: var(--c-error); font-size: 12px; line-height: 1.4; margin-top: 4px; padding-left: 28px; }
-.ab-modal__consent-error.is-visible { display: block; }
-.ab-modal__submit { background: var(--c-accent-d); color: #1c1b19; border: 1px solid var(--c-accent-d); border-radius: 12px; padding: 16px 20px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: inherit; transition: background .3s; }
-.ab-modal__submit:hover { background: var(--c-accent-h); border-color: var(--c-accent-h); }
-.ab-modal__success { display: none; flex-direction: column; align-items: center; text-align: center; gap: 14px; padding: 12px 8px; }
-.ab-modal__success.is-active { display: flex; }
-.ab-modal__success-icon { width: 80px; height: 80px; border-radius: 50%; background: rgba(111,207,151,0.14); color: var(--c-success); display: grid; place-items: center; font-size: 40px; }
-.ab-modal__success-title { font-size: 22px; margin: 0; color: #fff; }
-.ab-modal__success-text { color: rgba(247,241,232,0.65); font-size: 15px; margin: 0; max-width: 36ch; }
-body.ab-modal-open { overflow: hidden; }
-@media (max-width: 640px) { .ab-modal { padding: 16px; } .ab-modal__dialog { padding: 36px 24px 28px; border-radius: 20px; } }
-
-/* МОДАЛКА «ПОЗВОНИТЬ» */
-.ab-call { position: fixed; inset: 0; z-index: 200; display: none; align-items: center; justify-content: center; padding: 24px; }
-.ab-call.is-open { display: flex; }
-.ab-call__backdrop { position: absolute; inset: 0; background: rgba(13,12,13,0.85); backdrop-filter: blur(6px); }
-.ab-call__dialog { position: relative; z-index: 1; width: 100%; max-width: 480px; background: #1f1d1b; border: 1px solid rgba(212,178,121,0.22); border-radius: 24px; padding: 44px 40px 36px; max-height: calc(100vh - 48px); overflow-y: auto; color: var(--c-text); }
-.ab-call__close { position: absolute; top: 16px; right: 16px; width: 40px; height: 40px; border-radius: 50%; background: rgba(247,241,232,0.06); border: 0; color: var(--c-accent-h); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px; transition: background .2s; }
-.ab-call__close:hover { background: rgba(212,178,121,0.18); }
-.ab-call__eyebrow { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--c-accent-h); margin-bottom: 14px; position: relative; padding-left: 32px; }
-.ab-call__eyebrow::before { content: ""; position: absolute; left: 0; top: 50%; width: 22px; height: 1px; background: var(--c-accent-h); }
-.ab-call__title { font-size: clamp(22px,3vw,26px); font-weight: 700; line-height: 1.15; margin: 0 0 10px; color: #fff; }
-.ab-call__subtitle { font-size: 14px; line-height: 1.55; color: rgba(247,241,232,0.65); margin: 0 0 24px; }
-.ab-call__list { display: flex; flex-direction: column; gap: 12px; }
-.ab-call__item { display: flex; align-items: center; gap: 16px; padding: 18px 20px; border: 1px solid rgba(212,178,121,0.28); border-radius: 16px; text-decoration: none; color: var(--c-text); background: rgba(247,241,232,0.03); transition: border-color .25s, background .25s, transform .25s; }
-.ab-call__item:hover { border-color: var(--c-accent-h); background: rgba(212,178,121,0.06); transform: translateY(-1px); }
-.ab-call__avatar { flex: 0 0 44px; width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--c-accent-h), var(--c-accent-d)); color: #1c1b19; display: grid; place-items: center; font-weight: 700; font-size: 16px; }
-.ab-call__info { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-.ab-call__name { font-size: 13px; color: rgba(247,241,232,0.6); letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; }
-.ab-call__phone { font-size: 17px; font-weight: 600; color: #fff; white-space: nowrap; }
-body.ab-call-open { overflow: hidden; }
-@media (max-width: 640px) { .ab-call { padding: 16px; } .ab-call__dialog { padding: 36px 22px 26px; border-radius: 20px; } .ab-call__phone { font-size: 16px; } }
-
-/* МОБИЛЬНАЯ АДАПТАЦИЯ */
-@media (max-width: 1080px) {
-  .wt-hero__inner { grid-template-columns: 1fr; gap: 40px; }
-  .wt-hero__visual { order: -1; }
-  .wt-hero__shield { max-width: 240px; }
-  .wt-cover__grid { grid-template-columns: 1fr; }
-  .wt-not { grid-template-columns: 1fr; gap: 0; }
-  .wt-terms__grid { grid-template-columns: 1fr; }
-  .wt-how__grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 640px) {
-  .wt-how__grid { grid-template-columns: 1fr; gap: 20px; }
-  .wt-cta__box { padding: 28px 22px; }
-  .wt-cta__btn { width: 100%; justify-content: center; }
-  .wt-hero__badge { padding: 18px 22px; gap: 14px; }
-  .wt-cover__item { padding: 22px 20px; gap: 14px; }
-  .wt-cover__icon { flex: 0 0 40px; width: 40px; height: 40px; font-size: 18px; }
-}
-
-/* КНОПКА ЧАТА */
-.chat-fab { position: fixed; right: 24px; bottom: 24px; z-index: 60; width: 56px; height: 56px; border-radius: 50%; background: var(--c-accent); color: var(--c-bg); border: none; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 12px 28px rgba(0,0,0,.4); transition: transform .25s, background .25s, box-shadow .25s; }
-.chat-fab:hover { background: var(--c-accent-h); transform: translateY(-2px); box-shadow: 0 16px 32px rgba(0,0,0,.45); }
-.chat-fab:focus-visible { outline: 2px solid var(--c-accent-h); outline-offset: 3px; }
-.chat-fab svg { width: 28px; height: 28px; display: block; }
-@media (max-width: 900px) { .chat-fab { width: 60px; height: 60px; } }
-@media (max-width: 720px) { .chat-fab { right: 18px; bottom: 18px; width: 62px; height: 62px; } .chat-fab svg { width: 28px; height: 28px; } }
-
-/* ПОПАП ЧАТА */
-.chat-modal { position: fixed; inset: 0; z-index: 210; display: none; align-items: flex-end; justify-content: flex-end; padding: 24px; pointer-events: none; }
-.chat-modal.is-open { display: flex; }
-.chat-modal__backdrop { position: absolute; inset: 0; background: rgba(13,12,13,0.7); backdrop-filter: blur(4px); pointer-events: auto; }
-.chat-modal__dialog { position: relative; z-index: 1; width: 100%; max-width: 400px; max-height: calc(100vh - 48px); overflow-y: auto; background: #1a1f17; border: 1px solid rgba(200,165,114,0.28); border-radius: 20px; padding: 32px 28px 28px; color: var(--c-text); box-shadow: 0 30px 80px rgba(0,0,0,.6); pointer-events: auto; animation: chat-modal-rise .3s cubic-bezier(.2,.7,.2,1); }
-@keyframes chat-modal-rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
-.chat-modal__close { position: absolute; top: 12px; right: 12px; width: 36px; height: 36px; border-radius: 50%; background: rgba(247,241,232,0.06); border: 0; color: var(--c-accent); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; transition: background .2s; }
-.chat-modal__close:hover { background: rgba(200,165,114,0.18); }
-.chat-modal__title { font-size: 20px; font-weight: 700; line-height: 1.25; margin: 0 0 20px; color: #fff; letter-spacing: -0.01em; padding-right: 40px; }
-.chat-modal__tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
-.chat-modal__tab { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 8px; border: 1px solid rgba(200,165,114,0.22); background: transparent; color: var(--c-accent); font-family: inherit; font-size: 13px; font-weight: 500; cursor: pointer; transition: background .2s, border-color .2s, color .2s; }
-.chat-modal__tab:hover { border-color: rgba(200,165,114,0.55); }
-.chat-modal__tab.is-active { background: rgba(200,165,114,0.12); border-color: var(--c-accent); color: #fff; }
-.chat-modal__tab svg { width: 16px; height: 16px; display: block; flex-shrink: 0; }
-.chat-modal__form { display: flex; flex-direction: column; gap: 12px; }
-.chat-modal__input, .chat-modal__textarea { width: 100%; padding: 14px 16px; border-radius: 12px; border: 1px solid rgba(200,165,114,0.22); background: rgba(13,12,13,0.4); color: var(--c-text); font-family: inherit; font-size: 15px; outline: none; transition: border-color .2s, box-shadow .2s; }
-.chat-modal__input::placeholder, .chat-modal__textarea::placeholder { color: rgba(244,237,226,0.4); }
-.chat-modal__input:focus, .chat-modal__textarea:focus { border-color: var(--c-accent); box-shadow: 0 0 0 4px rgba(200,165,114,0.14); }
-.chat-modal__textarea { min-height: 88px; resize: vertical; }
-.chat-modal__consent { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; margin-top: 4px; font-size: 12px; color: rgba(244,237,226,0.55); line-height: 1.45; }
-.chat-modal__consent input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
-.chat-modal__consent-box { flex: 0 0 18px; width: 18px; height: 18px; border: 1.5px solid rgba(200,165,114,0.35); border-radius: 5px; display: inline-grid; place-items: center; background: rgba(13,12,13,0.4); color: var(--c-bg); font-size: 12px; margin-top: 1px; transition: border-color .2s, background .2s, box-shadow .2s; }
-.chat-modal__consent input:checked + .chat-modal__consent-box { background: var(--c-accent); border-color: var(--c-accent); color: var(--c-bg); }
-.chat-modal__consent.is-error .chat-modal__consent-box { border-color: var(--c-error); box-shadow: 0 0 0 3px rgba(224,122,106,0.15); }
-.chat-modal__consent-error { display: none; color: var(--c-error); font-size: 12px; line-height: 1.4; margin-top: 4px; padding-left: 28px; }
-.chat-modal__consent-error.is-visible { display: block; }
-.chat-modal__submit { margin-top: 8px; width: 100%; border: none; cursor: pointer; background: var(--c-accent); color: var(--c-bg); font-family: inherit; font-size: 14px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 15px 20px; border-radius: 12px; transition: background .2s; }
-.chat-modal__submit:hover { background: var(--c-accent-h); }
-.chat-modal__success { display: none; flex-direction: column; align-items: center; text-align: center; gap: 10px; padding: 20px 8px 8px; }
-.chat-modal__success.is-active { display: flex; }
-.chat-modal__success-icon { width: 64px; height: 64px; border-radius: 50%; background: rgba(111,207,151,0.14); color: var(--c-success); display: grid; place-items: center; font-size: 32px; margin-bottom: 6px; }
-.chat-modal__success-title { font-size: 18px; font-weight: 700; margin: 0; color: #fff; }
-.chat-modal__success-text { font-size: 14px; margin: 0; color: rgba(244,237,226,0.7); line-height: 1.5; max-width: 30ch; }
-body.chat-modal-open { overflow: hidden; }
-@media (max-width: 480px) {
-  .chat-modal { padding: 0; align-items: stretch; justify-content: stretch; }
-  .chat-modal__dialog { max-width: 100%; max-height: 100vh; border-radius: 20px 20px 0 0; align-self: flex-end; padding: 28px 20px 24px; }
-}
+@media(max-width:480px){.hd-block__inner{padding:10px 14px;column-gap:8px}.hd-block__logo{font-size:20px}.hd-block__phone-item{font-size:11px}.hd-block__burger{width:36px;height:36px}}
+.wt-hero{position:relative;background:#0c0c0e;color:var(--c-text);padding:clamp(96px,12vw,160px) 0 clamp(64px,8vw,110px);border-bottom:1px solid rgba(200,165,114,0.12);overflow:hidden;isolation:isolate;min-height:560px;display:flex;align-items:center}
+.wt-hero::before{content:"";position:absolute;inset:0;background-image:url("images/hero.jpg");background-size:cover;background-position:center;filter:saturate(0.9) contrast(1.02);z-index:0}
+.wt-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,8,10,0.92) 0%,rgba(8,8,10,0.74) 45%,rgba(8,8,10,0.42) 100%),linear-gradient(180deg,rgba(8,8,10,0.55) 0%,rgba(8,8,10,0.25) 40%,rgba(8,8,10,0.88) 100%);z-index:1;pointer-events:none}
+.wt-hero__inner{position:relative;z-index:2;width:100%;max-width:1440px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
+.wt-hero__content{display:flex;flex-direction:column;gap:20px;max-width:640px}
+.wt-hero__eyebrow{display:inline-block;font-size:12px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--c-accent);margin:0}
+.wt-hero__title{font-family:'Playfair Display',serif;font-size:clamp(38px,5.6vw,72px);line-height:1.02;letter-spacing:-0.02em;font-weight:400;margin:0;color:#f7f4ee;max-width:16ch}
+.wt-hero__title em{color:var(--c-accent);font-style:italic}
+.wt-hero__subtitle{font-size:clamp(15px,1.5vw,18px);line-height:1.6;color:#d8d2c5;margin:0;max-width:56ch}
+.wt-hero__badge{display:inline-flex;align-items:center;gap:18px;padding:22px 28px;border:1px solid rgba(200,165,114,0.4);border-radius:16px;background:rgba(13,12,13,0.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);align-self:flex-start;margin-top:8px}
+.wt-hero__badge-num{font-family:'Playfair Display',serif;font-size:clamp(38px,4vw,52px);color:var(--c-accent);line-height:1;font-weight:400}
+.wt-hero__badge-text{font-size:14px;color:#d8d2c5;line-height:1.4;max-width:20ch}
+.wt-sec{padding:clamp(64px,8vw,112px) 0}
+.wt-sec--alt{background:var(--c-bg-alt);border-top:1px solid rgba(200,165,114,0.1);border-bottom:1px solid rgba(200,165,114,0.1)}
+.wt-sec__inner{max-width:1440px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
+.wt-sec__head{max-width:720px;margin:0 0 clamp(40px,5vw,64px)}
+.wt-sec__eyebrow{display:inline-block;font-size:12px;font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:var(--c-accent);margin:0 0 16px}
+.wt-sec__title{font-family:'Playfair Display',serif;font-size:clamp(30px,4.2vw,52px);line-height:1.08;letter-spacing:-0.02em;font-weight:400;color:#f7f4ee;margin:0 0 18px}
+.wt-sec__title em{color:var(--c-accent);font-style:italic}
+.wt-sec__lead{font-size:clamp(15px,1.5vw,17px);line-height:1.6;color:#a8a294;margin:0}
+.wt-cover__grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.wt-cover__item{display:flex;gap:18px;padding:28px 26px;background:var(--c-surface);border:1px solid rgba(200,165,114,0.14);border-radius:12px;transition:border-color .3s,transform .35s}
+.wt-cover__item:hover{border-color:rgba(200,165,114,0.45);transform:translateY(-3px)}
+.wt-cover__icon{flex:0 0 44px;width:44px;height:44px;border-radius:10px;background:rgba(200,165,114,0.12);color:var(--c-accent);display:grid;place-items:center;font-size:20px}
+.wt-cover__body{display:flex;flex-direction:column;gap:6px;min-width:0}
+.wt-cover__title{font-size:18px;font-weight:500;color:#f7f4ee;margin:0;line-height:1.3}
+.wt-cover__text{font-size:14px;line-height:1.6;color:#a8a294;margin:0}
+.wt-not{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:12px 40px}
+.wt-not__item{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid rgba(200,165,114,0.14);align-items:flex-start}
+.wt-not__mark{flex:0 0 22px;width:22px;height:22px;border-radius:50%;background:rgba(224,122,106,0.14);color:var(--c-error);display:grid;place-items:center;font-size:13px;font-weight:700;margin-top:1px}
+.wt-not__text{font-size:15px;line-height:1.55;color:#d6cfc1;margin:0}
+.wt-terms__grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.wt-terms__item{padding:28px 26px;border:1px solid rgba(200,165,114,0.2);border-radius:12px;background:rgba(200,165,114,0.03);display:flex;flex-direction:column;gap:12px}
+.wt-terms__num{font-family:'Playfair Display',serif;font-size:42px;line-height:1;color:var(--c-accent);font-weight:400}
+.wt-terms__num small{font-size:16px;color:#a8a294;font-family:'Inter',sans-serif;margin-left:4px}
+.wt-terms__title{font-size:17px;font-weight:500;color:#f7f4ee;margin:0}
+.wt-terms__text{font-size:14px;line-height:1.55;color:#a8a294;margin:0}
+.wt-how__grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.wt-how__item{position:relative;padding-top:24px}
+.wt-how__item::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:rgba(200,165,114,0.4)}
+.wt-how__num{display:block;font-size:13px;letter-spacing:0.16em;color:var(--c-accent);font-weight:600;margin-bottom:10px}
+.wt-how__title{font-size:17px;font-weight:500;color:#f7f4ee;margin:0 0 8px}
+.wt-how__text{font-size:14px;line-height:1.55;color:#a8a294;margin:0}
+.wt-cta{padding:clamp(56px,7vw,88px) 0 clamp(72px,8vw,96px)}
+.wt-cta__box{max-width:1080px;margin:0 auto;padding:clamp(32px,5vw,56px);border:1px solid rgba(200,165,114,0.3);border-radius:20px;background:linear-gradient(135deg,rgba(200,165,114,0.06) 0%,rgba(13,12,13,0.4) 100%);display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap}
+.wt-cta__text{display:flex;flex-direction:column;gap:10px;max-width:560px}
+.wt-cta__title{font-family:'Playfair Display',serif;font-size:clamp(24px,2.8vw,34px);line-height:1.15;color:#f7f4ee;font-weight:400;margin:0}
+.wt-cta__title em{color:var(--c-accent);font-style:italic}
+.wt-cta__sub{font-size:15px;line-height:1.55;color:#a8a294;margin:0}
+.wt-cta__btn{display:inline-flex;align-items:center;gap:10px;padding:16px 30px;border:1px solid var(--c-accent);background:var(--c-accent);color:var(--c-bg);text-decoration:none;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;transition:background .25s,border-color .25s,transform .25s}
+.wt-cta__btn:hover{background:var(--c-accent-h);border-color:var(--c-accent-h);transform:translateY(-1px)}
+.ft-block{background:var(--c-green);color:var(--c-accent);padding:48px 20px 24px;border-top:1px solid rgba(200,165,114,0.15)}
+.ft-block__wrap{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:32px}
+@media(min-width:720px){.ft-block__wrap{grid-template-columns:1.5fr 1fr 1fr}}
+.ft-block__logo{font-size:26px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:var(--c-accent);margin:0 0 12px;text-decoration:none;display:inline-block}
+.ft-block__tagline{font-size:14px;line-height:1.6;color:#b3ada0;margin:0 0 16px;max-width:36ch}
+.ft-block__contacts{display:flex;flex-direction:column;gap:8px;font-size:14px}
+.ft-block__contacts a{color:var(--c-accent);text-decoration:none}
+.ft-block__col-title{font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--c-accent);opacity:0.6;margin:0 0 14px}
+.ft-block__nav{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.ft-block__nav a,.ft-block__nav button{color:var(--c-accent);text-decoration:none;font-size:14px;opacity:0.85;background:none;border:0;padding:0;font-family:inherit;cursor:pointer;text-align:left;transition:opacity .2s}
+.ft-block__nav a:hover,.ft-block__nav button:hover{opacity:1}
+.ft-block__bottom{max-width:1280px;margin:40px auto 0;padding-top:20px;border-top:1px solid rgba(200,165,114,0.15);display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;font-size:12px;color:#b3ada0}
+.ab-modal{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:24px}
+.ab-modal.is-open{display:flex}
+.ab-modal__backdrop{position:absolute;inset:0;background:rgba(13,12,13,0.85);backdrop-filter:blur(6px)}
+.ab-modal__dialog{position:relative;z-index:1;width:100%;max-width:520px;background:#1f1d1b;border:1px solid rgba(212,178,121,0.22);border-radius:24px;padding:44px 40px 36px;max-height:calc(100vh - 48px);overflow-y:auto;color:var(--c-text)}
+.ab-modal__close{position:absolute;top:16px;right:16px;width:44px;height:44px;border-radius:50%;background:rgba(247,241,232,0.06);border:0;color:var(--c-accent-h);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:20px;transition:background .2s}
+.ab-modal__close:hover{background:rgba(212,178,121,0.18)}
+.ab-modal__eyebrow{display:inline-block;font-size:11px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--c-accent-h);margin-bottom:14px;position:relative;padding-left:32px}
+.ab-modal__eyebrow::before{content:"";position:absolute;left:0;top:50%;width:22px;height:1px;background:var(--c-accent-h)}
+.ab-modal__title{font-size:clamp(22px,3vw,28px);font-weight:700;line-height:1.15;margin:0 0 10px;color:#fff}
+.ab-modal__subtitle{font-size:14px;line-height:1.55;color:rgba(247,241,232,0.65);margin:0 0 26px}
+.ab-modal__form{display:flex;flex-direction:column;gap:18px}
+.ab-modal__field{display:flex;flex-direction:column;gap:8px}
+.ab-modal__label{font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:rgba(212,178,121,0.85)}
+.ab-modal__input,.ab-modal__textarea{width:100%;padding:14px 16px;background:rgba(247,241,232,0.04);border:1px solid rgba(212,178,121,0.22);border-radius:12px;color:var(--c-text);font-family:inherit;font-size:16px;transition:border-color .25s,box-shadow .25s;outline:none}
+.ab-modal__textarea{min-height:100px;resize:vertical}
+.ab-modal__input:focus,.ab-modal__textarea:focus{border-color:var(--c-accent-h);background:rgba(247,241,232,0.06);box-shadow:0 0 0 4px rgba(212,178,121,0.12)}
+.ab-modal__consent{display:flex;align-items:flex-start;gap:10px;cursor:pointer;margin-top:4px;font-size:12px;color:rgba(247,241,232,0.6);line-height:1.45}
+.ab-modal__consent input{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+.ab-modal__consent-box{flex:0 0 18px;width:18px;height:18px;border:1.5px solid rgba(212,178,121,0.4);border-radius:5px;display:inline-grid;place-items:center;background:rgba(247,241,232,0.04);color:#1c1b19;font-size:12px;margin-top:1px;transition:border-color .2s,background .2s,box-shadow .2s}
+.ab-modal__consent input:checked+.ab-modal__consent-box{background:var(--c-accent-h);border-color:var(--c-accent-h)}
+.ab-modal__consent.is-error .ab-modal__consent-box{border-color:var(--c-error);box-shadow:0 0 0 3px rgba(224,122,106,0.15)}
+.ab-modal__consent-error{display:none;color:var(--c-error);font-size:12px;line-height:1.4;margin-top:4px;padding-left:28px}
+.ab-modal__consent-error.is-visible{display:block}
+.ab-modal__submit{background:var(--c-accent-d);color:#1c1b19;border:1px solid var(--c-accent-d);border-radius:12px;padding:16px 20px;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .3s}
+.ab-modal__submit:hover{background:var(--c-accent-h);border-color:var(--c-accent-h)}
+.ab-modal__submit:disabled{opacity:0.6;cursor:wait}
+.ab-modal__success{display:none;flex-direction:column;align-items:center;text-align:center;gap:14px;padding:12px 8px}
+.ab-modal__success.is-active{display:flex}
+.ab-modal__success-icon{width:80px;height:80px;border-radius:50%;background:rgba(111,207,151,0.14);color:var(--c-success);display:grid;place-items:center;font-size:40px}
+.ab-modal__success-title{font-size:22px;margin:0;color:#fff}
+.ab-modal__success-text{color:rgba(247,241,232,0.65);font-size:15px;margin:0;max-width:36ch}
+body.ab-modal-open{overflow:hidden}
+@media(max-width:640px){.ab-modal{padding:16px}.ab-modal__dialog{padding:36px 24px 28px;border-radius:20px}}
+.ab-call{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:24px}
+.ab-call.is-open{display:flex}
+.ab-call__backdrop{position:absolute;inset:0;background:rgba(13,12,13,0.85);backdrop-filter:blur(6px)}
+.ab-call__dialog{position:relative;z-index:1;width:100%;max-width:480px;background:#1f1d1b;border:1px solid rgba(212,178,121,0.22);border-radius:24px;padding:44px 40px 36px;max-height:calc(100vh - 48px);overflow-y:auto;color:var(--c-text)}
+.ab-call__close{position:absolute;top:16px;right:16px;width:44px;height:44px;border-radius:50%;background:rgba(247,241,232,0.06);border:0;color:var(--c-accent-h);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:20px;transition:background .2s}
+.ab-call__close:hover{background:rgba(212,178,121,0.18)}
+.ab-call__eyebrow{display:inline-block;font-size:11px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--c-accent-h);margin-bottom:14px;position:relative;padding-left:32px}
+.ab-call__eyebrow::before{content:"";position:absolute;left:0;top:50%;width:22px;height:1px;background:var(--c-accent-h)}
+.ab-call__title{font-size:clamp(22px,3vw,26px);font-weight:700;line-height:1.15;margin:0 0 10px;color:#fff}
+.ab-call__subtitle{font-size:14px;line-height:1.55;color:rgba(247,241,232,0.65);margin:0 0 24px}
+.ab-call__list{display:flex;flex-direction:column;gap:12px}
+.ab-call__item{display:flex;align-items:center;gap:16px;padding:18px 20px;border:1px solid rgba(212,178,121,0.28);border-radius:16px;text-decoration:none;color:var(--c-text);background:rgba(247,241,232,0.03);transition:border-color .25s,background .25s,transform .25s}
+.ab-call__item:hover{border-color:var(--c-accent-h);background:rgba(212,178,121,0.06);transform:translateY(-1px)}
+.ab-call__avatar{flex:0 0 44px;width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--c-accent-h),var(--c-accent-d));color:#1c1b19;display:grid;place-items:center;font-weight:700;font-size:16px}
+.ab-call__info{display:flex;flex-direction:column;gap:2px;min-width:0}
+.ab-call__name{font-size:13px;color:rgba(247,241,232,0.6);letter-spacing:0.06em;text-transform:uppercase;font-weight:600}
+.ab-call__phone{font-size:17px;font-weight:600;color:#fff;white-space:nowrap}
+body.ab-call-open{overflow:hidden}
+@media(max-width:640px){.ab-call{padding:16px}.ab-call__dialog{padding:36px 22px 26px;border-radius:20px}.ab-call__phone{font-size:16px}}
+@media(max-width:1080px){.wt-cover__grid{grid-template-columns:1fr}.wt-not{grid-template-columns:1fr;gap:0}.wt-terms__grid{grid-template-columns:1fr}.wt-how__grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.wt-how__grid{grid-template-columns:1fr;gap:20px}.wt-cta__box{padding:28px 22px}.wt-cta__btn{width:100%;justify-content:center}.wt-hero__badge{padding:18px 22px;gap:14px}.wt-cover__item{padding:22px 20px;gap:14px}.wt-cover__icon{flex:0 0 40px;width:40px;height:40px;font-size:18px}.wt-hero{min-height:480px}}
+.chat-fab{position:fixed;right:24px;bottom:24px;z-index:60;width:56px;height:56px;border-radius:50%;background:var(--c-accent);color:var(--c-bg);border:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 12px 28px rgba(0,0,0,.4);transition:transform .25s,background .25s,box-shadow .25s}
+.chat-fab:hover{background:var(--c-accent-h);transform:translateY(-2px);box-shadow:0 16px 32px rgba(0,0,0,.45)}
+.chat-fab:focus-visible{outline:2px solid var(--c-accent-h);outline-offset:3px}
+.chat-fab svg{width:28px;height:28px;display:block}
+@media(max-width:900px){.chat-fab{width:64px;height:64px}.chat-fab svg{width:30px;height:30px}}
+@media(max-width:720px){.chat-fab{right:18px;bottom:18px;width:68px;height:68px}.chat-fab svg{width:32px;height:32px}}
+.chat-modal{position:fixed;inset:0;z-index:210;display:none;align-items:flex-end;justify-content:flex-end;padding:24px;pointer-events:none}
+.chat-modal.is-open{display:flex}
+.chat-modal__backdrop{position:absolute;inset:0;background:rgba(13,12,13,0.7);backdrop-filter:blur(4px);pointer-events:auto}
+.chat-modal__dialog{position:relative;z-index:1;width:100%;max-width:400px;max-height:calc(100vh - 48px);overflow-y:auto;background:#1a1f17;border:1px solid rgba(200,165,114,0.28);border-radius:20px;padding:32px 28px 28px;color:var(--c-text);box-shadow:0 30px 80px rgba(0,0,0,.6);pointer-events:auto;animation:chat-modal-rise .3s cubic-bezier(.2,.7,.2,1)}
+@keyframes chat-modal-rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.chat-modal__close{position:absolute;top:12px;right:12px;width:40px;height:40px;border-radius:50%;background:rgba(247,241,232,0.06);border:0;color:var(--c-accent);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;transition:background .2s}
+.chat-modal__close:hover{background:rgba(200,165,114,0.18)}
+.chat-modal__title{font-size:20px;font-weight:700;line-height:1.25;margin:0 0 20px;color:#fff;letter-spacing:-0.01em;padding-right:40px}
+.chat-modal__tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.chat-modal__tab{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:8px;border:1px solid rgba(200,165,114,0.22);background:transparent;color:var(--c-accent);font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;transition:background .2s,border-color .2s,color .2s}
+.chat-modal__tab:hover{border-color:rgba(200,165,114,0.55)}
+.chat-modal__tab.is-active{background:rgba(200,165,114,0.12);border-color:var(--c-accent);color:#fff}
+.chat-modal__tab svg{width:16px;height:16px;display:block;flex-shrink:0}
+.chat-modal__form{display:flex;flex-direction:column;gap:12px}
+.chat-modal__input,.chat-modal__textarea{width:100%;padding:14px 16px;border-radius:12px;border:1px solid rgba(200,165,114,0.22);background:rgba(13,12,13,0.4);color:var(--c-text);font-family:inherit;font-size:15px;outline:none;transition:border-color .2s,box-shadow .2s}
+.chat-modal__input::placeholder,.chat-modal__textarea::placeholder{color:rgba(244,237,226,0.4)}
+.chat-modal__input:focus,.chat-modal__textarea:focus{border-color:var(--c-accent);box-shadow:0 0 0 4px rgba(200,165,114,0.14)}
+.chat-modal__textarea{min-height:88px;resize:vertical}
+.chat-modal__consent{display:flex;align-items:flex-start;gap:10px;cursor:pointer;margin-top:4px;font-size:12px;color:rgba(244,237,226,0.55);line-height:1.45}
+.chat-modal__consent input{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+.chat-modal__consent-box{flex:0 0 18px;width:18px;height:18px;border:1.5px solid rgba(200,165,114,0.35);border-radius:5px;display:inline-grid;place-items:center;background:rgba(13,12,13,0.4);color:var(--c-bg);font-size:12px;margin-top:1px;transition:border-color .2s,background .2s,box-shadow .2s}
+.chat-modal__consent input:checked+.chat-modal__consent-box{background:var(--c-accent);border-color:var(--c-accent);color:var(--c-bg)}
+.chat-modal__consent.is-error .chat-modal__consent-box{border-color:var(--c-error);box-shadow:0 0 0 3px rgba(224,122,106,0.15)}
+.chat-modal__consent-error{display:none;color:var(--c-error);font-size:12px;line-height:1.4;margin-top:4px;padding-left:28px}
+.chat-modal__consent-error.is-visible{display:block}
+.chat-modal__submit{margin-top:8px;width:100%;border:none;cursor:pointer;background:var(--c-accent);color:var(--c-bg);font-family:inherit;font-size:14px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:15px 20px;border-radius:12px;transition:background .2s}
+.chat-modal__submit:hover{background:var(--c-accent-h)}
+.chat-modal__submit:disabled{opacity:0.6;cursor:wait}
+.chat-modal__success{display:none;flex-direction:column;align-items:center;text-align:center;gap:10px;padding:20px 8px 8px}
+.chat-modal__success.is-active{display:flex}
+.chat-modal__success-icon{width:64px;height:64px;border-radius:50%;background:rgba(111,207,151,0.14);color:var(--c-success);display:grid;place-items:center;font-size:32px;margin-bottom:6px}
+.chat-modal__success-title{font-size:18px;font-weight:700;margin:0;color:#fff}
+.chat-modal__success-text{font-size:14px;margin:0;color:rgba(244,237,226,0.7);line-height:1.5;max-width:30ch}
+body.chat-modal-open{overflow:hidden}
+@media(max-width:480px){.chat-modal{padding:0;align-items:stretch;justify-content:stretch}.chat-modal__dialog{max-width:100%;max-height:100vh;border-radius:20px 20px 0 0;align-self:flex-end;padding:28px 20px 24px}}
 </style>
 </head>
 
 <body>
 
-<!-- ШАПКА -->
 <section class="hd-block" aria-label="Шапка сайта">
   <div class="hd-block__inner">
     <a class="hd-block__logo" href="index.html" aria-label="Перейти на главную">40/60</a>
-    <button class="hd-block__burger" type="button" aria-expanded="false" aria-controls="hd-nav" aria-label="Открыть меню">
-      <span class="hd-block__burger-lines" aria-hidden="true"></span>
-    </button>
+    <button class="hd-block__burger" type="button" aria-expanded="false" aria-controls="hd-nav" aria-label="Открыть меню"><span class="hd-block__burger-lines" aria-hidden="true"></span></button>
     <nav class="hd-block__nav" id="hd-nav" aria-label="Основная навигация">
       <ul class="hd-block__nav-list">
         <li><a class="hd-block__nav-link" href="about.html">О нас</a></li>
@@ -321,10 +243,7 @@ body.chat-modal-open { overflow: hidden; }
       </ul>
       <div class="hd-block__menu-contacts">
         <span class="hd-block__menu-hours" data-cms="common.hours">пн–сб 10:00–21:00</span>
-        <a class="hd-block__menu-tg" href="https://t.me/design4060" target="_blank" rel="noopener">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
-          <span data-cms="common.tg">design4060</span>
-        </a>
+        <a class="hd-block__menu-tg" href="https://t.me/design4060" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg><span data-cms="common.tg">design4060</span></a>
       </div>
     </nav>
     <div class="hd-block__phones">
@@ -333,15 +252,11 @@ body.chat-modal-open { overflow: hidden; }
     </div>
     <div class="hd-block__meta">
       <span class="hd-block__hours" data-cms="common.hours">пн–сб 10:00–21:00</span>
-      <a class="hd-block__tg" href="https://t.me/design4060" target="_blank" rel="noopener" aria-label="Мы в Telegram">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
-        <span data-cms="common.tg">design4060</span>
-      </a>
+      <a class="hd-block__tg" href="https://t.me/design4060" target="_blank" rel="noopener" aria-label="Мы в Telegram"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg><span data-cms="common.tg">design4060</span></a>
     </div>
   </div>
 </section>
 
-<!-- HERO -->
 <section class="wt-hero">
   <div class="wt-hero__inner">
     <div class="wt-hero__content">
@@ -353,18 +268,9 @@ body.chat-modal-open { overflow: hidden; }
         <span class="wt-hero__badge-text" data-cms="warranty.badgeText">года расширенной гарантии на мебель и фурнитуру</span>
       </div>
     </div>
-    <div class="wt-hero__visual">
-      <div class="wt-hero__shield" aria-hidden="true">
-        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M32 6 L54 14 L54 30 C54 44 44 54 32 58 C20 54 10 44 10 30 L10 14 Z"/>
-          <path d="M22 32 L29 39 L44 24"/>
-        </svg>
-      </div>
-    </div>
   </div>
 </section>
 
-<!-- ЧТО ПОКРЫВАЕТ -->
 <section class="wt-sec">
   <div class="wt-sec__inner">
     <header class="wt-sec__head">
@@ -373,39 +279,14 @@ body.chat-modal-open { overflow: hidden; }
       <p class="wt-sec__lead" data-cms="warranty.coverLead">Стандартная гарантия распространяется на все элементы мебели, которые мы произвели, доставили и собрали сами.</p>
     </header>
     <ul class="wt-cover__grid">
-      <li class="wt-cover__item">
-        <div class="wt-cover__icon">🪵</div>
-        <div class="wt-cover__body">
-          <h3 class="wt-cover__title">Корпус и фасады</h3>
-          <p class="wt-cover__text">Расслоение, деформация, повреждения покрытия и кромки, не связанные с механическим воздействием.</p>
-        </div>
-      </li>
-      <li class="wt-cover__item">
-        <div class="wt-cover__icon">⚙️</div>
-        <div class="wt-cover__body">
-          <h3 class="wt-cover__title">Фурнитура</h3>
-          <p class="wt-cover__text">Петли, доводчики, направляющие Blum и Hettich. Заменим вышедший из строя элемент на новый.</p>
-        </div>
-      </li>
-      <li class="wt-cover__item">
-        <div class="wt-cover__icon">🧱</div>
-        <div class="wt-cover__body">
-          <h3 class="wt-cover__title">Столешницы и камень</h3>
-          <p class="wt-cover__text">Кварц, акрил, керамика — гарантия на материал и качество обработки кромки.</p>
-        </div>
-      </li>
-      <li class="wt-cover__item">
-        <div class="wt-cover__icon">🔧</div>
-        <div class="wt-cover__body">
-          <h3 class="wt-cover__title">Работы по монтажу</h3>
-          <p class="wt-cover__text">Если при сборке или установке были допущены ошибки — устраним их за свой счёт.</p>
-        </div>
-      </li>
+      <li class="wt-cover__item"><div class="wt-cover__icon">🪵</div><div class="wt-cover__body"><h3 class="wt-cover__title">Корпус и фасады</h3><p class="wt-cover__text">Расслоение, деформация, повреждения покрытия и кромки, не связанные с механическим воздействием.</p></div></li>
+      <li class="wt-cover__item"><div class="wt-cover__icon">⚙️</div><div class="wt-cover__body"><h3 class="wt-cover__title">Фурнитура</h3><p class="wt-cover__text">Петли, доводчики, направляющие Blum и Hettich. Заменим вышедший из строя элемент на новый.</p></div></li>
+      <li class="wt-cover__item"><div class="wt-cover__icon">🧱</div><div class="wt-cover__body"><h3 class="wt-cover__title">Столешницы и камень</h3><p class="wt-cover__text">Кварц, акрил, керамика — гарантия на материал и качество обработки кромки.</p></div></li>
+      <li class="wt-cover__item"><div class="wt-cover__icon">🔧</div><div class="wt-cover__body"><h3 class="wt-cover__title">Работы по монтажу</h3><p class="wt-cover__text">Если при сборке или установке были допущены ошибки — устраним их за свой счёт.</p></div></li>
     </ul>
   </div>
 </section>
 
-<!-- ЧТО НЕ ПОКРЫВАЕТ -->
 <section class="wt-sec wt-sec--alt">
   <div class="wt-sec__inner">
     <header class="wt-sec__head">
@@ -424,7 +305,6 @@ body.chat-modal-open { overflow: hidden; }
   </div>
 </section>
 
-<!-- СРОКИ -->
 <section class="wt-sec">
   <div class="wt-sec__inner">
     <header class="wt-sec__head">
@@ -433,26 +313,13 @@ body.chat-modal-open { overflow: hidden; }
       <p class="wt-sec__lead" data-cms="warranty.termsLead">Разные элементы мебели имеют разные гарантийные сроки — от 1 года до 3 лет.</p>
     </header>
     <ul class="wt-terms__grid">
-      <li class="wt-terms__item">
-        <span class="wt-terms__num">3 <small>года</small></span>
-        <h3 class="wt-terms__title">На корпус и фасады</h3>
-        <p class="wt-terms__text">Стандартный срок для всей мебели собственного производства.</p>
-      </li>
-      <li class="wt-terms__item">
-        <span class="wt-terms__num">3 <small>года</small></span>
-        <h3 class="wt-terms__title">На фурнитуру</h3>
-        <p class="wt-terms__text">Петли, доводчики, направляющие и системы выдвижения Blum / Hettich.</p>
-      </li>
-      <li class="wt-terms__item">
-        <span class="wt-terms__num">1 <small>год</small></span>
-        <h3 class="wt-terms__title">На сборку и монтаж</h3>
-        <p class="wt-terms__text">Работы по установке техники, подключению подсветки и подгонке деталей.</p>
-      </li>
+      <li class="wt-terms__item"><span class="wt-terms__num">3 <small>года</small></span><h3 class="wt-terms__title">На корпус и фасады</h3><p class="wt-terms__text">Стандартный срок для всей мебели собственного производства.</p></li>
+      <li class="wt-terms__item"><span class="wt-terms__num">3 <small>года</small></span><h3 class="wt-terms__title">На фурнитуру</h3><p class="wt-terms__text">Петли, доводчики, направляющие и системы выдвижения Blum / Hettich.</p></li>
+      <li class="wt-terms__item"><span class="wt-terms__num">1 <small>год</small></span><h3 class="wt-terms__title">На сборку и монтаж</h3><p class="wt-terms__text">Работы по установке техники, подключению подсветки и подгонке деталей.</p></li>
     </ul>
   </div>
 </section>
 
-<!-- КАК ОБРАТИТЬСЯ -->
 <section class="wt-sec wt-sec--alt">
   <div class="wt-sec__inner">
     <header class="wt-sec__head">
@@ -461,31 +328,14 @@ body.chat-modal-open { overflow: hidden; }
       <p class="wt-sec__lead" data-cms="warranty.howLead">Четыре простых шага — от обращения до решения вопроса.</p>
     </header>
     <ol class="wt-how__grid">
-      <li class="wt-how__item">
-        <span class="wt-how__num">01</span>
-        <h3 class="wt-how__title">Обращение</h3>
-        <p class="wt-how__text">Позвоните, напишите в Telegram или оставьте заявку на сайте.</p>
-      </li>
-      <li class="wt-how__item">
-        <span class="wt-how__num">02</span>
-        <h3 class="wt-how__title">Согласование</h3>
-        <p class="wt-how__text">Менеджер уточнит детали и согласует удобное время визита мастера.</p>
-      </li>
-      <li class="wt-how__item">
-        <span class="wt-how__num">03</span>
-        <h3 class="wt-how__title">Осмотр</h3>
-        <p class="wt-how__text">Специалист приедет на объект, оценит ситуацию и определит причину.</p>
-      </li>
-      <li class="wt-how__item">
-        <span class="wt-how__num">04</span>
-        <h3 class="wt-how__title">Решение</h3>
-        <p class="wt-how__text">Если случай гарантийный — исправим за свой счёт. Обычно в течение 7 дней.</p>
-      </li>
+      <li class="wt-how__item"><span class="wt-how__num">01</span><h3 class="wt-how__title">Обращение</h3><p class="wt-how__text">Позвоните, напишите в Telegram или оставьте заявку на сайте.</p></li>
+      <li class="wt-how__item"><span class="wt-how__num">02</span><h3 class="wt-how__title">Согласование</h3><p class="wt-how__text">Менеджер уточнит детали и согласует удобное время визита мастера.</p></li>
+      <li class="wt-how__item"><span class="wt-how__num">03</span><h3 class="wt-how__title">Осмотр</h3><p class="wt-how__text">Специалист приедет на объект, оценит ситуацию и определит причину.</p></li>
+      <li class="wt-how__item"><span class="wt-how__num">04</span><h3 class="wt-how__title">Решение</h3><p class="wt-how__text">Если случай гарантийный — исправим за свой счёт. Обычно в течение 7 дней.</p></li>
     </ol>
   </div>
 </section>
 
-<!-- CTA -->
 <section class="wt-cta">
   <div class="wt-sec__inner">
     <div class="wt-cta__box">
@@ -498,7 +348,6 @@ body.chat-modal-open { overflow: hidden; }
   </div>
 </section>
 
-<!-- ФУТЕР -->
 <footer class="ft-block">
   <div class="ft-block__wrap">
     <div>
@@ -507,7 +356,7 @@ body.chat-modal-open { overflow: hidden; }
       <div class="ft-block__contacts">
         <a href="tel:+79771004415" data-cms="common.phone1">+7 977 100-44-15</a>
         <a href="tel:+79017448855" data-cms="common.phone2">+7 901 744-88-55</a>
-        <a href="https://t.me/design4060" target="_blank" rel="noopener" data-cms="common.tg">Telegram: @design4060</a>
+        <a href="https://t.me/official4060Design" target="_blank" rel="noopener">Telegram: @official4060Design</a>
       </div>
     </div>
     <div>
@@ -524,7 +373,7 @@ body.chat-modal-open { overflow: hidden; }
       <ul class="ft-block__nav">
         <li><button type="button" id="ft-measure-open">Запись на замер</button></li>
         <li><button type="button" id="ft-call-open">Позвонить</button></li>
-        <li><a href="https://t.me/design4060" target="_blank" rel="noopener">Написать в Telegram</a></li>
+        <li><a href="https://t.me/official4060Design" target="_blank" rel="noopener">Написать в Telegram</a></li>
       </ul>
     </div>
   </div>
@@ -534,7 +383,6 @@ body.chat-modal-open { overflow: hidden; }
   </div>
 </footer>
 
-<!-- МОДАЛКА «ЗАЯВКА ПО ГАРАНТИИ» -->
 <div class="ab-modal" id="wt-modal" aria-hidden="true">
   <div class="ab-modal__backdrop" data-wt-close></div>
   <div class="ab-modal__dialog" role="dialog" aria-modal="true">
@@ -543,35 +391,17 @@ body.chat-modal-open { overflow: hidden; }
     <h3 class="ab-modal__title">Заявка на гарантийный случай</h3>
     <p class="ab-modal__subtitle">Опишите ситуацию — специалист свяжется с вами в течение 15 минут в рабочее время.</p>
     <form class="ab-modal__form" id="wt-form">
-      <div class="ab-modal__field">
-        <label class="ab-modal__label" for="wt-name">Ваше имя</label>
-        <input class="ab-modal__input" id="wt-name" type="text" placeholder="Например, Андрей Белов" required>
-      </div>
-      <div class="ab-modal__field">
-        <label class="ab-modal__label" for="wt-phone">Телефон</label>
-        <input class="ab-modal__input" id="wt-phone" type="tel" placeholder="+7 (___) ___-__-__" required>
-      </div>
-      <div class="ab-modal__field">
-        <label class="ab-modal__label" for="wt-message">Опишите ситуацию</label>
-        <textarea class="ab-modal__textarea" id="wt-message" placeholder="Что случилось и когда"></textarea>
-      </div>
-      <label class="ab-modal__consent" id="wt-consent-wrap">
-        <input type="checkbox" id="wt-consent">
-        <span class="ab-modal__consent-box">✓</span>
-        <span>Я согласен на обработку персональных данных</span>
-      </label>
+      <div class="ab-modal__field"><label class="ab-modal__label" for="wt-name">Ваше имя</label><input class="ab-modal__input" id="wt-name" type="text" placeholder="Например, Андрей Белов" required></div>
+      <div class="ab-modal__field"><label class="ab-modal__label" for="wt-phone">Телефон</label><input class="ab-modal__input" id="wt-phone" type="tel" placeholder="+7 (___) ___-__-__" required></div>
+      <div class="ab-modal__field"><label class="ab-modal__label" for="wt-message">Опишите ситуацию</label><textarea class="ab-modal__textarea" id="wt-message" placeholder="Что случилось и когда"></textarea></div>
+      <label class="ab-modal__consent" id="wt-consent-wrap"><input type="checkbox" id="wt-consent"><span class="ab-modal__consent-box">✓</span><span>Я согласен на обработку персональных данных</span></label>
       <div class="ab-modal__consent-error" id="wt-consent-error">Поставьте галочку — нужно согласие на обработку данных</div>
       <button type="submit" class="ab-modal__submit">Отправить заявку</button>
     </form>
-    <div class="ab-modal__success" id="wt-success">
-      <div class="ab-modal__success-icon">✓</div>
-      <h3 class="ab-modal__success-title">Заявка отправлена</h3>
-      <p class="ab-modal__success-text">Специалист скоро свяжется с вами.</p>
-    </div>
+    <div class="ab-modal__success" id="wt-success"><div class="ab-modal__success-icon">✓</div><h3 class="ab-modal__success-title">Заявка отправлена</h3><p class="ab-modal__success-text">Специалист скоро свяжется с вами.</p></div>
   </div>
 </div>
 
-<!-- МОДАЛКА «ЗАПИСЬ НА ЗАМЕР» (футер) -->
 <div class="ab-modal" id="ft-measure-modal" aria-hidden="true">
   <div class="ab-modal__backdrop" data-ft-measure-close></div>
   <div class="ab-modal__dialog" role="dialog" aria-modal="true">
@@ -580,35 +410,17 @@ body.chat-modal-open { overflow: hidden; }
     <h3 class="ab-modal__title">Записаться на замер</h3>
     <p class="ab-modal__subtitle">Оставьте контакт — специалист перезвонит и согласует удобное время замера.</p>
     <form class="ab-modal__form" id="ft-measure-form">
-      <div class="ab-modal__field">
-        <label class="ab-modal__label" for="ft-measure-name">Ваше имя</label>
-        <input class="ab-modal__input" id="ft-measure-name" type="text" placeholder="Например, Андрей Белов" required>
-      </div>
-      <div class="ab-modal__field">
-        <label class="ab-modal__label" for="ft-measure-phone">Телефон</label>
-        <input class="ab-modal__input" id="ft-measure-phone" type="tel" placeholder="+7 (___) ___-__-__" required>
-      </div>
-      <div class="ab-modal__field">
-        <label class="ab-modal__label" for="ft-measure-tg">Telegram (не обязательно)</label>
-        <input class="ab-modal__input" id="ft-measure-tg" type="text" placeholder="nickname">
-      </div>
-      <label class="ab-modal__consent" id="ft-measure-consent-wrap">
-        <input type="checkbox" id="ft-measure-consent">
-        <span class="ab-modal__consent-box">✓</span>
-        <span>Я согласен на обработку персональных данных</span>
-      </label>
+      <div class="ab-modal__field"><label class="ab-modal__label" for="ft-measure-name">Ваше имя</label><input class="ab-modal__input" id="ft-measure-name" type="text" placeholder="Например, Андрей Белов" required></div>
+      <div class="ab-modal__field"><label class="ab-modal__label" for="ft-measure-phone">Телефон</label><input class="ab-modal__input" id="ft-measure-phone" type="tel" placeholder="+7 (___) ___-__-__" required></div>
+      <div class="ab-modal__field"><label class="ab-modal__label" for="ft-measure-tg">Telegram (не обязательно)</label><input class="ab-modal__input" id="ft-measure-tg" type="text" placeholder="nickname"></div>
+      <label class="ab-modal__consent" id="ft-measure-consent-wrap"><input type="checkbox" id="ft-measure-consent"><span class="ab-modal__consent-box">✓</span><span>Я согласен на обработку персональных данных</span></label>
       <div class="ab-modal__consent-error" id="ft-measure-consent-error">Поставьте галочку — нужно согласие на обработку данных</div>
       <button type="submit" class="ab-modal__submit">Записаться на замер</button>
     </form>
-    <div class="ab-modal__success" id="ft-measure-success">
-      <div class="ab-modal__success-icon">✓</div>
-      <h3 class="ab-modal__success-title">Заявка отправлена</h3>
-      <p class="ab-modal__success-text">Специалист скоро свяжется с вами.</p>
-    </div>
+    <div class="ab-modal__success" id="ft-measure-success"><div class="ab-modal__success-icon">✓</div><h3 class="ab-modal__success-title">Заявка отправлена</h3><p class="ab-modal__success-text">Специалист скоро свяжется с вами.</p></div>
   </div>
 </div>
 
-<!-- МОДАЛКА «ПОЗВОНИТЬ» -->
 <div class="ab-call" id="ft-call-modal" aria-hidden="true">
   <div class="ab-call__backdrop" data-ft-call-close></div>
   <div class="ab-call__dialog" role="dialog" aria-modal="true" aria-labelledby="ft-call-title">
@@ -617,279 +429,178 @@ body.chat-modal-open { overflow: hidden; }
     <h3 class="ab-call__title" id="ft-call-title">Позвонить нам</h3>
     <p class="ab-call__subtitle">Выберите, кому удобнее позвонить — ответим в рабочее время (пн–сб 10:00–21:00).</p>
     <div class="ab-call__list">
-      <a class="ab-call__item" href="tel:+79771004415">
-        <span class="ab-call__avatar" aria-hidden="true">И</span>
-        <span class="ab-call__info">
-          <span class="ab-call__name">Иван</span>
-          <span class="ab-call__phone">+7 977 100-44-15</span>
-        </span>
-      </a>
-      <a class="ab-call__item" href="tel:+79017448855">
-        <span class="ab-call__avatar" aria-hidden="true">С</span>
-        <span class="ab-call__info">
-          <span class="ab-call__name">Станислав</span>
-          <span class="ab-call__phone">+7 901 744-88-55</span>
-        </span>
-      </a>
+      <a class="ab-call__item" href="tel:+79771004415"><span class="ab-call__avatar" aria-hidden="true">И</span><span class="ab-call__info"><span class="ab-call__name">Иван</span><span class="ab-call__phone">+7 977 100-44-15</span></span></a>
+      <a class="ab-call__item" href="tel:+79017448855"><span class="ab-call__avatar" aria-hidden="true">С</span><span class="ab-call__info"><span class="ab-call__name">Станислав</span><span class="ab-call__phone">+7 901 744-88-55</span></span></a>
     </div>
   </div>
 </div>
 
-<!-- КНОПКА ЧАТА -->
-<button class="chat-fab" id="chat-fab" type="button" aria-label="Написать нам" aria-controls="chat-modal" aria-expanded="false">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-  </svg>
-</button>
+<button class="chat-fab" id="chat-fab" type="button" aria-label="Написать нам" aria-controls="chat-modal" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></button>
 
-<!-- ПОПАП ЧАТА -->
 <div class="chat-modal" id="chat-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="chat-modal-title">
   <div class="chat-modal__backdrop" data-chat-close></div>
   <div class="chat-modal__dialog">
     <button type="button" class="chat-modal__close" data-chat-close aria-label="Закрыть">✕</button>
     <h3 class="chat-modal__title" id="chat-modal-title">Есть вопросы? Напишите нам!</h3>
     <div class="chat-modal__tabs" role="tablist">
-      <button type="button" class="chat-modal__tab is-active" data-chat-tab="telegram" role="tab" aria-selected="true">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
-        Telegram
-      </button>
-      <button type="button" class="chat-modal__tab" data-chat-tab="whatsapp" role="tab" aria-selected="false">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9s-.5-.1-.7.1-.8.9-1 1.1-.4.2-.7.1-1.3-.5-2.4-1.5-1.8-2.3-2-2.6-.1-.5 0-.6.3-.3.5-.6c.1-.2.2-.4.3-.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.4s-1 1-1 2.4 1 2.8 1.2 3c.2.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.7.5-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3zM12 21.8c-1.7 0-3.4-.5-4.9-1.4L2 22l1.7-5c-1-1.5-1.5-3.2-1.5-5C2.2 6.6 6.6 2.2 12 2.2s9.8 4.4 9.8 9.8-4.4 9.8-9.8 9.8z"/></svg>
-        WhatsApp
-      </button>
-      <button type="button" class="chat-modal__tab" data-chat-tab="vk" role="tab" aria-selected="false">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.8 17.4c-5.7 0-9-3.9-9.1-10.4h2.9c.1 4.8 2.2 6.8 3.8 7.2V7h2.7v4.1c1.6-.2 3.3-2 3.9-4.1h2.7c-.4 2.6-2.2 4.4-3.5 5.1 1.3.6 3.3 2.2 4.1 5.3h-3c-.6-2-2.1-3.5-4.2-3.7v3.7h-.3z"/></svg>
-        VK
-      </button>
-      <button type="button" class="chat-modal__tab" data-chat-tab="max" role="tab" aria-selected="false">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 7.1 17.1l2.9 1-1-2.9A10 10 0 0 0 12 2zm0 15.5a5.5 5.5 0 1 1 4.6-2.5l.7 2-2-.7a5.5 5.5 0 0 1-3.3 1.2zm-2-8a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm4 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>
-        Max
-      </button>
+      <button type="button" class="chat-modal__tab is-active" data-chat-tab="telegram" role="tab" aria-selected="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>Telegram</button>
+      <button type="button" class="chat-modal__tab" data-chat-tab="whatsapp" role="tab" aria-selected="false"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9s-.5-.1-.7.1-.8.9-1 1.1-.4.2-.7.1-1.3-.5-2.4-1.5-1.8-2.3-2-2.6-.1-.5 0-.6.3-.3.5-.6c.1-.2.2-.4.3-.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.4s-1 1-1 2.4 1 2.8 1.2 3c.2.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.7.5-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3zM12 21.8c-1.7 0-3.4-.5-4.9-1.4L2 22l1.7-5c-1-1.5-1.5-3.2-1.5-5C2.2 6.6 6.6 2.2 12 2.2s9.8 4.4 9.8 9.8-4.4 9.8-9.8 9.8z"/></svg>WhatsApp</button>
+      <button type="button" class="chat-modal__tab" data-chat-tab="vk" role="tab" aria-selected="false"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.8 17.4c-5.7 0-9-3.9-9.1-10.4h2.9c.1 4.8 2.2 6.8 3.8 7.2V7h2.7v4.1c1.6-.2 3.3-2 3.9-4.1h2.7c-.4 2.6-2.2 4.4-3.5 5.1 1.3.6 3.3 2.2 4.1 5.3h-3c-.6-2-2.1-3.5-4.2-3.7v3.7h-.3z"/></svg>VK</button>
+      <button type="button" class="chat-modal__tab" data-chat-tab="max" role="tab" aria-selected="false"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 7.1 17.1l2.9 1-1-2.9A10 10 0 0 0 12 2zm0 15.5a5.5 5.5 0 1 1 4.6-2.5l.7 2-2-.7a5.5 5.5 0 0 1-3.3 1.2zm-2-8a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm4 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>Max</button>
     </div>
     <form class="chat-modal__form" id="chat-form">
       <input class="chat-modal__input" type="text" name="contact" id="chat-contact" placeholder="@username или телефон" required>
       <input class="chat-modal__input" type="text" name="name" placeholder="Например, Андрей Белов" required>
       <textarea class="chat-modal__textarea" name="message" placeholder="Напишите ваш вопрос. Свяжемся в ближайшее время)" required></textarea>
-      <label class="chat-modal__consent" id="chat-consent-wrap">
-        <input type="checkbox" id="chat-consent">
-        <span class="chat-modal__consent-box">✓</span>
-        <span>Я согласен с условиями обслуживания</span>
-      </label>
+      <label class="chat-modal__consent" id="chat-consent-wrap"><input type="checkbox" id="chat-consent"><span class="chat-modal__consent-box">✓</span><span>Я согласен с условиями обслуживания</span></label>
       <div class="chat-modal__consent-error" id="chat-consent-error">Поставьте галочку — нужно согласие на обработку данных</div>
       <button type="submit" class="chat-modal__submit">Отправить</button>
     </form>
-    <div class="chat-modal__success" id="chat-success">
-      <div class="chat-modal__success-icon">✓</div>
-      <h4 class="chat-modal__success-title">Спасибо!</h4>
-      <p class="chat-modal__success-text">Мы свяжемся с вами в ближайшее время.</p>
-    </div>
+    <div class="chat-modal__success" id="chat-success"><div class="chat-modal__success-icon">✓</div><h4 class="chat-modal__success-title">Спасибо!</h4><p class="chat-modal__success-text">Мы свяжемся с вами в ближайшее время.</p></div>
   </div>
 </div>
 
 <script src="js/site-content.js" defer></script>
 <script>
-(function () {
-  'use strict';
+(function(){
+'use strict';
+var WORKER_URL='https://hidden-bar-8272form-to-telegram.stas-titov-002.workers.dev';
 
-  var header = document.querySelector('.hd-block');
-  if (header) {
-    var burger = header.querySelector('.hd-block__burger');
-    var nav = header.querySelector('.hd-block__nav');
-    if (burger && nav) {
-      burger.addEventListener('click', function () {
-        var open = !header.classList.contains('hd-block--menu-open');
-        header.classList.toggle('hd-block--menu-open', open);
-        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
-      });
-      nav.addEventListener('click', function (e) {
-        if (e.target.tagName === 'A') header.classList.remove('hd-block--menu-open');
-      });
-    }
+function sendToWorker(payload,onSuccess,onError){
+  fetch(WORKER_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
+  .then(function(r){return r.json();})
+  .then(function(res){if(res&&res.success){if(onSuccess)onSuccess(res);}else{if(onError)onError(res&&res.error?res.error:'Ошибка отправки');}})
+  .catch(function(err){if(onError)onError(String(err&&err.message?err.message:err));});
+}
+function showFormError(btn,orig,msg){if(btn){btn.disabled=false;btn.textContent=orig;}alert('Не удалось отправить заявку. '+(msg?'Ошибка: '+msg:'Попробуйте ещё раз или позвоните нам.'));}
+
+var header=document.querySelector('.hd-block');
+if(header){
+  var burger=header.querySelector('.hd-block__burger');
+  var nav=header.querySelector('.hd-block__nav');
+  if(burger&&nav){
+    burger.addEventListener('click',function(){var open=!header.classList.contains('hd-block--menu-open');header.classList.toggle('hd-block--menu-open',open);burger.setAttribute('aria-expanded',open?'true':'false');});
+    nav.addEventListener('click',function(e){if(e.target.tagName==='A')header.classList.remove('hd-block--menu-open');});
   }
+}
 
-  function bindModal(modalId, openId, closeAttr, formId, successId, consentId, wrapId, errId, bodyClass) {
-    var modal = document.getElementById(modalId);
-    var openBtn = openId ? document.getElementById(openId) : null;
-    var form = formId ? document.getElementById(formId) : null;
-    var success = successId ? document.getElementById(successId) : null;
-    var consent = consentId ? document.getElementById(consentId) : null;
-    var wrap = wrapId ? document.getElementById(wrapId) : null;
-    var err = errId ? document.getElementById(errId) : null;
+function bindConsent(inputId,wrapId,errId){var input=document.getElementById(inputId);var wrap=document.getElementById(wrapId);var err=document.getElementById(errId);if(!input||!wrap||!err)return null;input.addEventListener('change',function(){if(input.checked){wrap.classList.remove('is-error');err.classList.remove('is-visible');}});return{check:function(){if(!input.checked){wrap.classList.add('is-error');err.classList.add('is-visible');try{input.focus({preventScroll:true});}catch(e){input.focus();}return false;}return true;}};}
+var chatConsent=bindConsent('chat-consent','chat-consent-wrap','chat-consent-error');
 
-    function open() {
-      if (!modal) return;
-      modal.classList.add('is-open');
-      modal.setAttribute('aria-hidden', 'false');
-      document.body.classList.add(bodyClass);
-    }
-    function close() {
-      if (!modal) return;
-      modal.classList.remove('is-open');
-      modal.setAttribute('aria-hidden', 'true');
-      document.body.classList.remove(bodyClass);
-      if (form) {
-        form.style.display = '';
-        form.reset();
-        if (wrap) wrap.classList.remove('is-error');
-        if (err) err.classList.remove('is-visible');
-      }
-      if (success) success.classList.remove('is-active');
-    }
+/* МОДАЛКА «ЗАЯВКА ПО ГАРАНТИИ» */
+var wtModal=document.getElementById('wt-modal');
+var wtOpen=document.getElementById('wt-open');
+var wtForm=document.getElementById('wt-form');
+var wtSuccess=document.getElementById('wt-success');
+var wtConsent=document.getElementById('wt-consent');
+var wtConsentWrap=document.getElementById('wt-consent-wrap');
+var wtConsentErr=document.getElementById('wt-consent-error');
 
-    if (openBtn) openBtn.addEventListener('click', open);
-    if (modal && closeAttr) {
-      modal.querySelectorAll('[' + closeAttr + ']').forEach(function (el) {
-        el.addEventListener('click', close);
-      });
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && modal.classList.contains('is-open')) close();
-      });
-    }
-    if (consent) {
-      consent.addEventListener('change', function () {
-        if (consent.checked) {
-          if (wrap) wrap.classList.remove('is-error');
-          if (err) err.classList.remove('is-visible');
-        }
-      });
-    }
-    if (form) {
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        if (consent && !consent.checked) {
-          if (wrap) wrap.classList.add('is-error');
-          if (err) err.classList.add('is-visible');
-          try { consent.focus({ preventScroll: true }); } catch (er) { consent.focus(); }
-          return;
-        }
-        form.style.display = 'none';
-        if (success) success.classList.add('is-active');
-      });
-    }
-  }
-
-  bindModal('wt-modal', 'wt-open', 'data-wt-close', 'wt-form', 'wt-success', 'wt-consent', 'wt-consent-wrap', 'wt-consent-error', 'ab-modal-open');
-  bindModal('ft-measure-modal', 'ft-measure-open', 'data-ft-measure-close', 'ft-measure-form', 'ft-measure-success', 'ft-measure-consent', 'ft-measure-consent-wrap', 'ft-measure-consent-error', 'ab-modal-open');
-
-  /* Модалка «Позвонить» */
-  var ftCallModal = document.getElementById('ft-call-modal');
-  var ftCallOpen = document.getElementById('ft-call-open');
-  function openFtCall() {
-    if (!ftCallModal) return;
-    ftCallModal.classList.add('is-open');
-    ftCallModal.setAttribute('aria-hidden', 'false');
-    document.body.classList.add('ab-call-open');
-  }
-  function closeFtCall() {
-    if (!ftCallModal) return;
-    ftCallModal.classList.remove('is-open');
-    ftCallModal.setAttribute('aria-hidden', 'true');
-    document.body.classList.remove('ab-call-open');
-  }
-  if (ftCallOpen) ftCallOpen.addEventListener('click', openFtCall);
-  if (ftCallModal) {
-    ftCallModal.querySelectorAll('[data-ft-call-close]').forEach(function (el) {
-      el.addEventListener('click', closeFtCall);
-    });
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && ftCallModal.classList.contains('is-open')) closeFtCall();
-    });
-  }
-
-  /* ПОПАП ЧАТА */
-  var chatFab = document.getElementById('chat-fab');
-  var chatModal = document.getElementById('chat-modal');
-  var chatForm = document.getElementById('chat-form');
-  var chatSuccess = document.getElementById('chat-success');
-  var chatContact = document.getElementById('chat-contact');
-  var chatConsent = document.getElementById('chat-consent');
-  var chatConsentWrap = document.getElementById('chat-consent-wrap');
-  var chatConsentErr = document.getElementById('chat-consent-error');
-
-  var placeholderMap = {
-    telegram: '@username или телефон',
-    whatsapp: '+7 (___) ___-__-__',
-    vk: 'Ссылка на профиль или ID',
-    max: 'Телефон или @username'
+function openWt(){if(!wtModal)return;wtModal.classList.add('is-open');wtModal.setAttribute('aria-hidden','false');document.body.classList.add('ab-modal-open');}
+function closeWt(){if(!wtModal)return;wtModal.classList.remove('is-open');wtModal.setAttribute('aria-hidden','true');document.body.classList.remove('ab-modal-open');if(wtForm){wtForm.style.display='';wtForm.reset();if(wtConsentWrap)wtConsentWrap.classList.remove('is-error');if(wtConsentErr)wtConsentErr.classList.remove('is-visible');}if(wtSuccess)wtSuccess.classList.remove('is-active');}
+if(wtOpen)wtOpen.addEventListener('click',openWt);
+if(wtModal){wtModal.querySelectorAll('[data-wt-close]').forEach(function(el){el.addEventListener('click',closeWt);});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&wtModal.classList.contains('is-open'))closeWt();});}
+if(wtConsent)wtConsent.addEventListener('change',function(){if(wtConsent.checked){if(wtConsentWrap)wtConsentWrap.classList.remove('is-error');if(wtConsentErr)wtConsentErr.classList.remove('is-visible');}});
+if(wtForm)wtForm.addEventListener('submit',function(e){
+  e.preventDefault();
+  if(wtConsent&&!wtConsent.checked){if(wtConsentWrap)wtConsentWrap.classList.add('is-error');if(wtConsentErr)wtConsentErr.classList.add('is-visible');try{wtConsent.focus({preventScroll:true});}catch(er){wtConsent.focus();}return;}
+  var payload={
+    source:'🔔 Обращение по гарантии',
+    name:(document.getElementById('wt-name')||{}).value||'',
+    phone:(document.getElementById('wt-phone')||{}).value||'',
+    message:(document.getElementById('wt-message')||{}).value||''
   };
+  payload.name=String(payload.name).trim();
+  payload.phone=String(payload.phone).trim();
+  payload.message=String(payload.message).trim();
+  var submitBtn=wtForm.querySelector('button[type="submit"]');
+  var orig=submitBtn?submitBtn.textContent:'';
+  if(submitBtn){submitBtn.disabled=true;submitBtn.textContent='Отправка…';}
+  sendToWorker(payload,
+    function(){wtForm.style.display='none';if(wtSuccess)wtSuccess.classList.add('is-active');},
+    function(errMsg){showFormError(submitBtn,orig,errMsg);}
+  );
+});
 
-  function openChat() {
-    if (!chatModal) return;
-    chatModal.classList.add('is-open');
-    chatModal.setAttribute('aria-hidden', 'false');
-    if (chatFab) chatFab.setAttribute('aria-expanded', 'true');
-    document.body.classList.add('chat-modal-open');
-  }
-  function closeChat() {
-    if (!chatModal) return;
-    chatModal.classList.remove('is-open');
-    chatModal.setAttribute('aria-hidden', 'true');
-    if (chatFab) chatFab.setAttribute('aria-expanded', 'false');
-    document.body.classList.remove('chat-modal-open');
-    if (chatForm) {
-      chatForm.style.display = '';
-      chatForm.reset();
-      if (chatConsentWrap) chatConsentWrap.classList.remove('is-error');
-      if (chatConsentErr) chatConsentErr.classList.remove('is-visible');
-    }
-    if (chatSuccess) chatSuccess.classList.remove('is-active');
-    document.querySelectorAll('.chat-modal__tab').forEach(function (t, i) {
-      t.classList.toggle('is-active', i === 0);
-      t.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
-    });
-    if (chatContact) chatContact.placeholder = placeholderMap.telegram;
-  }
+/* МОДАЛКА «ЗАМЕР» (футер) */
+var ftMeasureModal=document.getElementById('ft-measure-modal');
+var ftMeasureOpen=document.getElementById('ft-measure-open');
+var ftMeasureForm=document.getElementById('ft-measure-form');
+var ftMeasureSuccess=document.getElementById('ft-measure-success');
+var ftMeasureConsent=document.getElementById('ft-measure-consent');
+var ftMeasureConsentWrap=document.getElementById('ft-measure-consent-wrap');
+var ftMeasureConsentErr=document.getElementById('ft-measure-consent-error');
+function openFtMeasure(){if(!ftMeasureModal)return;ftMeasureModal.classList.add('is-open');ftMeasureModal.setAttribute('aria-hidden','false');document.body.classList.add('ab-modal-open');}
+function closeFtMeasure(){if(!ftMeasureModal)return;ftMeasureModal.classList.remove('is-open');ftMeasureModal.setAttribute('aria-hidden','true');document.body.classList.remove('ab-modal-open');if(ftMeasureForm){ftMeasureForm.style.display='';ftMeasureForm.reset();if(ftMeasureConsentWrap)ftMeasureConsentWrap.classList.remove('is-error');if(ftMeasureConsentErr)ftMeasureConsentErr.classList.remove('is-visible');}if(ftMeasureSuccess)ftMeasureSuccess.classList.remove('is-active');}
+if(ftMeasureOpen)ftMeasureOpen.addEventListener('click',openFtMeasure);
+if(ftMeasureModal){ftMeasureModal.querySelectorAll('[data-ft-measure-close]').forEach(function(el){el.addEventListener('click',closeFtMeasure);});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ftMeasureModal.classList.contains('is-open'))closeFtMeasure();});}
+if(ftMeasureConsent)ftMeasureConsent.addEventListener('change',function(){if(ftMeasureConsent.checked){if(ftMeasureConsentWrap)ftMeasureConsentWrap.classList.remove('is-error');if(ftMeasureConsentErr)ftMeasureConsentErr.classList.remove('is-visible');}});
+if(ftMeasureForm)ftMeasureForm.addEventListener('submit',function(e){
+  e.preventDefault();
+  if(ftMeasureConsent&&!ftMeasureConsent.checked){if(ftMeasureConsentWrap)ftMeasureConsentWrap.classList.add('is-error');if(ftMeasureConsentErr)ftMeasureConsentErr.classList.add('is-visible');try{ftMeasureConsent.focus({preventScroll:true});}catch(er){ftMeasureConsent.focus();}return;}
+  var payload={
+    source:'🔔 Замер — модалка футера',
+    name:(document.getElementById('ft-measure-name')||{}).value||'',
+    phone:(document.getElementById('ft-measure-phone')||{}).value||'',
+    tg:(document.getElementById('ft-measure-tg')||{}).value||''
+  };
+  payload.name=String(payload.name).trim();
+  payload.phone=String(payload.phone).trim();
+  payload.tg=String(payload.tg).trim();
+  var submitBtn=ftMeasureForm.querySelector('button[type="submit"]');
+  var orig=submitBtn?submitBtn.textContent:'';
+  if(submitBtn){submitBtn.disabled=true;submitBtn.textContent='Отправка…';}
+  sendToWorker(payload,
+    function(){ftMeasureForm.style.display='none';if(ftMeasureSuccess)ftMeasureSuccess.classList.add('is-active');},
+    function(errMsg){showFormError(submitBtn,orig,errMsg);}
+  );
+});
 
-  if (chatFab && chatModal) {
-    chatFab.addEventListener('click', function () {
-      if (chatModal.classList.contains('is-open')) closeChat();
-      else openChat();
-    });
-    chatModal.querySelectorAll('[data-chat-close]').forEach(function (el) {
-      el.addEventListener('click', closeChat);
-    });
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && chatModal.classList.contains('is-open')) closeChat();
-    });
-    document.querySelectorAll('.chat-modal__tab').forEach(function (tab) {
-      tab.addEventListener('click', function () {
-        document.querySelectorAll('.chat-modal__tab').forEach(function (t) {
-          t.classList.remove('is-active');
-          t.setAttribute('aria-selected', 'false');
-        });
-        tab.classList.add('is-active');
-        tab.setAttribute('aria-selected', 'true');
-        var key = tab.getAttribute('data-chat-tab');
-        if (chatContact && placeholderMap[key]) {
-          chatContact.placeholder = placeholderMap[key];
-          chatContact.value = '';
-          chatContact.focus();
-        }
-      });
-    });
-    if (chatConsent) {
-      chatConsent.addEventListener('change', function () {
-        if (chatConsent.checked) {
-          if (chatConsentWrap) chatConsentWrap.classList.remove('is-error');
-          if (chatConsentErr) chatConsentErr.classList.remove('is-visible');
-        }
-      });
-    }
-    if (chatForm) {
-      chatForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-        if (!chatForm.checkValidity()) { chatForm.reportValidity(); return; }
-        if (chatConsent && !chatConsent.checked) {
-          if (chatConsentWrap) chatConsentWrap.classList.add('is-error');
-          if (chatConsentErr) chatConsentErr.classList.add('is-visible');
-          try { chatConsent.focus({ preventScroll: true }); } catch (err) { chatConsent.focus(); }
-          return;
-        }
-        chatForm.style.display = 'none';
-        if (chatSuccess) chatSuccess.classList.add('is-active');
-      });
-    }
-  }
+/* МОДАЛКА «ПОЗВОНИТЬ» */
+var ftCallModal=document.getElementById('ft-call-modal');
+var ftCallOpen=document.getElementById('ft-call-open');
+function openFtCall(){if(!ftCallModal)return;ftCallModal.classList.add('is-open');ftCallModal.setAttribute('aria-hidden','false');document.body.classList.add('ab-call-open');}
+function closeFtCall(){if(!ftCallModal)return;ftCallModal.classList.remove('is-open');ftCallModal.setAttribute('aria-hidden','true');document.body.classList.remove('ab-call-open');}
+if(ftCallOpen)ftCallOpen.addEventListener('click',openFtCall);
+if(ftCallModal){ftCallModal.querySelectorAll('[data-ft-call-close]').forEach(function(el){el.addEventListener('click',closeFtCall);});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ftCallModal.classList.contains('is-open'))closeFtCall();});}
+
+/* ЧАТ */
+var chatFab=document.getElementById('chat-fab');
+var chatModal=document.getElementById('chat-modal');
+var chatForm=document.getElementById('chat-form');
+var chatSuccess=document.getElementById('chat-success');
+var chatContact=document.getElementById('chat-contact');
+var placeholderMap={telegram:'@username или телефон',whatsapp:'+7 (___) ___-__-__',vk:'Ссылка на профиль или ID',max:'Телефон или @username'};
+function openChat(){if(!chatModal)return;chatModal.classList.add('is-open');chatModal.setAttribute('aria-hidden','false');chatFab.setAttribute('aria-expanded','true');document.body.classList.add('chat-modal-open');}
+function closeChat(){if(!chatModal)return;chatModal.classList.remove('is-open');chatModal.setAttribute('aria-hidden','true');chatFab.setAttribute('aria-expanded','false');document.body.classList.remove('chat-modal-open');if(chatForm){chatForm.style.display='';chatForm.reset();var cw=document.getElementById('chat-consent-wrap');var ce=document.getElementById('chat-consent-error');if(cw)cw.classList.remove('is-error');if(ce)ce.classList.remove('is-visible');}if(chatSuccess)chatSuccess.classList.remove('is-active');document.querySelectorAll('.chat-modal__tab').forEach(function(t,i){t.classList.toggle('is-active',i===0);t.setAttribute('aria-selected',i===0?'true':'false');});if(chatContact)chatContact.placeholder=placeholderMap.telegram;}
+if(chatFab&&chatModal){
+  chatFab.addEventListener('click',function(){if(chatModal.classList.contains('is-open'))closeChat();else openChat();});
+  chatModal.querySelectorAll('[data-chat-close]').forEach(function(el){el.addEventListener('click',closeChat);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&chatModal.classList.contains('is-open'))closeChat();});
+  document.querySelectorAll('.chat-modal__tab').forEach(function(tab){tab.addEventListener('click',function(){document.querySelectorAll('.chat-modal__tab').forEach(function(t){t.classList.remove('is-active');t.setAttribute('aria-selected','false');});tab.classList.add('is-active');tab.setAttribute('aria-selected','true');var key=tab.getAttribute('data-chat-tab');if(chatContact&&placeholderMap[key]){chatContact.placeholder=placeholderMap[key];chatContact.value='';chatContact.focus();}});});
+  if(chatForm)chatForm.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(!chatForm.checkValidity()){chatForm.reportValidity();return;}
+    if(chatConsent&&!chatConsent.check())return;
+    var activeTab=document.querySelector('.chat-modal__tab.is-active');
+    var tabKey=activeTab?activeTab.getAttribute('data-chat-tab'):'';
+    var tabLabel=({telegram:'Telegram',whatsapp:'WhatsApp',vk:'VK',max:'Max'})[tabKey]||tabKey;
+    var fd=new FormData(chatForm);
+    var payload={
+      source:'🔔 Сообщение из чата ('+tabLabel+')',
+      name:fd.get('name')||'',
+      contact:fd.get('contact')||'',
+      message:fd.get('message')||''
+    };
+    var submitBtn=chatForm.querySelector('button[type="submit"]');
+    var orig=submitBtn?submitBtn.textContent:'';
+    if(submitBtn){submitBtn.disabled=true;submitBtn.textContent='Отправка…';}
+    sendToWorker(payload,
+      function(){chatForm.style.display='none';if(chatSuccess)chatSuccess.classList.add('is-active');},
+      function(errMsg){showFormError(submitBtn,orig,errMsg);}
+    );
+  });
+}
 })();
 </script>
 </body>
