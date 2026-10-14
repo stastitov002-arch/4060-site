@@ -118,7 +118,7 @@ img,svg,video{max-width:100%;height:auto}
 .kb-modal.is-open{display:flex}
 .kb-modal__backdrop{position:fixed;inset:0;background:rgba(6,11,7,0.85);backdrop-filter:blur(6px)}
 .kb-modal__dialog-wrap{position:relative;width:min(1060px,100%);margin:auto}
-.kb-modal__close{position:absolute;top:8px;right:8px;z-index:10;width:40px;height:40px;border-radius:50%;background:rgba(13,12,13,0.9);border:1px solid rgba(242,239,233,0.16);color:var(--c-text);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;transition:border-color .2s,color .2s,background .2s}
+.kb-modal__close{position:absolute;top:8px;right:8px;z-index:10;width:48px;height:48px;border-radius:50%;background:rgba(13,12,13,0.9);border:1px solid rgba(242,239,233,0.16);color:var(--c-text);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:20px;transition:border-color .2s,color .2s,background .2s}
 .kb-modal__close:hover{border-color:var(--c-accent);color:var(--c-accent);background:rgba(13,12,13,1)}
 .kb-modal__dialog{position:relative;width:100%;background:#1f2420;border:1px solid rgba(200,165,114,0.35);border-radius:12px;padding:32px;display:grid;grid-template-columns:1fr;gap:24px}
 @media(min-width:900px){.kb-modal__dialog{grid-template-columns:1.1fr 1fr;gap:32px}}
@@ -142,7 +142,7 @@ img,svg,video{max-width:100%;height:auto}
 .kb-modal__cta{display:inline-block;background:var(--c-accent);color:var(--c-bg);border:0;border-radius:4px;padding:13px 26px;font-size:15px;cursor:pointer;text-decoration:none;font-weight:500}
 .kb-modal__cta:hover{background:var(--c-accent-h)}
 body.kb-modal-open{overflow:hidden}
-@media(max-width:640px){.kb-modal__dialog{padding:24px 18px}.kb-modal__close{top:6px;right:6px;width:36px;height:36px}}
+@media(max-width:640px){.kb-modal__dialog{padding:24px 18px}.kb-modal__close{top:6px;right:6px;width:44px;height:44px}}
 .vk-measure{background:var(--c-surface);color:var(--c-text);padding:clamp(48px,7vw,88px) 20px}
 .vk-measure__inner{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
 .vk-measure__intro{display:flex;flex-direction:column;gap:22px}
@@ -170,6 +170,7 @@ body.kb-modal-open{overflow:hidden}
 .vk-measure__input{width:100%;padding:14px 16px;border-radius:12px;border:1px solid rgba(245,185,66,0.22);background:rgba(13,12,13,0.45);color:var(--c-text);font-family:inherit;font-size:16px;outline:none}
 .vk-measure__input:focus{border-color:var(--c-gold-strong);box-shadow:0 0 0 4px rgba(245,185,66,0.14)}
 .vk-measure__submit{margin-top:8px;width:100%;border:none;cursor:pointer;background:linear-gradient(180deg,var(--c-gold-strong) 0%,#e5a82d 100%);color:var(--c-surface);font-family:inherit;font-size:15px;font-weight:600;padding:16px 20px;border-radius:14px}
+.vk-measure__submit:disabled{opacity:0.6;cursor:wait}
 .vk-measure__consent{display:flex;align-items:flex-start;gap:10px;margin-top:14px;cursor:pointer}
 .vk-measure__consent-input{position:absolute;opacity:0;width:1px;height:1px}
 .vk-measure__consent-box{flex:0 0 18px;width:18px;height:18px;border:1.5px solid rgba(245,185,66,0.3);border-radius:5px;display:inline-grid;place-items:center;background:rgba(13,12,13,0.5);color:var(--c-surface);font-size:12px;transition:border-color .2s,background .2s,box-shadow .2s}
@@ -201,7 +202,7 @@ body.kb-modal-open{overflow:hidden}
 .ft-modal.is-open{display:flex}
 .ft-modal__backdrop{position:absolute;inset:0;background:rgba(13,12,13,0.85);backdrop-filter:blur(6px)}
 .ft-modal__dialog{position:relative;z-index:1;width:100%;max-width:520px;background:#1f1d1b;border:1px solid rgba(212,178,121,0.22);border-radius:24px;padding:44px 40px 36px;max-height:calc(100vh - 48px);overflow-y:auto;color:var(--c-text)}
-.ft-modal__close{position:absolute;top:16px;right:16px;width:40px;height:40px;border-radius:50%;background:rgba(247,241,232,0.06);border:0;color:var(--c-accent-h);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;transition:background .2s}
+.ft-modal__close{position:absolute;top:16px;right:16px;width:44px;height:44px;border-radius:50%;background:rgba(247,241,232,0.06);border:0;color:var(--c-accent-h);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:20px;transition:background .2s}
 .ft-modal__close:hover{background:rgba(212,178,121,0.18)}
 .ft-modal__eyebrow{display:inline-block;font-size:11px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--c-accent-h);margin-bottom:14px;position:relative;padding-left:32px}
 .ft-modal__eyebrow::before{content:"";position:absolute;left:0;top:50%;width:22px;height:1px;background:var(--c-accent-h)}
@@ -221,6 +222,7 @@ body.kb-modal-open{overflow:hidden}
 .ft-modal__consent-error.is-visible{display:block}
 .ft-modal__submit{background:var(--c-accent-d);color:#1c1b19;border:1px solid var(--c-accent-d);border-radius:12px;padding:16px 20px;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .3s}
 .ft-modal__submit:hover{background:var(--c-accent-h);border-color:var(--c-accent-h)}
+.ft-modal__submit:disabled{opacity:0.6;cursor:wait}
 .ft-modal__success{display:none;flex-direction:column;align-items:center;text-align:center;gap:14px;padding:12px 8px}
 .ft-modal__success.is-active{display:flex}
 .ft-modal__success-icon{width:80px;height:80px;border-radius:50%;background:rgba(111,207,151,0.14);color:var(--c-success);display:grid;place-items:center;font-size:40px}
@@ -232,7 +234,7 @@ body.ft-modal-open{overflow:hidden}
 .ft-call.is-open{display:flex}
 .ft-call__backdrop{position:absolute;inset:0;background:rgba(13,12,13,0.85);backdrop-filter:blur(6px)}
 .ft-call__dialog{position:relative;z-index:1;width:100%;max-width:480px;background:#1f1d1b;border:1px solid rgba(212,178,121,0.22);border-radius:24px;padding:44px 40px 36px;max-height:calc(100vh - 48px);overflow-y:auto;color:var(--c-text)}
-.ft-call__close{position:absolute;top:16px;right:16px;width:40px;height:40px;border-radius:50%;background:rgba(247,241,232,0.06);border:0;color:var(--c-accent-h);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;transition:background .2s}
+.ft-call__close{position:absolute;top:16px;right:16px;width:44px;height:44px;border-radius:50%;background:rgba(247,241,232,0.06);border:0;color:var(--c-accent-h);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:20px;transition:background .2s}
 .ft-call__close:hover{background:rgba(212,178,121,0.18)}
 .ft-call__eyebrow{display:inline-block;font-size:11px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--c-accent-h);margin-bottom:14px;position:relative;padding-left:32px}
 .ft-call__eyebrow::before{content:"";position:absolute;left:0;top:50%;width:22px;height:1px;background:var(--c-accent-h)}
@@ -251,14 +253,14 @@ body.ft-call-open{overflow:hidden}
 .chat-fab:hover{background:var(--c-accent-h);transform:translateY(-2px);box-shadow:0 16px 32px rgba(0,0,0,.45)}
 .chat-fab:focus-visible{outline:2px solid var(--c-accent-h);outline-offset:3px}
 .chat-fab svg{width:28px;height:28px;display:block}
-@media(max-width:900px){.chat-fab{width:60px;height:60px}}
-@media(max-width:720px){.chat-fab{right:18px;bottom:18px;width:62px;height:62px}.chat-fab svg{width:28px;height:28px}}
+@media(max-width:900px){.chat-fab{width:64px;height:64px}.chat-fab svg{width:30px;height:30px}}
+@media(max-width:720px){.chat-fab{right:18px;bottom:18px;width:68px;height:68px}.chat-fab svg{width:32px;height:32px}}
 .chat-modal{position:fixed;inset:0;z-index:210;display:none;align-items:flex-end;justify-content:flex-end;padding:24px;pointer-events:none}
 .chat-modal.is-open{display:flex}
 .chat-modal__backdrop{position:absolute;inset:0;background:rgba(13,12,13,0.7);backdrop-filter:blur(4px);pointer-events:auto}
 .chat-modal__dialog{position:relative;z-index:1;width:100%;max-width:400px;max-height:calc(100vh - 48px);overflow-y:auto;background:#1a1f17;border:1px solid rgba(200,165,114,0.28);border-radius:20px;padding:32px 28px 28px;color:var(--c-text);box-shadow:0 30px 80px rgba(0,0,0,.6);pointer-events:auto;animation:chat-modal-rise .3s cubic-bezier(.2,.7,.2,1)}
 @keyframes chat-modal-rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-.chat-modal__close{position:absolute;top:12px;right:12px;width:36px;height:36px;border-radius:50%;background:rgba(247,241,232,0.06);border:0;color:var(--c-accent);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;transition:background .2s}
+.chat-modal__close{position:absolute;top:12px;right:12px;width:40px;height:40px;border-radius:50%;background:rgba(247,241,232,0.06);border:0;color:var(--c-accent);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;transition:background .2s}
 .chat-modal__close:hover{background:rgba(200,165,114,0.18)}
 .chat-modal__title{font-size:20px;font-weight:700;line-height:1.25;margin:0 0 20px;color:#fff;letter-spacing:-0.01em;padding-right:40px}
 .chat-modal__tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
@@ -280,6 +282,7 @@ body.ft-call-open{overflow:hidden}
 .chat-modal__consent-error.is-visible{display:block}
 .chat-modal__submit{margin-top:8px;width:100%;border:none;cursor:pointer;background:var(--c-accent);color:var(--c-bg);font-family:inherit;font-size:14px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:15px 20px;border-radius:12px;transition:background .2s}
 .chat-modal__submit:hover{background:var(--c-accent-h)}
+.chat-modal__submit:disabled{opacity:0.6;cursor:wait}
 .chat-modal__success{display:none;flex-direction:column;align-items:center;text-align:center;gap:10px;padding:20px 8px 8px}
 .chat-modal__success.is-active{display:flex}
 .chat-modal__success-icon{width:64px;height:64px;border-radius:50%;background:rgba(111,207,151,0.14);color:var(--c-success);display:grid;place-items:center;font-size:32px;margin-bottom:6px}
@@ -402,7 +405,7 @@ body.chat-modal-open{overflow:hidden}
       <div class="ft-block__contacts">
         <a href="tel:+79771004415" data-cms="common.phone1">+7 977 100-44-15</a>
         <a href="tel:+79017448855" data-cms="common.phone2">+7 901 744-88-55</a>
-        <a href="https://t.me/design4060" target="_blank" rel="noopener" data-cms="common.tg">Telegram: @design4060</a>
+        <a href="https://t.me/official4060Design" target="_blank" rel="noopener">Telegram: @official4060Design</a>
       </div>
     </div>
     <div>
@@ -419,7 +422,7 @@ body.chat-modal-open{overflow:hidden}
       <ul class="ft-block__nav">
         <li><button type="button" id="ft-measure-open">Запись на замер</button></li>
         <li><button type="button" id="ft-call-open">Позвонить</button></li>
-        <li><a href="https://t.me/design4060" target="_blank" rel="noopener">Написать в Telegram</a></li>
+        <li><a href="https://t.me/official4060Design" target="_blank" rel="noopener">Написать в Telegram</a></li>
       </ul>
     </div>
   </div>
@@ -519,6 +522,15 @@ body.chat-modal-open{overflow:hidden}
 'use strict';
 var REPO='stastitov002-arch/4060-site';
 var PAGE_SIZE=12;
+var WORKER_URL='https://hidden-bar-8272form-to-telegram.stas-titov-002.workers.dev';
+
+function sendToWorker(payload,onSuccess,onError){
+  fetch(WORKER_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
+  .then(function(r){return r.json();})
+  .then(function(res){if(res&&res.success){if(onSuccess)onSuccess(res);}else{if(onError)onError(res&&res.error?res.error:'Ошибка отправки');}})
+  .catch(function(err){if(onError)onError(String(err&&err.message?err.message:err));});
+}
+function showFormError(btn,orig,msg){if(btn){btn.disabled=false;btn.textContent=orig;}alert('Не удалось отправить заявку. '+(msg?'Ошибка: '+msg:'Попробуйте ещё раз или позвоните нам.'));}
 
 function fixImgPath(url){if(!url)return '';var s=String(url).trim().replace(/^\/+/,'');if(s.indexOf('images/')===0)return s;if(s.indexOf('uploads/')===0)return 'images/'+s;if(s.indexOf('/')===-1)return 'images/uploads/'+s;return s;}
 
@@ -555,14 +567,8 @@ function parseYaml(text){
       if(key==='gallery'){
         inGallery=true;
         if(val){
-          if(val.indexOf(',')!==-1){
-            val.split(',').forEach(function(s){
-              var t=s.trim().replace(/^["']|["']$/g,'');
-              if(t)gallery.push(t);
-            });
-          } else {
-            gallery.push(val);
-          }
+          if(val.indexOf(',')!==-1){val.split(',').forEach(function(s){var t=s.trim().replace(/^["']|["']$/g,'');if(t)gallery.push(t);});}
+          else{gallery.push(val);}
           inGallery=false;
         }
         continue;
@@ -574,9 +580,7 @@ function parseYaml(text){
     var ml=line.match(/^\s*-\s+(.+)$/);
     if(ml&&inGallery){
       var v=ml[1].trim().replace(/^["']|["']$/g,'');
-      if(v.indexOf('image:')===0){
-        v=v.slice(6).trim().replace(/^["']|["']$/g,'');
-      }
+      if(v.indexOf('image:')===0){v=v.slice(6).trim().replace(/^["']|["']$/g,'');}
       if(v)gallery.push(v);
     }
   }
@@ -788,35 +792,74 @@ setTimeout(function(){pauseInfiniteScroll=false;},1400);
 if(currentProject&&currentProject.data&&currentProject.data.title)setSelectedProject(currentProject.data.title);
 });
 
-var form=document.getElementById('vk-form');
-var success=document.getElementById('vk-success');
-if(form)form.addEventListener('submit',function(e){e.preventDefault();if(vkConsent&&!vkConsent.check())return;form.style.display='none';success.classList.add('is-active');});
+/* ФОРМА ЗАМЕРА */
+var vkForm=document.getElementById('vk-form');
+var vkSuccess=document.getElementById('vk-success');
+if(vkForm)vkForm.addEventListener('submit',function(e){
+  e.preventDefault();
+  if(vkConsent&&!vkConsent.check())return;
+  var payload={
+    source:'🔔 Замер — форма на странице',
+    name:(document.getElementById('vk-name')||{}).value||'',
+    phone:(document.getElementById('vk-phone')||{}).value||'',
+    tg:(document.getElementById('vk-tg')||{}).value||'',
+    project:(document.getElementById('vk-project-input')||{}).value||''
+  };
+  payload.name=String(payload.name).trim();
+  payload.phone=String(payload.phone).trim();
+  payload.tg=String(payload.tg).trim();
+  var submitBtn=vkForm.querySelector('button[type="submit"]');
+  var orig=submitBtn?submitBtn.textContent:'';
+  if(submitBtn){submitBtn.disabled=true;submitBtn.textContent='Отправка…';}
+  sendToWorker(payload,
+    function(){vkForm.style.display='none';vkSuccess.classList.add('is-active');},
+    function(errMsg){showFormError(submitBtn,orig,errMsg);}
+  );
+});
 
-(function(){
-var m=document.getElementById('ft-measure-modal');
-var openBtn=document.getElementById('ft-measure-open');
-var f=document.getElementById('ft-measure-form');
-var s=document.getElementById('ft-measure-success');
-var consent=document.getElementById('ft-measure-consent');
-var consentWrap=document.getElementById('ft-measure-consent-wrap');
-var consentErr=document.getElementById('ft-measure-consent-error');
-function openModal(){if(!m)return;m.classList.add('is-open');m.setAttribute('aria-hidden','false');document.body.classList.add('ft-modal-open');}
-function closeModal(){if(!m)return;m.classList.remove('is-open');m.setAttribute('aria-hidden','true');document.body.classList.remove('ft-modal-open');if(f){f.style.display='';f.reset();if(consentWrap)consentWrap.classList.remove('is-error');if(consentErr)consentErr.classList.remove('is-visible');}if(s)s.classList.remove('is-active');}
-if(openBtn)openBtn.addEventListener('click',openModal);
-if(m){m.querySelectorAll('[data-ft-measure-close]').forEach(function(el){el.addEventListener('click',closeModal);});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&m.classList.contains('is-open'))closeModal();});}
-if(consent)consent.addEventListener('change',function(){if(consent.checked){if(consentWrap)consentWrap.classList.remove('is-error');if(consentErr)consentErr.classList.remove('is-visible');}});
-if(f)f.addEventListener('submit',function(e){e.preventDefault();if(consent&&!consent.checked){if(consentWrap)consentWrap.classList.add('is-error');if(consentErr)consentErr.classList.add('is-visible');try{consent.focus({preventScroll:true});}catch(er){consent.focus();}return;}f.style.display='none';if(s)s.classList.add('is-active');});
-})();
+/* МОДАЛКА «ЗАМЕР» (футер) */
+var ftMeasureModal=document.getElementById('ft-measure-modal');
+var ftMeasureOpen=document.getElementById('ft-measure-open');
+var ftMeasureForm=document.getElementById('ft-measure-form');
+var ftMeasureSuccess=document.getElementById('ft-measure-success');
+var ftMeasureConsent=document.getElementById('ft-measure-consent');
+var ftMeasureConsentWrap=document.getElementById('ft-measure-consent-wrap');
+var ftMeasureConsentErr=document.getElementById('ft-measure-consent-error');
+function openFtMeasure(){if(!ftMeasureModal)return;ftMeasureModal.classList.add('is-open');ftMeasureModal.setAttribute('aria-hidden','false');document.body.classList.add('ft-modal-open');}
+function closeFtMeasure(){if(!ftMeasureModal)return;ftMeasureModal.classList.remove('is-open');ftMeasureModal.setAttribute('aria-hidden','true');document.body.classList.remove('ft-modal-open');if(ftMeasureForm){ftMeasureForm.style.display='';ftMeasureForm.reset();if(ftMeasureConsentWrap)ftMeasureConsentWrap.classList.remove('is-error');if(ftMeasureConsentErr)ftMeasureConsentErr.classList.remove('is-visible');}if(ftMeasureSuccess)ftMeasureSuccess.classList.remove('is-active');}
+if(ftMeasureOpen)ftMeasureOpen.addEventListener('click',openFtMeasure);
+if(ftMeasureModal){ftMeasureModal.querySelectorAll('[data-ft-measure-close]').forEach(function(el){el.addEventListener('click',closeFtMeasure);});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ftMeasureModal.classList.contains('is-open'))closeFtMeasure();});}
+if(ftMeasureConsent)ftMeasureConsent.addEventListener('change',function(){if(ftMeasureConsent.checked){if(ftMeasureConsentWrap)ftMeasureConsentWrap.classList.remove('is-error');if(ftMeasureConsentErr)ftMeasureConsentErr.classList.remove('is-visible');}});
+if(ftMeasureForm)ftMeasureForm.addEventListener('submit',function(e){
+  e.preventDefault();
+  if(ftMeasureConsent&&!ftMeasureConsent.checked){if(ftMeasureConsentWrap)ftMeasureConsentWrap.classList.add('is-error');if(ftMeasureConsentErr)ftMeasureConsentErr.classList.add('is-visible');try{ftMeasureConsent.focus({preventScroll:true});}catch(er){ftMeasureConsent.focus();}return;}
+  var payload={
+    source:'🔔 Замер — модалка футера',
+    name:(document.getElementById('ft-measure-name')||{}).value||'',
+    phone:(document.getElementById('ft-measure-phone')||{}).value||'',
+    tg:(document.getElementById('ft-measure-tg')||{}).value||''
+  };
+  payload.name=String(payload.name).trim();
+  payload.phone=String(payload.phone).trim();
+  payload.tg=String(payload.tg).trim();
+  var submitBtn=ftMeasureForm.querySelector('button[type="submit"]');
+  var orig=submitBtn?submitBtn.textContent:'';
+  if(submitBtn){submitBtn.disabled=true;submitBtn.textContent='Отправка…';}
+  sendToWorker(payload,
+    function(){ftMeasureForm.style.display='none';if(ftMeasureSuccess)ftMeasureSuccess.classList.add('is-active');},
+    function(errMsg){showFormError(submitBtn,orig,errMsg);}
+  );
+});
 
-(function(){
-var m=document.getElementById('ft-call-modal');
-var openBtn=document.getElementById('ft-call-open');
-function openModal(){if(!m)return;m.classList.add('is-open');m.setAttribute('aria-hidden','false');document.body.classList.add('ft-call-open');}
-function closeModal(){if(!m)return;m.classList.remove('is-open');m.setAttribute('aria-hidden','true');document.body.classList.remove('ft-call-open');}
-if(openBtn)openBtn.addEventListener('click',openModal);
-if(m){m.querySelectorAll('[data-ft-call-close]').forEach(function(el){el.addEventListener('click',closeModal);});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&m.classList.contains('is-open'))closeModal();});}
-})();
+/* МОДАЛКА «ПОЗВОНИТЬ» */
+var ftCallModal=document.getElementById('ft-call-modal');
+var ftCallOpen=document.getElementById('ft-call-open');
+function openFtCall(){if(!ftCallModal)return;ftCallModal.classList.add('is-open');ftCallModal.setAttribute('aria-hidden','false');document.body.classList.add('ft-call-open');}
+function closeFtCall(){if(!ftCallModal)return;ftCallModal.classList.remove('is-open');ftCallModal.setAttribute('aria-hidden','true');document.body.classList.remove('ft-call-open');}
+if(ftCallOpen)ftCallOpen.addEventListener('click',openFtCall);
+if(ftCallModal){ftCallModal.querySelectorAll('[data-ft-call-close]').forEach(function(el){el.addEventListener('click',closeFtCall);});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ftCallModal.classList.contains('is-open'))closeFtCall();});}
 
+/* ЧАТ */
 var chatFab=document.getElementById('chat-fab');
 var chatModal=document.getElementById('chat-modal');
 var chatForm=document.getElementById('chat-form');
@@ -830,7 +873,28 @@ chatFab.addEventListener('click',function(){if(chatModal.classList.contains('is-
 chatModal.querySelectorAll('[data-chat-close]').forEach(function(el){el.addEventListener('click',closeChat);});
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&chatModal.classList.contains('is-open'))closeChat();});
 document.querySelectorAll('.chat-modal__tab').forEach(function(tab){tab.addEventListener('click',function(){document.querySelectorAll('.chat-modal__tab').forEach(function(t){t.classList.remove('is-active');t.setAttribute('aria-selected','false');});tab.classList.add('is-active');tab.setAttribute('aria-selected','true');var key=tab.getAttribute('data-chat-tab');if(chatContact&&placeholderMap[key]){chatContact.placeholder=placeholderMap[key];chatContact.value='';chatContact.focus();}});});
-if(chatForm)chatForm.addEventListener('submit',function(e){e.preventDefault();if(!chatForm.checkValidity()){chatForm.reportValidity();return;}if(chatConsent&&!chatConsent.check())return;chatForm.style.display='none';if(chatSuccess)chatSuccess.classList.add('is-active');});
+if(chatForm)chatForm.addEventListener('submit',function(e){
+  e.preventDefault();
+  if(!chatForm.checkValidity()){chatForm.reportValidity();return;}
+  if(chatConsent&&!chatConsent.check())return;
+  var activeTab=document.querySelector('.chat-modal__tab.is-active');
+  var tabKey=activeTab?activeTab.getAttribute('data-chat-tab'):'';
+  var tabLabel=({telegram:'Telegram',whatsapp:'WhatsApp',vk:'VK',max:'Max'})[tabKey]||tabKey;
+  var fd=new FormData(chatForm);
+  var payload={
+    source:'🔔 Сообщение из чата ('+tabLabel+')',
+    name:fd.get('name')||'',
+    contact:fd.get('contact')||'',
+    message:fd.get('message')||''
+  };
+  var submitBtn=chatForm.querySelector('button[type="submit"]');
+  var orig=submitBtn?submitBtn.textContent:'';
+  if(submitBtn){submitBtn.disabled=true;submitBtn.textContent='Отправка…';}
+  sendToWorker(payload,
+    function(){chatForm.style.display='none';if(chatSuccess)chatSuccess.classList.add('is-active');},
+    function(errMsg){showFormError(submitBtn,orig,errMsg);}
+  );
+});
 }
 
 load();
