@@ -88,6 +88,24 @@ img, svg, video { max-width: 100%; height: auto; }
 .hd-block__tg { display: inline-flex; align-items: center; gap: 5px; font-size: 13px; opacity: 0.85; color: var(--c-accent); text-decoration: none; transition: opacity .2s; }
 .hd-block__tg:hover { opacity: 1; }
 .hd-block__tg svg { display: block; }
+
+/* СТИКЕР "КАНАЛ" */
+.hd-block__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 6px;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--c-green);
+  background: var(--c-accent);
+  border-radius: 4px;
+  line-height: 1;
+  margin-left: 6px;
+}
+
 .hd-block__menu-contacts { display: none; }
 @media (max-width: 1080px) {
   .hd-block__inner { gap: 16px; padding: 12px 20px; max-width: 100%; }
@@ -510,9 +528,7 @@ body.chat-modal-open { overflow: hidden; }
   .chat-modal__dialog { max-width: 100%; max-height: 100vh; border-radius: 20px 20px 0 0; align-self: flex-end; padding: 28px 20px 24px; }
 }
 </style>
-</head>
-
-<body>
+  <body>
 
 <!-- ШАПКА -->
 <section class="hd-block" aria-label="Шапка сайта">
@@ -532,7 +548,7 @@ body.chat-modal-open { overflow: hidden; }
       </ul>
       <div class="hd-block__menu-contacts">
         <span class="hd-block__menu-hours" data-cms="common.hours">пн–сб 10:00–21:00</span>
-        <a class="hd-block__menu-tg" href="https://t.me/design4060" target="_blank" rel="noopener">
+        <a class="hd-block__menu-tg" href="https://t.me/official4060Design" target="_blank" rel="noopener">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
           <span data-cms="common.tg">design4060</span>
         </a>
@@ -544,9 +560,10 @@ body.chat-modal-open { overflow: hidden; }
     </div>
     <div class="hd-block__meta">
       <span class="hd-block__hours" data-cms="common.hours">пн–сб 10:00–21:00</span>
-      <a class="hd-block__tg" href="https://t.me/design4060" target="_blank" rel="noopener" aria-label="Мы в Telegram">
+      <a class="hd-block__tg" href="https://t.me/official4060Design" target="_blank" rel="noopener" aria-label="Мы в Telegram">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
         <span data-cms="common.tg">design4060</span>
+        <span class="hd-block__badge">Канал</span>
       </a>
     </div>
   </div>
@@ -1186,3 +1203,4 @@ body.chat-modal-open { overflow: hidden; }
 </script>
 </body>
 </html>
+</head>
