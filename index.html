@@ -1011,18 +1011,38 @@ body.kb-modal-open {
   function parseYaml(text) {
     var m = text.match(/^---\s*\n([\s\S]*?)\n---/);
     if (!m) return {};
-    var data = {}, gallery = [];
-    m[1].split('\n').forEach(function (line) {
-      var mg = line.match(/^\s*-\s+image:\s*(.+)$/); if (mg) { gallery.push(mg[1].trim().replace(/^["']|["']$/g, '')); return; }
-      var mm = line.match(/^([a-z_]+)\s*:\s*(.*)$/i); if (!mm) return;
-      var key = mm[1].trim();
-      var val = mm[2].trim().replace(/^["']|["']$/g, '');
-      if (key === 'gallery' && val.indexOf(',') !== -1) { gallery = val.split(',').map(function (s) { return s.trim().replace(/^["']|["']$/g, ''); }).filter(Boolean); return; }
-      data[key] = val;
-    });
+    var data = {}, gallery = [], inGallery = false;
+    var lines = m[1].split('\n');
+    for (var i = 0; i < lines.length; i++) {
+      var line = lines[i];
+      var mm = line.match(/^([a-zA-Z_]+)\s*:\s*(.*)$/);
+      if (mm) {
+        var key = mm[1].trim();
+        var val = mm[2].trim().replace(/^["']|["']$/g, '');
+        if (key === 'gallery') {
+          inGallery = true;
+          if (val) {
+            if (val.indexOf(',') !== -1) { val.split(',').forEach(function (s) { var t = s.trim().replace(/^["']|["']$/g, ''); if (t) gallery.push(t); }); }
+            else { gallery.push(val); }
+            inGallery = false;
+          }
+          continue;
+        }
+        inGallery = false;
+        data[key] = val;
+        continue;
+      }
+      var ml = line.match(/^\s*-\s+(.+)$/);
+      if (ml && inGallery) {
+        var v = ml[1].trim().replace(/^["']|["']$/g, '');
+        if (v.indexOf('image:') === 0) { v = v.slice(6).trim().replace(/^["']|["']$/g, ''); }
+        if (v) gallery.push(v);
+      }
+    }
     if (gallery.length) data.gallery = gallery;
     return data;
   }
+
   function budgetByPrice(price) { if (!price) return null; price = parseInt(price, 10); if (price < 300000) return 'До 300 000 ₽'; if (price < 500000) return '300 000–500 000 ₽'; return 'От 500 000 ₽'; }
   function priceLabel(price) { if (!price) return null; price = parseInt(price, 10); return String(price).replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₽'; }
   function esc(s) { if (!s) return ''; return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
