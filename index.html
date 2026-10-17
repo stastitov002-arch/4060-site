@@ -511,6 +511,21 @@ body.chat-modal-open { overflow: hidden; }
   .chat-modal { padding: 0; align-items: stretch; justify-content: stretch; }
   .chat-modal__dialog { max-width: 100%; max-height: 100vh; border-radius: 20px 20px 0 0; align-self: flex-end; padding: 28px 20px 24px; }
 }
+  .kb-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: none; /* <-- Вот это скроет модалку */
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.kb-modal.is-open {
+  display: flex;
+}
+body.kb-modal-open {
+  overflow: hidden;
+}
 </style>
 </head>
 <body>
