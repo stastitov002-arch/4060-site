@@ -534,7 +534,7 @@ body.kb-modal-open {
 <section class="hd-block" aria-label="Шапка сайта">
   <div class="hd-block__inner">
     <a class="hd-block__logo" href="index.html" aria-label="40/60 Design">
-      <img src="images/logo.png" alt="40/60 Design">
+      <img src="images/40_60_design_vector.svg" alt="40/60 Design">
     </a>
     <button class="hd-block__burger" type="button" aria-expanded="false" aria-controls="hd-nav" aria-label="Открыть меню">
       <span class="hd-block__burger-lines" aria-hidden="true"></span>
@@ -548,7 +548,7 @@ body.kb-modal-open {
       </ul>
       <div class="hd-block__menu-contacts">
         <span class="hd-block__menu-hours" data-cms="common.hours">пн–сб 10:00–21:00</span>
-        <a class="hd-block__menu-tg" href="https://t.me/official4060Design" target="_blank" rel="noopener">
+        <a class="hd-block__menu-tg" href="https://t.me/design4060" target="_blank" rel="noopener">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
           <span data-cms="common.tg">design4060</span>
         </a>
@@ -560,7 +560,7 @@ body.kb-modal-open {
     </div>
     <div class="hd-block__meta">
       <span class="hd-block__hours" data-cms="common.hours">пн–сб 10:00–21:00</span>
-      <a class="hd-block__tg" href="https://t.me/official4060Design" target="_blank" rel="noopener" aria-label="Мы в Telegram">
+      <a class="hd-block__tg" href="https://t.me/design4060" target="_blank" rel="noopener" aria-label="Мы в Telegram">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
         <span data-cms="common.tg">design4060</span>
       </a>
@@ -1011,38 +1011,18 @@ body.kb-modal-open {
   function parseYaml(text) {
     var m = text.match(/^---\s*\n([\s\S]*?)\n---/);
     if (!m) return {};
-    var data = {}, gallery = [], inGallery = false;
-    var lines = m[1].split('\n');
-    for (var i = 0; i < lines.length; i++) {
-      var line = lines[i];
-      var mm = line.match(/^([a-zA-Z_]+)\s*:\s*(.*)$/);
-      if (mm) {
-        var key = mm[1].trim();
-        var val = mm[2].trim().replace(/^["']|["']$/g, '');
-        if (key === 'gallery') {
-          inGallery = true;
-          if (val) {
-            if (val.indexOf(',') !== -1) { val.split(',').forEach(function (s) { var t = s.trim().replace(/^["']|["']$/g, ''); if (t) gallery.push(t); }); }
-            else { gallery.push(val); }
-            inGallery = false;
-          }
-          continue;
-        }
-        inGallery = false;
-        data[key] = val;
-        continue;
-      }
-      var ml = line.match(/^\s*-\s+(.+)$/);
-      if (ml && inGallery) {
-        var v = ml[1].trim().replace(/^["']|["']$/g, '');
-        if (v.indexOf('image:') === 0) { v = v.slice(6).trim().replace(/^["']|["']$/g, ''); }
-        if (v) gallery.push(v);
-      }
-    }
+    var data = {}, gallery = [];
+    m[1].split('\n').forEach(function (line) {
+      var mg = line.match(/^\s*-\s+image:\s*(.+)$/); if (mg) { gallery.push(mg[1].trim().replace(/^["']|["']$/g, '')); return; }
+      var mm = line.match(/^([a-z_]+)\s*:\s*(.*)$/i); if (!mm) return;
+      var key = mm[1].trim();
+      var val = mm[2].trim().replace(/^["']|["']$/g, '');
+      if (key === 'gallery' && val.indexOf(',') !== -1) { gallery = val.split(',').map(function (s) { return s.trim().replace(/^["']|["']$/g, ''); }).filter(Boolean); return; }
+      data[key] = val;
+    });
     if (gallery.length) data.gallery = gallery;
     return data;
   }
-
   function budgetByPrice(price) { if (!price) return null; price = parseInt(price, 10); if (price < 300000) return 'До 300 000 ₽'; if (price < 500000) return '300 000–500 000 ₽'; return 'От 500 000 ₽'; }
   function priceLabel(price) { if (!price) return null; price = parseInt(price, 10); return String(price).replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₽'; }
   function esc(s) { if (!s) return ''; return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
