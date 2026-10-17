@@ -296,7 +296,8 @@ body.sr-modal-open{overflow:hidden}
 .ft-block{background:var(--c-green);color:var(--c-accent);padding:48px 20px 24px;border-top:1px solid rgba(200,165,114,0.15)}
 .ft-block__wrap{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:32px}
 @media(min-width:720px){.ft-block__wrap{grid-template-columns:1.5fr 1fr 1fr}}
-.ft-block__logo{font-size:26px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:var(--c-accent);margin:0 0 12px;text-decoration:none;display:inline-block}
+.ft-block__logo{display:block;text-decoration:none;margin-bottom:12px}
+.ft-block__logo img{height:60px;width:auto;display:block}
 .ft-block__tagline{font-size:14px;line-height:1.6;color:#b3ada0;margin:0 0 16px;max-width:36ch}
 .ft-block__contacts{display:flex;flex-direction:column;gap:8px;font-size:14px}
 .ft-block__contacts a{color:var(--c-accent);text-decoration:none}
@@ -618,12 +619,14 @@ body.chat-modal-open{overflow:hidden}
 <footer class="ft-block">
   <div class="ft-block__wrap">
     <div>
-      <a class="ft-block__logo" href="index.html">40/60</a>
+      <a class="ft-block__logo" href="index.html" aria-label="40/60 Design">
+        <img src="images/logo.png" alt="40/60 Design">
+      </a>
       <p class="ft-block__tagline" data-cms="common.tagline">Студия интерьерной мебели. Кухни и корпусная мебель на заказ в Москве и области.</p>
       <div class="ft-block__contacts">
         <a href="tel:+79771004415" data-cms="common.phone1">+7 977 100-44-15</a>
         <a href="tel:+79017448855" data-cms="common.phone2">+7 901 744-88-55</a>
-        <a href="https://t.me/official4060Design" target="_blank" rel="noopener">Telegram: @official4060Design</a>
+        <a href="https://t.me/design4060" target="_blank" rel="noopener">Telegram: @design4060</a>
       </div>
     </div>
     <div>
@@ -640,7 +643,7 @@ body.chat-modal-open{overflow:hidden}
       <ul class="ft-block__nav">
         <li><button type="button" id="ft-measure-open">Запись на замер</button></li>
         <li><button type="button" id="ft-call-open">Позвонить</button></li>
-        <li><a href="https://t.me/official4060Design" target="_blank" rel="noopener">Написать в Telegram</a></li>
+        <li><a href="https://t.me/design4060" target="_blank" rel="noopener">Написать в Telegram</a></li>
       </ul>
     </div>
   </div>
@@ -765,12 +768,10 @@ function sendToWorker(payload,onSuccess,onError){
     body:JSON.stringify(payload)
   })
   .then(function(r){
-    // Если сервер ответил 200-299, считаем что всё ок, 
-    // даже если ответ не JSON
+    // Если сервер ответил 200-299, считаем что всё ок, даже если ответ не JSON
     if (r.ok) {
       if(onSuccess) onSuccess({success:true});
     } else {
-      // Пытаемся прочитать JSON, если сервер вернул ошибку
       return r.text().then(function(text){
         var msg = 'Ошибка отправки';
         try { var j = JSON.parse(text); if (j && j.error) msg = j.error; } catch(e) {}
