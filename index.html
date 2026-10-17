@@ -759,10 +759,28 @@ var REPO='stastitov002-arch/4060-site';
 var WORKER_URL='https://hidden-bar-8272form-to-telegram.stas-titov-002.workers.dev';
 
 function sendToWorker(payload,onSuccess,onError){
-  fetch(WORKER_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
-  .then(function(r){return r.json();})
-  .then(function(res){if(res&&res.success){if(onSuccess)onSuccess(res);}else{if(onError)onError(res&&res.error?res.error:'Ошибка отправки');}})
-  .catch(function(err){if(onError)onError(String(err&&err.message?err.message:err));});
+  fetch(WORKER_URL,{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(payload)
+  })
+  .then(function(r){
+    // Если сервер ответил 200-299, считаем что всё ок, 
+    // даже если ответ не JSON
+    if (r.ok) {
+      if(onSuccess) onSuccess({success:true});
+    } else {
+      // Пытаемся прочитать JSON, если сервер вернул ошибку
+      return r.text().then(function(text){
+        var msg = 'Ошибка отправки';
+        try { var j = JSON.parse(text); if (j && j.error) msg = j.error; } catch(e) {}
+        if(onError) onError(msg);
+      });
+    }
+  })
+  .catch(function(err){
+    if(onError) onError(String(err && err.message ? err.message : err));
+  });
 }
 function showFormError(btn,orig,msg){if(btn){btn.disabled=false;btn.textContent=orig;}alert('Не удалось отправить заявку. '+(msg?'Ошибка: '+msg:'Попробуйте ещё раз или позвоните нам.'));}
 
