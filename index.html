@@ -89,23 +89,6 @@ img, svg, video { max-width: 100%; height: auto; }
 .hd-block__tg:hover { opacity: 1; }
 .hd-block__tg svg { display: block; }
 
-/* СТИКЕР "КАНАЛ" */
-.hd-block__badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2px 6px;
-  font-size: 9px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--c-green);
-  background: var(--c-accent);
-  border-radius: 4px;
-  line-height: 1;
-  margin-left: 6px;
-}
-
 .hd-block__menu-contacts { display: none; }
 @media (max-width: 1080px) {
   .hd-block__inner { gap: 16px; padding: 12px 20px; max-width: 100%; }
@@ -417,7 +400,8 @@ body.sr-modal-open { overflow: hidden; }
 .ft-block { background: var(--c-green); color: var(--c-accent); padding: 48px 20px 24px; border-top: 1px solid rgba(200,165,114,0.15); }
 .ft-block__wrap { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 32px; }
 @media (min-width: 720px) { .ft-block__wrap { grid-template-columns: 1.5fr 1fr 1fr; } }
-.ft-block__logo { font-size: 26px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--c-accent); margin: 0 0 12px; text-decoration: none; display: inline-block; }
+.ft-block__logo { display: block; text-decoration: none; margin-bottom: 12px; }
+.ft-block__logo img { height: 60px; width: auto; display: block; }
 .ft-block__tagline { font-size: 14px; line-height: 1.6; color: #b3ada0; margin: 0 0 16px; max-width: 36ch; }
 .ft-block__contacts { display: flex; flex-direction: column; gap: 8px; font-size: 14px; }
 .ft-block__contacts a { color: var(--c-accent); text-decoration: none; }
@@ -528,13 +512,14 @@ body.chat-modal-open { overflow: hidden; }
   .chat-modal__dialog { max-width: 100%; max-height: 100vh; border-radius: 20px 20px 0 0; align-self: flex-end; padding: 28px 20px 24px; }
 }
 </style>
-  <body>
+</head>
+<body>
 
 <!-- ШАПКА -->
 <section class="hd-block" aria-label="Шапка сайта">
   <div class="hd-block__inner">
     <a class="hd-block__logo" href="index.html" aria-label="40/60 Design">
-      <img src="images/40_60_design_vector.svg" alt="40/60 Design">
+      <img src="images/logo.png" alt="40/60 Design">
     </a>
     <button class="hd-block__burger" type="button" aria-expanded="false" aria-controls="hd-nav" aria-label="Открыть меню">
       <span class="hd-block__burger-lines" aria-hidden="true"></span>
@@ -563,7 +548,6 @@ body.chat-modal-open { overflow: hidden; }
       <a class="hd-block__tg" href="https://t.me/official4060Design" target="_blank" rel="noopener" aria-label="Мы в Telegram">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
         <span data-cms="common.tg">design4060</span>
-        <span class="hd-block__badge">Канал</span>
       </a>
     </div>
   </div>
@@ -751,12 +735,19 @@ body.chat-modal-open { overflow: hidden; }
 <footer class="ft-block">
   <div class="ft-block__wrap">
     <div>
-      <a class="ft-block__logo" href="index.html">40/60</a>
+      <a class="ft-block__logo" href="index.html" aria-label="40/60 Design">
+        <img src="images/logo.png" alt="40/60 Design">
+      </a>
       <p class="ft-block__tagline" data-cms="common.tagline">Студия интерьерной мебели. Кухни и корпусная мебель на заказ в Москве и области.</p>
       <div class="ft-block__contacts">
         <a href="tel:+79771004415" data-cms="common.phone1">+7 977 100-44-15</a>
         <a href="tel:+79017448855" data-cms="common.phone2">+7 901 744-88-55</a>
-        <a href="https://t.me/official4060Design" target="_blank" rel="noopener" data-cms="common.tg">Telegram: @official4060Design</a>
+        <a href="https://t.me/official4060Design" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px; margin-top: 4px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/>
+          </svg>
+          <span>@official4060Design</span>
+        </a>
       </div>
     </div>
     <div>
@@ -773,7 +764,7 @@ body.chat-modal-open { overflow: hidden; }
       <ul class="ft-block__nav">
         <li><a href="index.html#measure">Запись на замер</a></li>
         <li><a href="tel:+79771004415">Позвонить</a></li>
-        <li><a href="https://t.me/design4060" target="_blank" rel="noopener">Написать в Telegram</a></li>
+        <li><a href="https://t.me/official4060Design" target="_blank" rel="noopener">Написать в Telegram</a></li>
       </ul>
     </div>
   </div>
@@ -1203,4 +1194,3 @@ body.chat-modal-open { overflow: hidden; }
 </script>
 </body>
 </html>
-</head>
