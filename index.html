@@ -534,7 +534,7 @@ body.kb-modal-open {
 <section class="hd-block" aria-label="Шапка сайта">
   <div class="hd-block__inner">
     <a class="hd-block__logo" href="index.html" aria-label="40/60 Design">
-      <img src="images/logo.svg" alt="40/60 Design">
+      <img src="images/logo.png" alt="40/60 Design">
     </a>
     <button class="hd-block__burger" type="button" aria-expanded="false" aria-controls="hd-nav" aria-label="Открыть меню">
       <span class="hd-block__burger-lines" aria-hidden="true"></span>
@@ -967,7 +967,14 @@ body.kb-modal-open {
   'use strict';
   var REPO = 'stastitov002-arch/4060-site';
 
-  function fixImgPath(url) { if (!url) return ''; var s = String(url).trim().replace(/^\/+/, ''); if (s.indexOf('images/') === 0) return s; if (s.indexOf('uploads/') === 0) return 'images/' + s; if (s.indexOf('/') === -1) return 'images/uploads/' + s; return s; }
+  function fixImgPath(url) { 
+    if (!url) return ''; 
+    var s = String(url).trim().replace(/^\/+/, ''); 
+    if (s.indexOf('images/') === 0) return encodeURI(s); 
+    if (s.indexOf('uploads/') === 0) return 'images/' + encodeURI(s); 
+    if (s.indexOf('/') === -1) return 'images/uploads/' + encodeURI(s); 
+    return encodeURI(s); 
+  }
 
   var header = document.querySelector('.hd-block');
   if (header) {
@@ -1011,18 +1018,38 @@ body.kb-modal-open {
   function parseYaml(text) {
     var m = text.match(/^---\s*\n([\s\S]*?)\n---/);
     if (!m) return {};
-    var data = {}, gallery = [];
-    m[1].split('\n').forEach(function (line) {
-      var mg = line.match(/^\s*-\s+image:\s*(.+)$/); if (mg) { gallery.push(mg[1].trim().replace(/^["']|["']$/g, '')); return; }
-      var mm = line.match(/^([a-z_]+)\s*:\s*(.*)$/i); if (!mm) return;
-      var key = mm[1].trim();
-      var val = mm[2].trim().replace(/^["']|["']$/g, '');
-      if (key === 'gallery' && val.indexOf(',') !== -1) { gallery = val.split(',').map(function (s) { return s.trim().replace(/^["']|["']$/g, ''); }).filter(Boolean); return; }
-      data[key] = val;
-    });
+    var data = {}, gallery = [], inGallery = false;
+    var lines = m[1].split('\n');
+    for (var i = 0; i < lines.length; i++) {
+      var line = lines[i];
+      var mm = line.match(/^([a-zA-Z_]+)\s*:\s*(.*)$/);
+      if (mm) {
+        var key = mm[1].trim();
+        var val = mm[2].trim().replace(/^["']|["']$/g, '');
+        if (key === 'gallery') {
+          inGallery = true;
+          if (val) {
+            if (val.indexOf(',') !== -1) { val.split(',').forEach(function (s) { var t = s.trim().replace(/^["']|["']$/g, ''); if (t) gallery.push(t); }); }
+            else { gallery.push(val); }
+            inGallery = false;
+          }
+          continue;
+        }
+        inGallery = false;
+        data[key] = val;
+        continue;
+      }
+      var ml = line.match(/^\s*-\s+(.+)$/);
+      if (ml && inGallery) {
+        var v = ml[1].trim().replace(/^["']|["']$/g, '');
+        if (v.indexOf('image:') === 0) { v = v.slice(6).trim().replace(/^["']|["']$/g, ''); }
+        if (v) gallery.push(v);
+      }
+    }
     if (gallery.length) data.gallery = gallery;
     return data;
   }
+
   function budgetByPrice(price) { if (!price) return null; price = parseInt(price, 10); if (price < 300000) return 'До 300 000 ₽'; if (price < 500000) return '300 000–500 000 ₽'; return 'От 500 000 ₽'; }
   function priceLabel(price) { if (!price) return null; price = parseInt(price, 10); return String(price).replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₽'; }
   function esc(s) { if (!s) return ''; return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
