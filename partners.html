@@ -511,7 +511,6 @@ function sendToWorker(payload,onSuccess,onError){
     body:JSON.stringify(payload)
   })
   .then(function(r){
-    // Если сервер ответил 200-299, считаем что всё ок, даже если ответ не JSON
     if (r.ok) {
       if(onSuccess) onSuccess({success:true});
     } else {
@@ -541,42 +540,50 @@ if(header){
 function bindConsent(inputId,wrapId,errId){var input=document.getElementById(inputId);var wrap=document.getElementById(wrapId);var err=document.getElementById(errId);if(!input||!wrap||!err)return null;input.addEventListener('change',function(){if(input.checked){wrap.classList.remove('is-error');err.classList.remove('is-visible');}});return{check:function(){if(!input.checked){wrap.classList.add('is-error');err.classList.add('is-visible');try{input.focus({preventScroll:true});}catch(e){input.focus();}return false;}return true;}};}
 var chatConsent=bindConsent('chat-consent','chat-consent-wrap','chat-consent-error');
 
-/* МОДАЛКА «ОБСУДИТЬ ПРОЕКТ» */
-var abModal=document.getElementById('ab-modal');
-var abOpen=document.getElementById('ab-open');
-var abForm=document.getElementById('ab-form');
-var abSuccess=document.getElementById('ab-success');
-var abConsent=document.getElementById('ab-consent');
-var abConsentWrap=document.getElementById('ab-consent-wrap');
-var abConsentErr=document.getElementById('ab-consent-error');
-
-function openAb(){if(!abModal)return;abModal.classList.add('is-open');abModal.setAttribute('aria-hidden','false');document.body.classList.add('ab-modal-open');}
-function closeAb(){if(!abModal)return;abModal.classList.remove('is-open');abModal.setAttribute('aria-hidden','true');document.body.classList.remove('ab-modal-open');if(abForm){abForm.style.display='';abForm.reset();if(abConsentWrap)abConsentWrap.classList.remove('is-error');if(abConsentErr)abConsentErr.classList.remove('is-visible');}if(abSuccess)abSuccess.classList.remove('is-active');}
-if(abOpen)abOpen.addEventListener('click',openAb);
-if(abModal){abModal.querySelectorAll('[data-ab-close]').forEach(function(el){el.addEventListener('click',closeAb);});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&abModal.classList.contains('is-open'))closeAb();});}
-if(abConsent)abConsent.addEventListener('change',function(){if(abConsent.checked){if(abConsentWrap)abConsentWrap.classList.remove('is-error');if(abConsentErr)abConsentErr.classList.remove('is-visible');}});
-if(abForm)abForm.addEventListener('submit',function(e){
+/* --- ГЛАВНАЯ ФОРМА ПАРТНЁРА --- */
+var ptForm=document.getElementById('pt-form');
+var ptSuccess=document.getElementById('pt-success');
+if(ptForm)ptForm.addEventListener('submit',function(e){
   e.preventDefault();
-  if(abConsent&&!abConsent.checked){if(abConsentWrap)abConsentWrap.classList.add('is-error');if(abConsentErr)abConsentErr.classList.add('is-visible');try{abConsent.focus({preventScroll:true});}catch(er){abConsent.focus();}return;}
-  var payload={
-    source:'🔔 Обсудить проект (О нас)',
-    name:(document.getElementById('ab-name')||{}).value||'',
-    phone:(document.getElementById('ab-phone')||{}).value||'',
-    tg:(document.getElementById('ab-tg')||{}).value||''
+  var ptConsent=document.getElementById('pt-consent');
+  var ptConsentWrap=document.getElementById('pt-consent-wrap');
+  var ptConsentErr=document.getElementById('pt-consent-error');
+  if(ptConsent&&!ptConsent.checked){if(ptConsentWrap)ptConsentWrap.classList.add('is-error');if(ptConsentErr)ptConsentErr.classList.add('is-visible');try{ptConsent.focus({preventScroll:true});}catch(er){ptConsent.focus();}return;}
+  
+  // Безопасно достаем значения
+  var nameVal = (document.getElementById('pt-name')||{}).value || '';
+  var phoneVal = (document.getElementById('pt-phone')||{}).value || '';
+  var typeSel = document.getElementById('pt-type');
+  var commentVal = (document.getElementById('pt-message')||{}).value || '';
+  
+  var typeText = '';
+  if (typeSel && typeSel.selectedIndex >= 0) {
+    typeText = typeSel.options[typeSel.selectedIndex].text;
+  }
+  
+  var payload = {
+    source: '🔔 Заявка партнёра',
+    name: String(nameVal).trim(),
+    phone: String(phoneVal).trim(),
+    message: (typeText ? 'Сфера: ' + typeText + '\n' : '') + String(commentVal).trim()
   };
-  payload.name=String(payload.name).trim();
-  payload.phone=String(payload.phone).trim();
-  payload.tg=String(payload.tg).trim();
-  var submitBtn=abForm.querySelector('button[type="submit"]');
+  
+  var submitBtn=ptForm.querySelector('button[type="submit"]');
   var orig=submitBtn?submitBtn.textContent:'';
   if(submitBtn){submitBtn.disabled=true;submitBtn.textContent='Отправка…';}
+  
   sendToWorker(payload,
-    function(){abForm.style.display='none';if(abSuccess)abSuccess.classList.add('is-active');},
-    function(errMsg){showFormError(submitBtn,orig,errMsg);}
+    function(){
+      ptForm.style.display='none';
+      if(ptSuccess)ptSuccess.classList.add('is-active');
+    },
+    function(errMsg){
+      showFormError(submitBtn,orig,errMsg);
+    }
   );
 });
 
-/* МОДАЛКА «ЗАПИСЬ НА ЗАМЕР» (футер) */
+/* --- МОДАЛКА «ЗАПИСЬ НА ЗАМЕР» (футер) --- */
 var ftMeasureModal=document.getElementById('ft-measure-modal');
 var ftMeasureOpen=document.getElementById('ft-measure-open');
 var ftMeasureForm=document.getElementById('ft-measure-form');
@@ -610,15 +617,17 @@ if(ftMeasureForm)ftMeasureForm.addEventListener('submit',function(e){
   );
 });
 
-/* МОДАЛКА «ПОЗВОНИТЬ» */
+/* --- МОДАЛКА «ПОЗВОНИТЬ» --- */
 var ftCallModal=document.getElementById('ft-call-modal');
 var ftCallOpen=document.getElementById('ft-call-open');
+var ptCallOpen=document.getElementById('pt-call-open');
 function openFtCall(){if(!ftCallModal)return;ftCallModal.classList.add('is-open');ftCallModal.setAttribute('aria-hidden','false');document.body.classList.add('ab-call-open');}
 function closeFtCall(){if(!ftCallModal)return;ftCallModal.classList.remove('is-open');ftCallModal.setAttribute('aria-hidden','true');document.body.classList.remove('ab-call-open');}
 if(ftCallOpen)ftCallOpen.addEventListener('click',openFtCall);
+if(ptCallOpen)ptCallOpen.addEventListener('click',openFtCall);
 if(ftCallModal){ftCallModal.querySelectorAll('[data-ft-call-close]').forEach(function(el){el.addEventListener('click',closeFtCall);});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ftCallModal.classList.contains('is-open'))closeFtCall();});}
 
-/* ЧАТ */
+/* --- ЧАТ --- */
 var chatFab=document.getElementById('chat-fab');
 var chatModal=document.getElementById('chat-modal');
 var chatForm=document.getElementById('chat-form');
