@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-cms="meta.title">Страница не найдена — 40/60 Design</title>
+<meta name="description" content="Страница не найдена. Вернитесь на главную страницу 40/60 Design.">
+<meta name="robots" content="noindex">
+
+<!-- Фавиконки (положи файлы в корень сайта) -->
+<link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="shortcut icon" href="favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="40/60 Design">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#0c160e">
+
+<style>
+:root{--c-bg:#0d0c0d;--c-surface:#1d1a17;--c-accent:#c8a572;--c-accent-h:#d4b279;--c-text:#f4ede2;--c-text-mute:#8f8a7e;--c-green:#0c160e}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--c-bg);padding-top:76px;font-family:"Inter","Helvetica Neue",Arial,sans-serif;color:var(--c-text);min-height:100vh;display:flex;flex-direction:column}
+@media(max-width:720px){body{padding-top:64px}}
+*,*::before,*::after{box-sizing:border-box}
+
+/* Шапка */
+.hd-block{position:fixed;top:0;left:0;right:0;z-index:50;width:100%;background:var(--c-green);color:var(--c-accent)}
+.hd-block__inner{display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:20px;max-width:1140px;margin:0 auto;padding:14px 24px}
+.hd-block__logo{display:block;height:40px;text-decoration:none}
+.hd-block__logo img{height:100%;width:auto;display:block}
+.hd-block__nav{justify-self:center}
+.hd-block__nav-list{list-style:none;margin:0;padding:0;display:flex;align-items:center;gap:26px}
+.hd-block__nav-link{font-size:14px;font-weight:500;color:var(--c-accent);text-decoration:none;opacity:0.85;transition:opacity .2s}
+.hd-block__nav-link:hover{opacity:1}
+@media(max-width:720px){.hd-block__nav{display:none}.hd-block__inner{display:flex;justify-content:space-between}}
+
+/* 404 */
+.err-container{flex:1;display:flex;align-items:center;justify-content:center;padding:80px 24px;text-align:center;flex-direction:column;gap:24px}
+.err-code{font-family:'Playfair Display',serif;font-size:clamp(80px, 15vw, 160px);line-height:1;color:var(--c-accent);font-weight:400;margin:0;font-style:italic;opacity:0.8}
+.err-title{font-size:clamp(24px, 4vw, 36px);font-weight:500;margin:0;color:#fff}
+.err-text{font-size:16px;line-height:1.6;color:#a8a294;max-width:480px;margin:0}
+.err-actions{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-top:16px}
+.err-btn{display:inline-flex;align-items:center;justify-content:center;padding:16px 32px;border:1px solid var(--c-accent);background:var(--c-accent);color:var(--c-bg);font-size:15px;font-weight:600;text-decoration:none;transition:background .25s,border-color .25s,transform .25s}
+.err-btn:hover{background:var(--c-accent-h);border-color:var(--c-accent-h);transform:translateY(-1px)}
+.err-btn--ghost{background:transparent;color:var(--c-accent)}
+.err-btn--ghost:hover{background:rgba(200,165,114,0.1);color:var(--c-accent-h)}
+</style>
+</head>
+<body>
+
+<section class="hd-block" aria-label="Шапка сайта">
+  <div class="hd-block__inner">
+    <a class="hd-block__logo" href="index.html" aria-label="40/60 Design">
+      <img src="images/logo.png" alt="40/60 Design">
+    </a>
+    <nav class="hd-block__nav" aria-label="Основная навигация">
+      <ul class="hd-block__nav-list">
+        <li><a class="hd-block__nav-link" href="about.html">О нас</a></li>
+        <li><a class="hd-block__nav-link" href="portfolio.html">Портфолио</a></li>
+        <li><a class="hd-block__nav-link" href="warranty.html">Гарантия</a></li>
+        <li><a class="hd-block__nav-link" href="partners.html">Партнёрам</a></li>
+      </ul>
+    </nav>
+  </div>
+</section>
+
+<div class="err-container">
+  <p class="err-code">404</p>
+  <h1 class="err-title">Страница не найдена</h1>
+  <p class="err-text">Возможно, ссылка устарела, или страница была перемещена. Но вы всегда можете вернуться и продолжить знакомство с нашей мебелью.</p>
+  <div class="err-actions">
+    <a href="index.html" class="err-btn">На главную</a>
+    <a href="portfolio.html" class="err-btn err-btn--ghost">В портфолио</a>
+  </div>
+</div>
+
+</body>
+</html>
