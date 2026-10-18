@@ -5,10 +5,32 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title data-cms="meta.title">Портфолио — 40/60 Design</title>
 <meta name="description" data-cms="meta.description" content="Реализованные проекты мебели 40/60 Design — кухни, гардеробные, шкафы. Материалы фасадов, фурнитура, сроки.">
+
+<!-- Фавиконки (положи файлы в корень сайта) -->
+<link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="shortcut icon" href="favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="40/60 Design">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#0c160e">
+
+<!-- SEO / Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="40/60 Design">
+<meta property="og:title" content="Портфолио — 40/60 Design">
+<meta property="og:description" content="Реализованные проекты мебели 40/60 Design — кухни, гардеробные, шкафы. Материалы фасадов, фурнитура, сроки.">
+<meta property="og:image" content="https://stastitov002-arch.github.io/4060-site/images/showroom.jpg">
+<meta property="og:url" content="https://stastitov002-arch.github.io/4060-site/portfolio.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Портфолио — 40/60 Design">
+<meta name="twitter:description" content="Реализованные проекты мебели 40/60 Design — кухни, гардеробные, шкафы. Материалы фасадов, фурнитура, сроки.">
+<meta name="twitter:image" content="https://stastitov002-arch.github.io/4060-site/images/showroom.jpg">
+
 <style>
 :root{--c-bg:#0d0c0d;--c-bg-alt:#141210;--c-surface:#1d1a17;--c-surface-2:#2a2620;--c-line:#2a2622;--c-accent:#c8a572;--c-accent-h:#d4b279;--c-accent-d:#b08a52;--c-text:#f4ede2;--c-text-mute:#8f8a7e;--c-gold-strong:#f5b942;--c-gold-light:#e9c884;--c-success:#6fcf97;--c-error:#e07a6a;--c-green:#0c160e}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--c-bg);padding-top:76px;font-family:"Inter","Helvetica Neue",Arial,sans-serif;overflow-x:hidden}
+body{margin:0;background:var(--c-bg);padding-top:76px;font-family:"Inter","Helvetica Neue",Arial,sans-serif;overflow-x:hidden;color:var(--c-text)}
 @media(max-width:720px){body{padding-top:64px}}
 *,*::before,*::after{box-sizing:border-box}
 input,textarea,select,button{max-width:100%;font-size:16px}
@@ -16,8 +38,8 @@ img,svg,video{max-width:100%;height:auto}
 .img-fallback{position:absolute;inset:0;background-color:#1a1f17;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none' stroke='%23c8a572' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M8 28 L32 12 L56 28'/><path d='M12 28 L12 52 L52 52 L52 28'/><rect x='24' y='38' width='16' height='14'/></svg>");background-repeat:no-repeat;background-position:center;background-size:30% auto;z-index:0}
 .hd-block{position:fixed;top:0;left:0;right:0;z-index:50;width:100%;background:var(--c-green);color:var(--c-accent)}
 .hd-block__inner{display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:20px;max-width:1140px;margin:0 auto;padding:14px 24px}
-.hd-block__logo{font-size:26px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:var(--c-accent);text-decoration:none;transition:opacity .2s;white-space:nowrap}
-.hd-block__logo:hover{opacity:0.7}
+.hd-block__logo{display:block;height:40px;text-decoration:none}
+.hd-block__logo img{height:100%;width:auto;display:block}
 .hd-block__burger{display:none;width:40px;height:40px;padding:0;border:0;background:transparent;cursor:pointer;align-items:center;justify-content:center;color:var(--c-accent);border-radius:8px}
 .hd-block__burger-lines,.hd-block__burger-lines::before,.hd-block__burger-lines::after{display:block;width:22px;height:1.8px;background:currentColor;border-radius:2px;transition:transform .25s,top .25s,opacity .2s}
 .hd-block__burger-lines{position:relative}
@@ -48,7 +70,7 @@ img,svg,video{max-width:100%;height:auto}
 @media(max-width:720px){
 .hd-block__inner{display:flex;flex-wrap:wrap;align-items:center;column-gap:10px;padding:12px 16px}
 .hd-block__hours,.hd-block__meta{display:none}
-.hd-block__logo{order:1;font-size:22px}
+.hd-block__logo{order:1;height:32px}
 .hd-block__phones{order:2;margin-left:auto;padding-right:0;align-items:flex-end;gap:1px}
 .hd-block__phone-item{font-size:12px;line-height:1.15}
 .hd-block__burger{order:3;display:inline-flex}
@@ -64,7 +86,7 @@ img,svg,video{max-width:100%;height:auto}
 .hd-block__menu-tg{display:inline-flex;align-items:center;gap:6px;color:var(--c-accent);text-decoration:none;font-size:14px;opacity:0.85}
 .hd-block__menu-tg svg{display:block}
 }
-@media(max-width:480px){.hd-block__inner{padding:10px 14px;column-gap:8px}.hd-block__logo{font-size:20px}.hd-block__phone-item{font-size:11px}.hd-block__burger{width:36px;height:36px}}
+@media(max-width:480px){.hd-block__inner{padding:10px 14px;column-gap:8px}.hd-block__logo{height:28px}.hd-block__phone-item{font-size:11px}.hd-block__burger{width:36px;height:36px}}
 .pf-hero{position:relative;background:linear-gradient(180deg,var(--c-green) 0%,var(--c-bg) 100%);color:var(--c-text);padding:clamp(64px,9vw,120px) 0 clamp(36px,5vw,64px);border-bottom:1px solid rgba(200,165,114,0.12);overflow:hidden}
 .pf-hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 15% 20%,rgba(200,165,114,0.08) 0%,transparent 45%),radial-gradient(circle at 85% 80%,rgba(200,165,114,0.05) 0%,transparent 50%);pointer-events:none}
 .pf-hero__inner{position:relative;max-width:1440px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
@@ -189,7 +211,8 @@ body.kb-modal-open{overflow:hidden}
 .ft-block{background:var(--c-green);color:var(--c-accent);padding:48px 20px 24px;border-top:1px solid rgba(200,165,114,0.15)}
 .ft-block__wrap{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:32px}
 @media(min-width:720px){.ft-block__wrap{grid-template-columns:1.5fr 1fr 1fr}}
-.ft-block__logo{font-size:26px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:var(--c-accent);margin:0 0 12px;text-decoration:none;display:inline-block}
+.ft-block__logo{display:block;text-decoration:none;margin-bottom:12px}
+.ft-block__logo img{height:60px;width:auto;display:block}
 .ft-block__tagline{font-size:14px;line-height:1.6;color:#b3ada0;margin:0 0 16px;max-width:36ch}
 .ft-block__contacts{display:flex;flex-direction:column;gap:8px;font-size:14px}
 .ft-block__contacts a{color:var(--c-accent);text-decoration:none}
@@ -297,8 +320,12 @@ body.chat-modal-open{overflow:hidden}
 
 <section class="hd-block" aria-label="Шапка сайта">
   <div class="hd-block__inner">
-    <a class="hd-block__logo" href="index.html" aria-label="Перейти на главную">40/60</a>
-    <button class="hd-block__burger" type="button" aria-expanded="false" aria-controls="hd-nav" aria-label="Открыть меню"><span class="hd-block__burger-lines" aria-hidden="true"></span></button>
+    <a class="hd-block__logo" href="index.html" aria-label="40/60 Design">
+      <img src="images/logo.png" alt="40/60 Design">
+    </a>
+    <button class="hd-block__burger" type="button" aria-expanded="false" aria-controls="hd-nav" aria-label="Открыть меню">
+      <span class="hd-block__burger-lines" aria-hidden="true"></span>
+    </button>
     <nav class="hd-block__nav" id="hd-nav" aria-label="Основная навигация">
       <ul class="hd-block__nav-list">
         <li><a class="hd-block__nav-link" href="about.html">О нас</a></li>
@@ -308,7 +335,10 @@ body.chat-modal-open{overflow:hidden}
       </ul>
       <div class="hd-block__menu-contacts">
         <span class="hd-block__menu-hours" data-cms="common.hours">пн–сб 10:00–21:00</span>
-        <a class="hd-block__menu-tg" href="https://t.me/design4060" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg><span data-cms="common.tg">design4060</span></a>
+        <a class="hd-block__menu-tg" href="https://t.me/design4060" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+          <span data-cms="common.tg">design4060</span>
+        </a>
       </div>
     </nav>
     <div class="hd-block__phones">
@@ -317,7 +347,10 @@ body.chat-modal-open{overflow:hidden}
     </div>
     <div class="hd-block__meta">
       <span class="hd-block__hours" data-cms="common.hours">пн–сб 10:00–21:00</span>
-      <a class="hd-block__tg" href="https://t.me/design4060" target="_blank" rel="noopener" aria-label="Мы в Telegram"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg><span data-cms="common.tg">design4060</span></a>
+      <a class="hd-block__tg" href="https://t.me/design4060" target="_blank" rel="noopener" aria-label="Мы в Telegram">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+        <span data-cms="common.tg">design4060</span>
+      </a>
     </div>
   </div>
 </section>
@@ -400,7 +433,9 @@ body.chat-modal-open{overflow:hidden}
 <footer class="ft-block">
   <div class="ft-block__wrap">
     <div>
-      <a class="ft-block__logo" href="index.html">40/60</a>
+      <a class="ft-block__logo" href="index.html" aria-label="40/60 Design">
+        <img src="images/logo.png" alt="40/60 Design">
+      </a>
       <p class="ft-block__tagline" data-cms="common.tagline">Студия интерьерной мебели. Кухни и корпусная мебель на заказ в Москве и области.</p>
       <div class="ft-block__contacts">
         <a href="tel:+79771004415" data-cms="common.phone1">+7 977 100-44-15</a>
@@ -525,10 +560,26 @@ var PAGE_SIZE=12;
 var WORKER_URL='https://hidden-bar-8272form-to-telegram.stas-titov-002.workers.dev';
 
 function sendToWorker(payload,onSuccess,onError){
-  fetch(WORKER_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
-  .then(function(r){return r.json();})
-  .then(function(res){if(res&&res.success){if(onSuccess)onSuccess(res);}else{if(onError)onError(res&&res.error?res.error:'Ошибка отправки');}})
-  .catch(function(err){if(onError)onError(String(err&&err.message?err.message:err));});
+  fetch(WORKER_URL,{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(payload)
+  })
+  .then(function(r){
+    // Если сервер ответил 200-299, считаем что всё ок, даже если ответ не JSON
+    if (r.ok) {
+      if(onSuccess) onSuccess({success:true});
+    } else {
+      return r.text().then(function(text){
+        var msg = 'Ошибка отправки';
+        try { var j = JSON.parse(text); if (j && j.error) msg = j.error; } catch(e) {}
+        if(onError) onError(msg);
+      });
+    }
+  })
+  .catch(function(err){
+    if(onError) onError(String(err && err.message ? err.message : err));
+  });
 }
 function showFormError(btn,orig,msg){if(btn){btn.disabled=false;btn.textContent=orig;}alert('Не удалось отправить заявку. '+(msg?'Ошибка: '+msg:'Попробуйте ещё раз или позвоните нам.'));}
 
