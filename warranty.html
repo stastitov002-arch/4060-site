@@ -5,6 +5,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title data-cms="meta.title">Гарантия — 40/60 Design</title>
 <meta name="description" data-cms="meta.description" content="Гарантия 3 года на кухни и корпусную мебель 40/60 Design. Что покрывает, что не покрывает, сроки и как обратиться.">
+
+<!-- Фавиконки (положи файлы в корень сайта) -->
+<link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="shortcut icon" href="favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="40/60 Design">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#0c160e">
+
+<!-- SEO / Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="40/60 Design">
+<meta property="og:title" content="Гарантия — 40/60 Design">
+<meta property="og:description" content="Гарантия 3 года на кухни и корпусную мебель 40/60 Design. Что покрывает, что не покрывает, сроки и как обратиться.">
+<meta property="og:image" content="https://stastitov002-arch.github.io/4060-site/images/showroom.jpg">
+<meta property="og:url" content="https://stastitov002-arch.github.io/4060-site/warranty.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Гарантия — 40/60 Design">
+<meta name="twitter:description" content="Гарантия 3 года на кухни и корпусную мебель 40/60 Design. Что покрывает, что не покрывает, сроки и как обратиться.">
+<meta name="twitter:image" content="https://stastitov002-arch.github.io/4060-site/images/showroom.jpg">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
@@ -18,8 +40,8 @@ input,textarea,select,button{max-width:100%;font-size:16px}
 img,svg,video{max-width:100%;height:auto}
 .hd-block{position:fixed;top:0;left:0;right:0;z-index:50;width:100%;background:var(--c-green);color:var(--c-accent)}
 .hd-block__inner{display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:20px;max-width:1140px;margin:0 auto;padding:14px 24px}
-.hd-block__logo{font-size:26px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:var(--c-accent);text-decoration:none;transition:opacity .2s;white-space:nowrap}
-.hd-block__logo:hover{opacity:0.7}
+.hd-block__logo{display:block;height:40px;text-decoration:none}
+.hd-block__logo img{height:100%;width:auto;display:block}
 .hd-block__burger{display:none;width:40px;height:40px;padding:0;border:0;background:transparent;cursor:pointer;align-items:center;justify-content:center;color:var(--c-accent);border-radius:8px}
 .hd-block__burger-lines,.hd-block__burger-lines::before,.hd-block__burger-lines::after{display:block;width:22px;height:1.8px;background:currentColor;border-radius:2px;transition:transform .25s,top .25s,opacity .2s}
 .hd-block__burger-lines{position:relative}
@@ -50,7 +72,7 @@ img,svg,video{max-width:100%;height:auto}
 @media(max-width:720px){
 .hd-block__inner{display:flex;flex-wrap:wrap;align-items:center;column-gap:10px;padding:12px 16px}
 .hd-block__hours,.hd-block__meta{display:none}
-.hd-block__logo{order:1;font-size:22px}
+.hd-block__logo{order:1;height:32px}
 .hd-block__phones{order:2;margin-left:auto;padding-right:0;align-items:flex-end;gap:1px}
 .hd-block__phone-item{font-size:12px;line-height:1.15}
 .hd-block__burger{order:3;display:inline-flex}
@@ -66,7 +88,7 @@ img,svg,video{max-width:100%;height:auto}
 .hd-block__menu-tg{display:inline-flex;align-items:center;gap:6px;color:var(--c-accent);text-decoration:none;font-size:14px;opacity:0.85}
 .hd-block__menu-tg svg{display:block}
 }
-@media(max-width:480px){.hd-block__inner{padding:10px 14px;column-gap:8px}.hd-block__logo{font-size:20px}.hd-block__phone-item{font-size:11px}.hd-block__burger{width:36px;height:36px}}
+@media(max-width:480px){.hd-block__inner{padding:10px 14px;column-gap:8px}.hd-block__logo{height:28px}.hd-block__phone-item{font-size:11px}.hd-block__burger{width:36px;height:36px}}
 .wt-hero{position:relative;background:#0c0c0e;color:var(--c-text);padding:clamp(96px,12vw,160px) 0 clamp(64px,8vw,110px);border-bottom:1px solid rgba(200,165,114,0.12);overflow:hidden;isolation:isolate;min-height:560px;display:flex;align-items:center}
 .wt-hero::before{content:"";position:absolute;inset:0;background-image:url("images/hero.jpg");background-size:cover;background-position:center;filter:saturate(0.9) contrast(1.02);z-index:0}
 .wt-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,8,10,0.92) 0%,rgba(8,8,10,0.74) 45%,rgba(8,8,10,0.42) 100%),linear-gradient(180deg,rgba(8,8,10,0.55) 0%,rgba(8,8,10,0.25) 40%,rgba(8,8,10,0.88) 100%);z-index:1;pointer-events:none}
@@ -124,7 +146,8 @@ img,svg,video{max-width:100%;height:auto}
 .ft-block{background:var(--c-green);color:var(--c-accent);padding:48px 20px 24px;border-top:1px solid rgba(200,165,114,0.15)}
 .ft-block__wrap{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:32px}
 @media(min-width:720px){.ft-block__wrap{grid-template-columns:1.5fr 1fr 1fr}}
-.ft-block__logo{font-size:26px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:var(--c-accent);margin:0 0 12px;text-decoration:none;display:inline-block}
+.ft-block__logo{display:block;text-decoration:none;margin-bottom:12px}
+.ft-block__logo img{height:60px;width:auto;display:block}
 .ft-block__tagline{font-size:14px;line-height:1.6;color:#b3ada0;margin:0 0 16px;max-width:36ch}
 .ft-block__contacts{display:flex;flex-direction:column;gap:8px;font-size:14px}
 .ft-block__contacts a{color:var(--c-accent);text-decoration:none}
@@ -235,8 +258,12 @@ body.chat-modal-open{overflow:hidden}
 
 <section class="hd-block" aria-label="Шапка сайта">
   <div class="hd-block__inner">
-    <a class="hd-block__logo" href="index.html" aria-label="Перейти на главную">40/60</a>
-    <button class="hd-block__burger" type="button" aria-expanded="false" aria-controls="hd-nav" aria-label="Открыть меню"><span class="hd-block__burger-lines" aria-hidden="true"></span></button>
+    <a class="hd-block__logo" href="index.html" aria-label="40/60 Design">
+      <img src="images/logo.png" alt="40/60 Design">
+    </a>
+    <button class="hd-block__burger" type="button" aria-expanded="false" aria-controls="hd-nav" aria-label="Открыть меню">
+      <span class="hd-block__burger-lines" aria-hidden="true"></span>
+    </button>
     <nav class="hd-block__nav" id="hd-nav" aria-label="Основная навигация">
       <ul class="hd-block__nav-list">
         <li><a class="hd-block__nav-link" href="about.html">О нас</a></li>
@@ -246,7 +273,10 @@ body.chat-modal-open{overflow:hidden}
       </ul>
       <div class="hd-block__menu-contacts">
         <span class="hd-block__menu-hours" data-cms="common.hours">пн–сб 10:00–21:00</span>
-        <a class="hd-block__menu-tg" href="https://t.me/design4060" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg><span data-cms="common.tg">design4060</span></a>
+        <a class="hd-block__menu-tg" href="https://t.me/design4060" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+          <span data-cms="common.tg">design4060</span>
+        </a>
       </div>
     </nav>
     <div class="hd-block__phones">
@@ -255,7 +285,10 @@ body.chat-modal-open{overflow:hidden}
     </div>
     <div class="hd-block__meta">
       <span class="hd-block__hours" data-cms="common.hours">пн–сб 10:00–21:00</span>
-      <a class="hd-block__tg" href="https://t.me/design4060" target="_blank" rel="noopener" aria-label="Мы в Telegram"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg><span data-cms="common.tg">design4060</span></a>
+      <a class="hd-block__tg" href="https://t.me/design4060" target="_blank" rel="noopener" aria-label="Мы в Telegram">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+        <span data-cms="common.tg">design4060</span>
+      </a>
     </div>
   </div>
 </section>
@@ -362,12 +395,14 @@ body.chat-modal-open{overflow:hidden}
 <footer class="ft-block">
   <div class="ft-block__wrap">
     <div>
-      <a class="ft-block__logo" href="index.html">40/60</a>
+      <a class="ft-block__logo" href="index.html" aria-label="40/60 Design">
+        <img src="images/logo.png" alt="40/60 Design">
+      </a>
       <p class="ft-block__tagline" data-cms="common.tagline">Студия интерьерной мебели. Кухни и корпусная мебель на заказ в Москве и области.</p>
       <div class="ft-block__contacts">
         <a href="tel:+79771004415" data-cms="common.phone1">+7 977 100-44-15</a>
         <a href="tel:+79017448855" data-cms="common.phone2">+7 901 744-88-55</a>
-        <a href="https://t.me/official4060Design" target="_blank" rel="noopener">Telegram: @official4060Design</a>
+        <a href="https://t.me/design4060" target="_blank" rel="noopener">Telegram: @design4060</a>
       </div>
     </div>
     <div>
@@ -478,10 +513,26 @@ body.chat-modal-open{overflow:hidden}
 var WORKER_URL='https://hidden-bar-8272form-to-telegram.stas-titov-002.workers.dev';
 
 function sendToWorker(payload,onSuccess,onError){
-  fetch(WORKER_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
-  .then(function(r){return r.json();})
-  .then(function(res){if(res&&res.success){if(onSuccess)onSuccess(res);}else{if(onError)onError(res&&res.error?res.error:'Ошибка отправки');}})
-  .catch(function(err){if(onError)onError(String(err&&err.message?err.message:err));});
+  fetch(WORKER_URL,{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(payload)
+  })
+  .then(function(r){
+    // Если сервер ответил 200-299, считаем что всё ок, даже если ответ не JSON
+    if (r.ok) {
+      if(onSuccess) onSuccess({success:true});
+    } else {
+      return r.text().then(function(text){
+        var msg = 'Ошибка отправки';
+        try { var j = JSON.parse(text); if (j && j.error) msg = j.error; } catch(e) {}
+        if(onError) onError(msg);
+      });
+    }
+  })
+  .catch(function(err){
+    if(onError) onError(String(err && err.message ? err.message : err));
+  });
 }
 function showFormError(btn,orig,msg){if(btn){btn.disabled=false;btn.textContent=orig;}alert('Не удалось отправить заявку. '+(msg?'Ошибка: '+msg:'Попробуйте ещё раз или позвоните нам.'));}
 
