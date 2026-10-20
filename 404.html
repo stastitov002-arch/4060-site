@@ -35,17 +35,58 @@ html{scroll-behavior:smooth}
 body{margin:0;background:var(--c-bg);padding-top:76px;font-family:"Inter","Helvetica Neue",Arial,sans-serif;color:var(--c-text);min-height:100vh;display:flex;flex-direction:column}
 @media(max-width:720px){body{padding-top:64px}}
 *,*::before,*::after{box-sizing:border-box}
+img,svg,video{max-width:100%;height:auto}
 
 /* Шапка */
 .hd-block{position:fixed;top:0;left:0;right:0;z-index:50;width:100%;background:var(--c-green);color:var(--c-accent)}
 .hd-block__inner{display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:20px;max-width:1140px;margin:0 auto;padding:14px 24px}
 .hd-block__logo{display:block;height:40px;text-decoration:none}
 .hd-block__logo img{height:100%;width:auto;display:block}
-.hd-block__nav{justify-self:center}
+.hd-block__burger{display:none;width:40px;height:40px;padding:0;border:0;background:transparent;cursor:pointer;align-items:center;justify-content:center;color:var(--c-accent);border-radius:8px}
+.hd-block__burger-lines,.hd-block__burger-lines::before,.hd-block__burger-lines::after{display:block;width:22px;height:1.8px;background:currentColor;border-radius:2px;transition:transform .25s,top .25s,opacity .2s}
+.hd-block__burger-lines{position:relative}
+.hd-block__burger-lines::before,.hd-block__burger-lines::after{content:"";position:absolute;left:0}
+.hd-block__burger-lines::before{top:-7px}
+.hd-block__burger-lines::after{top:7px}
+.hd-block--menu-open .hd-block__burger-lines{background:transparent}
+.hd-block--menu-open .hd-block__burger-lines::before{top:0;transform:rotate(45deg)}
+.hd-block--menu-open .hd-block__burger-lines::after{top:0;transform:rotate(-45deg)}
+.hd-block__nav{justify-self:center;min-width:0}
 .hd-block__nav-list{list-style:none;margin:0;padding:0;display:flex;align-items:center;gap:26px}
-.hd-block__nav-link{font-size:14px;font-weight:500;color:var(--c-accent);text-decoration:none;opacity:0.85;transition:opacity .2s}
+.hd-block__nav-link{font-size:14px;font-weight:500;color:var(--c-accent);text-decoration:none;opacity:0.85;position:relative;padding:4px 0;white-space:nowrap;transition:opacity .2s}
+.hd-block__nav-link::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .25s}
 .hd-block__nav-link:hover{opacity:1}
-@media(max-width:720px){.hd-block__nav{display:none}.hd-block__inner{display:flex;justify-content:space-between}}
+.hd-block__nav-link:hover::after{transform:scaleX(1)}
+.hd-block__phones{display:flex;flex-direction:column;align-items:flex-end;gap:3px;justify-self:end;padding-right:24px;line-height:1.3}
+.hd-block__phone-item{font-size:14px;font-weight:500;color:var(--c-accent);text-decoration:none;white-space:nowrap;transition:opacity .2s;letter-spacing:-0.01em;opacity:0.78;font-variant-numeric:tabular-nums}
+.hd-block__phone-item:hover{opacity:1}
+.hd-block__meta{display:flex;flex-direction:column;align-items:flex-end;gap:2px;line-height:1.3;justify-self:end}
+.hd-block__hours{font-size:12px;opacity:0.7;color:var(--c-accent)}
+.hd-block__tg{display:inline-flex;align-items:center;gap:5px;font-size:13px;opacity:0.85;color:var(--c-accent);text-decoration:none;transition:opacity .2s}
+.hd-block__tg:hover{opacity:1}
+.hd-block__tg svg{display:block}
+.hd-block__menu-contacts{display:none}
+@media(max-width:1080px){.hd-block__inner{gap:16px;padding:12px 20px;max-width:100%}.hd-block__nav-list{gap:18px}.hd-block__nav-link{font-size:13px}.hd-block__phone-item{font-size:12px}.hd-block__phones{padding-right:16px}}
+@media(max-width:720px){
+.hd-block__inner{display:flex;flex-wrap:wrap;align-items:center;column-gap:10px;padding:12px 16px}
+.hd-block__hours,.hd-block__meta{display:none}
+.hd-block__logo{order:1;height:32px}
+.hd-block__phones{order:2;margin-left:auto;padding-right:0;align-items:flex-end;gap:1px}
+.hd-block__phone-item{font-size:12px;line-height:1.15}
+.hd-block__burger{order:3;display:inline-flex}
+.hd-block__nav{order:4;flex:1 0 100%;overflow:hidden;max-height:0;opacity:0;pointer-events:none;transition:max-height .3s,opacity .2s,margin-top .3s;margin-top:0;background:var(--c-green)}
+.hd-block--menu-open .hd-block__nav{max-height:520px;opacity:1;pointer-events:auto;margin-top:10px}
+.hd-block__nav-list{flex-direction:column;align-items:stretch;gap:0;padding:4px 0 0;border-top:1px solid rgba(200,165,114,0.18)}
+.hd-block__nav-list li{border-bottom:1px solid rgba(200,165,114,0.12)}
+.hd-block__nav-list li:last-child{border-bottom:0}
+.hd-block__nav-link{display:block;padding:14px 4px;font-size:16px;opacity:1}
+.hd-block__nav-link::after{display:none}
+.hd-block__menu-contacts{display:flex;flex-direction:column;gap:12px;padding:14px 4px 6px;border-top:1px solid rgba(200,165,114,0.18)}
+.hd-block__menu-hours{font-size:13px;opacity:0.85}
+.hd-block__menu-tg{display:inline-flex;align-items:center;gap:6px;color:var(--c-accent);text-decoration:none;font-size:14px;opacity:0.85}
+.hd-block__menu-tg svg{display:block}
+}
+@media(max-width:480px){.hd-block__inner{padding:10px 14px;column-gap:8px}.hd-block__logo{height:28px}.hd-block__phone-item{font-size:11px}.hd-block__burger{width:36px;height:36px}}
 
 /* 404 */
 .err-container{flex:1;display:flex;align-items:center;justify-content:center;padding:80px 24px;text-align:center;flex-direction:column;gap:24px}
@@ -66,14 +107,35 @@ body{margin:0;background:var(--c-bg);padding-top:76px;font-family:"Inter","Helve
     <a class="hd-block__logo" href="/" aria-label="40/60 Design">
       <img src="/images/logo.png" alt="40/60 Design">
     </a>
-    <nav class="hd-block__nav" aria-label="Основная навигация">
+    <button class="hd-block__burger" type="button" aria-expanded="false" aria-controls="hd-nav" aria-label="Открыть меню">
+      <span class="hd-block__burger-lines" aria-hidden="true"></span>
+    </button>
+    <nav class="hd-block__nav" id="hd-nav" aria-label="Основная навигация">
       <ul class="hd-block__nav-list">
         <li><a class="hd-block__nav-link" href="/about.html">О нас</a></li>
         <li><a class="hd-block__nav-link" href="/portfolio.html">Портфолио</a></li>
         <li><a class="hd-block__nav-link" href="/warranty.html">Гарантия</a></li>
         <li><a class="hd-block__nav-link" href="/partners.html">Партнёрам</a></li>
       </ul>
+      <div class="hd-block__menu-contacts">
+        <span class="hd-block__menu-hours">пн–сб 10:00–21:00</span>
+        <a class="hd-block__menu-tg" href="https://t.me/design4060" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+          <span>design4060</span>
+        </a>
+      </div>
     </nav>
+    <div class="hd-block__phones">
+      <a class="hd-block__phone-item" href="tel:+79771004415">+7 977 100-44-15</a>
+      <a class="hd-block__phone-item" href="tel:+79017448855">+7 901 744-88-55</a>
+    </div>
+    <div class="hd-block__meta">
+      <span class="hd-block__hours">пн–сб 10:00–21:00</span>
+      <a class="hd-block__tg" href="https://t.me/design4060" target="_blank" rel="noopener" aria-label="Мы в Telegram">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+        <span>design4060</span>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -87,5 +149,24 @@ body{margin:0;background:var(--c-bg);padding-top:76px;font-family:"Inter","Helve
   </div>
 </div>
 
+<script>
+(function(){
+  var header = document.querySelector('.hd-block');
+  if(header){
+    var burger = header.querySelector('.hd-block__burger');
+    var nav = header.querySelector('.hd-block__nav');
+    if(burger && nav){
+      burger.addEventListener('click', function(){
+        var open = !header.classList.contains('hd-block--menu-open');
+        header.classList.toggle('hd-block--menu-open', open);
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      nav.addEventListener('click', function(e){
+        if(e.target.tagName === 'A') header.classList.remove('hd-block--menu-open');
+      });
+    }
+  }
+})();
+</script>
 </body>
 </html>
