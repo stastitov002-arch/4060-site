@@ -169,6 +169,22 @@ img,svg,video{max-width:100%;height:auto}
 .pt-form__success-icon{width:80px;height:80px;border-radius:50%;background:rgba(111,207,151,0.14);color:var(--c-success);display:grid;place-items:center;font-size:40px}
 .pt-form__success-title{font-size:22px;margin:0;color:#fff}
 .pt-form__success-text{color:#a8a294;font-size:15px;margin:0;max-width:36ch}
+
+/* --- ИСПРАВЛЕНИЕ АДАПТИВНОСТИ --- */
+@media(max-width:960px) {
+  .pt-who__grid { grid-template-columns: repeat(2, 1fr); }
+  .pt-gain__grid { grid-template-columns: repeat(2, 1fr); }
+  .pt-steps__list { grid-template-columns: repeat(2, 1fr); }
+  .pt-form__wrap { grid-template-columns: 1fr; }
+}
+@media(max-width:640px) {
+  .pt-who__grid { grid-template-columns: 1fr; }
+  .pt-gain__grid { grid-template-columns: 1fr; }
+  .pt-steps__list { grid-template-columns: 1fr; }
+  .pt-form__card { padding: 24px 18px; }
+}
+/* --- КОНЕЦ ИСПРАВЛЕНИЯ --- */
+
 .ft-block{background:var(--c-green);color:var(--c-accent);padding:48px 20px 24px;border-top:1px solid rgba(200,165,114,0.15)}
 .ft-block__wrap{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:32px}
 @media(min-width:720px){.ft-block__wrap{grid-template-columns:1.5fr 1fr 1fr}}
@@ -563,7 +579,6 @@ if(ptForm)ptForm.addEventListener('submit',function(e){
   var ptConsentErr=document.getElementById('pt-consent-error');
   if(ptConsent&&!ptConsent.checked){if(ptConsentWrap)ptConsentWrap.classList.add('is-error');if(ptConsentErr)ptConsentErr.classList.add('is-visible');try{ptConsent.focus({preventScroll:true});}catch(er){ptConsent.focus();}return;}
   
-  // Безопасно достаем значения
   var nameVal = (document.getElementById('pt-name')||{}).value || '';
   var phoneVal = (document.getElementById('pt-phone')||{}).value || '';
   var typeSel = document.getElementById('pt-type');
