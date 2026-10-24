@@ -1,18 +1,18 @@
 ---
 slug: kitchen-contrast-marble
-title: Кухня TSS 2
+title: Кухня ALVIC 5
 featured: false
 style: ''
 layout: Угловая с островом
-material: Пластик
-price: 55000
+material: ALVIC Luxe
+price: 518000
 description: Контрастная кухня, где глубокий графитовый цвет нижних модулей и антресолей сочетается со светлыми верхними фасадами. Белоснежная столешница и фартук с фактурой мрамора визуально расширяют пространство. Остров выполняет роль обеденной зоны и включает в себя стильную нишу-винотеку из дерева. Отсутствие накладных ручек и линейный свет подчеркивают современный минимализм.
 cover: /images/uploads/5296685284865025943.jpg
 gallery:
   - /images/uploads/5296685284865025942.jpg
   - /images/uploads/5296685284865025941.jpg
-facades: Матовый пластик TSS
+facades: ALVIC
 countertop: Кварцевый агломерат
-hardware: Hettich
-equipment: ''
+hardware: GTV
+equipment: 'цена на кухню: 361 000 ₽, цена на камень: 157 000 ₽'
 ---
