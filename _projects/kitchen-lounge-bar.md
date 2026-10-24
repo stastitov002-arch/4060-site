@@ -1,6 +1,6 @@
 ---
 slug: kitchen-lounge-bar
-title: кухня ALVIC П
+title: кухня ALVIC
 featured: false
 style: ''
 layout: П-образная с островом
