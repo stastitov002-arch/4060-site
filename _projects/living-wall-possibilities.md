@@ -1,7 +1,7 @@
 ---
 slug: living-wall-possibilities
 title: Стена ЛДСП
-featured: false
+featured: true
 style: ''
 layout: Линейная
 material: ЛДСП
