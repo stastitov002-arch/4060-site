@@ -14,5 +14,5 @@ gallery:
 facades: ALVIC
 countertop: Кварцевый агломерат
 hardware: GTV
-equipment: 'цена на кухню: 361 000 ₽, цена на камень: 157 000 ₽'
+equipment: 361 000 ₽(Кухня), 157 000 ₽(Камень)
 ---
