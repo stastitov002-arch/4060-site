@@ -11,9 +11,7 @@ cover: /images/uploads/5296685284865026063.jpg
 gallery:
   - /images/uploads/5296685284865026064.jpg
   - /images/uploads/5296685284865026065.jpg
-facades: |-
-  МДФ, матовая эмаль (белый)
-  Egger (класс эмиссии Е1)
+facades: МДФ, матовая эмаль (белый), Egger (класс эмиссии Е1)
 countertop: ''
 hardware: Hettich
 equipment: ''
