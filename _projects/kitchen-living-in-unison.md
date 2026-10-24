@@ -1,7 +1,7 @@
 ---
 slug: kitchen-living-in-unison
 title: Комплексный проект ALVIC
-featured: false
+featured: true
 style: ''
 layout: Линейная
 material: ALVIC Luxe
