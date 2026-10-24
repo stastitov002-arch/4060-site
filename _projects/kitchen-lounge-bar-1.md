@@ -1,7 +1,7 @@
 ---
 slug: kitchen-lounge-bar
 title: кухня ALVIC
-featured: false
+featured: true
 style: ''
 layout: П-образная с островом
 material: ALVIC Luxe
