@@ -414,6 +414,10 @@ body.chat-modal-open{overflow:hidden}
           <option value="">Все материалы</option>
         </select>
       </label>
+            <label class="pf-filter" style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+        <input type="checkbox" id="pf-island" style="accent-color: var(--c-accent); width: 18px; height: 18px; cursor: pointer;">
+        <span style="font-size: 14px; color: var(--c-text); white-space: nowrap;">Только с островом</span>
+      </label>
       <label class="pf-filter">
         <select class="pf-filter__select" id="pf-layout" aria-label="Фильтр по планировке">
           <option value="">Все планировки</option>
@@ -697,6 +701,7 @@ var resetBtn=document.getElementById('pf-reset');
 var materialSel=document.getElementById('pf-material');
 var layoutSel=document.getElementById('pf-layout');
 var budgetSel=document.getElementById('pf-budget');
+var islandCheckbox=document.getElementById('pf-island');
 var lastFocus=null;
 
 var MATERIAL_ORDER=['ЛДСП','AGT','Пленка ПВХ','Пластик','ALVIC Luxe','Массив','Шпон','Эмаль'];
@@ -766,20 +771,42 @@ if(wrap)wrap.style.display=keys.length?'':'none';
 }
 
 function applyFilters(){
-var mv=materialSel.value;var lv=layoutSel.value;var bv=budgetSel.value;
-filtered=allProjects.filter(function(p){
-  var d=p.data;
-  if(mv&&d.material!==mv)return false;
-  if(lv&&d.layout!==lv)return false;
-  if(bv){var b=budgetByPrice(d.price);if(b!==bv)return false;}
-  return true;
-});
-visibleCount=PAGE_SIZE;
-materialSel.classList.toggle('is-active',!!mv);
-layoutSel.classList.toggle('is-active',!!lv);
-budgetSel.classList.toggle('is-active',!!bv);
-resetBtn.classList.toggle('is-visible',!!(mv||lv||bv));
-render();
+  var mv=materialSel.value;
+  var lv=layoutSel.value;
+  var bv=budgetSel.value;
+  var iv=islandCheckbox ? islandCheckbox.checked : false;
+  
+  filtered=allProjects.filter(function(p){
+    var d=p.data;
+    
+    // Материал
+    if(mv&&d.material!==mv)return false;
+    
+    // Планировка (ищем вхождение, чтобы "Угловая" находила "Угловая с островом")
+    if(lv){
+      if(!d.layout) return false;
+      if(String(d.layout).toLowerCase().indexOf(lv.toLowerCase()) === -1) return false;
+    }
+    
+    // Остров (работает и с true, и с "true" из YAML)
+    if(iv && d.island !== 'true' && d.island !== true) return false;
+    
+    // Бюджет
+    if(bv){
+      var b=budgetByPrice(d.price);
+      if(b!==bv)return false;
+    }
+    
+    return true;
+  });
+  
+  visibleCount=PAGE_SIZE;
+  materialSel.classList.toggle('is-active',!!mv);
+  layoutSel.classList.toggle('is-active',!!lv);
+  budgetSel.classList.toggle('is-active',!!bv);
+  resetBtn.classList.toggle('is-visible',!!(mv||lv||bv||iv));
+  
+  render();
 }
 
 function render(){
@@ -799,7 +826,13 @@ else{window.addEventListener('scroll',function(){if(pauseInfiniteScroll)return;i
 materialSel.addEventListener('change',applyFilters);
 layoutSel.addEventListener('change',applyFilters);
 budgetSel.addEventListener('change',applyFilters);
-resetBtn.addEventListener('click',function(){materialSel.value='';layoutSel.value='';budgetSel.value='';applyFilters();});
+resetBtn.addEventListener('click',function(){
+  materialSel.value='';
+  layoutSel.value='';
+  budgetSel.value='';
+  if(islandCheckbox) islandCheckbox.checked=false;
+  applyFilters();
+});
 
 function openModal(p){
 if(!p)return;lastFocus=document.activeElement;currentProject=p;
