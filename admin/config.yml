@@ -51,6 +51,7 @@ collections:
         name: "material"
         widget: "select"
         multiple: true
+        dropdown_threshold: 20
         required: false
         hint: "Выбери один или несколько материалов (например, ЛДСП и Пленка ПВХ) — они появятся в фильтре портфолио."
         options:
