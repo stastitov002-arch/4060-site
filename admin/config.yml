@@ -38,7 +38,7 @@ collections:
     summary: "{{title}} {% if featured %}★ на главной{% endif %}"
     description: "Заполни поле «Слаг» латиницей — это имя файла. Остальное можно писать по-русски."
     fields:
-      - label: "Слаг (имя файла, латиница)"
+            - label: "Слаг (имя файла, латиница)"
         name: "slug"
         widget: "string"
         hint: "Только латиница, цифры и дефис. Например: kitchen-modern-01. Без пробелов, без русских букв."
@@ -47,6 +47,11 @@ collections:
       - { label: "Показать на главной", name: "featured", widget: "boolean", default: false, required: false, hint: "Максимум 4 проекта" }
       - { label: "Стиль", name: "style", widget: "string", required: false }
       - { label: "Планировка", name: "layout", widget: "string", required: false }
+      - label: "Есть остров?"
+        name: "island"
+        widget: "boolean"
+        default: false
+        required: false
       - label: "Материал фасада"
         name: "material"
         widget: "select"
