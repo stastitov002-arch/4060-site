@@ -779,8 +779,12 @@ function applyFilters(){
   filtered=allProjects.filter(function(p){
     var d=p.data;
     
-    // Материал
-    if(mv&&d.material!==mv)return false;
+    // Материал (умный поиск: превращаем массив или строку в текст и ищем совпадение)
+    if(mv){
+      if(!d.material) return false;
+      var matStr = JSON.stringify(d.material).toLowerCase();
+      if(matStr.indexOf(mv.toLowerCase()) === -1) return false;
+    }
     
     // Планировка (ищем вхождение, чтобы "Угловая" находила "Угловая с островом")
     if(lv){
@@ -788,7 +792,7 @@ function applyFilters(){
       if(String(d.layout).toLowerCase().indexOf(lv.toLowerCase()) === -1) return false;
     }
     
-    // Остров (работает и с true, и с "true" из YAML)
+    // Остров
     if(iv && d.island !== 'true' && d.island !== true) return false;
     
     // Бюджет
@@ -808,7 +812,6 @@ function applyFilters(){
   
   render();
 }
-
 function render(){
 grid.innerHTML='';
 if(!filtered.length){grid.innerHTML='<li class="kb-sec__empty">Ничего не найдено. Попробуйте изменить фильтры.</li>';updateCounter();loader.classList.add('is-hidden');return;}
