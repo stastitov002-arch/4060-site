@@ -729,65 +729,123 @@ allProjects=contents.map(function(t){
 }).filter(function(p) { return p.data && p.data.title; });
 
 allProjects.sort(function(a,b){var fa=a.data.featured==='true'?0:1;var fb=b.data.featured==='true'?0:1;if(fa!==fb)return fa-fb;return (a.data.title||'').localeCompare(b.data.title||'','ru');});
-populateLayouts();populateMaterials();applyFilters();
+applyFilters();
 });
 })
 .catch(function(){grid.innerHTML='<li class="kb-sec__empty">Ошибка загрузки.</li>';loader.classList.add('is-hidden');});
 }
 
-function populateLayouts(){
-var layouts={};
-allProjects.forEach(function(p){if(p.data.layout)layouts[p.data.layout]=true;});
-var keys=Object.keys(layouts).sort(function(a,b){return a.localeCompare(b,'ru');});
-keys.forEach(function(l){var opt=document.createElement('option');opt.value=l;opt.textContent=l;layoutSel.appendChild(opt);});
-var wrap=layoutSel.closest('.pf-filter');
-if(wrap)wrap.style.display=keys.length?'':'none';
+  // Функция для заполнения списка планировок (принимает массив проектов)
+function populateLayouts(projects) {
+  var currentVal = layoutSel.value;
+  layoutSel.innerHTML = '<option value="">Все планировки</option>';
+  
+  var layouts = {};
+  projects.forEach(function(p) {
+    if (p.data.layout) layouts[p.data.layout] = true;
+  });
+  
+  var keys = Object.keys(layouts).sort(function(a, b) { return a.localeCompare(b, 'ru'); });
+  keys.forEach(function(l) {
+    var opt = document.createElement('option');
+    opt.value = l;
+    opt.textContent = l;
+    layoutSel.appendChild(opt);
+  });
+  
+  if (currentVal && layouts[currentVal]) layoutSel.value = currentVal;
+  var wrap = layoutSel.closest('.pf-filter');
+  if (wrap) wrap.style.display = keys.length ? '' : 'none';
 }
 
-function populateMaterials(){
-  var materials={};
-  allProjects.forEach(function(p){
-    if(p.data.material){
+// Функция для заполнения списка материалов (принимает массив проектов)
+function populateMaterials(projects) {
+  var currentVal = materialSel.value;
+  materialSel.innerHTML = '<option value="">Все материалы</option>';
+  
+  var materials = {};
+  projects.forEach(function(p) {
+    if (p.data.material) {
       var list = Array.isArray(p.data.material) ? p.data.material : String(p.data.material).split(',');
-      list.forEach(function(m){
+      list.forEach(function(m) {
         var clean = String(m).replace(/["\[\]]/g, '').trim();
-        if(clean) materials[clean] = true;
+        if (clean) materials[clean] = true;
       });
     }
   });
-  var keys=Object.keys(materials);
-  keys.sort(function(a,b){
-    var ia=MATERIAL_ORDER.indexOf(a),ib=MATERIAL_ORDER.indexOf(b);
-    if(ia===-1&&ib===-1)return a.localeCompare(b,'ru');
-    if(ia===-1)return 1;
-    if(ib===-1)return -1;
-    return ia-ib;
+  
+  var keys = Object.keys(materials);
+  keys.sort(function(a, b) {
+    var ia = MATERIAL_ORDER.indexOf(a), ib = MATERIAL_ORDER.indexOf(b);
+    if (ia === -1 && ib === -1) return a.localeCompare(b, 'ru');
+    if (ia === -1) return 1;
+    if (ib === -1) return -1;
+    return ia - ib;
   });
-  keys.forEach(function(m){var opt=document.createElement('option');opt.value=m;opt.textContent=m;materialSel.appendChild(opt);});
-  var wrap=materialSel.closest('.pf-filter');
-  if(wrap)wrap.style.display=keys.length?'':'none';
+  
+  keys.forEach(function(m) {
+    var opt = document.createElement('option');
+    opt.value = m;
+    opt.textContent = m;
+    materialSel.appendChild(opt);
+  });
+  
+  if (currentVal && materials[currentVal]) materialSel.value = currentVal;
+  var wrap = materialSel.closest('.pf-filter');
+  if (wrap) wrap.style.display = keys.length ? '' : 'none';
 }
 
-function applyFilters(){
-  var mv=materialSel.value;
-  var lv=layoutSel.value;
-  var bv=budgetSel.value;
-  var iv=islandCheckbox ? islandCheckbox.checked : false;
+// Главная функция фильтрации
+function applyFilters() {
+  var mv = materialSel.value;
+  var lv = layoutSel.value;
+  var bv = budgetSel.value;
+  var iv = islandCheckbox ? islandCheckbox.checked : false;
   
-  filtered=allProjects.filter(function(p){
-    var d=p.data;
-    
-    if(mv){
-      if(!d.material) return false;
+  // 1. Фильтруем по острову
+  var projectsForLists = allProjects.filter(function(p) {
+    if (!iv) return true;
+    var d = p.data;
+    var hasIslandFlag = (d.island === 'true' || d.island === true);
+    var layoutHasIsland = d.layout && String(d.layout).toLowerCase().indexOf('остров') !== -1;
+    var titleHasIsland = d.title && String(d.title).toLowerCase().indexOf('остров') !== -1;
+    return hasIslandFlag || layoutHasIsland || titleHasIsland;
+  });
+
+  // 2. Обновляем списки (только если фокус не на них, чтобы не было бага)
+  if (document.activeElement !== materialSel && document.activeElement !== layoutSel) {
+      populateMaterials(projectsForLists);
+      populateLayouts(projectsForLists);
+  }
+
+  // 3. Применяем остальные фильтры
+  filtered = projectsForLists.filter(function(p) {
+    var d = p.data;
+    if (mv) {
+      if (!d.material) return false;
       var matStr = String(d.material).toLowerCase().replace(/[\[\]"']/g, '');
-      if(matStr.indexOf(mv.toLowerCase()) === -1) return false;
+      if (matStr.indexOf(mv.toLowerCase()) === -1) return false;
     }
-    
-    if(lv){
-      if(!d.layout) return false;
-      if(String(d.layout).toLowerCase().indexOf(lv.toLowerCase()) === -1) return false;
+    if (lv) {
+      if (!d.layout) return false;
+      if (String(d.layout).toLowerCase().indexOf(lv.toLowerCase()) === -1) return false;
     }
-    
+    if (bv) {
+      var b = budgetByPrice(d.price);
+      if (b !== bv) return false;
+    }
+    return true;
+  });
+  
+  visibleCount = PAGE_SIZE;
+  materialSel.classList.toggle('is-active', !!mv);
+  layoutSel.classList.toggle('is-active', !!lv);
+  budgetSel.classList.toggle('is-active', !!bv);
+  resetBtn.classList.toggle('is-visible', !!(mv || lv || bv || iv));
+  
+  render();
+}
+
    // Остров (ищем либо флаг island: true, либо слово "остров" в планировке или названии)
 if (iv) {
   var hasIslandFlag = (d.island === 'true' || d.island === true);
@@ -833,6 +891,9 @@ else{window.addEventListener('scroll',function(){if(pauseInfiniteScroll)return;i
 materialSel.addEventListener('change',applyFilters);
 layoutSel.addEventListener('change',applyFilters);
 budgetSel.addEventListener('change',applyFilters);
+  if (islandCheckbox) {
+  islandCheckbox.addEventListener('change', applyFilters);
+}
 resetBtn.addEventListener('click',function(){
   materialSel.value='';
   layoutSel.value='';
