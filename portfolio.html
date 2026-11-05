@@ -417,9 +417,9 @@ body.chat-modal-open{overflow:hidden}
           <option value="">Все материалы</option>
         </select>
       </label>
-            <label class="pf-filter" style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
-        <input type="checkbox" id="pf-island" style="accent-color: var(--c-accent); width: 18px; height: 18px; cursor: pointer;">
-        <span style="font-size: 14px; color: var(--c-text); white-space: nowrap;">Только с островом</span>
+            <label class="pf-filter" style="display: flex; align-items: center; gap: 8px; cursor: pointer; padding: 11px 16px; border: 1px solid rgba(200,165,114,0.24); border-radius: 10px; background: rgba(200,165,114,0.06); min-width: 200px;">
+        <input type="checkbox" id="pf-island" style="accent-color: var(--c-accent); width: 18px; height: 18px; cursor: pointer; margin: 0;">
+        <span style="font-size: 14px; color: var(--c-text); white-space: nowrap; font-weight: 500;">Только с островом</span>
       </label>
       <label class="pf-filter">
         <select class="pf-filter__select" id="pf-layout" aria-label="Фильтр по планировке">
@@ -717,7 +717,6 @@ return li;
 }
 
 function load(){
-  // Показываем загрузку
   grid.innerHTML='<li class="kb-sec__empty">Загружаем проекты…</li>';
   
   fetch('https://api.github.com/repos/'+REPO+'/contents/_projects?ref=main')
@@ -733,7 +732,6 @@ function load(){
     var md = files.filter(function(f){ return f.name.endsWith('.md'); });
     if (!md.length) throw new Error('В папке _projects не найдено .md файлов');
     
-    // Загружаем все файлы параллельно
     return Promise.all(md.map(function(f){
       return fetch(f.download_url).then(function(r){ 
         if (!r.ok) throw new Error('Не удалось скачать файл ' + f.name);
@@ -745,12 +743,9 @@ function load(){
     allProjects = [];
     contents.forEach(function(t, index) {
       try {
-        // Парсим YAML
         var parsed = parseYaml(t);
         if (parsed && parsed.title) {
           allProjects.push({data: parsed});
-        } else {
-          console.warn('Файл без заголовка (title) пропущен:', index);
         }
       } catch (err) {
         console.error('Ошибка в файле проекта (индекс ' + index + '):', err);
@@ -761,7 +756,6 @@ function load(){
       throw new Error('Не удалось загрузить ни одного проекта. Проверьте консоль.');
     }
     
-    // Сортируем
     allProjects.sort(function(a,b){
       var fa = a.data.featured==='true' ? 0 : 1;
       var fb = b.data.featured==='true' ? 0 : 1;
@@ -769,24 +763,15 @@ function load(){
       return (a.data.title||'').localeCompare(b.data.title||'','ru');
     });
     
-    // Запускаем фильтры
     applyFilters();
   })
   .catch(function(err){
     console.error('Критическая ошибка загрузки:', err);
-    grid.innerHTML = '<li class="kb-sec__empty" style="color: #e07a6a;">Ошибка загрузки: ' + err.message + '<br><br>Попробуйте обновить страницу позже или проверьте консоль (F12).</li>';
+    grid.innerHTML = '<li class="kb-sec__empty" style="color: #e07a6a;">Ошибка загрузки: ' + err.message + '</li>';
     loader.classList.add('is-hidden');
   });
 }
 
-allProjects.sort(function(a,b){var fa=a.data.featured==='true'?0:1;var fb=b.data.featured==='true'?0:1;if(fa!==fb)return fa-fb;return (a.data.title||'').localeCompare(b.data.title||'','ru');});
-applyFilters();
-});
-})
-.catch(function(){grid.innerHTML='<li class="kb-sec__empty">Ошибка загрузки.</li>';loader.classList.add('is-hidden');});
-}
-
-  // Функция для заполнения списка планировок (принимает массив проектов)
 function populateLayouts(projects) {
   var currentVal = layoutSel.value;
   layoutSel.innerHTML = '<option value="">Все планировки</option>';
@@ -809,7 +794,6 @@ function populateLayouts(projects) {
   if (wrap) wrap.style.display = keys.length ? '' : 'none';
 }
 
-// Функция для заполнения списка материалов (принимает массив проектов)
 function populateMaterials(projects) {
   var currentVal = materialSel.value;
   materialSel.innerHTML = '<option value="">Все материалы</option>';
@@ -846,14 +830,12 @@ function populateMaterials(projects) {
   if (wrap) wrap.style.display = keys.length ? '' : 'none';
 }
 
-// Главная функция фильтрации
 function applyFilters() {
   var mv = materialSel.value;
   var lv = layoutSel.value;
   var bv = budgetSel.value;
   var iv = islandCheckbox ? islandCheckbox.checked : false;
   
-  // 1. Фильтруем по острову
   var projectsForLists = allProjects.filter(function(p) {
     if (!iv) return true;
     var d = p.data;
@@ -863,13 +845,11 @@ function applyFilters() {
     return hasIslandFlag || layoutHasIsland || titleHasIsland;
   });
 
-  // 2. Обновляем списки (только если фокус не на них, чтобы не было бага)
   if (document.activeElement !== materialSel && document.activeElement !== layoutSel) {
       populateMaterials(projectsForLists);
       populateLayouts(projectsForLists);
   }
 
-  // 3. Применяем остальные фильтры
   filtered = projectsForLists.filter(function(p) {
     var d = p.data;
     if (mv) {
@@ -897,34 +877,6 @@ function applyFilters() {
   render();
 }
 
-   // Остров (ищем либо флаг island: true, либо слово "остров" в планировке или названии)
-if (iv) {
-  var hasIslandFlag = (d.island === 'true' || d.island === true);
-  var layoutHasIsland = d.layout && String(d.layout).toLowerCase().indexOf('остров') !== -1;
-  var titleHasIsland = d.title && String(d.title).toLowerCase().indexOf('остров') !== -1;
-  
-  // Если ни флага, ни слова в планировке/названии нет — скрываем
-  if (!hasIslandFlag && !layoutHasIsland && !titleHasIsland) {
-    return false;
-  }
-}
-    
-    if(bv){
-      var b=budgetByPrice(d.price);
-      if(b!==bv)return false;
-    }
-    
-    return true;
-  });
-  
-  visibleCount=PAGE_SIZE;
-  materialSel.classList.toggle('is-active',!!mv);
-  layoutSel.classList.toggle('is-active',!!lv);
-  budgetSel.classList.toggle('is-active',!!bv);
-  resetBtn.classList.toggle('is-visible',!!(mv||lv||bv||iv));
-  
-  render();
-}
 function render(){
 grid.innerHTML='';
 if(!filtered.length){grid.innerHTML='<li class="kb-sec__empty">Ничего не найдено. Попробуйте изменить фильтры.</li>';updateCounter();loader.classList.add('is-hidden');return;}
@@ -942,7 +894,7 @@ else{window.addEventListener('scroll',function(){if(pauseInfiniteScroll)return;i
 materialSel.addEventListener('change',applyFilters);
 layoutSel.addEventListener('change',applyFilters);
 budgetSel.addEventListener('change',applyFilters);
-  if (islandCheckbox) {
+if (islandCheckbox) {
   islandCheckbox.addEventListener('change', applyFilters);
 }
 resetBtn.addEventListener('click',function(){
