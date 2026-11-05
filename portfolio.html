@@ -724,9 +724,18 @@ if(!Array.isArray(files)){grid.innerHTML='<li class="kb-sec__empty">Проект
 var md=files.filter(function(f){return f.name.endsWith('.md');});
 return Promise.all(md.map(function(f){return fetch(f.download_url).then(function(r){return r.text();});}))
 .then(function(contents){
-allProjects=contents.map(function(t){
-  return {data: parseYaml(t)};
-}).filter(function(p) { return p.data && p.data.title; });
+  allProjects = [];
+  contents.forEach(function(t) {
+    try {
+      var parsed = parseYaml(t);
+      // Проверяем, что файл распарсился и в нем есть заголовок
+      if (parsed && parsed.title) {
+        allProjects.push({data: parsed});
+      }
+    } catch (err) {
+      console.warn('Пропущен битый файл проекта:', err);
+    }
+  });
 
 allProjects.sort(function(a,b){var fa=a.data.featured==='true'?0:1;var fb=b.data.featured==='true'?0:1;if(fa!==fb)return fa-fb;return (a.data.title||'').localeCompare(b.data.title||'','ru');});
 applyFilters();
