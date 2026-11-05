@@ -717,25 +717,67 @@ return li;
 }
 
 function load(){
-fetch('https://api.github.com/repos/'+REPO+'/contents/_projects?ref=main')
-.then(function(r){return r.json();})
-.then(function(files){
-if(!Array.isArray(files)){grid.innerHTML='<li class="kb-sec__empty">Проектов пока нет.</li>';loader.classList.add('is-hidden');return;}
-var md=files.filter(function(f){return f.name.endsWith('.md');});
-return Promise.all(md.map(function(f){return fetch(f.download_url).then(function(r){return r.text();});}))
-.then(function(contents){
-  allProjects = [];
-  contents.forEach(function(t) {
-    try {
-      var parsed = parseYaml(t);
-      // Проверяем, что файл распарсился и в нем есть заголовок
-      if (parsed && parsed.title) {
-        allProjects.push({data: parsed});
-      }
-    } catch (err) {
-      console.warn('Пропущен битый файл проекта:', err);
+  // Показываем загрузку
+  grid.innerHTML='<li class="kb-sec__empty">Загружаем проекты…</li>';
+  
+  fetch('https://api.github.com/repos/'+REPO+'/contents/_projects?ref=main')
+  .then(function(r){
+    if (!r.ok) throw new Error('GitHub API вернул статус ' + r.status);
+    return r.json();
+  })
+  .then(function(files){
+    if(!Array.isArray(files)){
+      throw new Error('Ответ API не является массивом. Возможно, превышен лимит запросов.');
     }
+    
+    var md = files.filter(function(f){ return f.name.endsWith('.md'); });
+    if (!md.length) throw new Error('В папке _projects не найдено .md файлов');
+    
+    // Загружаем все файлы параллельно
+    return Promise.all(md.map(function(f){
+      return fetch(f.download_url).then(function(r){ 
+        if (!r.ok) throw new Error('Не удалось скачать файл ' + f.name);
+        return r.text(); 
+      });
+    }));
+  })
+  .then(function(contents){
+    allProjects = [];
+    contents.forEach(function(t, index) {
+      try {
+        // Парсим YAML
+        var parsed = parseYaml(t);
+        if (parsed && parsed.title) {
+          allProjects.push({data: parsed});
+        } else {
+          console.warn('Файл без заголовка (title) пропущен:', index);
+        }
+      } catch (err) {
+        console.error('Ошибка в файле проекта (индекс ' + index + '):', err);
+      }
+    });
+    
+    if (allProjects.length === 0) {
+      throw new Error('Не удалось загрузить ни одного проекта. Проверьте консоль.');
+    }
+    
+    // Сортируем
+    allProjects.sort(function(a,b){
+      var fa = a.data.featured==='true' ? 0 : 1;
+      var fb = b.data.featured==='true' ? 0 : 1;
+      if(fa !== fb) return fa - fb;
+      return (a.data.title||'').localeCompare(b.data.title||'','ru');
+    });
+    
+    // Запускаем фильтры
+    applyFilters();
+  })
+  .catch(function(err){
+    console.error('Критическая ошибка загрузки:', err);
+    grid.innerHTML = '<li class="kb-sec__empty" style="color: #e07a6a;">Ошибка загрузки: ' + err.message + '<br><br>Попробуйте обновить страницу позже или проверьте консоль (F12).</li>';
+    loader.classList.add('is-hidden');
   });
+}
 
 allProjects.sort(function(a,b){var fa=a.data.featured==='true'?0:1;var fb=b.data.featured==='true'?0:1;if(fa!==fb)return fa-fb;return (a.data.title||'').localeCompare(b.data.title||'','ru');});
 applyFilters();
