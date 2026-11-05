@@ -29,7 +29,7 @@
   gtag('config', 'G-P51ZT8LJPG');
 </script>
   
-<!-- Фавиконки (положи файлы в корень сайта) -->
+<!-- Фавиконки -->
 <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="shortcut icon" href="favicon.ico">
@@ -50,8 +50,10 @@
 <meta name="twitter:description" content="Смотрите реализованные проекты кухонь, гардеробных и шкафов-купе на заказ от 40/60 Design. Фото, описание материалов, фурнитуры и сроков в Москве.">
 <meta name="twitter:image" content="https://stastitov002-arch.github.io/4060-site/images/showroom.jpg">
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
-  <!-- Микроразметка BreadcrumbList (Портфолио) -->
+<!-- Библиотека для парсинга YAML -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+
+<!-- Микроразметка BreadcrumbList -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -69,9 +71,6 @@
   }]
 }
 </script>
-
-<!-- Библиотека для парсинга YAML -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
   
 <style>
 :root{--c-bg:#0d0c0d;--c-bg-alt:#141210;--c-surface:#1d1a17;--c-surface-2:#2a2620;--c-line:#2a2622;--c-accent:#c8a572;--c-accent-h:#d4b279;--c-accent-d:#b08a52;--c-text:#f4ede2;--c-text-mute:#8f8a7e;--c-gold-strong:#f5b942;--c-gold-light:#e9c884;--c-success:#6fcf97;--c-error:#e07a6a;--c-green:#0c160e}
@@ -654,7 +653,17 @@ var currentProject=null;
 function setSelectedProject(title){if(!vkProject)return;if(title){vkProjectName.textContent=title;vkProjectInput.value=title;vkProject.removeAttribute('hidden');}else{vkProjectName.textContent='';vkProjectInput.value='';vkProject.setAttribute('hidden','');}}
 if(vkProjectClear)vkProjectClear.addEventListener('click',function(){setSelectedProject('');});
 
-// Надежное определение бюджета (убираем всё кроме цифр)
+function parseYaml(text) {
+  try {
+    var m = text.match(/^---\s*\n([\s\S]*?)\n---/);
+    if (!m) return {};
+    return jsyaml.load(m[1]) || {};
+  } catch (e) {
+    console.error('Ошибка парсинга YAML:', e);
+    return {};
+  }
+}
+
 function budgetByPrice(price) {
   if (!price) return null;
   var cleanPrice = String(price).replace(/[^\d]/g, '');
@@ -717,15 +726,8 @@ var md=files.filter(function(f){return f.name.endsWith('.md');});
 return Promise.all(md.map(function(f){return fetch(f.download_url).then(function(r){return r.text();});}))
 .then(function(contents){
 allProjects=contents.map(function(t){
-  // Используем надежный парсер js-yaml
-  var parsedData = {};
-  try {
-    parsedData = jsyaml.load(t);
-  } catch(e) {
-    console.error('Ошибка парсинга YAML в файле:', e);
-  }
-  return {data: parsedData};
-}).filter(function(p) { return p.data && p.data.title; }); // Отбрасываем пустые
+  return {data: parseYaml(t)};
+}).filter(function(p) { return p.data && p.data.title; });
 
 allProjects.sort(function(a,b){var fa=a.data.featured==='true'?0:1;var fb=b.data.featured==='true'?0:1;if(fa!==fb)return fa-fb;return (a.data.title||'').localeCompare(b.data.title||'','ru');});
 populateLayouts();populateMaterials();applyFilters();
@@ -747,7 +749,6 @@ function populateMaterials(){
   var materials={};
   allProjects.forEach(function(p){
     if(p.data.material){
-      // Разбиваем массив или строку на отдельные материалы
       var list = Array.isArray(p.data.material) ? p.data.material : String(p.data.material).split(',');
       list.forEach(function(m){
         var clean = String(m).replace(/["\[\]]/g, '').trim();
@@ -777,23 +778,19 @@ function applyFilters(){
   filtered=allProjects.filter(function(p){
     var d=p.data;
     
-    // Материал (приводим к нижнему регистру и убираем кавычки для поиска)
     if(mv){
       if(!d.material) return false;
       var matStr = String(d.material).toLowerCase().replace(/[\[\]"']/g, '');
       if(matStr.indexOf(mv.toLowerCase()) === -1) return false;
     }
     
-    // Планировка (ищем вхождение подстроки)
     if(lv){
       if(!d.layout) return false;
       if(String(d.layout).toLowerCase().indexOf(lv.toLowerCase()) === -1) return false;
     }
     
-    // Остров
     if(iv && d.island !== 'true' && d.island !== true) return false;
     
-    // Бюджет
     if(bv){
       var b=budgetByPrice(d.price);
       if(b!==bv)return false;
